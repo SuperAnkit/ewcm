@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>OPS- Global Core</comment>
+<entry key="createdBy">selvav</entry>
+<entry key="name">ops.global.core</entry>
+<entry key="created">2015-11-12T19:56:12.567+0530</entry>
+<entry key="groupId">ewcm</entry>
+<entry key="version">1.0.0-SNAPSHOT</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">ewcm/apps</entry>
+<entry key="description">Global Core package</entry>
+<entry key="artifactId">ops.global.core</entry>
+<entry key="path">/etc/packages/ewcm/apps/ops.global.core.zip</entry>
+</properties>

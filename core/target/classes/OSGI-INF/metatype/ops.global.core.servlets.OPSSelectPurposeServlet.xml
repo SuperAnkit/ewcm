@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/ops.global.core.servlets.OPSSelectPurposeServlet">
+    <OCD id="ops.global.core.servlets.OPSSelectPurposeServlet" name="%ops.global.core.servlets.OPSSelectPurposeServlet.name" description="%ops.global.core.servlets.OPSSelectPurposeServlet.description"/>
+    <Designate pid="ops.global.core.servlets.OPSSelectPurposeServlet">
+        <Object ocdref="ops.global.core.servlets.OPSSelectPurposeServlet"/>
+    </Designate>
+</metatype:MetaData>
