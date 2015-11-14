@@ -1,4 +1,4 @@
-# CenturyLink Enterprise Web Content Management
+#Enterprise Web Content Management
 
 This site represents the components and templates for the /business site.
 
