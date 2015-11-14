@@ -3,4 +3,13 @@
 	<!--  <filter root="/apps/ewcm">
 		<exclude pattern="/apps/ewcm/install" />
 	</filter>  -->
+  <filter root="/apps/opsBluePrint" mode="update" /> 
+  <filter root="/etc/designs/ops-blueprint" mode="update" /> 
+  <filter root="/content/dam/ops/blueprint" mode="update" /> 
+  <filter root="/content/ops" mode="update" /> 
+  <filter root="/content/forms/af/ops" mode="update" /> 
+  <filter root="/libs/fd/af/components/guideContainer/guideContainer.jsp" mode="update" /> 
+  <filter root="/etc/clientlibs/fd/af/common/js/GuideUtil.js" mode="update" /> 
+  <filter root="/apps/system" mode="update" /> 
+	
 </workspaceFilter>

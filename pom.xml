@@ -14,8 +14,8 @@
 	<version>1.0.0-SNAPSHOT</version>
 
 	<modules>
-		<module>ops.global.core</module>
-		<module>ops.global.apps</module>
+		<module>core</module>
+		<module>global.ui.apps</module>
 	</modules>
 
 	<properties>
