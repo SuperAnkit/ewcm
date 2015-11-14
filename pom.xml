@@ -9,15 +9,13 @@
 	governing permissions and | limitations under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ewcm</groupId>
-	<artifactId>ewcm-parent</artifactId>
+	<artifactId>ops-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<description>ewcm</description>
 
 	<modules>
-		<module>core</module>
-		<module>global.ui.apps</module>
+		<module>ops.global.core</module>
+		<module>ops.global.apps</module>
 	</modules>
 
 	<properties>
@@ -419,4 +417,6 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<groupId>ops</groupId>
+	<description>OPS Parent Project</description>
 </project>

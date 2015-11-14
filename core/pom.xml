@@ -16,15 +16,15 @@
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <groupId>ewcm</groupId>
-        <artifactId>ewcm-parent</artifactId>
+        <groupId>ops</groupId>
+        <artifactId>ops-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>ewcm.global.core</artifactId>
+	<artifactId>ops.global.core</artifactId>
 	<packaging>bundle</packaging>
-	<name>Ewcm - Core</name>
-	<description>Core bundle for ewcm</description>
+	<name>OPS - Core</name>
+	<description>Core bundle for OPS</description>
 	<build>
 		<plugins>
 			<plugin>
@@ -57,7 +57,7 @@
 							<!-- Note that this requires /apps/ewcm/install to exist!!          -->
 							<!--    This is typically the case when ui.apps is deployed first                -->
 							<!--    Otherwise, create /apps/ewcm/install manually (CRXDE|Lite)  -->
-							<slingUrlSuffix>/apps/ewcm/install/</slingUrlSuffix>
+							<slingUrlSuffix>/apps/ops/install/</slingUrlSuffix>
 							<failOnError>true</failOnError>
 						</configuration>
 					</plugin>

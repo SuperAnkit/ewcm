@@ -14,8 +14,8 @@
 	<!-- P A R E N T P R O J E C T D E S C R I P T I O N -->
 	<!-- ====================================================================== -->
 	<parent>
-		<groupId>ewcm</groupId>
-		<artifactId>ewcm-parent</artifactId>
+		<groupId>ops</groupId>
+		<artifactId>ops-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
@@ -23,10 +23,10 @@
 	<!-- ====================================================================== -->
 	<!-- P R O J E C T D E S C R I P T I O N -->
 	<!-- ====================================================================== -->
-	<artifactId>ops.global.core</artifactId>
+	<artifactId>ops.global.apps</artifactId>
 	<packaging>content-package</packaging>
-	<name>OPS- Global Core</name>
-	<description>Global Core package</description>
+	<name>OPS- Global Apps</name>
+	<description>Global Apps Package</description>
 
 	<!-- <scm> <connection></connection> <developerConnection></developerConnection> 
 		<url></url> <tag>HEAD</tag> </scm -->
@@ -102,12 +102,12 @@
 					<filterSource>${basedir}/META-INF/vault/filter.xml</filterSource>
 					<verbose>true</verbose>
 					<failOnError>true</failOnError>
-					<group>ewcm/apps</group>
+					<group>ops/apps</group>
 					<embeddeds>
 						<embedded>
-							<groupId>ewcm</groupId>
-							<artifactId>ewcm.global.core</artifactId>
-							<target>/apps/ewcm/install</target>
+							<groupId>ops</groupId>
+							<artifactId>ops.global.core</artifactId>
+							<target>/apps/ops/install</target>
 						</embedded>
 					</embeddeds>
 					<subPackages>
@@ -185,8 +185,8 @@
 	<!-- ====================================================================== -->
 	<dependencies>
 		<dependency>
-			<groupId>ewcm</groupId>
-			<artifactId>ewcm.global.core</artifactId>
+			<groupId>ops</groupId>
+			<artifactId>ops.global.core</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
