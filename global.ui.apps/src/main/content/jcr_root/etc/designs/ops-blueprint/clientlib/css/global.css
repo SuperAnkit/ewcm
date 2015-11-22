@@ -1,0 +1,529 @@
+/* HTML5 display-role reset for older browsers */
+
+
+
+/* adjustment for tabular results */
+
+.widthAdjustment {
+    width: 100px !important; 
+}
+
+
+
+/* adjustment for tabular results */
+
+.adjustedWidth {
+    overflow: visible !important; 
+}
+
+/* Reader Page Styles Start */
+
+.table-bordered{border:1px solid grey; padding:2px ; margin-top:10px;}
+.label-bold{color:blue;}
+.boldHeader{font-weight:bold;}
+td{font-size:12px !important}
+.panel-title > .small, .panel-title > .small > a, .panel-title > a, .panel-title > small, .panel-title > small > a {
+    color: #004165 !important;
+}
+
+/* Reader Page Styles Stop */
+
+
+.DisplayBlock {
+        display: block !important;
+    }
+
+.DisplayNone {
+        display: none !important;
+        }
+
+.searchResultTab{
+	border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+    min-height: 50px !important;
+    margin-top: 100px;
+}
+
+.resultStatus {
+    margin-top: 20px;
+}
+
+.tabularDisplay > ul{
+	border-bottom: 1px solid #fff;	
+}
+
+.hiddenTBContainer{
+       // margin-top: 100px;
+        height: 50px;
+    }   
+
+.displayNone{
+	display:none;
+	}
+	
+.displayBlock{
+	display:block;
+	}
+
+.tabularList{
+	list-style-type: none;
+	
+}
+.tab-content{
+	//border-left: 1px solid #ddd;
+	//border-right: 1px solid #ddd;
+	//border-bottom: 1px solid #ddd;
+	//padding: 20px;
+}
+
+.searchContainer{
+	margin-left: 10%;
+	margin-top: 150px;
+	margin-bottom: 50px;
+}
+
+
+.body-container{
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+footer,
+header,nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+
+body {
+  background: #fff;
+  width: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  color: #666;
+  font-family: Helvetica, Arial, sans-serif;
+  font-style: normal;
+  line-height: 21px;
+}
+
+/**** cols and rows ****/
+.row,
+.footer-row {
+  overflow: hidden;
+  _overflow: visible;
+  _zoom: 1;
+}
+
+
+
+.padboth {
+  padding: 0 4px;
+}
+
+.clear {
+  clear: both;
+}
+
+.clearleft {
+  clear: left;
+}
+span.nowrap {
+  white-space: nowrap;
+}
+
+/****** Panel Styles ****/
+
+.huge {
+    font-size: 50px;
+    line-height: normal;
+}
+
+
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+/* Custom Colored Panels */
+
+.huge {
+    font-size: 18px;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green > a {
+    color: #5cb85c;
+}
+
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red > a {
+    color: #d9534f;
+}
+
+.panel-red > a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+
+.panel-yellow > a:hover {
+    color: #df8a13;
+}
+
+.info-box {
+    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.35) inset, 0 3px 1px -1px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin-bottom: 30px;
+    min-height: 140px;
+    padding: 20px;
+}
+
+info-box .count {
+    font-size: 34px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+/***** GENERIC STYLE ****/
+#header,
+#section
+ {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+
+#header .container,
+#sub-nav .container,
+#section .container,
+#footer .container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto !important;
+}
+
+#section {
+  border-top: solid 1px #d9d9d9;
+  background: #FFF;
+}
+
+#maincontainer{
+	background: #FFF;
+}
+
+
+
+
+
+
+/***** HEADER ****/
+#header {
+  min-height: 50px;
+  background: url(/content/dam/ops/blueprint/bg-header.png) no-repeat center 0;
+  z-index: 6;
+}
+#header .container {
+  min-height: 50px;
+  background: #0071a9 url(/content/dam/ops/blueprint/bg-header.png) no-repeat right 0;
+}
+
+/***** HOME BANNER ****/
+
+#section.home-banner .container {
+  padding-top: 20px;
+}
+
+
+
+
+#section.home-intro {
+  border-top: none;
+}
+#section.home-intro .container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.paddtop{
+	padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER*/
+
+
+
+#footer {
+    background: #004165 none repeat scroll 0 0;
+    bottom: 0;
+    height: 70px;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#footer .container {
+  min-height: 62px;
+  padding-top: 25px;
+  padding-bottom: 30px;
+}
+#footer .copyright p {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 15px;
+}
+
+
+/* responsive images */
+img {
+  max-width: 100%;
+}
+
+
+
+
+.clearfix {
+display: block;
+}
+
+
+
+
+
+/* nav elements */
+/* Fix IE. Hide from IE Mac \*/
+* html ul li {
+  float: left;
+}
+* html ul li a {
+  height: 1%;
+}
+body {
+  font-size: 100%;
+  //background: #004165;
+}
+/* End */
+
+
+	
+
+ul.nav,
+ul.nav li {
+  margin: 0;
+  list-style: none;
+}
+ul.nav li {
+  margin: 0;
+  display: block;
+  list-style-image: none;
+  width: auto;
+}
+ul.nav.hrz li {
+  float: left;
+}
+ul.nav.vert li {
+  float: none;
+}
+#header .container > ul {
+  height: 50px;
+  background: url(/content/dam/ops/blueprint/bg-header-inside.png) no-repeat 0 0;
+}
+#header ul li.logo a {
+  display: block;
+  width: 155px;
+  height: 50px;
+  text-indent: -9999px;
+  background: url(/content/dam/ops/blueprint/logo-header.png) no-repeat 0 0;
+}
+
+
+
+
+
+
+
+#footer-nav > ul {
+  height: 62px;
+}
+#footer-nav ul li {
+  position: relative;
+  height: 17px;
+  line-height: 15px;
+  margin: 5px 0 0;
+  padding: 0 10px;
+  border-right: solid 1px #fff;
+  z-index: 1;
+}
+#footer-nav li a,
+#footer-nav li a:visited {
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 15px;
+  text-decoration: none;
+}
+#footer-nav ul li.first {
+  padding-left: 0;
+}
+#footer-nav ul li.last {
+  border: none;
+}
+#footer-nav ul li.has-child {
+  z-index: 2;
+}
+#footer-nav ul li.has-child > a {
+  background: url(/content/dam/ops/blueprint/bg-footer-nav-item-has-child-arrow.png) no-repeat right top;
+  padding: 0 12px 0 0;
+}
+#footer-nav ul li ul {
+  display: none;
+}
+#footer-nav ul li:hover ul {
+  display: block;
+}
+#footer-nav ul li.has-child ul {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: auto;
+  height: auto;
+  margin: 0;
+  background: #004165;
+}
+#footer-nav ul li a span.contact-icon {
+  display: inline-block;
+  width: 22px;
+  height: 16px;
+  background: url(/content/dam/ops/blueprint/icon-phone.png) no-repeat left top;
+  vertical-align: middle;
+}
+#footer-nav ul li.social-nav {
+  position: relative;
+  float: right;
+  padding: 0;
+  margin: 0;
+  height: 62px;
+  text-align: right;
+}
+#footer-nav ul li.social-nav p {
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+#footer-nav ul li.social-nav ul {
+  display: block;
+  height: 32px;
+  margin-top: 5px;
+}
+#footer-nav ul li.social-nav ul li {
+  width: 32px;
+  height: 32px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  border: none;
+}
+#footer-nav ul li.social-nav ul li a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  text-indent: 9999px !important;
+  background: url(/content/dam/ops/blueprint/social-icons.png) no-repeat 0 0;
+}
+#footer-nav ul li.social-nav ul li.facebook a {
+  background-position: -27px 0;
+}
+#footer-nav ul li.social-nav ul li.linkedin a {
+  background-position: -69px 0;
+}
+#footer-nav ul li.social-nav ul li.twitter a {
+  background-position: -111px 0;
+}
+#footer-nav ul li.social-nav ul li.youtube a {
+  background-position: -153px 0;
+}
+
+
+
+/* FONT SIZES */
+body,
+p,
+ul,
+td {
+  font-size: 13px;
+}
+
+#footer .copyright p,
+#footer-nav li a,
+#header ul li.quicklinks form input#searchbox {
+  font-size: 12px;
+}

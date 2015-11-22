@@ -1,0 +1,26 @@
+<!--/* Search Component */-->
+<div class="searchResultTab">
+    <form method="get" class="col-md-9">
+        <div class="input-group" style="width:100%;text-align:center;margin-left:50px;">
+            <input type="text" name="formSrchTxt" class="form-control input-lg" id="frmSearch_txt" required="required" placeholder="Search using Application Loan Number">
+                <br>
+                    <input type="hidden" value="disabled" name="wcmmode">
+                        <span class="input-group-btn">
+                            <button type="submit" id="btnSearch" class="btn btn-lg btn-primary" type="button" onclick="searchResults();">Search</button>
+                        </span>
+                    </div>
+                 <div  style="margin-left:60px; padding-top:30px" class="input-group"><label class="radio-inline"><input type="radio" value="NEW_APPLICATION" checked="checked" name="optradio">NEW APPLICATION</label>
+				<label class="radio-inline"><input type="radio" name="optradio" value="DOCS_RETURNED">DOCS RETURNED</label> </div>
+
+
+                </form>
+                <div id="searchResultTab" class="col-md-12 searchResultTab">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="list-group">
+                                <div class="getBackResult"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

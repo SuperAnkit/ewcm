@@ -1,0 +1,86 @@
+<!--/* Tabular Form Display Component */-->
+<div class="tabularDisplay" data-sly-use.formTab="ops.sightly.components.TabularFormDisplay">
+    <div class="col-xs-4">
+        <div class="panel panel-primary ${formTab.workItemDisplay @ context='html'}">
+            <div class="panel-heading" style="padding:35px">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge" style="font-size:18px;text-align: center;">
+                            <a href="#workingItems-tab" style="color:white;text-decoration:none;" onclick="showhideTabs('workingItems-tab');">My Work Items</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="panel panel-green ${formTab.draftDisplay @ context='html'}">
+            <div class="panel-heading" style="padding:35px">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge" style="font-size:18px;text-align: center;">
+                            <a href="#draft-tab" style="color:white;text-decoration:none;" onclick="showhideTabs('draft-tab');">My Draft Forms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="panel panel-green ${formTab.reviewDisplay @ context='html'}">
+            <div class="panel-heading" style="padding:35px;">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge" style="font-size:18px;text-align: center;">
+                            <a href="#review-tab" style="color:white;text-decoration:none;" onclick="showhideTabs('review-tab');">All Forms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-content" id="myTabContent">
+    <div id="workingItems-tab" class="tab-pane active in">
+        <div class="row adjustedWidth">
+            <div class="col-md-12">
+                <div class="list-group">
+                    <ul data-sly-list.workItemFormList="${formTab.workingItemsLinkSet}" data-sly-unwrap>
+                        <li class="tabularList">
+ 										${workItemFormList @ context='unsafe'}
+ 										</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="draft-tab" class="tab-pane">
+        <div class="row adjustedWidth">
+            <div class="col-md-12">
+                <div class="list-group">
+                    <ul data-sly-list.draftFormList="${formTab.draftLinkSet}" data-sly-unwrap>
+                        <li class="tabularList">
+ 										${draftFormList @ context='unsafe'}
+ 										</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="review-tab" class="tab-pane">
+        <div class="row adjustedWidth">
+            <div class="col-md-12">
+                <div class="list-group">
+                    <ul data-sly-list.reviewFormList="${formTab.reviewLinkSet}" data-sly-unwrap>
+                        <li class="tabularList">
+ 										${reviewFormList @ context='unsafe'}
+ 										</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,14 @@
+<!--/*
+  main.html Base Page template
+
+  This script is meant to be overridden by inheriting child pages
+*/-->
+<section class="body-container">
+    <div data-sly-resource="${ @path='par', resourceType='foundation/components/parsys'}"></div>
+    <div class="col-xs-12 col-sm-8">
+        <div data-sly-resource="${@path='leftpar', resourceType='foundation/components/parsys'}"></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div data-sly-resource="${@path='rightpar', resourceType='foundation/components/parsys'}"></div>
+    </div>
+</section>

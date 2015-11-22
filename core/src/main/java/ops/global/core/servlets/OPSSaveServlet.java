@@ -35,6 +35,8 @@ import com.day.cq.commons.Externalizer;
 
 @SlingServlet(paths = { "/bin/save" }, methods = { "POST" }, metatype = true)
 public class OPSSaveServlet extends SlingAllMethodsServlet {
+	
+	// initializing all the constants
 	private static final long serialVersionUID = 1;
 	private static final String USER_NAME = "user_name";
 	private static final String STATE = "state";
@@ -53,6 +55,7 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 			IOException {
 		this.logger.info("+++++++++++++++++++POST LOGGER");
 	
+		// fetching all the parameters
 			String user_name = request.getParameter("user_name");
 			String state = request.getParameter("state");
 			String app_no = request.getParameter("application_no");
@@ -67,11 +70,12 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 				}
 
 			
-			Session resSession = (Session) resResolver
-					.adaptTo((Class) Session.class);
+			Session resSession = (Session) resResolver.adaptTo((Class) Session.class);
+			
+			// fetch all the nodes with the given applicationNumber
 			List<String> tempSet = this.getNodeSet(resSession, user_name, state,
 					app_no);
-			int counter = 1;
+			int counter = 1; // set counter to get the latest node
 			for (String nodePath : tempSet) {
 				this.logger.info("+++++++++++++++++++CHECKING NODE" + nodePath);
 				this.logger.info("+++++++++++++++++++COUNTER" + counter);
@@ -82,6 +86,7 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							this.newFormNode = nodePath;
 							this.logger.info("+++++++++++++++++++COPIED FILE START");
 							Node newSavedNode = resSession.getNodeByUUID(this.newFormNode);
+							// update the user_name, state properties of the node
 							newSavedNode.setProperty("user_name", user_name);
 							newSavedNode.setProperty("state", state);
 							newSavedNode.save();
@@ -91,6 +96,8 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							String mimeType = "application/octet-stream";
 							ValueFactory valueFactory = resSession.getValueFactory();
 							Binary contentValue = valueFactory.createBinary(content);
+							
+							// create new node to store XML data
 							Node fileNode = newSavedNode.addNode(app_no + ".xml", "nt:file");
 							fileNode.addMixin("mix:referenceable");
 							Node resNode = fileNode.addNode("jcr:content", "nt:resource");
@@ -105,6 +112,7 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							response.getWriter().write("++++++++++++++++++++++FROM POST");
 					} 
 						else {
+							// delete the older versions of the node
 							this.logger.info("+++++++++++++++++++NODE DELETE START");
 							Node toSave = (Node) request.getResourceResolver().getResource(nodePath.substring(0,nodePath.lastIndexOf("/"))).adaptTo((Class) Node.class);
 							this.logger.info("+++++++++++++++++++NODE DELEYTE PATH:"
@@ -145,11 +153,8 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 	private List<String> getNodeSet(Session session, String user_name,
 			String status, String app_no) {
 		List<String> tempNodeSet = new ArrayList<String>();
-		/*String sqlStatement = "SELECT * FROM [sling:Folder] WHERE bApplicationNumber = '"
-				+ app_no
-				+ "' "
-				+ "and [jcr:path] like '/content/usergenerated/content/forms/af/%'"
-				+ " ORDER BY [jcr:created] DESC";*/
+		
+		// sql statement to get all the AEM nodes for given applicationNumber
 		String sqlStatement = "SELECT * FROM [sling:Folder] AS s WHERE bApplicationNumber = '"
 				+ app_no
 				+ "' "

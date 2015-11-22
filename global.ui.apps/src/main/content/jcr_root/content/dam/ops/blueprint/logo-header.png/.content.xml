@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:tiff="http://ns.adobe.com/tiff/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dam="http://www.day.com/dam/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:isCheckedOut="{Boolean}true"
+    jcr:mixinTypes="[mix:versionable]"
+    jcr:primaryType="dam:Asset"
+    jcr:uuid="186fcc83-2b40-4623-84a3-8807653d4f81">
+    <jcr:content
+        cq:name="logo-header.png"
+        cq:parentPath="/content/dam/ops/blueprint"
+        dam:lastInvalidateCache="{Date}2015-10-20T07:05:05.636+05:30"
+        dam:s7damAnchorX="{Long}76"
+        dam:s7damAnchorY="{Long}25"
+        dam:s7damHeight="{Long}50"
+        dam:s7damImageCopyPath="C:\\Users\\selvav\\AppData\\Local\\Temp\\scene78327513748477913163.tmp"
+        dam:s7damType="Image"
+        dam:s7damWidth="{Long}152"
+        jcr:lastModified="{Date}2015-11-17T19:20:23.538+05:30"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="dam:AssetContent">
+        <metadata
+            dam:Bitsperpixel="{Long}24"
+            dam:Comments="Software: Adobe Fireworks CS5&#xa;Creation Time: 3/3/13&#xa;"
+            dam:extracted="{Date}2015-10-20T07:05:04.575+05:30"
+            dam:Fileformat="PNG"
+            dam:MIMEtype="image/png"
+            dam:Numberofimages="{Long}1"
+            dam:Numberoftextualcomments="{Long}2"
+            dam:Physicalheightindpi="{Long}72"
+            dam:Physicalheightininches="{Decimal}0.6946026682853699"
+            dam:Physicalwidthindpi="{Long}72"
+            dam:Physicalwidthininches="{Decimal}2.1115920543670654"
+            dam:Progressive="no"
+            dam:sha1="e84a7abb26abe2d20d7db09ee41221ba2b62cc1a"
+            dam:size="{Long}4844"
+            dam:writebackEnable="False"
+            dc:format="image/png"
+            dc:modified="{Date}2015-10-23T23:01:49.127+05:30"
+            jcr:lastModified="{Date}2015-11-17T19:20:20.264+05:30"
+            jcr:lastModifiedBy="admin"
+            jcr:mixinTypes="[cq:Taggable]"
+            jcr:primaryType="nt:unstructured"
+            tiff:ImageLength="{Long}50"
+            tiff:ImageWidth="{Long}152"
+            writebackEnable="{Boolean}true"/>
+        <related jcr:primaryType="nt:unstructured"/>
+    </jcr:content>
+</jcr:root>

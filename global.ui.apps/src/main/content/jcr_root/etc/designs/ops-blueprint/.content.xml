@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <clientlib/>
+    <jcr:content
+        cq:doctype="html_5"
+        cq:lastModified="{Date}2015-10-26T23:52:45.098+05:30"
+        cq:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="OPS BluPrint Portal"
+        sling:resourceType="wcm/core/components/designer">
+        <page-blank jcr:primaryType="nt:unstructured">
+            <par
+                jcr:lastModified="{Date}2015-10-26T23:52:45.098+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[group:General,group:OPS BluePrint Components]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </par>
+            <rightpar
+                jcr:lastModified="{Date}2015-10-26T16:00:37.668+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[group:Adaptive Form,group:OPS BluePrint Components]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </rightpar>
+            <leftpar
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="group:OPS BluePrint Components"/>
+        </page-blank>
+        <tabbed-enrollment-page jcr:primaryType="nt:unstructured">
+            <logo
+                jcr:lastModified="{Date}2015-09-30T16:27:48.431+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/logo"
+                imageReference="/content/dam/ANZ/anzlogo.jpg"
+                imageRotate="0"
+                maxWidth="165"/>
+        </tabbed-enrollment-page>
+    </jcr:content>
+    <favicon.ico/>
+    <clientlibs-all/>
+    <clientlibs/>
+    <static.css/>
+    <bootstrap/>
+    <jquery/>
+</jcr:root>

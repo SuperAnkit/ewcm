@@ -33,61 +33,61 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
         response.setCharacterEncoding("UTF-8");
         
         try {
-        	String Bridging[] = {"0=Const Not 1st Home",
-                    "1=Const 1st home",
-                    "2=Const Other 1st home",
-                    "3=Const Other not 1st",
-                    "4=Pur Estab 1st Home",
-                    "5=Pur Estab Not 1st",
-                    "6=Pur New 1st Home",
-                    "7=Pur New Home Not 1st",
-                    "8=PurEstab Oth 1st",
-                    "9=PurEstab Oth Not 1st",
-                    "10=PurNewOth 1st home",
-                    "11=PurNewOth Not 1st"
+        	String Bridging[] = {"6=Const Not 1st Home",
+                    "7=Const 1st home",
+                    "9=Const Other 1st home",
+                    "8=Const Other not 1st",
+                    "17=Pur Estab 1st Home",
+                    "16=Pur Estab Not 1st",
+                    "11=Pur New 1st Home",
+                    "10=Pur New Home Not 1st",
+                    "15=PurEstab Oth 1st",
+                    "14=PurEstab Oth Not 1st",
+                    "13=PurNewOth 1st home",
+                    "12=PurNewOth Not 1st"
 					};
-            String Construction[] = {"0=Const Not 1st Home",
-                    "1=Const 1st home",
-                    "2=Const Other 1st home",
-					"3=Const Other not 1st",
-					"4=DwellingsRent Resale"
+            String Construction[] = {"34=Const Not 1st Home",
+                    "35=Const 1st home",
+                    "37=Const Other 1st home",
+					"36=Const Other not 1st",
+					"38=DwellingsRent Resale"
                     };
-			String Home_Improvement[] = {"0=DwellingsRent Resale",
-                    "1=Home Imprv Alter Add"
+			String Home_Improvement[] = {"39=DwellingsRent Resale",
+                    "18=Home Imprv Alter Add"
 					};
-			String Pur_Estab_Dwellings[] = {"0=DwellingsRent Resale",
-                    "1=Pur Estab 1st Home",
-                    "2=Pur Estab Not 1st",
-					"3=PurEstab Oth 1st",
-					"4=PurEstab Oth Not 1st"
+			String Pur_Estab_Dwellings[] = {"40=DwellingsRent Resale",
+                    "42=Pur Estab 1st Home",
+                    "41=Pur Estab Not 1st",
+					"44=PurEstab Oth 1st",
+					"43=PurEstab Oth Not 1st"
 					};
-			String Pur_of_New_Dwellings[] = {"0=DwellingsRent Resale",
-                    "1=Pur New 1st Home",
-                    "2=Pur New Home Not 1st",
-                    "3=PurNewOth 1st home",
-                    "4=PurNewOth Not 1st"}; 
-			String Purchase_of_Land[] = {"0=DwellingsRent Resale",
+			String Pur_of_New_Dwellings[] = {"49=DwellingsRent Resale",
+                    "46=Pur New 1st Home",
+                    "45=Pur New Home Not 1st",
+                    "48=PurNewOth 1st home",
+                    "47=PurNewOth Not 1st"}; 
+			String Purchase_of_Land[] = {"50=DwellingsRent Resale",
                     "1=Residential Land"}; 
-			String Re_finanace[] = {"0=DwellingsRent Resale",
-                    "1=Refi ANZ Home Loan",
-                    "2=Refi Exist ANZ Loans",
-                    "3=Refi Non ANZ Home Ln",
-                    "4=Refi Non ANZ Inv Ln"
+			String Re_finanace[] = {"2=DwellingsRent Resale",
+                    "20=Refi ANZ Home Loan",
+                    "5=Refi Exist ANZ Loans",
+                    "19=Refi Non ANZ Home Ln",
+                    "3=Refi Non ANZ Inv Ln"
                     }; 
-			String Supplementary[] = {"0=Boats Caravans",
-                    "1=Debt Cons Non ANZ Ln",
-                    "2=DwellingsRent Resale",
-                    "3=Home Imprv Alter Add",
-                    "4=Household/Personal",
-                    "5=Motor Cycles",
-                    "6=New Motor Car",
-					"7=Other Investments",
-					"8=Other Motor Vehicle",
-					"9=Refi ANZ Home Loan",
-					"10=Refi Exist ANZ Loans",
-					"11=Refi Non ANZ Home Ln",
-					"12=Travel Holidays",
-					"13=Used Motor Car"
+			String Supplementary[] = {"4=Boats Caravans",
+                    "21=Debt Cons Non ANZ Ln",
+                    "22=DwellingsRent Resale",
+                    "23=Home Imprv Alter Add",
+                    "24=Household/Personal",
+                    "25=Motor Cycles",
+                    "26=New Motor Car",
+					"27=Other Investments",
+					"28=Other Motor Vehicle",
+					"29=Refi ANZ Home Loan",
+					"30=Refi Exist ANZ Loans",
+					"31=Refi Non ANZ Home Ln",
+					"32=Travel Holidays",
+					"33=Used Motor Car"
 					};
 
 			
@@ -96,48 +96,47 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
 			
 			JSONArray ldPurposeCategoryJsonArray = new JSONArray();
 			
-            if (ldPurposeCategoryGroupValue == 0) {
+            if (ldPurposeCategoryGroupValue == 1) {
             	ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Construction) {
-                	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
-                }
-            } else if (ldPurposeCategoryGroupValue == 1) {
-            	ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Pur_Estab_Dwellings) {
+                for (String ldPurposeCategory : Bridging) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
 			} else if (ldPurposeCategoryGroupValue == 2) {
 				ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Pur_of_New_Dwellings) {
+                for (String ldPurposeCategory : Construction) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
 			} else if (ldPurposeCategoryGroupValue == 3) {
 				ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Purchase_of_Land) {
+                for (String ldPurposeCategory : Home_Improvement) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
 			} else if (ldPurposeCategoryGroupValue == 4) {
 				ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Home_Improvement) {
+                for (String ldPurposeCategory : Pur_Estab_Dwellings) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
 			} else if (ldPurposeCategoryGroupValue == 5) {
 				ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Re_finanace) {
+                for (String ldPurposeCategory : Pur_of_New_Dwellings) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
 			} else if (ldPurposeCategoryGroupValue == 6) {
 				ldPurposeCategoryJsonArray = new JSONArray();
+                for (String ldPurposeCategory : Purchase_of_Land) {
+                	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
+                }
+			} else if (ldPurposeCategoryGroupValue == 7) {
+				ldPurposeCategoryJsonArray = new JSONArray();
+                for (String ldPurposeCategory : Re_finanace) {
+                	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
+                }
+			} else if (ldPurposeCategoryGroupValue == 8) {
+				ldPurposeCategoryJsonArray = new JSONArray();
                 for (String ldPurposeCategory : Supplementary) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
                 }
-			} else if (ldPurposeCategoryGroupValue == 10) {
-				ldPurposeCategoryJsonArray = new JSONArray();
-                for (String ldPurposeCategory : Bridging) {
-                	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
-                }
-			} 
-            
+			}
                 response.setContentType("application/json");
                 response.getWriter().write(ldPurposeCategoryJsonArray.toString());
              

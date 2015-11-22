@@ -52,6 +52,7 @@ import com.day.cq.commons.Externalizer;
 @SlingServlet(paths = "/bin/opsSearch", methods = { "POST" }, metatype = true)
 public class OPSSearchServlet extends SlingAllMethodsServlet {
 
+	// initializing all the constants
 	private static final long serialVersionUID = 1L;
 	private static final String USER_NAME = "user_name";
 	private static final String USER_GRP = "user_group";
@@ -91,6 +92,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 			IOException {
 		logger.info("+++++++++++++++++++INTO OPS SEARCH");
 
+		// fetch all the parameters
 		String user_name = request.getParameter(USER_NAME);
 		String user_group = request.getParameter(USER_GRP);
 		search_keyword = request.getParameter(SEARCH_KEYWORD);
@@ -110,8 +112,8 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 			Session resSession = resResolver.adaptTo(Session.class);
 
 			if (user_group.equals(MAKER_GROUP)) {
-				// get user draft forms from JCR
 				try {
+					// get user draft forms from JCR
 					searchNodeSet = getNodePaths(resSession, search_keyword,
 							DRAFT_STATUS);
 				} catch (ItemNotFoundException e) {
@@ -126,21 +128,14 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 				if (searchNodeSet.isEmpty()) {
 
 					logger.info("IN THE DB SEARCH SEC");
-					// get from DB
-					//String dbContent = getXMLDataFromDB(search_keyword,
-					//		document_type, resResolver);
+					// if the node list is empty get data from DB
 					InputStream iPStream = getXMLDataFromDB(search_keyword,
 									document_type, resResolver);
 					
-					//logger.info("+++++++++++++++++++XML Content" + dbContent + "++++");
-
-					
-					if (iPStream != null) { // found in DB
+					if (iPStream != null) { 
+						// found in DB
 						searchResult = RESULT_FOUND;
 						
-
-
-
 						Node savedNode;
 						try {
 							savedNode = resSession.getNode(HIDDEN_PATH);
@@ -161,7 +156,6 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 								
 								logger.info("+++++++++++++++++++NODE DELETE START" + nodePath);
 								
-								//Node toRemove = request.getResourceResolver().getResource(nodePath).adaptTo(Node.class);
 							   	Node toRemove = resSession.getNode(nodePath);
 
 								logger.info("+++++++++++++++++++NODE DELEYTE PATH:"
@@ -169,7 +163,6 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 								logger.info("+++++++++++++++++++NODE DELEYTE PATH UP LEVEL:"
 										+ toRemove.getPath());
 								toRemove.remove();
-								// toDelete.save();
 								savedNode.save();
 								resSession.save();
 								logger.info("+++++++++++++++++++NODE DELEYTED");
@@ -185,7 +178,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 						}
 
 						logger.info("+++++++++++++++++++COPIED FILE START");
-						// //////////////////////
+						// create html for the result found
 
 						toReturnResults = "<a href='"
 								+ FP_FORMS_PATH
@@ -239,8 +232,8 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 
 			}
 			if (user_group.equals(CHECKER_GROUP)) {
-				// get user review forms
 				try {
+					// get user review forms
 					searchNodeSet = getNodePaths(resSession, search_keyword,
 							REVIEW_STATUS);
 				} catch (ItemNotFoundException e) {
@@ -366,23 +359,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
   			wr.flush();
   			wr.close();
 
-  		
-		/*BufferedReader in = new BufferedReader(
-		        new InputStreamReader(connection.getInputStream()));
-		String inputLine;
-		
-		
-	
-		
-		
-		StringBuffer newresponse = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			newresponse.append(inputLine);
-		}
-		in.close();*/
-		//logger.info("GET DATA+++++++++" + newresponse.toString());
-		
+  				
   			int code = connection.getResponseCode();
   			logger.info("RES CODE" + code);
 		
@@ -404,14 +381,6 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 		// TODO Auto-generated method stub
 		logger.info("INSIDE HIDDEN MEHOTD ++++" );
 		String newmimeType = "application/octet-stream";
-		// Node node = session.getNode(parentNode);
-		
-
-		
-		//FileInputStream fileInputStream = new FileInputStream("C:\\AEM\\Temp\\test.txt");
-
-		
-		//actual code
 		logger.info("CONNT VALUE DATA ++++before+++++");
 
 	   	Node node = resSession.getNode("/content/usergenerated/hidden");
@@ -460,7 +429,8 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 		logger.info("EXT ++++++" + getServiceURL);
 		URL URLobj = new URL(getServiceURL);
 
-		URLConnection connection = URLobj.openConnection();
+		//URLConnection connection = URLobj.openConnection();
+		HttpURLConnection connection = (HttpURLConnection)URLobj.openConnection();
 
 		String charset = "UTF-8";
 		// URLConnection connection = new URL(url).openConnection();
@@ -483,8 +453,22 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 			newresponse.append(inputLine);
 		}
 		in.close();
-
+		logger.info("RESULT " + newresponse.toString());
+		
+		int code = connection.getResponseCode();
+			logger.info("RES CODE" + code);
+	
+	if (code != failedResponse ) {
 		return newresponse.toString();
+	} else {
+		return null;
+	}
+	
+	
+		
+		
+		
+		
 	}
 
 	private Set<String> getNodePaths(Session session, String loanAppNo,

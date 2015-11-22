@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    height="{Long}600"
+    title="Edit Text box"
+    xtype="dialog">
+    <items jcr:primaryType="cq:TabPanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <title
+                jcr:primaryType="nt:unstructured"
+                title="Title and text"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <name
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Field Name"
+                        name="./hiddenFieldName"
+                        xtype="textfield"/>
+                    <id
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Field ID"
+                        name="./hiddenFieldID"
+                        xtype="textfield"/>
+                    <listFrom
+                        jcr:primaryType="cq:Widget"
+                        defaultValue=""
+                        fieldLabel="Build component using"
+                        name="./listFrom"
+                        type="select"
+                        xtype="selection">
+                        <options jcr:primaryType="cq:WidgetCollection">
+                            <userGroup
+                                jcr:primaryType="nt:unstructured"
+                                text="Get User Group"
+                                value="userGroup"/>
+                            <userID
+                                jcr:primaryType="nt:unstructured"
+                                text="Get User ID"
+                                value="userID"/>
+                            <sessionToken
+                                jcr:primaryType="nt:unstructured"
+                                text="Get Session Token"
+                                value="sessionToken"/>
+                            <staticValue
+                                jcr:primaryType="nt:unstructured"
+                                text="Use Static Value"
+                                value="staticValue"/>
+                        </options>
+                    </listFrom>
+                    <staticVal
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Static Value"
+                        name="./staticValue"
+                        xtype="textfield"/>
+                </items>
+            </title>
+        </items>
+    </items>
+</jcr:root>

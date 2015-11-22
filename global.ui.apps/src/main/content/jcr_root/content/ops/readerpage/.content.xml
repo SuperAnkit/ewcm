@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/ops-blueprint"
+        cq:lastModified="{Date}2015-10-26T19:44:39.547+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/opsBluePrint/templates/page-blank"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="ReaderPage"
+        sling:resourceType="/apps/opsBluePrint/components/page/page-blank">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <readerpage
+                jcr:created="{Date}2015-10-26T19:44:39.545+05:30"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2015-10-26T19:44:39.545+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="opsBluePrint/components/global/readerPage"/>
+        </par>
+        <rightpar
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys"/>
+        <leftpar
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys"/>
+    </jcr:content>
+</jcr:root>

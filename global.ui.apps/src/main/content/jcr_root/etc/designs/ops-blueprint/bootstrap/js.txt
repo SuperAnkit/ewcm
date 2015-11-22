@@ -1,0 +1,7 @@
+#base=js
+bootstrap-modal.js
+bootstrap.js
+bootstrap.min.js
+angular.js
+ui-bootstrap-tpls-0.14.3.min.js
+

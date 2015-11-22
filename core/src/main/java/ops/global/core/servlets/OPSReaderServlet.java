@@ -32,6 +32,7 @@ import com.day.cq.commons.Externalizer;
         metatype = true)
 public class OPSReaderServlet extends SlingAllMethodsServlet {
     
+	// initializing all the constants
     private static final long serialVersionUID = 1L;
     private static final String SEARCH_KEYWORD = "loanNum";
     private static final String DOC_TYPE = "docType";
@@ -51,15 +52,13 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
             IOException {
     	logger.info("+++++++++++++++++++INTO OPS SEARCH");
     	
-    	
+    	// fetch all the parameters
     	search_keyword = request.getParameter(SEARCH_KEYWORD);
     	docType = request.getParameter(DOC_TYPE);
     	
-    	///search_keyword = "23";
     	logger.info("SRCH TXT" + search_keyword);
 	
-		// get details for DB
-		
+		// populate json structure for querying DB		
     	String param = "{\"applicationNumber\":\""
     			+ search_keyword + "\", \"userName\":\"\", \"sessionToken\":\"401064664\", \"stage\":\"" + docType + "\"}";
     	ResourceResolver resResolver = null;
@@ -67,16 +66,16 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
         try {
 			resResolver = this.resourceResolverFactory.getAdministrativeResourceResolver(null);
 			logger.info("PARAM  " + param);
-	    	Externalizer externalizer = resResolver.adaptTo(
-					Externalizer.class);
+			// fetch WS URL from externalizer
+	    	Externalizer externalizer = resResolver.adaptTo(Externalizer.class);
 			String getServiceURL = externalizer.externalLink(resResolver, "readerGet","");
 			logger.info("EXT ++++++" + getServiceURL);
+			
+			// create WS connection
 	    	URL URLobj = new URL(getServiceURL);
-	    	
 			URLConnection connection = URLobj.openConnection();
 			
 	    	String charset = "UTF-8"; 
-	    	  //URLConnection connection = new URL(url).openConnection();
 	    	  connection.setDoOutput(true); // Triggers POST.
 	    	  connection.setRequestProperty("Accept-Charset", charset);
 	    	  connection.setRequestProperty("Content-Type", "application/json;charset=" + charset);

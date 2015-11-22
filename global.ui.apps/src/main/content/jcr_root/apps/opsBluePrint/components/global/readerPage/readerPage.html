@@ -1,0 +1,1202 @@
+<div class="container-fluid" ng-app="opsblue" style="margin-top:40px;">
+<div ng-controller="MainCtrl">
+<uib-accordion close-others="oneAtATime">
+    <uib-accordion-group  is-open="isopen" ng-controller="accordController">
+	<uib-accordion-group heading="Customer Details">
+   
+    <div class="row">
+	<div class="container-fluid boldHeader"> Customer Details </div>
+      <div class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-10'}}" ng-repeat="(key,participants) in data.application.applicationParticipants">
+
+        <div class="table-responsive" >
+          <table class="table table-bordered">
+		  
+		  <tr>
+		   <td class="label-bold">MOS Sequence Number</td><td>{{}}</td>
+		  </tr>
+		  
+		  <tr>
+		   <td class="label-bold">Customer Name</td><td>{{}}</td>
+		   <td class="label-bold">Customer Type</td><td ng-repeat="applicantType in staticData.applicantRole | filter:{applicantRoleID:participants.applicantRoleID}">{{applicantType.roleName}}</td>
+		   <td class="label-bold">Customer</td><td ng-repeat="customerType in staticData.entityType | filter:{entityTypeID:participants.participant.entityTypeID}">{{customerType.entityType}}</td>
+		   </tr>
+		   
+		   <tr>
+		   <td class="label-bold">Is Trust Involved?</td> <td> </td>
+		   
+		   </tr>
+			
+            <tr>
+			  <td class="label-bold">Title</td><td>{{participants.participant.person.mailingTitle}}</td>
+              <td class="label-bold">First Name</td><td>{{participants.participant.person.firstName}}</td>
+              <td class="label-bold">Middle Name</td><td>{{participants.participant.person.middleName}}</td>
+                          
+            </tr>
+			<tr>
+			<td class="label-bold">Last Name</td><td>{{participants.participant.person.lastName}}</td>
+			 <td class="label-bold">Short Name</td>  <td>{{participants.participant.person.shortName}}</td>
+			 <td class="label-bold">Nominated Branch ID (BSB)</td>  <td>{{data.application.nominatedBSB}}</td>
+			</tr>
+			
+			<tr>
+			
+			 <td class="label-bold">Mailing Title</td><td>{{participants.participant.person.mailingTitle}}</td>
+			 <td class="label-bold">Formal Salutation</td><td>{{participants.participant.person.formalSalutation}}</td>
+			 <td class="label-bold">Email Id</td>  <td>{{participants.participant.person.emailId}}</td>
+			</tr>
+			
+			<tr>
+			  <td class="label-bold">Gender</td><td>{{participants.participant.person.gender}}</td>
+			  <td class="label-bold">Current Housing</td><td ng-repeat="currentHusId in staticData.currentHousing | filter:{currentHousingID:participants.participant.person.currentHousingId}">{{currentHusId.currentHousing}}</td>
+			  <td class="label-bold">Credit Authority Held/Signed</td><td>{{participants.participant.person.isCreditAutoritySigned}}</td>
+		
+			 </tr>
+			 
+			 <tr ng-repeat="relationType in participants.participant.participantRelationships">
+			  <td class="label-bold">RelationShip Type</td> <td ng-repeat="partRelType in staticData.particpantRelationType | filter:{particpantRelationTypeID:relationType.particpantRelationTypeID}">{{partRelType.particpantRelationType}}</td>
+			 
+			 </tr>
+			 
+			 
+			 <tr>
+			 <td class="label-bold">FIRB Approval Held?</td>  <td></td>
+			 <td class="label-bold">First Home Buyer</td><td>{{participants.participant.person.isFirstHomeBuyer ==true? 'Yes':'No'}}</td>
+			 <td class="label-bold">ANZ Employee</td><td>{{participants.participant.person.isANZEmployee ==true? 'Yes':'No'}}
+			 
+			 </tr>
+			 
+			 <tr>
+			 <td class="label-bold">Disclosure</td> <td>{{participants.participant.person.isDisclosure ==true? 'Yes':'No'}}</td>
+			 <td class="label-bold">Advertising</td><td>{{participants.participant.person.isAdvertizing ==true? 'Yes':'No'}}</td>
+			 <td class="label-bold">Date of Birth</td><td>{{participants.participant.person.dateOfBirth}}</td>
+			 </tr>
+			 
+			 <tr>
+			 <td class="label-bold">Driving Lic</td> <td>
+			 <td class="label-bold">DL Issued State</td> <td>
+			<td class="label-bold"> Marital Status : </td><td>{{participants.participant.person.maritalStatus}}</td>
+			 </tr>
+			 
+			<tr>
+			<td class="label-bold"> Customer Locate Row Number from Cap </td>  <td>{{participants.participant.person.capROWNumber}}</td>
+			
+			</tr>
+			 <!-- Dependant Details -->
+			 <tr>
+			<td class="label-bold"> No of Depedents </td> <td>{{participants.participant.person.dependents.length}} </td>
+			 </tr>
+			
+			 <tr>
+			 <table class="table table-bordered" >
+			  <tr ng-repeat="(key,dependents) in participants.participant.person.dependents ">
+			  <td class="label-bold">Dependant {{dependents.number}} Age</td><td> {{dependents.age}}</td>
+			 </tr>
+			 </table>
+			 </tr>
+			<!-- Dependant Details End -->
+            
+			<tr >
+			
+			<table class="table table-bordered" ng-repeat="(key,personAddress) in participants.participant.person.addresses">
+			<tr ng-repeat="personaddrType in staticData.addressType | filter:{addressTypeID:personAddress.addressTypeID}">
+			<td> {{personaddrType.addressType}}</td>
+			</tr> 
+			<tr>
+			<td class="label-bold">Is over Seas Address </td> <td>{{personAddress.addresses.isOverseas ==true? 'Yes':'No'}} </td>
+			</tr>
+			<tr>
+			<td class="label-bold">Is mailing address same as CurrentAddress </td> <td>{{personAddress.addresses.isMailingAddress ==true? 'Yes':'No'}} </td>
+			</tr>
+			<tr>
+			<td class="label-bold">Line Address 1</td> <td> {{personAddress.addresses.streetNumber}}  </td>
+			<td class="label-bold">Line Address 2</td> <td> {{personAddress.addresses.streetName}}  </td>
+			</tr>
+			<tr>
+			<td class="label-bold">PostCode</td> <td> {{personAddress.addresses.postCode}}  </td>
+			<td class="label-bold">Country</td> <td> {{personAddress.addresses.countryId}}  </td>
+			 <td ng-repeat="personcountryID in staticData.country | filter:{countryId:personAddress.addresses.countryId}">{{personcountryID.countryName}}</td>
+			
+			</tr>
+			<tr>
+			<td class="label-bold">Home Phone</td> <td> {{personAddress.addresses.phone1}}  </td>
+			<td class="label-bold">Business Phone</td> <td> {{personAddress.addresses.phone2}}  </td>
+			</tr>
+			<tr>
+			<td class="label-bold">Mobile Phone</td> <td> {{}}  </td>
+			<td class="label-bold">Fax Number </td> <td> {{personAddress.addresses.fax}}  </td>
+			</tr>
+			<tr>
+			<td class="label-bold">Staying From </td> <td> {{personAddress.addresses.stayingFrom}}  </td>
+			<td class="label-bold">Staying To </td> <td> {{personAddress.addresses.stayingTo}}  </td>
+			</tr>
+			
+			</table>
+			
+			
+			
+			</tr>
+			
+			
+          </table>
+        </div>
+      </div>
+    </div>
+	</uib-accordion-group>
+<!--- Financial Details Start   --->
+
+<uib-accordion-group heading="Financial Details">
+    <div class="row">
+	  <div class="container-fluid boldHeader"> Financial Details </div>
+			
+	  <div  class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-10'}}" ng-repeat="(key,financedata) in data.application.applicationParticipants">
+		
+		
+	 	<div class="table-responsive ">
+		 <table class="table table-bordered">
+		    <tr>
+              <td class="label-bold">Date of S/P</td><td>{{financedata.sofp.dateOfSOFP}}</td>
+              <td class="label-bold">SP Signed by Customer?</td><td>{{financedata.sofp.isSOFPSignedByCustomer}}</td>
+			  
+            </tr>
+			<tr>
+			
+			
+			<td class="label-bold">Asset Description</td><td>{{financedata.sofp.assetDescription}}</td>
+			<td class="label-bold">Asset Value</td><td>{{financedata.sofp.assetValue}}</td>
+			
+			</tr>
+			<tr>
+			<td class="label-bold">ANZ</td><td>{{financedata.sofp.anzliability}}</td>
+			<td class="label-bold">Other Bank</td><td>{{financedata.sofp.otherBankLiability}}</td>
+			<td class="label-bold">Other</td><td>{{financedata.sofp.otherBankStatements.outstandingAmount}}</td> <!-- array to loop-->
+			<td class="label-bold">Total Liabilities</td><td>{{financedata.sofp.totalLiabilities}}</td>
+			
+			</tr>
+			
+		</table>
+		</div>
+		
+		<!-- Asset Details -->
+		<div class="table-responsive">
+		<table class="table table-bordered">
+		<tr>Asset Details </tr>
+		
+		<tr>
+		<td class="label-bold">Cash</td><td>{{financedata.sofp.cashAsset}}</td>
+        <td class="label-bold">Property</td><td>{{financedata.sofp.propertyAsset}}</td>
+		<td class="label-bold">Other</td><td>{{financedata.sofp.otherAsset}}</td>
+		<td class="label-bold">Total Assets</td><td>{{financedata.sofp.totalAssets}}</td>
+		</tr>
+		
+		</table>
+		<!-- Asset Details -->
+		<!-- Liablites Details -->
+		<table class="table table-bordered">
+		<tr>Liabilites</tr>
+		<tr>
+		<td class="label-bold">ANZ</td><td>{{financedata.sofp.anzliability}}</td>
+		<td class="label-bold">Other Bank</td><td>{{financedata.sofp.otherBankLiability}}</td>
+		</tr>
+		
+		<!-- Liablites Details End-->
+		
+		<tr> <td class="label-bold"> TOTAL LIABILITIES</td> <td> {{financedata.sofp.totalLiabilities}}</td> </tr>
+		<tr>
+		<!-- Other Liabilites -->
+		<table class="table table-bordered" ng-repeat ="(key,liabilityDt) in financedata.sofp.otherLiabilities">
+		<tr>Other Liabilities</tr>
+		<tr ng-repeat="staticLiabliDetails in staticData.otherLiabilityType | filter:{liabilityTypeID: liabilityDt.otherLiabilityTypeID}">
+			<td class="label-bold"> Other Liability {{key+1}}</td> <td>{{staticLiabliDetails.liabilityType}}</td>
+			<td class="label-bold"> Liability Description</td> <td>{{staticLiabliDetails.liabilityDescription}}</td>
+			<td class="label-bold"> Liability Limit</td> <td>{{liabilityDt.liabilityLimit}}</td>
+			<td class="label-bold"> Amount Owning</td> <td>{{liabilityDt.amount}}</td>
+		</tr> 
+		</table>
+		</tr>
+		<!-- Liablites Details End-->
+		
+		
+		</table>
+		</div>
+		<!-- Section for Income Details --->
+		
+		<div class="table-responsive ">
+		<table class="table table-bordered">
+		<tr>Income Details </tr>
+		<tr>
+		<td class="label-bold">Employment</td> <td>{{financedata.sofp.employmentIncome}}</td>
+		<td class="label-bold">Rental Income</td> <td>{{financedata.sofp.rentalIncome}}</td>
+		</tr>
+		<tr><td class="label-bold"> TOTAL INCOME</td> <td> {{financedata.sofp.toalIncome}}</td> </tr>
+		<tr>
+		<!-- Other Incomes -->
+		
+		<table class="table table-bordered" ng-repeat ="(key,otherIncmDt) in financedata.sofp.otherIncomes">
+		<tr>Other Income</tr>
+		<tr ng-repeat="staticIncomeDetails in staticData.otherIncomeType | filter:{otherIncomeTypeID: otherIncmDt.otherIncomeTypeID}">
+			<td class="label-bold"> Other Income {{key+1}}</td> <td>{{staticIncomeDetails.otherIncomeType}}</td>
+			<td class="label-bold"> Other Income Description</td> <td>{{staticIncomeDetails.otherIncomeTypeDescription}}</td>
+			<td class="label-bold"> Stated Net Monthly Amount</td> <td>{{otherIncmDt.amount}}</td>
+			
+		</tr> 
+		
+		</table>
+		</tr>
+		
+		
+		</table>
+		</div>
+		<!-- Section for income Details End -->
+		
+		<!-- Section for Expense Details -->
+		<div class="table-responsive">
+		
+		<table class="table table-bordered">
+		<tr>Expenditure </tr>
+		<tr>
+		<td class="label-bold">Fixed Expneses</td> <td>{{financedata.sofp.fixedExpenses}}</td>
+		<td class="label-bold">Credit Card</td> <td>{{financedata.sofp.creditCardExpenses}}</td>
+		</tr>
+		<tr><td class="label-bold"> TOTAL EXPENDITURE</td> <td> {{financedata.sofp.totalExpenses}}</td> </tr>
+		<tr><td class="label-bold"> Uncommited Monthly Income (Income-Expenses)</td> <td> {{financedata.sofp.uncommittedMonthlyIncome}}</td></tr>
+		<tr>
+		<!-- Other Expenditure -->
+		
+		<table class="table table-bordered" ng-repeat ="(key,otherExpenDt) in financedata.sofp.otherExpens">
+		<tr>Other Expenditure</tr>
+		<tr ng-repeat="staticExpenseDetails in staticData.otherExpenseType | filter:{otherExpenseTypeID: otherExpenDt.otherExpenseTypeID}">
+			<td class="label-bold"> Expenditure{{key+1}}</td> <td>{{staticExpenseDetails.otherExpenseType}}</td>
+			<td class="label-bold"> Other Expenses Description</td> <td>{{staticExpenseDetails.otherExpenseTypeDescription}}</td>
+			<td class="label-bold"> Declared Amount</td> <td>{{otherExpenDt.amount}}</td>
+		</tr> 
+		
+		</table>
+		</tr>
+		</table>
+	</div>
+		
+		<!-- Section for Expense Details End -->
+		
+		<!-- Section for PaySlips -->
+		
+		<div class="table-responsive" ng-repeat ="(key,paySlipDt) in financedata.sofp.payslips">
+		
+		<table class="table table-bordered">
+		<tr> PaySlips</tr>
+		<tr>
+		
+		<td class="label-bold">Payment Frequency </td> <td>{{paySlipDt.frequency}} </td>
+		<td class="label-bold">Date</td> <td>{{paySlipDt.payslipDate}} </td>
+		<td class="label-bold">Name </td> <td>{{paySlipDt.name}} </td>
+		
+		</tr>
+		
+		<tr>
+		<!-- Empoyment Details  -->
+		
+		<table class="table table-bordered" ng-repeat ="(key,employmentDt) in financedata.participant.person.employments">
+	   	<tr ng-repeat="staticEmpDetails in staticData.employmentType | filter:{employmentTypeID: employmentDt.employmentTypeID}">
+			<td class="label-bold"> Type of employment </td> <td>{{staticEmpDetails.employmentType}}</td>
+			<td class="label-bold"> Employement Locaiton </td> <td>{{employmentDt.address}}</td>
+			<td class="label-bold"> Employer Name</td> <td>{{employmentDt.employerName}}</td>
+		</tr> 
+		
+		</table>
+		</tr>
+		
+		<tr>
+			<!-- Section for Allownaces earned -->
+		<table class="table table-bordered" ng-repeat ="(key,allowanceErndDt) in paySlipDt.allowancesEarneds">
+	   	<tr ng-repeat="staticallowanceDetails in staticData.allowance | filter:{allowancesID: allowanceErndDt.allowancesEarnedID}">
+			<td class="label-bold">{{staticallowanceDetails.allowances}}</td> <td>{{allowanceErndDt.allowancesEarned}}</td>
+		</tr> 
+		
+		</table>
+		
+		</tr>
+		<!-- Section for payslip expensed End -->
+		<tr>
+			<!-- Section for PAYG SUMMARY -->
+		<table class="table table-bordered" ng-repeat ="(key,paygsDt) in financedata.sofp.paygs">
+		<tr> PAYG Summary</tr>
+		
+	   	<tr>
+			<td class="label-bold">Name</td> <td>{{paygsDt.name}}</td>
+			<td class="label-bold">Payee Name</td> <td>{{paygsDt.name}}</td>
+			<td class="label-bold">Gross Payment</td> <td>{{paygsDt.grossPayment}}</td>
+		</tr> 
+		<tr>
+			<td class="label-bold">Reportable Fringe benefit</td> <td>{{paygsDt.fringeBenefit}}</td>
+			<td class="label-bold">Reportable Employee Super</td> <td>{{paygsDt.employerSuper}}</td>
+			<td class="label-bold">Allowances</td> <td>{{paygsDt.allowances}}</td>
+		
+		</tr>
+		
+		<tr>
+		<td class="label-bold">Deduction</td> <td>{{paygsDt.deduction}}</td>
+		<td class="label-bold">Paygee ABN</td> <td>{{paygsDt.deduction}}</td>
+		<td class="label-bold">Date</td> <td>{{paygsDt.paygdate}}</td>
+		</tr>
+		
+		</table>
+		
+		</tr>
+		<!-- Section for PAYG SUMMARY  END-->
+		
+		<!-- Section for  CENTRAL INCOMES-->
+		<tr>
+		<table class="table table-bordered" ng-repeat ="(key,centraLinkDt) in financedata.sofp.centralLinkIncomes">
+		<tr> Central Link Income</tr>
+		
+	   	<tr>
+			<td class="label-bold">Name</td> <td>{{centraLinkDt.name}}</td>
+			<td class="label-bold">Date</td> <td>{{centraLinkDt.name}}</td>
+			<td class="label-bold">Date of Birth</td> <td>{{centraLinkDt.dateOfBirth}}</td>
+		</tr> 
+		<tr>
+			<td class="label-bold">Number of Childer assessed</td> <td>{{centraLinkDt.numberOfChildren}}</td>
+			<td class="label-bold">Percentage of Care</td> <td>{{centraLinkDt.percentageOfCare}}</td>
+			<td class="label-bold">Future Date</td> <td>{{centraLinkDt.futureDate}}</td>
+		
+		</tr>
+		
+		<tr>
+		<td class="label-bold">Family Tax benefit A</td> <td>{{centraLinkDt.familyTaxBenefitA}}</td>
+		<td class="label-bold">Family Tax benefit B</td> <td>{{centraLinkDt.familyTaxBenefitB}}</td>
+		<td class="label-bold">Frequency</td> <td>{{centraLinkDt.fequency}}</td>
+		</tr>
+		
+		<tr>
+		<td class="label-bold">Carer Payment</td> <td>{{centraLinkDt.carerPayment}}</td>
+		<td class="label-bold">Disability Pension Payment</td> <td>{{centraLinkDt.disabilityPensionPayment}}</td>
+		<td class="label-bold">Partnered parenting payment</td> <td>{{centraLinkDt.partneredParentingPayment}}</td>
+		</tr>
+		
+		<tr>
+		<td class="label-bold">Veterans Affairs pension</td> <td>{{centraLinkDt.veteransAffairsPension}}</td>
+		<td class="label-bold">Aged pension</td> <td>{{centraLinkDt.agedPension}}</td>
+		<td class="label-bold">Maintenance Income</td> <td>{{centraLinkDt.maintenanceIncome}}</td>
+		
+		</tr>
+		<tr>
+		<td class="label-bold">Foster Care</td> <td>{{centraLinkDt.fosterCare}}</td>
+		<td class="label-bold">Work cover</td> <td>{{centraLinkDt.workcover}}</td>
+		<td class="label-bold">Other Government Benefits</td> <td>{{centraLinkDt.otherGovBenefits}}</td>
+		
+		</tr>
+		<tr>
+		<td class="label-bold">Ex Servicemen pension</td> <td>{{centraLinkDt.exServicemenPension}}</td>
+		<td class="label-bold">Deduction</td> <td>{{centraLinkDt.deduction}}</td>
+		<td class="label-bold">App 1 Income</td> <td>{{centraLinkDt.app1Income}}</td>
+		
+		</tr>
+		<tr>
+		<td class="label-bold">App 2 Income</td> <td>{{centraLinkDt.app2Income}}</td>
+		<td class="label-bold">Total Asset assessed</td> <td>{{centraLinkDt.totalAssetAssessed}}</td>
+		
+		</tr>
+	
+		
+		</table>
+		
+		</tr>
+		<!-- Section for CENTRAL INCOMES END -->
+		
+		
+		<!-- Section for Rental Income Start-->
+		<tr>
+		<table class="table table-bordered" ng-repeat ="(key,rentalIncomeDt) in financedata.sofp.rentalIncomes">
+		<tr>Rental Income</tr>
+		<tr> 
+		
+		<td class="label-bold"> Street Number </td> <td> {{rentalIncomeDt.address.streetNumber}}</td>
+		<td class="label-bold"> Street Name </td> <td> {{rentalIncomeDt.address.streetName}}</td>
+		<td class="label-bold"> Suburb Name </td> <td> {{rentalIncomeDt.address.suburbName}}</td>
+		<td class="label-bold"> State </td> <td ng-repeat="staticStateName in staticData.state | filter:{stateID:rentalIncomeDt.address.stateId}"> {{staticStateName.stateName}}</td>
+		<td class="label-bold"> PostCode </td><!-- td ng-repeat="staticPostCode in staticData.postCode | filter:{postCode:rentalIncomeDt.address.postCode}">{{staticPostCode.postCode}}</td-->
+		</tr>
+		
+			
+		<tr> 
+		
+		<td class="label-bold">Rental Income</td> <td>{{rentalIncomeDt.rentalIncomeAmount}} </td>
+		<td class="label-bold">Land Lord Name </td> <td> {{rentalIncomeDt.landLordName}}</td>
+		<td class="label-bold"> Frequency </td> <td> {{rentalIncomeDt.frequency}}</td>
+		<td class="label-bold"> Signed </td> <td>{{rentalIncomeDt.isSigned}} </td>
+		
+		</tr>
+		
+		<tr> 
+		
+		<td class="label-bold">Date</td> <td> {{rentalIncomeDt.rentalIncomeDate}} </td>
+		<td class="label-bold">Count in Duration</td> <td> {{rentalIncomeDt.countOfCredits}}</td>
+		<td class="label-bold">Real Estate agent name </td> <td> {{rentalIncomeDt.isAgentInvolved}}</td>
+		</tr>
+		
+		</table>
+		</tr>
+		
+		<!-- Section for Rental Income End -->
+		
+		<!-- Section for OFI Statement Start -->
+		
+		<tr>
+		
+		<table class="table table-bordered" ng-repeat ="(key,ofidetailsDt) in data.application.ofidetails">
+		<tr>OFI Details </tr>
+		<tr>
+		
+		<td class="label-bold">Date To </td><td> </td>
+		<td class="label-bold">Date From </td><td> </td>
+		<td class="label-bold">Bank Name </td><td>{{ofidetailsDt.ofiname}}</td>
+		<td class="label-bold">Bank BSB </td><td>{{ofidetailsDt.ofibsb}}</td>
+		</tr>
+		<tr>
+		<td class="label-bold">A/C Number </td><td> </td>
+		<td class="label-bold">Card Number </td><td> </td>
+		<td class="label-bold">Outstanding Amount<td><td>{{ofidetailsDt.outstandingLoanAmount}}</td>
+		</tr>
+		<tr>
+		<td class="label-bold">Statement from</td><td> </td>
+		<td class="label-bold">Statement To </td><td> </td>
+		<td class="label-bold">Dishonour</td><td></td>
+		</tr>
+		<tr>
+		<td class="label-bold">Progressive Payment</td><td> </td>
+		<td class="label-bold">Redraw</td><td> </td>
+		<td class="label-bold">Card Limit</td><td></td>
+		<td class="label-bold">Overdraft Limit</td><td></td>
+		</tr>
+		</table>
+		
+		
+		</tr>
+		<!-- Section for OFI Statement End -->
+		
+		<!-- Section for Financial Table End -->
+		</table>
+		
+		</div>
+		
+		<!-- Individual Tax Details -->
+		
+		<div class="table-responsive">
+	    <table class="table table-bordered" ng-repeat ="taxdetails in financedata.participant.taxReturns">
+		<tr ng-repeat="staticTaxDetails in staticData.taxReturnType | filter:{taxReturnTypeID: taxdetails.taxReturnTypeID}">
+			<td class="label-bold"> taxReturnType</td> <td>{{staticTaxDetails.taxReturnType}}</td>
+		</tr> 
+	
+		</table>
+		</div>
+		
+		<!-- Individual tax Details End -->
+		  </div> 
+		   <!-- Ng repeat for application participant  End-->
+    </div>
+	</uib-accordion-group >
+	<!-- Financial Details End -->
+	
+	<!-- Broker Details Start -->
+	<uib-accordion-group heading="Broker Details">
+	 <div class="row">
+	 <div class="container-fluid boldHeader"> Broker Details </div>
+      <div class="col-md-10">
+
+        <div class="table-responsive" >
+          <table class="table table-bordered">
+			
+            <tr>
+              <td class="label-bold">Application Number</td><td>{{data.application.applicationNumber}}</td>
+              <td class="label-bold">Delivery Method </td><td>{{data.application.deliveryMethodId}}</td>
+              <td class="label-bold">Channel</td><td>{{data.application.channel.channelID}}</td>
+            </tr>
+
+            <tr>
+              <td class="label-bold">CPID</td><td>{{data.application.channel.cpid}}</td>
+              <td class="label-bold">Application Branch ID</td><td></td>
+              <td class="label-bold">Application Received Date/Time/Operator</td><td>{{data.application.applicationReceivedDate}}</td>
+            </tr>
+
+            <tr>
+              <td class="label-bold">TPMI - AO</td><td>{{data.application.channel.ao}}</td>
+              <td class="label-bold">TPMI - SAO</td><td>{{data.application.channel.sao}}</td>
+              <td class="label-bold">Is MIG Available</td><td>{{data.application.channel.isMIGAvailable == true? 'Yes':'No'}}</td>
+            </tr>
+
+            <tr>
+              <td class="label-bold"> Lo Doc Application </td><td> {{}}</td>
+              <td class="label-bold">Nominated Branch of ID</td> <td>{{}} </td>
+              
+            </tr>
+
+
+          </table>
+        </div>
+      </div>
+    </div>
+	</uib-accordion-group >
+	<!-- Broker Details End -->
+	
+	<!-- Employee Details Start -->
+	<uib-accordion-group heading="Employment Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> Employment Details </div>
+	<div class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-12'}}" ng-repeat="(key,empDet) in data.application.applicationParticipants">
+	 <div class="table-responsive" ng-repeat="personEmpDt in empDet.participant.person.employments">
+          <table class="table table-bordered">
+          	<tr>
+              <td class="label-bold">Employment Type</td>
+			  <td ng-repeat="employmentTyp in staticData.employmentType | filter:{employmentTypeID:personEmpDt.employmentTypeID}">{{employmentTyp.employmentType}}</td>
+			  <td class="label-bold">Employer Type</td>
+			  <td ng-repeat="emploerType in staticData.employerType | filter:{employerTypeID:personEmpDt.employerTypeID}">{{emploerType.employerType}}</td>
+			 
+            </tr>
+			<tr>
+			 <td class="label-bold">Occupational Group</td>
+			  <td ng-repeat="occupantGrp in staticData.occupationGroup | filter:{occupationGroupID:personEmpDt.occupationGroupID}">{{occupantGrp.occupationGroup}}</td>
+			   <td class="label-bold">Occupational</td> 
+			 <td ng-repeat="occupantSubGrp in staticData.occupationSubGroup | filter:{occupationSubGroupID:personEmpDt.occupationSubGroupID}">{{occupantSubGrp.occupationSubGroup}}</td>
+			
+			
+			
+			</tr>
+			<tr>
+			
+			 <td class="label-bold">Designation</td> <td>{{personEmpDt.designation}}</td>
+			  <td class="label-bold">Primary Employment?</td><td>{{personEmpDt.isPrimaryEmployment}}</td>
+			  <td class="label-bold">Employer Name</td><td>{{personEmpDt.employerName}}</td>
+			</tr>
+            <tr>
+              <td class="label-bold">Line Addres 1</td> <td>{{personEmpDt.address.streetNumber}}</td>
+              <td class="label-bold">Line Addres 1</td> <td>{{personEmpDt.address.streetName}}</td>
+              <td class="label-bold">State</td> <td> {{personEmpDt.address.stateId}}</td>
+             
+             </tr>
+			 
+			 <tr>
+			  <td class="label-bold">Postcode</td> <td>{{personEmpDt.address.postCode}}</td>
+			  <td class="label-bold">Country</td> <td>{{personEmpDt.address.countryId}}</td >
+			 </tr>
+			<tr>
+			
+			 <td ng-repeat="countryID in staticData.country | filter:{countryId:personEmpDt.address.countryId}">{{countryID.countryName}}</td>
+              <td class="label-bold">Phone</td> <td>{{personEmpDt.address.phone1}}</td>
+              <td class="label-bold">Fax Number</td> <td>{{personEmpDt.address.fax}}</td>
+			</tr>
+			
+			<tr>
+			  <td class="label-bold">Gross Monthly</td> <td>{{personEmpDt.grossMonthly}}</td>
+              <td class="label-bold">Net Monthly</td> <td>{{personEmpDt.netMonthly}}</td>
+			  <td class="label-bold">Time at Employment</td> <td>{{personEmpDt.timeAtEmployment}}</td>
+			</tr>
+			<tr>
+		    
+			<td class="label-bold">Is Previous Employment Entry required?</td> <td></td>
+			<td class="label-bold">Is Employee under a Probationary Period?</td><td>{{personEmpDt.isUnderProbation == true? 'Yes':'No'}}</td>
+		   
+		   </tr>
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group >
+	<!--- Employment Details--->
+	
+	
+	<!-- Loan Details Start -->
+	<uib-accordion-group heading="Loan Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> Loan Details </div>
+	<div class="col-md-12">
+	 <div class="table-responsive">
+          <table class="table table-bordered" ng-repeat ="(key,LoanPurpose) in data.application.applicationPurposesA">
+            <tr >
+              <td class="label-bold">Purpose Category</td><td>{{LoanPurpose.purposeCategoryID}}</td>
+			  <td class="label-bold">Purpose</td> <td>{{LoanPurpose.purposeID}}</td>
+			   <td class="label-bold">Purpose Description</td> <td></td>
+             
+			  
+            </tr>
+			<tr>
+			 <td class="label-bold">Est Settlement Date</td> <td>{{data.application.estSettlementDate}}</td>
+			<td class="label-bold">Approval in Price Sought?</td> <td>{{data.application.isApprovalInPriceSought}}</td>
+			  <td class="label-bold">Product Code</td> {{LoanPurpose.productCodeID}} <td></td>
+			  <td class="label-bold">Sub-Product Code</td><td>{{LoanPurpose.subProductCodeID}}</td>
+			   <td class="label-bold">Regulated?</td> <td>{{data.application.isRegulated}}</td>
+			
+			</tr>
+			
+			
+            <tr>
+             
+              <td class="label-bold">Own Funds</td> <td></td>
+              <td class="label-bold">Gifts</td> <td></td>
+              <td class="label-bold">Amount Sought</td> <td>{{data.application.amountSought}}</td>
+              <td class="label-bold">Repayment Type</td> <td>{{data.application.repaymentTypeID}}</td>
+		    </tr>
+           <tr>
+		   <td class="label-bold">Bridging Portion</td> <td></td>
+		   <td class="label-bold">Ongoing Portion</td> <td></td>
+            <td class="label-bold">Deposits paid</td> <td></td>
+            <td class="label-bold">Cost of Improvements</td> <td></td>
+           </tr>
+		   
+		   <tr>
+			 <td class="label-bold">Bal Loan Re-fi</td> <td></td>
+              <td class="label-bold">Additional Costs</td> <td></td>
+			   <td class="label-bold">Pur Price of Land</td> <td></td>
+			
+			</tr>
+		   <tr>
+		   <td class="label-bold">Build Contract Price</td> <td></td>
+		   <td class="label-bold">Progressive Drawdown?</td> <td>{{data.application.isProgressiveDrawdown}}</td>
+            <td class="label-bold">Loan Term</td> <td>{{data.application.loanTerm}}</td>
+            <td class="label-bold">LMI</td> <td>{{data.application.isLMI}}</td>
+            </tr>
+		   
+		   
+		   <tr>
+		   <td class="label-bold">OD limit Amount</td> <td></td>
+		   <td class="label-bold">OFI Name</td> <td></td>
+            <td class="label-bold">Loan type</td> <td></td>
+            <td class="label-bold">Loan Amount</td> <td></td>
+            </tr>
+		   
+		   <tr>
+		   <td class="label-bold">Guarantee Amount</td> <td></td>
+		   
+            </tr>
+			<tr>
+		   <td class="label-bold">Stamping Type</td> <td></td>
+		   <td class="label-bold">Stamping Value</td> <td></td>
+            <td class="label-bold">Exisitng Loan Amount</td> <td></td>
+            <td class="label-bold">Is Fixed Price Contract</td> <td></td>
+            </tr>
+			
+			<tr ng-repeat = "settlementData in data.application.disbursementAndSettlements"> 
+			<td class="label-bold">Settlement amount</td> <td>{{settlementData.settlementAmount}}</td>
+			<td class="label-bold">Surplus / Shortfall account</td> <td>{{settlementData.surplusShortfallAccount}}</td>
+			<td class="label-bold">Maximum amount on Surplus / Shortfall account</td> <td>{{settlementData.maximumAmount}}</td>
+			</tr>
+			
+			<tr>
+			{{LoanPurpose.applicationPurposeProducts}}
+			<table ng-repeat="appPurposeProducts in LoanPurpose.applicationPurposeProducts">
+			<tr ng-repeat="ilsPrdDetail in appPurposeProducts.ilsProductDetails">
+		     <td class="label-bold">Interest Only Term</td> <td>{{ilsPrdDetail.interestOnlyTermMonths}}</td>
+		     </tr>
+			</table>
+			</tr>
+			
+			
+			
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group>
+	<!--- Loan Details End--->
+	
+	<!-- OFI Details -->
+	<uib-accordion-group heading="OFI Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> OFI Details </div>
+	<div class="col-md-12" ng-repeat="(key,ofidetail) in data.application.ofidetails">
+	 <div class="table-responsive">
+          <table class="table table-bordered"> 
+           
+			<tr>
+              <td class="label-bold">OFI Name</td><td>{{ofidetail.ofiname}}</td>
+			  <td class="label-bold">BSB</td> <td> {{ofidetail.ofibsb}}</td>
+			  <td class="label-bold">OFI Loan Amount</td> <td>{{ofidetail.loanAmount}}</td>
+			   
+              
+            </tr>
+			<tr>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber1}}</td>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber2}}</td>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber3}}</td>
+			
+			</tr>
+			<tr>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber4}}</td>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber5}}</td>
+			<td class="label-bold">Account Number</td> <td>{{ofidetail.loanAccountNumber6}}</td>
+			
+			</tr>
+			 <tr>
+			   <td class="label-bold">OFI Contact Name</td> <td>{{ofidetail.oficontactName}}</td>
+			   <td class="label-bold">Street Number</td> <td>{{ofidetail.address.streetNumber}}</td>
+			   <td class="label-bold">Street Name</td> <td>{{ofidetail.address.streetName}}</td>
+			   <td class="label-bold">Suburb Name</td> <td>{{ofidetail.address.suburbName}}</td>
+			   <td class="label-bold">State</td> <td>{{ofidetail.address.stateId}}</td>
+			   <td class="label-bold">PostCode</td> <td>{{ofidetail.address.postCode}}</td>
+            </tr>
+			
+           
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group>
+	<!--- OFI Details End--->
+	<uib-accordion-group heading="Security Details">
+	<!-- Security Details -->
+	<div class="row">
+	<div class="container-fluid boldHeader"> Security Details </div>
+	<div class="col-md-12" ng-repeat="(key,securityDt) in data.application.securities">
+	 <div class="table-responsive" ng-repeat="(key,securityEntityDt) in securityDt.securityEntities">
+          <table class="table table-bordered">
+           
+			<tr>
+              <td class="label-bold">Security Type</td><td>{{securityEntityDt.securityTypeID}}</td>
+              <td class="label-bold">Security Entity</td><td>{{securityEntityDt.securityEntityID}}</td>
+			  <td class="label-bold">Security Given By</td><td>{{securityEntityDt.securityEntityDescription}}</td>
+			  <td class="label-bold">Security Address</td> <td></td>
+			  <td class="label-bold">Assigned Address for this security</td> <td></td>
+              
+            </tr>
+            <tr>
+			 <td class="label-bold">Add/Assign Address</td> <td> </td>
+			  <td class="label-bold">Address</td> <td></td>
+               <td class="label-bold">City</td> <td> </td>
+			  <td class="label-bold">State</td> <td></td>
+			  <td class="label-bold">Postcode</td> <td></td>
+            </tr>
+			<tr>
+			 <td class="label-bold">Property Purchase?</td> <td>{{securityEntityDt.property.isPropertyPurchase}} </td>
+			  <td class="label-bold">Property Type</td> <td> {{securityEntityDt.property.propertyTypeID}}</td>
+			  <td class="label-bold">Property Tenure</td> <td>{{securityEntityDt.property.propertyTenureID}} </td>
+			  <td class="label-bold">Property Zoning</td> <td>{{securityEntityDt.property.propertyZoningID}}</td>
+			  <td class="label-bold">Property use</td> <td>{{securityEntityDt.property.propertyUseID}}</td>
+              
+            </tr>
+			<tr>
+			 <td class="label-bold">Title Type</td> <td> {{securityEntityDt.property.titleTypeID}} </td>
+			 <td class="label-bold">Security Value (FMV)</td> <td>{{securityEntityDt.property.securityValue}}</td>
+			 <td class="label-bold">Customer Stated Value</td> <td>{{securityEntityDt.property.securityValue}}</td>
+			 <td class="label-bold">Transfer of Land Value</td> <td>{{securityEntityDt.property.customerStatedValue}}</td>
+			 <td class="label-bold">Security Status</td> <td>{{securityEntityDt.property.securityStatusID}}</td>
+			 <td class="label-bold">Valuation Date</td> <td>{{securityEntityDt.property.valuationDate}} </td>
+              
+            </tr>
+			<tr>
+			
+			  <td class="label-bold"> FMV, Risk Rating</td> <td>{{securityEntityDt.property.fmvriskRating}}</td>
+			  <td class="label-bold">Date of Contract of Sale</td> <td> </td>
+			  <td class="label-bold">COS - Purchase Price</td> <td></td>
+			  <td class="label-bold">COS - Transfer of Land Value</td> <td>{{securityEntityDt.property.transferOfLandValue}} </td>
+			  <td class="label-bold"> Vendor Name</td> <td></td>
+			  <td class="label-bold">Buyer Name</td> <td> </td>
+			  <td class="label-bold">Deposit Invoice</td> <td></td>
+              
+            </tr>
+			<tr >
+			<td class="label-bold">FMV</td> <td>{{securityEntityDt.property.valuations.fmv}}</td>
+			 <td class="label-bold"> Name of the property </td> <td>{{securityEntityDt.property.nameOfProperty}}</td>
+			  <td class="label-bold"> Valuation Date</td> <td>{{securityEntityDt.property.valuationDate}}</td>
+			   <td class="label-bold">Rental income </td> <td>{{securityEntityDt.property.rentalIncome}}</td>
+			    <td class="label-bold">No of bed room</td> <td>{{securityEntityDt.property.noOfBedroom}}</td>
+				 <td class="label-bold">No of bath room</td> <td>{{securityEntityDt.property.noOfBathroom}}</td>
+				  <td class="label-bold">No of car park</td> <td>{{securityEntityDt.property.noOfCarPark}}</td>
+				  
+			</tr>
+			<tr>
+			 <td class="label-bold">Living areas</td> <td>{{securityEntityDt.property.livingArea}}</td>
+			  <td class="label-bold">Outdoor Areas</td> <td>{{securityEntityDt.property.outdoorArea}}</td>
+			   <td class="label-bold">Other Areas</td> <td>{{securityEntityDt.property.otherArea}}</td>
+			    <td class="label-bold">Value component</td> <td>{{securityEntityDt.property.valueComponent}}</td>
+				 <td class="label-bold">Land</td> <td>{{securityEntityDt.property.rrland}}</td>
+				  <td class="label-bold">Improvement</td> <td>{{securityEntityDt.property.improvementValuation}}</td>
+				   <td class="label-bold">Location & Neighbour</td> <td>{{}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">land</td> <td>{{securityEntityDt.property.rrland}}</td>
+			<td class="label-bold">Enviroment</td> <td>{{securityEntityDt.property.rrenvironment}}</td>
+			<td class="label-bold">Improvement</td> <td>{{securityEntityDt.property.rrimprovement}}</td>
+			<td class="label-bold">Recent market direction</td> <td>{{securityEntityDt.property.rrrecentMarketDirection}}</td>
+			<td class="label-bold">market volatility</td> <td>{{securityEntityDt.property.rrmarketVolatility}}</td>
+			<td class="label-bold">Local economy Impacts</td> <td>{{securityEntityDt.property.rrlocalEconomy}}</td>
+			<td class="label-bold">Market Segment Condition</td> <td>{{securityEntityDt.property.rrmarketSegment}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">Date of Contract of Sale</td> <td>{{securityEntityDt.property.dateCreated}}</td>
+			  <td class="label-bold">COS - Purchase Price</td> <td>{{}}</td>
+			   <td class="label-bold">COS - Transfer of Land Value</td> <td>{{}}</td>
+			    <td class="label-bold">Vendor Name</td> <td>{{}}</td>
+				 <td class="label-bold">Buyer Name</td> <td>{{}}</td>
+				  <td class="label-bold">Tax agent name</td> <td>{{}}</td>
+				   <td class="label-bold">Deposit Amount</td> <td>{{securityEntityDt.property.deposit}}</td>
+			</tr>
+			<tr >
+			 <td class="label-bold">Date </td> <td>{{securityEntityDt.property.deposit}}</td>
+			  <td class="label-bold">Name of the applicant</td> <td>{{}}</td>
+			   <td class="label-bold">Property address</td> <td>{{}}</td>
+			    <td class="label-bold">vol/folio</td> <td>{{}}</td>
+				 <td class="label-bold">Purchase price</td> <td>{{}}</td>
+				  <td class="label-bold">Seller buyer signature</td> <td>{{}}</td>
+				   
+			</tr>
+			<tr ng-repeat = "propertyTitleDt in securityEntityDt.property.propertyTitles">
+			<td class="label-bold">Car Park</td> <td>{{propertyTitleDt.isCarParkIncluded}}</td>
+			 <td class="label-bold">Volume/Folio </td> <td>{{propertyTitleDt.volume}}</td>
+			  <td class="label-bold">Title Reference</td> <td>{{propertyTitleDt.titleReference}}</td>
+			   <td class="label-bold">Folio Identifier/Auto Console</td> <td>{{propertyTitleDt.folioIdentfier}}</td>
+			    <td class="label-bold">Security Onwer Name</td> <td>{{propertyTitleDt.securityOwnerName}}</td>
+				 <td class="label-bold">Encumberance</td> <td>{{propertyTitleDt.encumbranceA}}</td>
+				  <td class="label-bold">LAND DESCRIPTION</td> <td>{{}}</td>
+				  <td class="label-bold">Mortgage/Caveat</td> <td>{{}}</td>
+			</tr>
+			
+			<tr>
+			 <td class="label-bold">Seller Name </td> <td>{{}}</td>
+			  <td class="label-bold">Buyer Name</td> <td>{{}}</td>
+			   <td class="label-bold">Buyer Solicitor</td> <td>{{}}</td>
+			    <td class="label-bold">Security Address</td> <td>{{}}</td>
+				 <td class="label-bold">Purchase price</td> <td>{{}}</td>
+				  <td class="label-bold">Settlement Date</td> <td>{{}}</td>
+				   <td class="label-bold">Goods</td> <td>{{}}</td>
+				   <td class="label-bold">Execution Date</td> <td>{{}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">Special Condition</td> <td>{{}}</td>
+			 <td class="label-bold">POS</td> <td>{{}}</td>
+			 <td class="label-bold">Seller Name</td> <td>{{}}</td>
+			 <td class="label-bold">Buyer Name</td> <td>{{}}</td>
+			 <td class="label-bold">Is Trust Involved </td> <td>{{}}</td>
+			 <td class="label-bold">Purchase price</td> <td>{{}}</td>
+			 <td class="label-bold">Land Details</td> <td>{{}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">Directing Party </td> <td>{{}}</td>
+			 <td class="label-bold">Percentage of share description</td> <td>{{}}</td>
+			 <td class="label-bold">What type of Valuation is recd?</td><td>{{securityEntityDt.property.valuations.valuationID}}</td>
+			 <td class="label-bold">Security Address</td> <td>{{}}</td>
+			 <td class="label-bold">Security - Title details </td> <td>{{}}</td>
+			 <td class="label-bold">Mortgage Date & Number</td> <td>{{}}</td>
+			 <td class="label-bold">Customer Name</td> <td>{{}}</td>
+			  
+			</tr>
+			<tr>
+			 <td class="label-bold">Security - Title details & Address</td> <td>{{}}</td>
+			 <td class="label-bold">Mortgage Date & Number</td> <td>{{}}</td>
+			 <td class="label-bold">Mortgage Date</td> <td>{{}}</td>
+			 <td class="label-bold">eFile Case ID</td> <td>{{}}</td>
+			 <td class="label-bold">Vendor Packet ID</td> <td>{{}}</td>
+			 <td class="label-bold">Name of Packet</td> <td>{{}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">Title Reference</td> <td>{{}}</td>
+			 <td class="label-bold">Mortgage Date</td> <td>{{}}</td>
+			 <td class="label-bold">Mortgage Number</td> <td>{{}}</td>
+			 <td class="label-bold">Share Certificate No</td> <td>{{}}</td>
+			 <td class="label-bold">Share Type</td> <td>{{}}</td>
+			 <td class="label-bold">Share From & Share To</td> <td>{{}}</td>
+			 <td class="label-bold">Share Company Name</td> <td>{{}}</td>
+			</tr>
+			<tr>
+			 <td class="label-bold">Construction address</td> <td>{{}}</td>
+			 <td class="label-bold">To be Erected</td> <td>{{}}</td>
+			 <td class="label-bold">Tentative on Completion</td> <td>{{}}</td>
+			 <td class="label-bold">MOS Sequence Number</td> <td>{{}}</td>
+			</tr>
+           
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group>
+	<!--- Security Details End--->
+	
+	<!-- Documents Details Start -->
+	<uib-accordion-group heading="Document Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> Document Details </div>
+	<div class="col-md-10" ng-repeat="(key,docsVerify) in data.application.docVerifications">
+	 <div class="table-responsive">
+          <table class="table table-bordered">
+           
+			<tr>
+              <td class="label-bold">List of Documents</td><td>{{docsVerify.docVerificationID}}</td>
+              <td class="label-bold">Document Exists</td><td>{{docsVerify.isAvailable}}</td>
+              <td class="label-bold">Verified</td><td>{{docsVerify.isVerified}}</td>
+              <td class="label-bold">Document Signed & Dated</td><td>{{docsVerify.dSigned}}</td>
+			</tr>
+            <tr>
+			 <td class="label-bold">Source (Original/ Fax / photo Copy)</td><td>{{docsVerify.isValid}}</td>
+              <td class="label-bold">Document Status (Active/Inactive/Destroyed/Filing)</td><td>{{}}</td>
+              <td class="label-bold">Comments - Scanning Errors or Observations</td><td>{{docsVerify.comments}}</td>
+			</tr>
+			        
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group>
+	<!-- Documents Details End-->
+	
+	<!-- Account Details -->
+	<uib-accordion-group heading="Account Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> Account Details </div>
+	<div class="col-md-12" ng-repeat="(key,breakfreedt) in data.application.breakFrees">
+	 <div class="table-responsive" ng-repeat="brkfreedetils in breakfreedt.breakFreeApplicants">
+          <table class="table table-bordered">
+           
+			<tr>
+              <td class="label-bold">Has the Applicant opted for Breakfree?</td><td>{{data.application.isBreakfreeOpted == true ? 'Yes' : 'No' }}</td>
+			  <td class="label-bold">Vaidate Existing BF customer or not</td> <td>{{brkfreedetils.breakFreeApplicantsID}}</td>
+			   <td class="label-bold">Loan application number</td> <td>{{data.application.applicationNumber}}</td>
+              
+            </tr>
+			
+            <tr>
+			<td class="label-bold">Loans to be included in BF Package?</td> <td>{{}}</td>
+			  <td class="label-bold">Account Holder</td> <td>{{}}</td>
+              <td class="label-bold">Account Number</td> <td> {{}}</td>
+              <td class="label-bold">Current Loan Balance</td> <td>{{}}</td>
+                  
+            </tr>
+			<tr>
+			 <td class="label-bold">Is ANZ Transaction Account Nominated?</td> <td>{{breakfreedt.nominatedTransactionAccount}}</td>
+              <td class="label-bold">i/We will need to open a new transaction account as a part of this package (Please contact an ANZ Branch to organise; transaction account must be opened before settlement date).
+				</td> <td>{{}}</td>
+			</tr>
+			
+			<tr>
+			<td class="label-bold">ANZ Assured</td> <td>{{breakfreedt.isANZAssured}}</td>
+            <td class="label-bold">New Credit Card Account Required</td> <td> {{}}</td>
+			</tr>
+			
+			<tr>
+			<td class="label-bold">Credit Limit $</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Platinum</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Rewards Platinum</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Frequent Flyer Platinum</td> <td>{{}}</td>
+            </tr>
+			
+			<tr>
+			<td class="label-bold">Applicants Name</td> <td>{{}}</td>
+			<td class="label-bold">Existing Qantas Frequent Flyer membership number</td> <td>{{}}</td>
+			<td class="label-bold">Account Number</td> <td>{{}}</td>
+			<td class="label-bold">Account Holder</td> <td>{{}}</td>
+			
+            </tr>
+			
+			<tr>
+			<td class="label-bold">Upgrade of Existing Card</td> <td>{{}}</td>
+			<td class="label-bold">Credit Limit Increase $</td> <td>{{}}</td>
+			<td class="label-bold">Account Holder</td> <td>{{}}</td>
+			
+			
+            </tr>
+			
+			<tr>
+			<td class="label-bold">Visa/Mastercard Card Number</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Platinum</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Rewards Platinum</td> <td>{{}}</td>
+			<td class="label-bold">ANZ Frequent Flyer Platinum</td> <td>{{}}</td>
+			</tr>
+			
+			
+           
+          </table>
+        </div>
+		
+		<!-- Disbursement Details -->
+		<div class="table-responsive" ng-repeat="(key,disbursedt) in data.application.disbursementAndSettlements"> 
+		<table class="table table-bordered">
+		<tr>
+			<td class="label-bold">Offset account</td> <td>{{disbursedt.offsetAccount}}</td>
+			<td class="label-bold">Offset account - Product Name</td> <td>{{disbursedt.offsectAcctProductName}}</td>
+			<td class="label-bold">Offset account - Product amount</td> <td>{{disbursedt.disbursementAndSettlementID}}</td>
+			<td class="label-bold">Repayments Account number</td> <td>{{}}</td>
+			
+            </tr>
+		</table>
+		
+		</div>
+		<!-- Disbursement Details End -->
+	</div>
+	</div>
+		</uib-accordion-group>
+	<!-- Account Details End -->
+	
+	<uib-accordion-group heading="Solictors Details">
+	<!-- Solictors Details -->
+	<div class="row">
+	<div class="container-fluid boldHeader"> Solicitors Details </div>
+	<div class="{{data.application.solicitors.length > 1 ? 'col-md-6':'col-md-10'}}" ng-repeat="(key, solicitors) in data.application.solicitors">
+	 <div class="table-responsive">
+          <table class="table table-bordered">
+           
+			<tr>
+              <td class="label-bold">Solicitor Name</td><td>{{solicitors.solicitorName}}</td>
+			  <td class="label-bold">Firm</td> <td> {{solicitors.firm}}</td>
+			   <td class="label-bold">Phone</td> <td>{{solicitors.address.phone1}}</td>
+              
+            </tr>
+            <tr>
+			<td class="label-bold">Fax Number</td> <td> {{solicitors.address.fax}}</td>
+			  <td class="label-bold">email ID</td> <td>{{solicitors.emailId}}</td>
+              <td class="label-bold">Line 1 Address</td> <td> {{solicitors.address.streetNumber}}</td>
+              <td class="label-bold">Line 2 Address</td> <td>{{solicitors.address.streetName}}</td>
+                  
+            </tr>
+			<tr>
+			 <td class="label-bold">State</td> <td>{{solicitors.address.stateId}}</td>
+              <td class="label-bold">Postcode</td> <td>{{solicitors.address.pobox}}</td>
+			</tr>
+           
+          </table>
+        </div>
+	</div>
+	</div>
+	</uib-accordion-group>
+	<!--- Solicitor Details End--->
+	
+	<!-- Compliance Details -->
+	<uib-accordion-group heading="Compliance Details">
+	<div class="row">
+	<div class="container-fluid boldHeader"> Compliance Details </div>
+	<div class="col-md-12">
+	 <div class="table-responsive" >
+          <table class="table table-bordered">
+        
+		   
+			
+	
+			<tr>
+              <td class="label-bold">Signature Broker</td><td></td>
+              <td class="label-bold">Date  Broker</td><td></td>
+              <td class="label-bold">Signature Customer</td><td>{{data.application.isCustomerSignatureDone}}</td>
+              <!-- <td class="label-bold">Checklist</td><td></td> -->
+              <td class="label-bold">Date Signature</td><td> {{data.application.customerSignatureDate}}</td>
+			  
+			  </tr>
+			  
+			 
+			 <tr>
+			 <td class="label-bold">Date of Interview</td><td></td>
+			 <td class="label-bold">Loan Facilities to be Guaranteed</td><td></td>
+             <td class="label-bold">Guarantor’s Full Name</td><td></td>
+             <td class="label-bold">Guarantor’s Occupation</td><td></td>
+              </tr>
+			  <tr>
+			  <td class="label-bold">Customer’s Full Name</td><td></td>
+              <td class="label-bold">Driving Licence Number</td><td></td>
+			  </tr>
+			  
+           
+           
+			 <tr>
+			 <td class="label-bold">State of Issue</td><td></td>
+              <td class="label-bold">Country of Issue</td><td></td>
+              <td class="label-bold">Date of Birth</td><td></td>
+            </tr>
+			<tr>
+			 <td class="label-bold">The interview is being conducted face to face</td><td></td>
+			 <td class="label-bold">"Please confirm the Guarantor is the only person present at the interview other than yourself. No Borrowers or Co-Guarantors can be present"</td><td></td>
+			 <td class="label-bold">Please advise the Guarantor that it is strongly recommended that they seek independent legal and/or financial advice before entering into the Guarantee</td><td></td>
+
+			</tr>
+           <tr>
+			 <td class="label-bold">Are you under any pressure to give this Guarantee (e.g. are you afraid someone will do something, or refuse to do something, if you do not sign this Guarantee)?</td><td></td>
+              <td class="label-bold">under pressure to givethis  Guarantee?</td><td></td>
+              <td class="label-bold">subject to any misrepresentation as to why the Guarantee is needed?</td><td></td>
+            </tr>
+			
+			 <tr>
+			 <td class="label-bold">subject to any unreasonable or unfair conduct by anyone involved in this transaction?
+				</td><td></td>
+              <td class="label-bold">having difficulty understanding their obligations as Guarantor</td><td></td>
+              <td class="label-bold">2. Is the Guarantee to be executed under power of attorney on behalf of an individual?
+			</td><td></td>
+            </tr>
+			
+			<tr>
+			<td class="label-bold">3. Is the Guarantor a minor (less than 18 years old)?</td><td></td>
+			<td class="label-bold">Security Guarantee (complete section 5,7,8 & if required 9)</td><td></td>
+			<td class="label-bold">Servicing Guarantee (complete section 6,7,8 & if required 9)</td><td></td>
+     		</tr>
+			
+			<tr>
+			<td class="label-bold">(Ask the Guarantor) Do you understand that should the Borrower be unable to meet the commitments of the loan or fails to meet those commitments for any reason, you may be required to pay the guaranteed amount?</td> <td></td>
+			
+			<td class="label-bold">"Is the Guarantor in a spousal/de facto relationship with the Borrower and a joint statement of position has been obtained? If YES, skip questions 2 & 3 below.If NO, answer questions 2 & 3 below."
+			</td> <td></td>
+			
+			</tr>
+			
+			
+			<tr>
+			<td class="label-bold">Is the Guarantor in a spousal/de facto relationship with the Borrower and a joint statement of position has been obtained? If YES, skip questions 2 & 3 below.If NO, answer questions 2 & 3 below."
+			</td> <td></td>
+			
+			<td class="label-bold">2. (Ask the Guarantor) If you were required to repay the guaranteed amount, would you need to sell the family home, to meet this commitment."</td> <td> </td>
+			
+			<td class="label-bold">3. (Ask the Guarantor) if you had to loan money to repay the guaranteed amount would you be in a position to meet the loan repayments from your income in addition to your reasonable living expenses?"</td>
+			<td> </td>
+			</tr>
+			
+			<tr>
+			<td class="label-bold">1. Have you confirmed that the Guarantor is in a spousal/de facto relationship with the Borrower OR Have you confirmed that the Guarantor is a parent/step parent of the Borrower, and is wealthy and sophisticated"	</td> <td></td>
+			
+			<td class="label-bold">2.(Ask the Guarantor) Do you understand that throughout the term of the proposed loan you are expected to make repayments for the Borrower, and are you willing to do this.</td> <td> </td>
+			
+			<td class="label-bold">3.(Ask the Guarantor) Do you understand that the Borrower is relying on payments from you to meet repayments for the proposed loan, and that the Borrower’s other independent income will not be sufficient to service the loan repayments?"</td><td> </td>
+			
+			<td class="label-bold"> "4. (If the Guarantor is a parent/step parent) have you confirmed that by making funds available to the Borrower to meet loan repayments there is some benefit for the Guarantor or the family (i.e., enabling the Borrower to leave the family home and/or assisting in making the Borrower more financially independent, etc…)."</td> <td> </td>
+			</tr>
+			
+			<tr>
+			
+			<td class="label-bold">1. Does anything about the nature of the relationship between the Guarantor and the Borrower give you reason to believe that the Guarantor may be under the Borrower’s influence to provide the Guarantee?" <td> <td></td>
+			<td class="label-bold">2. Do you know what a Guarantee is and do you understand what your obligations will be as a Guarantor?</td> <td></td>
+			<td class="label-bold">3. Is there any reason to suspect that the Guarantor will not understand the effect of the Guarantee because of language difficulties / literacy?"</td> <td></td>
+			<td class="label-bold">4. (If the interview is conducted face to face ask the Guarantor) Can you read (out loud) the following sentence back to me.""I can read and speak English and understand what the Bank is asking me
+			</td> <td></td>
+			
+			</tr>
+			
+			<tr>
+			<td class="label-bold">If independent advice is required, please nominate type of advice.Legal Advice Financial Advice</td> <td></td>
+			<td class="label-bold">A. Complete a Statement of Financial Position (SP) for the Guarantor (if a ‘Servicing Guarantee’ or a ‘Servicing & Security Guarantee’ only)</td> <td></td>
+			<td class="label-bold">Note: If a spousal /de facto relationship exists between the Borrower and Guarantor, an individual SP for the Borrower and/or a joint SP for the Borrower and Gurantor can  be taken, subject to confirmation of paragraph B Below: Note, for Spousal Guarantees only: Where a joint SP is taken for a Borrower and Guarantor that are in a spousal relationship, agreement has been obtained from both the Borrower and Guarantor to the completion of the joint SP and each party has consented to the disclosure of his/her financial information to the other party.</td> <td></td>
+			<td class="label-bold">B. Verify the Guarantor’s income as per ANZ policy for Borrowers (if a ‘Servicing Guarantee’ or a ‘Servicing & Security Guarantee’ only)</td> <td></td>
+			
+			</tr>
+			
+			<tr>
+			 <td class="label-bold">C. Obtain the Guarantor’s signed Declaration (Applicant and Guarantor Declaration PBF#109350).</td> <td></td>
+			 <td class="label-bold">D. Advise the Guarantor that this information will now be used by ANZ as part of the final assessment of the loan application.</td> <td></td>
+			 <td class="label-bold">E. Advise the guarantor that if this assessment by ANZ is successful, they will receive their Guarantee documents shortly</td> <td></td>
+			 <td class="label-bold">"F. Advise the Guarantor that if they wish to withdraw from this transaction before the funds are drawn, then they need to advise ANZ as soon as possible."</td> <td></td>
+			
+			</tr>
+			
+			<tr>
+			<td class="label-bold"> "G. Advise the Guarantor that they must complete the applicable Customer Identification Process (CIP) at an ANZ Branch, if they have not done so already (ANZ cannot settle the loan until this requirement is met)."</td> <td> </td>
+			
+			<td class="label-bold"> Additional Comments</td> <td> </td>
+			<td class="label-bold"> Approved Interviewer’s Signature: & Date</td> <td> </td>
+			<td class="label-bold"> Signed</td> <td> </td>
+						
+			</tr>
+		   
+          </table>
+        </div>
+	</div>
+	</div>
+	
+	
+	<!--- Solicitor Details End--->
+	
+	
+	
+	</div>
+	</uib-accordion-group>
+	 </uib-accordion-group>
+	</uib-accordion>
+	<!-- Content of bootStrap-->
+  </div>

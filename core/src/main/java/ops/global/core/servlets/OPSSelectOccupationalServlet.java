@@ -31,119 +31,116 @@ public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         try {
-            String Professional[] = {"0=Accountant(other)",
-                    "1=Accountant-chartered",
-                    "2=architect",
-                    "3=Dentist",
-                    "4=Doctor,specialist",
-                    "5=Engineer",
-                    "6=Financial controller",
-                    "7=Journalist",
-                    "8=Lawyer",
-                    "9=Nurse",
-                    "10=Other professional",
-                    "11=pharmacist",
-                    "12=solicitor",
-                    "13=special exec consult",
-                    "14=stockbroker"};
-            String Agricultural[] = {"0=Farm Labourer",
-                    "1=Farm Labourer",
-                    "2=Farm Owner"
+        	String Unknown[] = {"1=Unknown"
                     };
-			String General[] = {"0=Homemaker/domestic",
-                    "1=Military/armed forces",
-                    "2=Other",
-                    "3=Police officer",
-                    "4=Retired",
-                    "5=Small bus. Proprietr",
-                    "6=Student",
-                    "7=Unemployed"};
-			String Management[] = {"0=ALower levl mgr/admin",
-                    "1=middle level mgr/adm",
-                    "2=senior level mgr/adm"};
-			String Office_Workers[] = {"0=Acct/payroll clerk",
-                    "1=Bank teller",
-                    "2=Bookkeeper",
-                    "3=Cashier",
-                    "4=Key punch operator",
-                    "5=Coral Sea Islands",
-                    "6=Office clerk",
-                    "7=Other clerical",
-                    "8=Postal service workr",
-                    "9=Receptn/phone opr",
-                    "10=secretary"}; 
-			String Prof_Skill_Trades[] = {"0=Baker",
-                    "1=Bricklayer",
-                    "2=Butcher",
-                    "3=carpenter",
-                    "4=Electrician",
-                    "5=Foreman",
-                    "6=Jeweller",
-                    "7=Mechanic",
-                    "8=Other trades person",
-                    "9=painter",
-                    "10=plasterer",
-                    "11=plumber",
-                    "12=tailor"}; 
-			String Sales[] = {"0=Checkout operator",
-                    "1=Insurance brokr/agnt",
-                    "2=other sales",
-                    "3=real estate agnt/mgr",
-                    "4=sales assistant",
-                    "5=sales representative"}; 
-			String Semi_Professional[] = {"0=Other teacher",
-                    "1=preschool teacher",
-                    "2=primary school teacher",
-                    "3=remedial/other teacher",
-                    "4=secondary teacher",
-                    "5=TAFE teacher",
-                    "6=tertiary teacher"};
-			String Service[] = {"0=bar attendant",
-			"1=beautician",
-			"2=bus  driver",
-			"3=delivery or courier",
-			"4=dental assistant",
-			"5=hairdresser",
-			"6=nursing aide",
-			"7=other service worker",
-			"8=porter",
-			"9=taxi driver",
-			"10=usher",
-			"11=waiter"
+            String Professional[] = {"44=Accountant(other)",
+                    "43=Accountant-chartered",
+                    "45=Architect",
+                    "46=Dentist",
+                    "47=Doctor,specialist",
+                    "48=Engineer",
+                    "49=Financial controller",
+                    "51=Journalist",
+                    "50=Lawyer",
+                    "52=Nurse",
+                    "57=Other professional",
+                    "53=Pharmacist",
+                    "54=solicitor",
+                    "56=special exec consult",
+                    "55=stockbroker"};
+            String Agricultural[] = {"120=Farm Labourer",
+                    "119=Farm Manager",
+                    "118=Farm Owner"
+                    };
+			String General[] = {"123=Homemaker/domestic",
+                    "122=Military/armed forces",
+                    "126=Other",
+                    "121=Police officer",
+                    "125=Retired",
+                    "128=Small bus. Proprietr",
+                    "124=Student",
+                    "127=Unemployed"};
+			String Management[] = {"130=ALower levl mgr/admin",
+                    "66=middle level mgr/adm",
+                    "65=senior level mgr/adm"};
+			String Office_Workers[] = {"72=Acct/payroll clerk",
+                    "73=Bank teller",
+                    "74=Bookkeeper",
+                    "75=Cashier",
+                    "76=Key punch operator",
+                    "129=Coral Sea Islands",
+                    "77=Office clerk",
+                    "80=Other clerical",
+                    "79=Postal service workr",
+                    "78=Receptn/phone opr",
+                    "71=secretary"}; 
+			String Prof_Skill_Trades[] = {"97=Baker",
+                    "88=Bricklayer",
+                    "98=Butcher",
+                    "89=carpenter",
+                    "90=Electrician",
+                    "87=Foreman",
+                    "91=Jeweller",
+                    "92=Mechanic",
+                    "99=Other trades person",
+                    "93=painter",
+                    "94=plasterer",
+                    "95=plumber",
+                    "96=tailor"}; 
+			String Sales[] = {"85=Checkout operator",
+                    "81=Insurance brokr/agnt",
+                    "86=other sales",
+                    "82=real estate agnt/mgr",
+                    "84=sales assistant",
+                    "83=sales representative"}; 
+			String Semi_Professional[] = {"64=Other teacher",
+                    "58=preschool teacher",
+                    "59=primary school teacher",
+                    "63=remedial/other teacher",
+                    "60=secondary teacher",
+                    "61=TAFE teacher",
+                    "62=tertiary teacher"};
+			String Service[] = {"110=bar attendant",
+			"106=beautician",
+			"115=bus driver",
+			"116=delivery or courier",
+			"109=dental assistant",
+			"107=hairdresser",
+			"108=nursing aide",
+			"117=other service worker",
+			"113=porter",
+			"114=taxi driver",
+			"112=usher",
+			"111=waiter"
 			};
-			String Technical[] = {"0=computer programmer",
-			"1=data analyst/research",
-			"2=other technical"
+			String Technical[] = {"68=computer programmer",
+			"69=data analyst/research",
+			"70=other technical"
 			};
-			String Unskilled_Trades[] = {"0=Builder's labourer",
-			"1=factory worker",
-			"2=other worker/laborer",
-			"3=trades person's asst",
-			"4=truck driver",
-			"5=warehouseman"
+			String Unskilled_Trades[] = {"103=Builder's labourer",
+			"101=factory worker",
+			"105=other worker/laborer",
+			"100=trades person's asst",
+			"104=truck driver",
+			"102=warehouseman"
 			};
 			String eOccupationalGroup = request.getParameter("eOccupationalGroup");
 			int eOccupationalGroupValue = Integer.parseInt(eOccupationalGroup);
 			
             JSONArray eoccupationalJsonArray = new JSONArray();
-                if (eOccupationalGroupValue == 0) {
-                   eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Professional) {
-                    	eoccupationalJsonArray.put(eoccupational);
-                    }
-                } else if (eOccupationalGroupValue == 1) {
+                if (eOccupationalGroupValue == 1) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Semi_Professional) {
+                    for (String eoccupational : Agricultural) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 2) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Management) {
+                    for (String eoccupational : General) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 3) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Technical) {
+                    for (String eoccupational : Management) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 4) {
@@ -153,32 +150,42 @@ public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
                     }
 				} else if (eOccupationalGroupValue == 5) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Sales) {
+                    for (String eoccupational : Prof_Skill_Trades) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 6) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Prof_Skill_Trades) {
+                    for (String eoccupational : Professional) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 7) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Unskilled_Trades) {
+                    for (String eoccupational : Sales) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 8) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Service) {
+                    for (String eoccupational : Semi_Professional) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 9) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : General) {
+                    for (String eoccupational : Service) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
 				} else if (eOccupationalGroupValue == 10) {
                     eoccupationalJsonArray = new JSONArray();
-                    for (String eoccupational : Agricultural) {
+                    for (String eoccupational : Technical) {
+                    	eoccupationalJsonArray.put(eoccupational);
+                    }
+                } else if (eOccupationalGroupValue == 11) {
+                    eoccupationalJsonArray = new JSONArray();
+                    for (String eoccupational : Unskilled_Trades) {
+                    	eoccupationalJsonArray.put(eoccupational);
+                    }
+                } else if (eOccupationalGroupValue == 12) {
+                    eoccupationalJsonArray = new JSONArray();
+                    for (String eoccupational : Unknown) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
                 }

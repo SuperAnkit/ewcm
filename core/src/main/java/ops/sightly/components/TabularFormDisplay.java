@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.jcr.ItemNotFoundException;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Value;
@@ -28,6 +29,7 @@ import com.adobe.cq.sightly.WCMUse;
 
 public class TabularFormDisplay extends WCMUse {
 
+	// Initializing all the constants
 	private final Logger log = LoggerFactory.getLogger(TabularFormDisplay.class);
 	private static String USER_NAME;
 	private static final String MAKER_GROUP = "maker_group";
@@ -39,6 +41,7 @@ public class TabularFormDisplay extends WCMUse {
 	private static final String ALL_FORMS = "all_forms_tab";
 	private String draftDisplay;
 	private String reviewDisplay;
+	private String workItemDisplay;
 	private static final String DRAFT_STATUS = "ops:draft";
 	private static final String REVIEW_STATUS = "ops:review";
 	private static final String BLOCK_VALUE = "DisplayBlock";
@@ -64,6 +67,9 @@ public class TabularFormDisplay extends WCMUse {
 	
 	private List draftLinkSet = new ArrayList();
 	private List reviewLinkSet = new ArrayList();
+	private List workingItemsLinkSet = new ArrayList();
+
+	
 
 	
 
@@ -74,11 +80,10 @@ public class TabularFormDisplay extends WCMUse {
 
 			//get the user
 			USER_NAME = getRequest().getUserPrincipal().getName();
-			//log.info("++++++++++++++++++++++++++++++++++" + USER_NAME);
 			UserManager userManager = getResourceResolver().adaptTo(UserManager.class);
 	        Authorizable opsBluPrintUser = userManager.getAuthorizable(getRequest().getUserPrincipal());
-			log.info("USERNAME++++++++++++++++++++++++++++++++++" + USER_NAME);
 
+	        // get all the memberships for the user
 			Iterator<Group> groups = opsBluPrintUser.memberOf();
 			for (;groups.hasNext();) {
 	        		String groupName = groups.next().getPrincipal().getName();
@@ -88,65 +93,98 @@ public class TabularFormDisplay extends WCMUse {
 
 					if (groupName.equals(MAKER_GROUP)) {	
 						log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
-	        			//get all draft Nodes
+	        			//get user draft Nodes
 						 Set<String> tempDraftSet = getNodeSet(
 								getResourceResolver().adaptTo(Session.class),
 								USER_NAME, DRAFT_STATUS, MY_FORMS);
+						 //get all user workitems
+						 workingItemsLinkSet = getSavedNodeSet(
+									getResourceResolver().adaptTo(Session.class),
+									USER_NAME, getResourceResolver());
 						 
-	        			
-	        			//log.info("draftNodePath++++++++++++++++++++++++++++++++++" + draftNodePath);
+						 
+	        			// get all the node links
 	        			draftFormLinks = getNodePaths(getResourceResolver().adaptTo(Session.class), tempDraftSet);
+	        			// get all the titles for the nodes
 	        			draftFormTitles = getNodeTitles(getResourceResolver().adaptTo(Session.class), tempDraftSet);
+	        			// get all the modified date details
 	        			draftModifiedDateSet = getNodeModifiedDates(getResourceResolver().adaptTo(Session.class), tempDraftSet);
+	        			// get the user details for the nodes
 	        			draftUserInfoSet = getNodeUserInfo(getResourceResolver().adaptTo(Session.class), tempDraftSet, getResourceResolver());
+	        			
+	        			//create set of all the links, titles, dates and user info
 	        			draftLinkSet = getLinkSet(draftFormLinks, draftFormTitles, draftModifiedDateSet, draftUserInfoSet);
 	        			
 	        			log.info("GETTIG REVEW DET++++++++++++++++++++++++++++++++++" + groupName);
+	        			
+	        			// get all draft Nodes
 						 Set<String> tempReviewtSet = getNodeSet(
 									getResourceResolver().adaptTo(Session.class),
 									USER_NAME, DRAFT_STATUS, ALL_FORMS);
 	        			log.info("STARTING REVEW DET++++++++++++++++++++++++++++++++++" );
+	        			// get all the node links
 	        			reviewFormLinks = getNodePaths(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get all the titles for the nodes
 	        			reviewFormTitles = getNodeTitles(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get all the modified date details
 	        			reviewModifiedDateSet = getNodeModifiedDates(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get the user details for the nodes
 	        			reviewUserInfoSet = getNodeUserInfo(getResourceResolver().adaptTo(Session.class), tempReviewtSet, getResourceResolver());
+	        			
+	        			//create set of all the links, titles, dates and user info
 	        			reviewLinkSet = getLinkSet(reviewFormLinks, reviewFormTitles, reviewModifiedDateSet, reviewUserInfoSet);
 
 	        			draftDisplay = BLOCK_VALUE;
 	        			reviewDisplay = BLOCK_VALUE;
+	        			workItemDisplay = BLOCK_VALUE;
 					}
 	        		if (groupName.equals(CHECKER_GROUP)) {
 	        			log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
-	        			//get all draft Nodes
+	        			//get user review-draft Nodes
 						 Set<String> tempDraftSet = getNodeSet(
 								getResourceResolver().adaptTo(Session.class),
 								USER_NAME, REVIEW_STATUS, MY_FORMS);
+						//get all review-draft Nodes
 						 Set<String> tempReviewtSet = getNodeSet(
 									getResourceResolver().adaptTo(Session.class),
 									USER_NAME, REVIEW_STATUS, ALL_FORMS);
+						 //get user workitems nodes
+						 workingItemsLinkSet = getSavedNodeSet(
+									getResourceResolver().adaptTo(Session.class),
+									USER_NAME, getResourceResolver());
 	        			
-	        			//log.info("draftNodePath++++++++++++++++++++++++++++++++++" + draftNodePath);
+		        			// get all the node links
 	        			draftFormLinks = getNodePaths(getResourceResolver().adaptTo(Session.class), tempDraftSet);
+	        			// get all the titles for the nodes
 	        			draftFormTitles = getNodeTitles(getResourceResolver().adaptTo(Session.class), tempDraftSet);
+	        			// get all the modified date details
 	        			draftModifiedDateSet = getNodeModifiedDates(getResourceResolver().adaptTo(Session.class), tempDraftSet);
 	        			draftUserInfoSet = getNodeUserInfo(getResourceResolver().adaptTo(Session.class), tempDraftSet, getResourceResolver());
+	        			
+	        			//create set of all the links, titles, dates and user info
 	        			draftLinkSet = getLinkSet(draftFormLinks, draftFormTitles, draftModifiedDateSet, draftUserInfoSet);
 	        			
+	        			// get all the node links
 	        			reviewFormLinks = getNodePaths(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get all the titles for the nodes
 	        			reviewFormTitles = getNodeTitles(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get all the modified date details
 	        			reviewModifiedDateSet = getNodeModifiedDates(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
+	        			// get the user details for the nodes
 	        			reviewUserInfoSet = getNodeUserInfo(getResourceResolver().adaptTo(Session.class), tempReviewtSet, getResourceResolver());
+	        			
+	        			//create set of all the links, titles, dates and user info
 	        			reviewLinkSet = getLinkSet(reviewFormLinks, reviewFormTitles, reviewModifiedDateSet, reviewUserInfoSet);
 
 	        			draftDisplay = BLOCK_VALUE;
 	        			reviewDisplay = BLOCK_VALUE;
+	        			workItemDisplay = BLOCK_VALUE;
 
 					}
 	        		if (groupName.equals(READER_GROUP)) {
 	        			log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
-						//get details for DB
-	        			
-	        			draftDisplay = reviewDisplay = NONE_VALUE;
+						//get details for DB and no tab visible for reader
+	        			draftDisplay = reviewDisplay = workItemDisplay = NONE_VALUE;
 
 					}
 
@@ -162,6 +200,56 @@ public class TabularFormDisplay extends WCMUse {
 
 	
 
+	private List<String> getSavedNodeSet(Session session, String user_name, ResourceResolver resourceResolver) throws PathNotFoundException, RepositoryException {
+			// TODO Auto-generated method stub
+		
+		List<String> tempWorkingItemsLinkSet = new ArrayList();
+		
+		
+			//get the root node for the user
+			String rootPath = "/content/forms/fp/" + user_name + "/drafts/metadata";
+			if (session.nodeExists(rootPath)) {
+				Node rootNode = session.getNode(rootPath);
+				//check if the form is mortgage form	
+				NodeIterator allSavedNodesIter = rootNode.getNodes("mortgage*");
+				//get all the underneath nodes
+				while (allSavedNodesIter.hasNext()) {
+
+					// get the path
+					String tempWorkingItemNodePath = allSavedNodesIter.nextNode().getPath().trim();
+					log.info("TEMPPATH++++++++++++++++++++++++++++++++++++"
+							+ tempWorkingItemNodePath);
+					
+					// get the user
+					String tempWorkingItemUserName = getUserName(user_name, resourceResolver);
+					
+					//get the formTitle
+					String tempWorkingItemTitle = tempWorkingItemNodePath.substring(tempWorkingItemNodePath.indexOf("mortgage_") + 9, tempWorkingItemNodePath.lastIndexOf("_"));
+					
+					//generate the URL
+					String workingItemURL = "<a href='"+ tempWorkingItemNodePath + ".html" + "' class='list-group-item'><span class='glyphicon'></span> "+ tempWorkingItemTitle +"<span class='badge'> "+ tempWorkingItemUserName +" </span></a>";
+					
+					//add to the list
+					tempWorkingItemsLinkSet.add(workingItemURL);
+					
+					
+					
+				}
+			
+			return tempWorkingItemsLinkSet;
+			
+			} else {
+				return new ArrayList();
+
+			}
+			
+
+	}
+
+
+
+
+
 	private List getNodeUserInfo(Session session, Set<String> nodeSet, ResourceResolver resResolver) throws ItemNotFoundException, RepositoryException {
 			// TODO Auto-generated method stub
 		for (String set : nodeSet) {
@@ -169,7 +257,6 @@ public class TabularFormDisplay extends WCMUse {
 			String user_name = node.getProperty("user_name").getValue().toString();
 			
 			formUserInfoSet.add(getUserName(user_name, resResolver));
-		    //System.out.println(set);
 		}
 		
 			
@@ -364,6 +451,9 @@ public class TabularFormDisplay extends WCMUse {
 		return tempNodeSet;
 	}
 	
+	public String getWorkItemDisplay() {
+		return workItemDisplay;
+	}
 	
 	public String getDraftDisplay() {
 		return draftDisplay;
@@ -373,6 +463,14 @@ public class TabularFormDisplay extends WCMUse {
 		return reviewDisplay;
 	}
 
+	public List getWorkingItemsLinkSet() {
+		for (int i = 0; i < workingItemsLinkSet.size(); i++) {
+			 ;
+			 log.info("DRAFT START------------------------------------------------------------------------" + workingItemsLinkSet.get(i) + "---------------------ACTUAL END");
+		}
+		return workingItemsLinkSet;
+	}
+	
 	public List getDraftLinkSet() {
 		for (int i = 0; i < draftLinkSet.size(); i++) {
 			 ;

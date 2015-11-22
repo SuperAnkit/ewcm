@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="Template for OPS Pages"
+    jcr:primaryType="cq:Template"
+    jcr:title="OPS Blank Portal Template"
+    allowedPaths="[/content/ops/?,/content/ops/test-pages(/.*)?]"
+    ranking="{Long}90">
+    <jcr:content
+        cq:designPath="/etc/designs/ops-blueprint"
+        cq:template="/apps/opsBluePrint/templates/page-blank"
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="/apps/opsBluePrint/components/page/page-blank">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys"/>
+        <rightpar
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys"/>
+        <leftpar
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys"/>
+    </jcr:content>
+</jcr:root>

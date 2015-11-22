@@ -45,6 +45,7 @@ import com.day.cq.commons.Externalizer;
 
 public class OPSSubmitServlet
 extends SlingAllMethodsServlet {
+	// initializing all the constants
     private static final long serialVersionUID = 1;
     private static final String USER_NAME = "user_name";
     private static final String STATE = "state";
@@ -65,6 +66,7 @@ extends SlingAllMethodsServlet {
 
 this.logger.info("+++++++++++++++++++POST LOGGER");
 		
+		// fetching all the parameters
 		String user_name = request.getParameter("user_name");
 		String state = request.getParameter("state");
 		String app_no = request.getParameter("application_no");
@@ -81,8 +83,7 @@ this.logger.info("+++++++++++++++++++POST LOGGER");
 			}
 
 		
-		Session resSession = (Session) resResolver
-				.adaptTo((Class) Session.class);
+		Session resSession = (Session) resResolver.adaptTo((Class) Session.class);
 		List<String> tempSet = this.getNodeSet(resSession, user_name, state,
 				app_no);
 		int counter = 1;
@@ -200,7 +201,7 @@ private void passSubmittedData(InputStream content, ResourceResolver resResolver
 	Externalizer externalizer = resResolver.adaptTo(
 			Externalizer.class);
 	String getServiceURL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/saveXMLRequest?status=DEProg";
-	//String getServiceURL = externalizer.externalLink(resResolver, "saveXMLRequest","");
+	//String getServiceURL = externalizer.externalLink(resResolver, "saveXMLRequest","") + "?status=DEProg";
 	logger.info("EXT ++++++" + getServiceURL + "++++");
 	logger.info("EXT ++++++" + content.toString() + "++++");
 	//logger.info("EXT ++++++" + content.toString());

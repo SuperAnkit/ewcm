@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="utf-8"?> 
+    <xs:schema targetNamespace="http://adobe.com/sample.xsd"
+                    xmlns="http://adobe.com/sample.xsd"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                >
+
+	<xs:element name="afData">
+		<xs:complexType>
+									<xs:sequence>
+										<!-- BROKER DETAILS STARTS -->
+										<xs:element name="broker" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="bDeliveryMethod" type="xs:int" minOccurs="0" />
+													<xs:element name="bChannel" type="xs:int" minOccurs="0" />
+													<xs:element name="bCPID" type="xs:string" minOccurs="0" />
+													<xs:element name="bApplicationBranchID" type="xs:int" minOccurs="0" />
+													<xs:element name="bLoDocApplication" type="xs:boolean"	minOccurs="0" />
+													<xs:element name="bTPMIAO" type="xs:int" minOccurs="0" />
+													<xs:element name="bTPMISAO" type="xs:int" minOccurs="0" />
+													<xs:element name="bIsMIG" type="xs:boolean" minOccurs="0" />
+													<xs:element name="bApplicationReceivedDate" type="xs:date" minOccurs="0" />
+													<xs:element name="bNominatedBranchofID" type="xs:string" minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- BROKER DETAILS END -->
+										<!--  CUSTOMER DETAILS START -->
+										<xs:element name="applicantdetails" maxOccurs="1" minOccurs="0">
+										<xs:complexType>
+												<xs:sequence>
+													<xs:element name="pApplicant" maxOccurs="unbounded" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>															
+															  <xs:element name="pApplicantID" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantMOSSequenceNumber" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pApplicanttype" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pApplicantcustomer" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pApplicantIsTrustinvolved" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pApplicantTitle" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantFirstName" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantMiddleName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantLastName" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantShortName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantMailingTitle" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantFormalSaluation" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantNominatedBranchID" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantDOB" type="xs:date" minOccurs="0" /> 
+															  <xs:element name="pApplicantGender" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantDLN" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantDLIssuedState" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantCurrentHousing" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pApplicantMaritalStatus" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantSpouseName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantRelationshipType" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantNumberofDependents" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantDependentAge" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantEmailID" type="xs:string" minOccurs="0" />
+															  <xs:element name="pSecuritycode" type="xs:string" minOccurs="0" />
+															  <xs:element name="pIsStatDecheld" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pPreviousName" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pCorrectCustomerName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pIsPermanentResident" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pNationality" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantCreditAuthorityHeld" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="pApplicantFIRBApprovalHeld" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="pApplicantFirstHomeBuyer" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pApplicantANZEmployee" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pApplicantDisclosure" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pApplicantAdvertising" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pOverseasAddress" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="PApplicantMaillingAddressOption" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="pApplicantCurrentAddressLine1" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantCurrentAddressLine2" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantCurrentState" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantCurrentPostcode" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantCurrentCountry" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pApplicantHomePhone" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantBusinessPhone" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantMobilePhone" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantFaxNumber" type="xs:string" minOccurs="0" />
+															  <xs:element name="pApplicantTimeAddressYears" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantTimeAddressMonths" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantmailingAddressLine1" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantMailingAddressLine2" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pApplicantMailingState" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantMailingPostcode" type="xs:int" minOccurs="0" />
+															  <xs:element name="pApplicantPreviousAddress"  maxOccurs="unbounded" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																	  <xs:element name="pApplicantPreviousSequenceNo" type="xs:int" minOccurs="0" />
+																	  <xs:element name="pApplicantPreviousAddressLine1" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="pApplicantPreviousAddressLine2" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="pApplicantPreviousState" type="xs:int" minOccurs="0" />
+																	  <xs:element name="pApplicantPreviousPostcode" type="xs:int" minOccurs="0" />
+																	  <xs:element name="pApplicantTimePreviousAddressYears" type="xs:int" minOccurs="0" />
+																	  <xs:element name="pApplicantTimePreviousAddressMonths" type="xs:int" minOccurs="0" />
+																	</xs:sequence>
+																</xs:complexType>
+															  </xs:element>
+															  <xs:element name="pCompanyName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pACN_ABN" type="xs:string" minOccurs="0" />
+															  <xs:element name="pCompanyStatus" type="xs:int" minOccurs="0" />
+															  <xs:element name="pRegisteredAddressLine1" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pRegisteredAddressLine2" type="xs:string" minOccurs="0" />
+															  <xs:element name="pCompanyState" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pCompanyPostcode" type="xs:int" minOccurs="0" />
+															  <xs:element name="pIsSoleDirector" type="xs:boolean" minOccurs="0" />
+															  <xs:element name="pDirectornameonASIC" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pSoleAddressLine1" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pSoleAddressLine2" type="xs:string" minOccurs="0" />
+															  <xs:element name="pSoleState" type="xs:int" minOccurs="0" />
+															  <xs:element name="pSolePostcode" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="pSecretorynameonASIC" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pSoleSecretaryAddressLine1" type="xs:string" minOccurs="0" />
+															  <xs:element name="pSoleSecretaryAddressLine2" type="xs:string" minOccurs="0" />
+															  <xs:element name="pSoleSecretaryState" type="xs:string" minOccurs="0" />
+															  <xs:element name="pSoleSecretaryPostcode" type="xs:string" minOccurs="0" />
+															  <xs:element name="pMultidirector"  maxOccurs="unbounded" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>		
+																	  <xs:element name="pMultidirectorSequenceNo" type="xs:int" minOccurs="0" />   
+                                                                      <xs:element name="pMultiDirectornameonASIC" type="xs:string" minOccurs="0" />      
+                                                                      <xs:element name="pMultiAddressLine1" type="xs:string" minOccurs="0" />      
+                                                                      <xs:element name="pMultiAddressLine2" type="xs:string" minOccurs="0" />     
+                                                                      <xs:element name="pMultiState" type="xs:int" minOccurs="0" />     
+                                                                      <xs:element name="pMultiPostcode" type="xs:int" minOccurs="0" />                                                                                                                                              <xs:element name="Multidirector" type="xs:string" minOccurs="0" />  
+                                                                      <xs:element name="pMultiSecretorynameonASIC" type="xs:string" minOccurs="0" />      
+                                                                      <xs:element name="pMultiSecretaryAddressLine1" type="xs:string" minOccurs="0" />     
+                                                                      <xs:element name="pMultiSecretaryAddressLine2" type="xs:string" minOccurs="0" />     
+                                                                      <xs:element name="pMultiSecretaryState" type="xs:string" minOccurs="0" />     
+                                                                      <xs:element name="pMultiSecretaryPostcode" type="xs:string" minOccurs="0" /> 
+																	</xs:sequence>
+																</xs:complexType>				  
+															  </xs:element>
+															  <xs:element name="pShareType" type="xs:string" minOccurs="0" />
+															  <xs:element name="pShareholderName" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pNumberofsharesheld" type="xs:string" minOccurs="0" />
+															  <xs:element name="pPercentageofshareheld" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pTrustName" type="xs:string" minOccurs="0" />
+															  <xs:element name="pTrustACN_ABN" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="pTrustRegisterDate" type="xs:date" minOccurs="0" />
+															  <xs:element name="pTypeofbusiness" type="xs:string" minOccurs="0" />
+															  <xs:element name="pBusinessDescription" type="xs:string" minOccurs="0" />
+															  <xs:element name="pTrusteeFirst" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="trusteeother" minOccurs="0"  maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:sequence>
+																	  <xs:element name="pTrusteeOtherSequenceNo" type="xs:int" minOccurs="0" />
+																	  <xs:element name="pTrusteeOther" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="pTrusteeBeneficiaries" type="xs:string" minOccurs="0" />
+																	</xs:sequence>
+																</xs:complexType>  
+															  </xs:element>	  
+															</xs:sequence>
+														</xs:complexType>	
+													</xs:element>		
+												</xs:sequence>
+											</xs:complexType>
+									</xs:element>										
+										<!--  CUSTOMER DETAILS END -->
+										<!-- EMPLOYMENTS DETAILS START -->
+										<xs:element name="employments" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="employmentLinkID" type="xs:int" minOccurs="0" />    <!--  linked to Applicant ID -->
+                                                    <xs:element name="employmentSequenceNo" type="xs:int" minOccurs="0" /> 
+													<xs:element name="primaryEmployment" maxOccurs="unbounded" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																  <xs:element name="eEmploymentCategory" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eEmploymentType" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="ePAEmployerType" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="eOccupationalGroup" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="eOccupational" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="eDesignation" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eEmployerName" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eAddressLine1" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eAddressLine2" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eState" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="ePostcode" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="eCountry" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="ePhone" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eFaxNumber" type="xs:string" minOccurs="0" /> 
+																  <xs:element name="eGrossMonthly" type="xs:decimal" minOccurs="0" /> 
+																  <xs:element name="eNetMonthly" type="xs:decimal" minOccurs="0" /> 
+																  <xs:element name="timeEmploymentYears" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="timeEmploymentMonths" type="xs:int" minOccurs="0" /> 
+																  <xs:element name="eProbationaryPeriod" type="xs:boolean" minOccurs="0" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>			
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- EMPLOYMENTS DETAILS END -->
+										<!-- FINANCIALS DETAILS START -->
+										<xs:element name="financials" maxOccurs="1" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="financialposition" maxOccurs="unbounded" minOccurs="0">
+													 	<xs:complexType>
+															<xs:sequence>
+															  <xs:element name="financialLinkID" type="xs:int" minOccurs="0" /> <!--  linked to applicant ID -->
+                                                              <xs:element name="financialSequenceNo" type="xs:int" minOccurs="0" /> 
+															  <xs:element name="spDate" type="xs:date" minOccurs="0" /> 
+															  <xs:element name="spSigned" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="fcSPDescription" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="assetdetails-container" maxOccurs="1" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="Cash" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="Property" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="multipleassets" maxOccurs="unbounded" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						  <xs:element name="financialAssetsLinkNo" type="xs:int" minOccurs="0" />   <!-- will not be used  -->
+																						  <xs:element name="financialAssetsSequenceNo" type="xs:int" minOccurs="0" /> 
+																						  <xs:element name="asset_type" type="xs:string" minOccurs="0" /> 
+																						  <xs:element name="otherAssetDescription" type="xs:string" minOccurs="0" /> 
+																						  <xs:element name="assetValue" type="xs:decimal" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>	   
+																		</xs:element>
+																		<xs:element name="totalAssets" type="xs:decimal" minOccurs="0" /> 
+																	</xs:sequence>
+																</xs:complexType>
+															  </xs:element>
+															  <xs:element name="Liabilities-container" maxOccurs="1" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																			<xs:element name="anzValue" type="xs:decimal" minOccurs="0" /> 
+																			<xs:element name="OtherBank" type="xs:decimal" minOccurs="0" /> 
+																			<xs:element name="multiliabilities" maxOccurs="unbounded" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																					  <xs:element name="financialLiabilitiesLinkNo" type="xs:int" minOccurs="0" />
+																					  <xs:element name="financialLiabilitiesSequenceNo" type="xs:int" minOccurs="0" /> 
+																					  <xs:element name="LiabilityType" type="xs:int" minOccurs="0" /> 
+																					  <xs:element name="LaibilityDescription" type="xs:string" minOccurs="0" /> 
+																					  <xs:element name="liabilityLimit" type="xs:decimal" minOccurs="0" /> 
+																					  <xs:element name="AmountOwing" type="xs:decimal" minOccurs="0" /> 
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="TotalLiabilities" type="xs:decimal" minOccurs="0" /> 
+																		</xs:sequence>
+																</xs:complexType>
+															  </xs:element>  
+															  <xs:element name="income-container" maxOccurs="1" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="financialIncomeLinkNo" type="xs:int" minOccurs="0"/>
+																		<xs:element name="Employment" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="RentalIncome" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="multiincome" maxOccurs="unbounded" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																				  <xs:element name="financialIncomeSequenceNo" type="xs:int" minOccurs="0" /> 
+																				  <xs:element name="income_type" type="xs:string" minOccurs="0" /> 
+																				  <xs:element name="OtherIncome" type="xs:decimal" minOccurs="0" /> 
+																				  <xs:element name="stated-Net-Monthly-Amount" type="xs:string" minOccurs="0" /> 
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="TotalIncome" type="xs:decimal" minOccurs="0" /> 
+																	</xs:sequence>
+																</xs:complexType>				
+															  </xs:element>					  
+															  <xs:element name="expenditure-container" maxOccurs="1" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="FixedExpenses" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="CreditCards" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="multiexpenditure" maxOccurs="unbounded" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					  <xs:element name="financialExpenditureLinkNo" type="xs:int" minOccurs="0"/>
+																					  <xs:element name="financialExpenditureSequenceNo" type="xs:int" minOccurs="0"/> 
+																					  <xs:element name="ExpenditureType" type="xs:string" minOccurs="0" /> 
+																					  <xs:element name="OtherExpDesc" type="xs:string" minOccurs="0" /> 
+															 						  <xs:element name="DeclaredAmt" type="xs:string" minOccurs="0" />
+																				</xs:sequence>
+																			</xs:complexType>	  
+																		</xs:element>
+																		<xs:element name="TotalExpenses" type="xs:decimal" minOccurs="0" /> 
+																		<xs:element name="UncommittedMonthlyIncome" type="xs:decimal" minOccurs="0" /> 
+																	</xs:sequence>
+																</xs:complexType>
+															  </xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												    <xs:element name="taxdocuments" maxOccurs="1" minOccurs="0"> 
+														<xs:complexType>
+															<xs:sequence>	
+																<xs:element name="trust-partnership-tax-return-container" maxOccurs="unbounded" minOccurs="0">  
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="financialTrustPartnershipsLinkID" type="xs:int" minOccurs="0" />     <!-- linked to applicant ID -->                      
+                                                                            <xs:element name="financialTrustPartnershipsSequenceNo" type="xs:int" minOccurs="0" />
+																			<xs:element name="finTrustYear" type="xs:int" minOccurs="0" />		
+																			<xs:element name="finTrustName" type="xs:string" minOccurs="0" />
+																			<xs:element name="finTrustABN" type="xs:string" minOccurs="0" />
+																			<xs:element name="fintrusteeName" type="xs:string" minOccurs="0" />
+																			<xs:element name="finBusinessActivityDescription" type="xs:string" minOccurs="0" />
+																			<xs:element name="finBusinessAddress" type="xs:string" minOccurs="0" />
+																			<!--  Calculation of Total profit and Loss   Income -->                      
+																			<xs:element name="grossPaymentForeignResidence" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="saleGoodservice" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="grossPartnershipDistribution" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="grossTrustDistribution" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="forestryInvestmentIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="grossInterest" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="grossRentLeaseIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="totalDevidend" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="fringeBenefitEmployeeContribution" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="assessableGovtPayment" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="assetSaleIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="otherGrossincome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="totalBusinessincome" type="xs:decimal" minOccurs="0" />
+																			<!--  Calculation of Total profit and Loss   Expenses -->  
+																			<xs:element name="interestExp" type="xs:decimal" minOccurs="0" />          
+																			<xs:element name="rentExpense" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="superannuationExp" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="wagesDeduction" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="otherExp" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="leaseExp" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="totalBusinessExpense" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="reconcillationItem" type="xs:string" minOccurs="0" />
+																			<xs:element name="businessNetincomeloss" type="xs:decimal" minOccurs="0" />
+																			<!--  Supplementary Income section -->  
+																			<xs:element name="grossInterest" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="grossInterestFromBank" type="xs:string" minOccurs="0" />
+																			<xs:element name="dividend" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="dividendFromName" type="xs:string" minOccurs="0" />
+																			<xs:element name="incomeFromPartnership" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="deductionFromPartnership" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="partnershipName" type="xs:string" minOccurs="0" />
+																			<xs:element name="incomeFromTrust" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="deductionFromTrust" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="nameofTrust" type="xs:string" minOccurs="0" />
+																			<xs:element name="capitalGainIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="foreignSourceIncome" type="xs:decimal" minOccurs="0" />       
+																			<xs:element name="grossRentIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="deduction" type="xs:decimal" minOccurs="0" />            
+																			<xs:element name="totalTaxableincome" type="xs:decimal" minOccurs="0" />
+																			<!--  Financial and other information -->  
+																			<xs:element name="totalAssets" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="currentLiability" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="totalLiability" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="frankedDevidendpaid" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="unfrankedDevidendpaid" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="frankAccountBalance" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="totalSalaryWages" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="PaymentToAssociatedpersion" type="xs:decimal" minOccurs="0" />
+																			<!--  Loss Information  -->  
+																			<xs:element name="taxLossCarried" type="xs:decimal" minOccurs="0" />
+																			<!--  Statement of Distribution -->  
+																			<xs:element name="individualName" type="xs:string" minOccurs="0" />
+																			<xs:element name="individualAddress" type="xs:string" minOccurs="0" />
+																			<xs:element name="individualDOB" type="xs:string" minOccurs="0" />
+																			<xs:element name="ShareOfIncome" type="xs:string" minOccurs="0" />
+																			<xs:element name="otherShareOfIncome" type="xs:string" minOccurs="0" />
+																			<xs:element name="shareOfTrustIncome" type="xs:string" minOccurs="0" />
+																			<!--  Tax Section -->  
+																			<xs:element name="taxAgentReferenceNumber" type="xs:int" minOccurs="0" />
+																			<xs:element name="taxAgentName" type="xs:string" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>						
+																</xs:element>    
+													  
+																<xs:element name="company-taxReturn-container" maxOccurs="unbounded" minOccurs="0"> 
+																	<xs:complexType>
+																		<xs:sequence>	
+																			<xs:element name="financialTaxDocumentsLinkID" type="xs:int" minOccurs="0" />     
+                                                                            <xs:element name="financialTaxDocumentsSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<!---  Company Information    -->
+																			<xs:element name="companyABN" type="xs:int" minOccurs="0" />
+																			<xs:element name="companyName" type="xs:string" minOccurs="0" />
+																			<xs:element name="companyYear" type="xs:int" minOccurs="0" />
+																			<xs:element name="compBusinessActivityDescription" type="xs:string" minOccurs="0" />
+																			<xs:element name="companyBusinessAddress" type="xs:string" minOccurs="0" />
+																			<!--   Calculation of Total profit & Loss   -->
+																			<xs:element name="compForeignResidenceGrossPayment" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compOtherGoodsale" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compPartnershipGrossDistribution" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTrustGrossDistrbution" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compForestryManagedInvestmentIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compGrossInterest" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compGrossRentleasehireIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotalDevidend" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compFringeBenefitEmployeeContribution" type="xs:decimal" minOccurs="0" />      
+																			<xs:element name="compAssessableGovtPayment" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compAssetSaleIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compOtherGrossincome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotalBusinessIncome" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compReconcillationItem" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compDeduction" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotaltaxableIncomeLoss" type="xs:decimal" minOccurs="0" />
+																			<!--     Financial and other information      -->
+																			<xs:element name="compAllcurrentassets" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotalAssets" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compAllcurrentLiability" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotalLiability" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compFrankedDevidendpaid" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compUnfrankedDevidendpaid" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compFrankAccountBalance" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTotalSalaryWages" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compPaymentAssociatedPerson" type="xs:decimal" minOccurs="0" />
+																			<!---  Loss Information   -->
+																			<xs:element name="compCarriedForwardTaxLoss" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compCarriedForwardProductionLoss" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compnon_primaryCarriedForwardProdLoss" type="xs:decimal" minOccurs="0" />      
+																			<xs:element name="compPrimaryProdLossClaimed" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compNonPrimaryProdLossClaimed" type="xs:decimal" minOccurs="0" />
+																			<!---  Loss Information   -->
+																			<xs:element name="compTaxAgentReferenceNumber" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="compTaxAgentName" type="xs:decimal" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>	
+																</xs:element>               
+													         
+																<xs:element name="trust-company-partnership-financial" maxOccurs="unbounded" minOccurs="0">  
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="financialTrustCompanyPartnershipLinkID" type="xs:int" minOccurs="0" />  
+																			<xs:element name="financialTrustCompanyPartnershipSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<!-- Business details  -->
+																			<xs:element name="psYear" type="xs:int" minOccurs="0" />
+																			<xs:element name="psName" type="xs:string" minOccurs="0" />
+																			<xs:element name="psABN" type="xs:int" minOccurs="0" />
+																			<!-- Profit and Loss - Statement of Distribution  income -->
+																			<xs:element name="psOthergoodServiceSale" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psPartnershipGrossDistribution" type="xs:decimal" minOccurs="0" />             
+																			<xs:element name="psTrustGrossDistribution" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="psForestryManagedInvestmentIncome" type="xs:decimal" minOccurs="0" />          
+																			<xs:element name="psGrossInterest" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="psGrossRentLeasehireIncome" type="xs:decimal" minOccurs="0" />                 
+																			<xs:element name="psTotalDividend" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="psFringeBenefitEmployeeContribution" type="xs:decimal" minOccurs="0" />        
+																			<xs:element name="psAssessableGovtPayment" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="psSaleofAssetIncome" type="xs:decimal" minOccurs="0" />                        
+																			<xs:element name="psOtherGrossIncome" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="psTotalBusinessIncome" type="xs:decimal" minOccurs="0" />                      
+																			<xs:element name="psPreviousFinancialYear" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="psOtherthenAboveIncome" type="xs:decimal" minOccurs="0" />
+																			<!-- Profit and Loss - Statement of Distribution  Expenses -->
+																			<xs:element name="psNetOperationPL" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="psNetOperationPLPrevFinancialYear" type="xs:decimal" minOccurs="0" />          
+																			<xs:element name="psRetainedProfit" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="psDistribution" type="xs:decimal" minOccurs="0" />                             
+																			<xs:element name="psDevidendPayment" type="xs:decimal" minOccurs="0" />                          
+																			<xs:element name="psReconcillationItem" type="xs:decimal" minOccurs="0" />
+																			
+																		</xs:sequence>
+																	</xs:complexType>	
+																</xs:element>  
+																<xs:element name="balance-sheet" maxOccurs="unbounded" minOccurs="0">   
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="financialBalanceSheetLinkID" type="xs:int" minOccurs="0" />
+																			<xs:element name="financialBalanceSheetSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="psRealEstateAssetName" type="xs:string" minOccurs="0" />
+																			<xs:element name="psRealEstateAsset" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psTotalAssets" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psTotalLiabilities" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psLoantoShareholder" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psNetEquity" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psCurrentFinancialLiability" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="psNonCurrentFinancialLiability" type="xs:decimal" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>							
+																</xs:element>
+													      
+																<xs:element name="Individual-tax-returns" maxOccurs="unbounded" minOccurs="0">   
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="financialTaxDocumentsLinkID" type="xs:int" minOccurs="0" />     
+																			<xs:element name="financialTaxDocumentsSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="trustYear" type="xs:string" minOccurs="0" />                                  
+																			<xs:element name="Name" type="xs:string" minOccurs="0" />                                       
+																			<xs:element name="itDOB" type="xs:date" minOccurs="0" />
+																			<xs:element name="postalAddress" type="xs:string" minOccurs="0" />                              
+																			<xs:element name="homeAddress" type="xs:string" minOccurs="0" />                                																                                      
+																			<xs:element name="indIncomePAYG" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="indEmployerName" type="xs:string" minOccurs="0" />                            
+																			<xs:element name="indIncomePAYGabnNo" type="xs:int" minOccurs="0" />                         
+																			<xs:element name="indOtherIncomeFees" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="indEmployerLumpsumPayment" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indEmployementTerminationPayment" type="xs:decimal" minOccurs="0" />           
+																			<xs:element name="indAusGovtAllowances" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indAusGovtPensionAllownaces" type="xs:decimal" minOccurs="0" />                
+																			<xs:element name="indAusAnnutiesSuperIncome" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indAusLumpsumSuperPayment" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indPersonalServiceIncome" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indPersonalServiceExpense" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indGrossInterest" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="indGrossInterestfromBank" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indDividend" type="xs:decimal" minOccurs="0" />                                
+																			<xs:element name="indDividendFromName" type="xs:string" minOccurs="0" />                        
+																			<xs:element name="indEmployeeShareScheme" type="xs:decimal" minOccurs="0" />                     
+																			<xs:element name="indSupplimentrySectionIncome" type="xs:decimal" minOccurs="0" />               
+																			<xs:element name="indWorkRelatedCarExpense" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indOtherworkRelatedExpense" type="xs:decimal" minOccurs="0" />                 
+																			<xs:element name="indInterestDeduction" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indDevidendDeduction" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indTaxableIncomeLoss" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indPrimaryProdLossCarriedFwd" type="xs:decimal" minOccurs="0" />               
+																			<xs:element name="indNonPrimaryProdLossCarriedFwd" type="xs:decimal" minOccurs="0" />            
+																			<xs:element name="indPrimaryProdLossClaimed" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indNonPrimaryProdLossClaimed" type="xs:decimal" minOccurs="0" />               
+																			<xs:element name="indABNdetails" type="xs:int" minOccurs="0" />                              
+																			<xs:element name="indEntityName" type="xs:string" minOccurs="0" />                              
+																			<xs:element name="indBusinessAddress" type="xs:string" minOccurs="0" />                         
+																			<xs:element name="indGoodServiceOtherSale" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="indPartnershipGrossDistribution" type="xs:decimal" minOccurs="0" />            
+																			<xs:element name="indTrustGrossDistribution" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indForestryManagedInvestmentIncome" type="xs:decimal" minOccurs="0" />         
+																			<xs:element name="indGrossRentleasehireIncome" type="xs:decimal" minOccurs="0" />                
+																			<xs:element name="indTotalDevidend" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="indFringeBenefitEmployeeContribution" type="xs:decimal" minOccurs="0" />       
+																			<xs:element name="indAssessableGovtPayment" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indSaleofAssetIncome" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indOtherGrossIncome" type="xs:decimal" minOccurs="0" />                        
+																			<xs:element name="indTotalBusinessIncome" type="xs:decimal" minOccurs="0" />                     
+																			<xs:element name="indDepreciationExp" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="indInterstExp" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="indRentExp" type="xs:decimal" minOccurs="0" />                                 
+																			<xs:element name="indSuperannuationExp" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indWagesDeduction" type="xs:decimal" minOccurs="0" />                          
+																			<xs:element name="indAllOtherExp" type="xs:decimal" minOccurs="0" />                             
+																			<xs:element name="indLeaseExp" type="xs:decimal" minOccurs="0" />                                
+																			<xs:element name="indTotalBusinessExp" type="xs:decimal" minOccurs="0" />                        
+																			<xs:element name="indReconcillationItem" type="xs:decimal" minOccurs="0" />                      
+																			<xs:element name="indBusinessNetIncomeLoss" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indBusinessDesc" type="xs:string" minOccurs="0" />                            
+																			<xs:element name="indNetEquity" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="indPropertyRentalIncome" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="indPropertyRentalDeduction" type="xs:decimal" minOccurs="0" />
+																			
+																			<xs:element name="indPartnershipName" type="xs:string" minOccurs="0" />                 
+																			<xs:element name="indPrimaryProdParnershipIncome" type="xs:decimal" minOccurs="0" />             
+																			<xs:element name="indNonPrimaryProdParnershipIncome" type="xs:decimal" minOccurs="0" />          
+																			<xs:element name="indPrimaryProdParnershipDeduction" type="xs:decimal" minOccurs="0" />          
+																			<xs:element name="indNonPrimaryProdParnershipDeduction" type="xs:decimal" minOccurs="0" />       
+																			                         
+																									 
+																			<xs:element name="indTrustName" type="xs:string" minOccurs="0" />
+																			<xs:element name="indPrimaryProdTrustIncome" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="indNonPrimaryProdTrustIncome" type="xs:decimal" minOccurs="0" />               
+																			<xs:element name="indPrimaryProdTrustDeduction" type="xs:decimal" minOccurs="0" />               
+																			<xs:element name="indNonPrimaryProdTrustDeduction" type="xs:decimal" minOccurs="0" />            
+																			                            
+																			<xs:element name="indCapitalGainIncome" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indForignSourceofIncome" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="indGrossRentIncome" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="indVolSuperDeduction" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="indChildSupportDeduction" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="indTaxfreeGovtPension" type="xs:decimal" minOccurs="0" />                      
+																			<xs:element name="indSpouseName" type="xs:string" minOccurs="0" />                              
+																			<xs:element name="indSpouseDOB" type="xs:date" minOccurs="0" />                               
+																			<xs:element name="indSpouseTaxableIncome" type="xs:decimal" minOccurs="0" />                     
+																			<xs:element name="indTotalTaxableIncome" type="xs:decimal" minOccurs="0" />                      
+																			<xs:element name="indDependentChild" type="xs:int" minOccurs="0" />                          
+																			<xs:element name="indMarginLending" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="indForestryLoss" type="xs:decimal" minOccurs="0" /> 
+																			
+																			<xs:element name="indTaxAgentRefeNo" type="xs:int" minOccurs="0" />                          
+																			<xs:element name="indTaxagentName" type="xs:string" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>							
+																</xs:element>                    
+															</xs:sequence>
+														</xs:complexType>				
+													</xs:element>                              
+													<xs:element name="ato-doc" maxOccurs="unbounded" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>            
+															    <xs:element name="atoLinkID" type="xs:int" minOccurs="0" />     <!-- Linked to applicant -->    
+																<xs:element name="atoSequenceNo" type="xs:int" minOccurs="0" />
+																<xs:element name="atoName" type="xs:string" minOccurs="0" />                                    
+																<xs:element name="atoPostalAddress" type="xs:string" minOccurs="0" />
+																<xs:element name="atoDocFinancialYear" type="xs:int" minOccurs="0" /> 
+																<xs:element name="atoTotalTaxableIncome" type="xs:decimal" minOccurs="0" />                      
+																<xs:element name="atoTotalTaxPayable" type="xs:decimal" minOccurs="0" />                         
+																<xs:element name="atoTotalTaxRefund" type="xs:decimal" minOccurs="0" />                          
+																<xs:element name="atoHECSDeduction" type="xs:decimal" minOccurs="0" />                           
+															</xs:sequence>
+														</xs:complexType>			
+													</xs:element>                                   
+													<xs:element name="payslips-section" maxOccurs="1" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="payslips" maxOccurs="unbounded" minOccurs="0">  
+																	<xs:complexType>
+																		<xs:sequence>	
+																			<xs:element name="financialPayslipsLinkID" type="xs:int" minOccurs="0" />     <!-- Linked to Applicant ID -->
+                                                                			<xs:element name="financialPayslipsSequenceNo" type="xs:int" minOccurs="0" /> 		
+																			<xs:element name="payFrequency" type="xs:int" minOccurs="0" />                               
+																			<xs:element name="payDateFrom" type="xs:date" minOccurs="0" />                                
+																			<xs:element name="payDateTo" type="xs:date" minOccurs="0" />                                  
+																			<xs:element name="payName" type="xs:string" minOccurs="0" />                                    
+																			<xs:element name="payEmploymentType" type="xs:int" minOccurs="0" />                          
+																			<xs:element name="payEmploymentLoc" type="xs:string" minOccurs="0" />                           
+																			<xs:element name="payEmployerName" type="xs:string" minOccurs="0" />
+																			<xs:element name="payEmployerABN" type="xs:string" minOccurs="0" />                            
+																			<xs:element name="payBaseIncome" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="payOTIncome" type="xs:decimal" minOccurs="0" />                                
+																			<xs:element name="payCommIncome" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="payBonus" type="xs:decimal" minOccurs="0" />                                   
+																			<xs:element name="payLongLeave" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="payMaternity" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="payWorkcoverIncome" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="payDistribution" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="paySalaryDeduction" type="xs:decimal" minOccurs="0" />                         
+																			<xs:element name="paySuperDeduction" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="payOtherDeductionDescritption" type="xs:string" minOccurs="0" />                          
+																			<xs:element name="payOtherDeduction" type="xs:decimal" minOccurs="0" />                          
+																			<xs:element name="payChildCareDeduction" type="xs:decimal" minOccurs="0" />                      
+																			<xs:element name="payHECSDeduction" type="xs:decimal" minOccurs="0" />                           
+																			<xs:element name="payGross" type="xs:decimal" minOccurs="0" />                                   
+																			<xs:element name="payNet" type="xs:decimal" minOccurs="0" />                                     
+																			                             
+																			<xs:element name="payAnnualIncome" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="payYTDDetails" type="xs:decimal" minOccurs="0" /> 
+																		</xs:sequence>
+																	</xs:complexType>				
+																</xs:element>                                  
+													                                 
+																<xs:element name="paygsummary" maxOccurs="unbounded" minOccurs="0"> 
+																	<xs:complexType>
+																		<xs:sequence>	
+																		 	<xs:element name="financialPayGLinkID" type="xs:int" minOccurs="0" />     
+                                                                            <xs:element name="financialPayGSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="paygName" type="xs:string" minOccurs="0" />                                   
+																			<xs:element name="paygPayeeName" type="xs:string" minOccurs="0" />
+																			<xs:element name="paygPayeeABN" type="xs:string" minOccurs="0" />                               
+																			<xs:element name="paygDate" type="xs:date" minOccurs="0" />                               
+																			<xs:element name="paygGrossPay" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="paygFringeBenefit" type="xs:decimal" minOccurs="0" />                          
+																			<xs:element name="paygEmployerSuper" type="xs:decimal" minOccurs="0" />                          
+																			<xs:element name="paygAllowances" type="xs:decimal" minOccurs="0" />                             
+																			<xs:element name="paygDeduction" type="xs:decimal" minOccurs="0" />                              
+																			
+																		</xs:sequence>
+																	</xs:complexType>						
+																</xs:element>                               
+													                              
+																<xs:element name="dss-statement-central-link-income" maxOccurs="unbounded" minOccurs="0" >
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="financialDSSStatementLinkID" type="xs:int" minOccurs="0" />     
+                                                                            <xs:element name="financialDSSStatementSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="cliName" type="xs:string" minOccurs="0" />                                    
+																			<xs:element name="cliDate" type="xs:date" minOccurs="0" />                                    
+																			<xs:element name="cliDOB" type="xs:date" minOccurs="0" />                                     
+																			<xs:element name="cliChilderAssessed" type="xs:int" minOccurs="0" />                         
+																			<xs:element name="cliPercentageofCare" type="xs:decimal" minOccurs="0" />                        
+																			<xs:element name="cliFutureDate" type="xs:date" minOccurs="0" />                              
+																			<xs:element name="cliFamilyTaxBenefitA" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="cliFamilyTaxBenefitB" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="cliFrequency" type="xs:int" minOccurs="0" />                               
+																			<xs:element name="cliCarerPayment" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="cliDisabilityPensionPay" type="xs:decimal" minOccurs="0" />                    
+																			<xs:element name="cliPartneredParentingPay" type="xs:decimal" minOccurs="0" />                   
+																			<xs:element name="cliVeteransAffairspension" type="xs:decimal" minOccurs="0" />                  
+																			<xs:element name="cliAgedPension" type="xs:decimal" minOccurs="0" />                             
+																			<xs:element name="cliMaintenanceIncome" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="cliFosterCare" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="cliWorkcover" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="cliOtherGovtBenefits" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="cliExServicemenpension" type="xs:decimal" minOccurs="0" />                     
+																			<xs:element name="cliDeduction" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="cliApp1Income" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="cliApp2Income" type="xs:decimal" minOccurs="0" />                              
+																			<xs:element name="cliTotalAssetAssessed" type="xs:int" minOccurs="0" /> 
+																		</xs:sequence>
+																	</xs:complexType>	
+																</xs:element> 
+																
+																<xs:element name="rental-income" maxOccurs="unbounded" minOccurs="0"> 
+																	<xs:complexType>
+																		<xs:sequence>
+																				    
+                                                                                <xs:element name="financialRentalIncomeSequenceNo" type="xs:int" minOccurs="0" /> 
+																				<xs:element name="financialRentalIncomeLinkID" type="xs:int" minOccurs="0" /> 
+																				<xs:element name="riPropertyIncome" type="xs:decimal" minOccurs="0" />                           
+																				<xs:element name="riLandLordName" type="xs:string" minOccurs="0" />                             
+																				<xs:element name="riTerm" type="xs:int" minOccurs="0" />                                     
+																				<xs:element name="riSigned" type="xs:boolean" minOccurs="0" />                                   
+																				<xs:element name="riDate" type="xs:date" minOccurs="0" />                                     
+																				<xs:element name="riCount_Duration" type="xs:string" minOccurs="0" />                           
+																				<xs:element name="riRealEstateAgentName" type="xs:string" minOccurs="0" />
+																			</xs:sequence>
+																	</xs:complexType>	
+																</xs:element>                             
+													                             
+																<xs:element name="ofi-statement" maxOccurs="unbounded" minOccurs="0">
+																	<xs:complexType>
+																		<xs:sequence>	
+																			<xs:element name="financialOFILinkID" type="xs:int" minOccurs="0" />     
+                                                                           	<xs:element name="financialOFISequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="ofiDateTo" type="xs:date" minOccurs="0" />                                  
+																			<xs:element name="ofiDateFrom" type="xs:date" minOccurs="0" />                                
+																			<xs:element name="ofiBankName" type="xs:string" minOccurs="0" />                                
+																			<xs:element name="ofiBankBSB" type="xs:int" minOccurs="0" />                                 
+																			<xs:element name="ofiAcNo" type="xs:int" minOccurs="0" />                                    
+																			<xs:element name="ofiCardNo" type="xs:int" minOccurs="0" />                                  
+																			<xs:element name="ofiOutstandingAmount" type="xs:decimal" minOccurs="0" />                       
+																			<xs:element name="ofiStatementFrom" type="xs:date" minOccurs="0" />                           
+																			<xs:element name="ofiStatementTo" type="xs:date" minOccurs="0" />                             
+																			<xs:element name="ofiDishonour" type="xs:boolean" minOccurs="0" />                               
+																			<xs:element name="ofiProgressivePayment" type="xs:boolean" minOccurs="0" />                      
+																			<xs:element name="ofiRedraw" type="xs:decimal" minOccurs="0" />                                  
+																			<xs:element name="ofiCardLimit" type="xs:decimal" minOccurs="0" />                               
+																			<xs:element name="ofiOverdraftLimit" type="xs:decimal" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>							
+																</xs:element>                             
+															</xs:sequence>
+														</xs:complexType>	                            
+													</xs:element>                          
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- FINANCIALS DETAILS END -->
+										<!--  SECURITY DETAILS START -->
+										<xs:element name="security-container" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="security" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="secSequenceNo" type="xs:int" minOccurs="0" />
+																<xs:element name="pMOSSequenceNumber" type="xs:string" minOccurs="0" />
+																<xs:element name="securityType" type="xs:int" minOccurs="0" />
+																<xs:element name="security-givenby" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="secApplicantLinkID" type="xs:int" minOccurs="0" /> <!-- Applicant \ customer ID pApplId -->
+																			<xs:element name="securitygivenbySequenceNo" type="xs:int" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="property-details" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="securityAddressLine1" type="xs:string"	minOccurs="0" />
+																			<xs:element name="secuirtyAddressLine2" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityCity" type="xs:string"	minOccurs="0" />
+																			<xs:element name="securityState" type="xs:int" minOccurs="0" />
+																			<xs:element name="securityPostcode" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityCountry" type="xs:int" minOccurs="0" />
+																			<xs:element name="sDateSecurity" type="xs:date" minOccurs="0" />
+																			<xs:element name="sPropertyPurchase" type="xs:boolean" minOccurs="0" />
+																			<xs:element name="sOnMarketTransaction" type="xs:boolean" minOccurs="0" />
+																			<xs:element name="sPropertyStatus" type="xs:int" minOccurs="0" />
+																			<xs:element name="secPropertyType" type="xs:int" minOccurs="0" />
+																			<xs:element name="sPropertyTenure" type="xs:int" minOccurs="0" />
+																			<xs:element name="sPropertyZoning" type="xs:int" minOccurs="0" />
+																			<xs:element name="sPropertyuse" type="xs:int" minOccurs="0" />
+																			<xs:element name="sTitleType" type="xs:int" minOccurs="0" />
+																			<xs:element name="sDateContractSale" type="xs:date" minOccurs="0" />
+																			<xs:element name="sSecurityValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sCustomerStatedValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sTransferLandValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sValuationRequired" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sSecurityStatus" type="xs:int" minOccurs="0" />
+																			<xs:element name="sStampingType" type="xs:int" minOccurs="0" />
+																			<xs:element name="sFirstMortgageValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sExistingStampValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sUpstampingValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sstampingValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sExistingLoanAmount" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sValuationDate" type="xs:date" minOccurs="0" />
+																			<xs:element name="sIsFixedPriceContract" type="xs:boolean" minOccurs="0" />
+																			<xs:element name="sRLBorFPC" type="xs:string" minOccurs="0" />
+																			<xs:element name="valuationdoc" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="secValuationdocSequenceNo" type="xs:int" minOccurs="0" /> 
+																						<xs:element name="sWhatValuation" type="xs:int" minOccurs="0" />
+																						<xs:element name="valFMV" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="sDocValuationDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="valRentalIncome" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="secTobeErected" type="xs:string" minOccurs="0" />
+																						<xs:element name="secTentativeOnCompletion" type="xs:string" minOccurs="0" />
+																						<xs:element name="sValuationNumberBed" type="xs:int" minOccurs="0" />
+																						<xs:element name="sValuationNumberBath" type="xs:int" minOccurs="0" />
+																						<xs:element name="sValuationNumberCar" type="xs:int" minOccurs="0" />
+																						<xs:element name="valLivingareas" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valOutdoor" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valOther" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valueComponent" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valLand" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valImprovement" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valLocationNeighbour" type="xs:int" minOccurs="0" />
+																						<xs:element name="valRatingsLand" type="xs:int" minOccurs="0" />
+																						<xs:element name="valEnvironment" type="xs:int" minOccurs="0" />
+																						<xs:element name="valRatingsImprovement" type="xs:int" minOccurs="0" />
+																						<xs:element name="valRecentmarketdirection" type="xs:int" minOccurs="0" />
+																						<xs:element name="valMarketVolatility" type="xs:int" minOccurs="0" />
+																						<xs:element name="valLocaleconomy" type="xs:int" minOccurs="0" />
+																						<xs:element name="valMarketSegment" type="xs:int" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="contractofsale" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="sCOSSequenceNo" type="xs:int" minOccurs="0" />   
+																						<xs:element name="sCOSCarPark" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="sCOSSellerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sCOSBuyerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sCOSPurchasePrice" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="sCOSSettlementDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="sCOSGoods" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="sCOSExecutionDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="sCOSIsSpecialCondition" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="sCOSSpecialCondition" type="xs:string" minOccurs="0" />
+																						<xs:element name="isPOAinvolved" type="xs:int" minOccurs="0" />
+																						<xs:element name="sPOAName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sPOADetails" type="xs:string" minOccurs="0" />
+																						<xs:element name="pos" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="secUnregisteredPlan" type="xs:string" minOccurs="0" />
+																						<xs:element name="secBeingland" type="xs:string" minOccurs="0" />
+																						<xs:element name="secProposedplan" type="xs:string" minOccurs="0" />
+																						<xs:element name="secTitleSubdivision" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="secSellerBuyerSignature" type="xs:boolean" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="tol" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="sTOLSequenceNo" type="xs:int" minOccurs="0" />  
+																						<xs:element name="sTOLTitleReference" type="xs:string" minOccurs="0" />  
+																						<xs:element name="sTOLSellerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sTOLBuyerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sTOLpercentagesharedescription" type="xs:string" minOccurs="0" />
+																						<xs:element name="sTOLTransferLandValue" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="sTOLisTrustinvolved" type="xs:boolean" minOccurs="0" />
+																						<xs:element name="sTOLtrustname" type="xs:string" minOccurs="0" />
+																						<xs:element name="sTOLdirectingparty" type="xs:boolean" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="non-property-details" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="securityNatureOfSecurity" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityDescription" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityAccountProdCode" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityCertificateNumber" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityAccountNumber" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityRegistrationPeriod" type="xs:string" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>																
+																<xs:element name="deposit" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="sDepositSequenceNo" type="xs:int" minOccurs="0" />  
+																			<xs:element name="sDepositDate" type="xs:string" minOccurs="0" />
+																			<xs:element name="sDepositInvoice" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sDepositAmount" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sTaxAgentName" type="xs:string" minOccurs="0" />
+																			<xs:element name="sIsDepositSigned" type="xs:boolean" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="sharecertificate" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="sShareCertificateSequenceNo" type="xs:int" minOccurs="0" /> 
+																			<xs:element name="sShareCompanyName" type="xs:string" minOccurs="0" />
+																			<xs:element name="sShareCertificateNumber" type="xs:string" minOccurs="0" />
+																			<xs:element name="sShareType" type="xs:string" minOccurs="0" />
+																			<xs:element name="sSharefrom" type="xs:int" minOccurs="0" />
+																			<xs:element name="sShareto" type="xs:int" minOccurs="0" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="epacketdetails" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="sEPacketDetailsSequenceNo" type="xs:int" minOccurs="0" />  
+																			<xs:element name="efilecaseid" type="xs:string" minOccurs="0" />
+																			<xs:element name="vendorpacketid" type="xs:string" minOccurs="0" />
+																			<xs:element name="namepacket" type="xs:string" minOccurs="0" />
+																			<xs:element name="titleReference" type="xs:string" minOccurs="0" />
+																			<xs:element name="statdec" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="sStatdecSequenceNo" type="xs:int" minOccurs="0" />  
+																						<xs:element name="sStatdecTitleReference" type="xs:string" minOccurs="0" />
+																						<xs:element name="sStatdecCustomerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sStatdecMortgageDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="sStatdecMortgageNumber" type="xs:int" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="indgurandind" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="sIndGurAndIndSequenceNo" type="xs:int" minOccurs="0" />  
+																						<xs:element name="sIndGurAndIndTitleReference" type="xs:string" minOccurs="0" />
+																						<xs:element name="sIndGurAndIndCustomerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sIndGurAndIndMortgageDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="sIndGurAndIndMortgageNumber" type="xs:int" minOccurs="0" />
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>										
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!--  SECURITY DETAILS END -->
+										<!-- SOLICITOR DETAILS START -->
+										<xs:element name="Solicitor" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="solicitorLinkID" type="xs:int" minOccurs="0" />   <!-- not used now as this complex entity is a type inside Application; no data will be passed now  -->
+													<xs:element name="solicitorSequenceNo" type="xs:int" minOccurs="0" /> 
+													<xs:element name="sSolicitorName" type="xs:string" minOccurs="0" />
+													<xs:element name="sFirm" type="xs:string" minOccurs="0" />											
+													<xs:element name="sAddressLine1" type="xs:string"	minOccurs="0" />
+													<xs:element name="sAddressLine2" type="xs:string"	minOccurs="0" />
+													<xs:element name="sCity" type="xs:string" minOccurs="0" />
+													<xs:element name="sState" type="xs:int" minOccurs="0" />
+													<xs:element name="sPostCode" type="xs:int" minOccurs="0" />
+													<xs:element name="sCountry" type="xs:int" minOccurs="0" />
+													<xs:element name="sPhone" type="xs:string" minOccurs="0" />
+													<xs:element name="sFaxNumber" type="xs:string" minOccurs="0" />
+													<xs:element name="sEmail" type="xs:string" minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- SOLICITOR DETAILS END -->										
+										<!-- OFI DETAILS START -->
+										<xs:element name="ofidetails" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+												    <xs:element name="ofiLinkId" type="xs:int" minOccurs="0" />  <!--  not used now as OFI is a type inside Application; no data will be passed now -->
+													<xs:element name="ofiBSB" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="ofiSequenceNo" type="xs:int" minOccurs="0" /> 
+													<xs:element name="ofiBankName" type="xs:string" minOccurs="0" />
+													<xs:element name="ofiName" type="xs:string" minOccurs="0" />
+													<xs:element name="ofiAddressLine1" type="xs:string" minOccurs="0" />
+													<xs:element name="ofiAddressLine2" type="xs:string"	minOccurs="0" />
+													<xs:element name="ofiCity" type="xs:string"	minOccurs="0" />
+													<xs:element name="ofiState" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiPostcode" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiPhone" type="xs:string" minOccurs="0" />
+													<xs:element name="ofiFaxnumber" type="xs:string"	minOccurs="0" />
+													<xs:element name="ofiAccountNumber1" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiAccountNumber2" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiAccountNumber3" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiAccountNumber4" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiAccountNumber5" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiAccountNumber6" type="xs:int" minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- OFI DETAILS END -->
+										<!-- DOCUMENT DETAILS START -->
+										<xs:element name="document" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="docLinkId" type="xs:int" minOccurs="0" />  
+                                                    <xs:element name="docSequenceNo" type="xs:int" minOccurs="0" /> 
+													<xs:element name="dList" type="xs:int" minOccurs="0" />
+													<xs:element name="dDocumentExists" type="xs:boolean" minOccurs="0" />
+													<xs:element name="dVerified" type="xs:boolean" minOccurs="0" />
+													<xs:element name="dSigned" type="xs:string" minOccurs="0" /> <!-- 1=Signed, 2=Dated, 0=None ( UI o/p format: 1,2 (or) 0   -->
+													<xs:element name="dSource" type="xs:int" minOccurs="0" />
+													<xs:element name="dDocumentStatus" type="xs:int" minOccurs="0" />
+													<xs:element name="dComments" type="xs:string"	minOccurs="0" />
+													<xs:element name="dOrder" type="xs:boolean" minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- DOCUMENT DETAILS END -->
+										<!-- LOAN DETAILS START -->
+										<xs:element name="loandetails" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="loanLinkID" type="xs:int"   minOccurs="0" />   
+                                                	<xs:element name="loanSequenceNo" type="xs:int"       minOccurs="0" /> 
+													<xs:element name="ldPurposeCategory" type="xs:int"	minOccurs="0" />
+													<xs:element name="ldPurpose" type="xs:int" minOccurs="0" />
+													<xs:element name="ldPurposeDesc" type="xs:string"	minOccurs="0" />
+													<xs:element name="ldEstSettlementDate" type="xs:date"	minOccurs="0" />
+													<xs:element name="ldApprovedinPrice" type="xs:boolean" minOccurs="0" />
+													<xs:element name="ldBridgingPortion" type="xs:decimal"        minOccurs="0" /> 
+                                                    <xs:element name="ldOngoingPortion" type="xs:decimal" minOccurs="0" />     
+                                                    <xs:element name="ldAdditionalCosts" type="xs:decimal"        minOccurs="0" />     
+                                                    <xs:element name="ldDepositPaid" type="xs:decimal"    minOccurs="0" />     
+                                                    <xs:element name="ldOwnFunds" type="xs:decimal"       minOccurs="0" />     
+                                                    <xs:element name="ldGifts" type="xs:decimal"  minOccurs="0" />     
+                                                    <xs:element name="ldPurchasePriceofLand" type="xs:decimal"    minOccurs="0" />     
+                                                    <xs:element name="ldBulidContractPrice" type="xs:decimal"     minOccurs="0" />     
+                                                    <xs:element name="ldCostofImprovments" type="xs:decimal"      minOccurs="0" />     
+                                                    <xs:element name="ldPurchasePrice" type="xs:decimal"  minOccurs="0" />     
+                                                    <xs:element name="ldBalLoansRe-fi" type="xs:decimal"  minOccurs="0" /> 
+													<xs:element name="ldProductCode" type="xs:int"	minOccurs="0" />
+													<xs:element name="ldSubProductCode" type="xs:int" minOccurs="0" />
+													<xs:element name="ldRegulated" type="xs:boolean" minOccurs="0" />
+													<xs:element name="ldAmountSought" type="xs:decimal" minOccurs="0" />
+													<xs:element name="ldAmountThisAdvance" type="xs:decimal" minOccurs="0" />
+													<xs:element name="ldProgressiveDrawdown" type="xs:boolean" minOccurs="0" />
+													<xs:element name="ldLMI" type="xs:boolean" minOccurs="0" />
+													<xs:element name="ldLoanTermYears" type="xs:int" minOccurs="0" />
+													<xs:element name="ldLoanTermMonths" type="xs:int" minOccurs="0" />
+													<xs:element name="ldIntOnlyTermYears" type="xs:int" minOccurs="0" />
+													<xs:element name="ldIntOnlyTermMonths" type="xs:int" minOccurs="0" />
+													<xs:element name="ldInterestFrequency" type="xs:int" minOccurs="0" />
+													<xs:element name="ldILSPaymentFrequency" type="xs:int" minOccurs="0" />
+													<xs:element name="ldILSMarginOverrideReason" type="xs:int" minOccurs="0" />
+													<xs:element name="ldDDAAccountNumber" type="xs:int" minOccurs="0" />
+													<xs:element name="ldDDANumberSignatories" type="xs:int" minOccurs="0" />
+													<xs:element name="ldDDAATOType" type="xs:int" minOccurs="0" />
+													<xs:element name="ldODlimitAmt" type="xs:decimal" minOccurs="0" />
+													<xs:element name="ldDDAStatementMailCode" type="xs:string" minOccurs="0" />
+													<xs:element name="ldDDAStatementCycle" type="xs:int"	minOccurs="0" />
+													<xs:element name="ldDDAStatementMailCode" type="xs:int"	minOccurs="0" />
+													<xs:element name="ldRepaymentType" type="xs:int" minOccurs="0" />
+													<xs:element name="ldGuaranteeAmt" type="xs:decimal"	minOccurs="0" />
+													<xs:element name="ldSettlementAmt" type="xs:decimal"	minOccurs="0" />
+													<xs:element name="ldSurplusAcct" type="xs:decimal"	minOccurs="0" />
+													<xs:element name="ldMaxSurplusAcct" type="xs:decimal"	minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- LOAN DETAILS END -->
+										
+										<!-- ACCOUNT DETAILS START -->
+										<xs:element name="account" minOccurs="0" maxOccurs="unbounded"> <!-- Break free application  -->
+											<xs:complexType>
+												<xs:sequence>
+												 	<xs:element name="accountLinkId" type="xs:int" minOccurs="0" /> <!--  Linked to Applicant Id -->
+												
+													<xs:element name="accountsOptedBreakfree" type="xs:boolean" minOccurs="0" />
+													<xs:element name="accountsExistingBreakfreeCustomer" type="xs:boolean" minOccurs="0" />
+													<xs:element name="accountsLendingAccountHolder" type="xs:string" minOccurs="0" />
+													<xs:element name="accountLendingAccountNumber" type="xs:int" minOccurs="0" />
+													<xs:element name="accountLendingLoanBalance" type="xs:decimal" minOccurs="0" />
+													<xs:element name="accountsLoanApplicationNumber" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountsloanincluded" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountNewTransAccount" type="xs:boolean"	minOccurs="0" />
+													<xs:element name="accountNominated" type="xs:boolean"	minOccurs="0" />
+													<xs:element name="accountnominatedTransAccountNumber" type="xs:int" minOccurs="0" />
+													<xs:element name="accountnominatedTransAccountHolder" type="xs:int" minOccurs="0" />
+													<xs:element name="accountsAnzAssured" type="xs:string" minOccurs="0" />
+													<xs:element name="aCardType" type="xs:string"	minOccurs="0" />
+													<xs:element name="aCardCategory" type="xs:string"	minOccurs="0" />
+													<xs:element name="aCreditLimit" type="xs:decimal"	minOccurs="0" />
+													<xs:element name="option1ApplicantsName" type="xs:string"	minOccurs="0" />
+													<xs:element name="aExistingQantas" type="xs:string" minOccurs="0" />
+													<xs:element name="aCreditCardNumber" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountsDisbursmentNum" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountProduct" type="xs:string" minOccurs="0" />
+													<xs:element name="accountDisbAmount" type="xs:decimal"	minOccurs="0" />
+													<xs:element name="accountDispNumber" type="xs:string"	minOccurs="0" />
+													<xs:element name="aAdditionalCardHolder" type="xs:boolean"	minOccurs="0" />
+													<xs:element name="aAdditionalHoldersName" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountCardHolderdate" type="xs:string"	minOccurs="0" />
+													<xs:element name="accountAdditionalCardHolderSignature" type="xs:boolean"	minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- ACCOUNT DETAILS END -->
+										<!--  COMPLIANCE DETAILS START -->								
+										<xs:element name="Compliance" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="customer-Application-Declaration" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	  <xs:element name="comSignBroker" type="xs:boolean" minOccurs="0" />
+																	  <xs:element name="comBrokerDt" type="xs:date" minOccurs="0" />
+																	  <xs:element name="comCustSign" type="xs:boolean" minOccurs="0" />
+																	  <xs:element name="comsSignDt" type="xs:date" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													<xs:element name="Guarantors-Assessment-Checklist" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																		<xs:element name="guarantorsAssessmentChecklistSequenceNo" type="xs:int" minOccurs="0" />
+																		<xs:element name="guarantorsAssessmentChecklistLinkId" type="xs:int" minOccurs="0" /> <!-- Linked to AEM applicant Id -->
+																		<xs:element name="comInterviewDt" type="xs:date" minOccurs="0" />
+																		<xs:element name="comLoanFacTobeGuaranteed" type="xs:decimal" minOccurs="0" />
+																		<xs:element name="comGuarantorsFullName" type="xs:string" minOccurs="0" />
+																		<xs:element name="comGuarantorsOccupation" type="xs:string" minOccurs="0" />
+																		<xs:element name="comCustFullName" type="xs:string" minOccurs="0" />
+																		<xs:element name="comCustDL" type="xs:string" minOccurs="0" />
+																		<xs:element name="comStateOfIssue" type="xs:string" minOccurs="0" />
+																		<xs:element name="comCountryOfIssue" type="xs:string" minOccurs="0" />
+																		<xs:element name="comDOB" type="xs:date" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID1" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID2" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID3" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID4" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID5" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID6" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID7" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID8" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID9" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID10" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID11" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID12" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID13" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID14" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID15" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID16" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID17" type="xs:boolean" minOccurs="0" />
+																		<xs:element name="comGuarantorChecklistID18" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID19" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID20" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID21" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID22" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID23" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID24" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID25" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID26" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID27" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID28" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID29" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID30" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID31" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID32" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID33" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID34" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID35" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID36" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuarantorChecklistID37" type="xs:boolean" minOccurs="0" /> 
+																		<xs:element name="comGuranteeDate" type="xs:string" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													<xs:element name="ID-Documents-Container" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	  <xs:element name="idDocumentsContainerLinkId" type="xs:int" minOccurs="0" />  <!-- linked to applicant Id -->
+                                                                      <xs:element name="idDocumentsContainerSequenceNo" type="xs:int" minOccurs="0" /> 
+																	  <xs:element name="docType_dropdown" type="xs:int" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentName" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentDOB" type="xs:date" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentExpiryDate" type="xs:date" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentPassportNo" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentAusOrOverseasPassport" type="xs:int" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentChangeInName" type="xs:boolean" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentSubClassNo" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentDateGranted" type="xs:date" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentDLIssueState" type="xs:int" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentDrivingLicNo" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentApplicantsName" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentConjugalStatus" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentMgrStatus" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentSpouseName" type="xs:string" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													<xs:element name="saleContract-container" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	  <xs:element name="saleContractcontainerSequenceNo" type="xs:int" minOccurs="0" />
+																	  <xs:element name="saleContractLinkId" type="xs:int" minOccurs="0" />
+																	  <xs:element name="comContrAppName" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comContrPropertyAddr" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comContrFolio" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comContrPrice" type="xs:decimal" minOccurs="0" /> 
+																	  <xs:element name="comContrBuilderSign" type="xs:boolean" minOccurs="0" /> 
+																	  <xs:element name="comContrProgressPayments" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comBuilderName" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comBuilderState" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comTotalContractPrice" type="xs:decimal" minOccurs="0" /> 
+																	  <xs:element name="prgNameOfStage" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="prgAmount" type="xs:decimal" minOccurs="0" /> 
+																	  <xs:element name="prgTotalPricePercnt" type="xs:decimal" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>							  
+														</xs:element>
+														<xs:element name="council-approved-plans" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	  <xs:element name="councilapprovedplansSequenceNo" type="xs:int" minOccurs="0" />
+																	  <xs:element name="prgConstAddr" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="prgApprovedStamp" type="xs:boolean" minOccurs="0" /> 
+																	  <xs:element name="prgPermitNo" type="xs:string" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>							  
+														</xs:element>
+														<xs:element name="building-permit" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	  <xs:element name="buildingpermitSequenceNo" type="xs:int" minOccurs="0" />
+																	  <xs:element name="prgCustName" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="prgConstAddr2" type="xs:string" minOccurs="0" />
+																</xs:sequence>
+															</xs:complexType>							  
+														</xs:element>
+														
+														<xs:element name="fhog-container" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="Fhogstate" type="xs:string" minOccurs="0" />
+																	<xs:element name="fhog-containerLinkId" type="xs:int" minOccurs="0" />
+																	<xs:element name="fhog-containerSequenceNo" type="xs:int" minOccurs="0" />
+																	<xs:element name="fhog_vic" maxOccurs="1" minOccurs="0">
+																	
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="fhog_vic_section1" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="fhog102" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog103" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog104" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog105" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog106" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog107" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog109" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog110" type="xs:boolean" minOccurs="0" /> 
+																						</xs:sequence>
+																					</xs:complexType>						
+																				</xs:element>
+																				<xs:element name="fhog_vic_section2" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="fhog_vic_section2_LinkID" type="xs:int" minOccurs="0" />
+																							<xs:element name="fhog_vic_section2_SequenceNo" type="xs:int" minOccurs="0" /> 
+																							<xs:element name="fhogAppNo" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhog112" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog113" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog_vic_section2_applicant" maxOccurs="unbounded" minOccurs="0">
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="fhog_vic_section2_applicant_SequenceNo" type="xs:int" minOccurs="0" /> 
+																										<xs:element name="fhogTitle" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogFName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogMName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogFamilyName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogBirthCertName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogIsaboveDeclaredName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogAltName" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogDOB" type="xs:date" minOccurs="0" /> 
+																										<xs:element name="fhogBirthPlace" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogPhoneNo" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogEmailAddr" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogCurrResiAddr" type="xs:string" minOccurs="0" /> 
+																										<xs:element name="fhogServiceNoticesAddr" type="xs:string" minOccurs="0" />
+																									</xs:sequence>
+																								</xs:complexType>						
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:complexType>						
+																				</xs:element>
+																				<xs:element name="fhog_vic_section3" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="fhog_vic_section3_SequenceNo" type="xs:int" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseTitle" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseFName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseMName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseFamilyName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseCertName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseIsaboveDeclaredName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseAltName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseDOB" type="xs:date" minOccurs="0" /> 
+																							<xs:element name="fhogSpouseBirthPlace" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogSpousePhone" type="xs:string" minOccurs="0" />
+																						</xs:sequence>
+																					</xs:complexType>								
+																				</xs:element>
+																				<xs:element name="fhog_vic_section4" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="fhog114" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog115" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhogTransLotNo" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransStreetNo" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransStreetName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransSuburb" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransState" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransPostcode" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransDtOccupy" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTranslotNo2" type="xs:int" minOccurs="0" /> 
+																							<xs:element name="fhogTransPlanType" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransPlanNo" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransVolume" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransFolio" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhog120" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog122" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog121" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog123" type="xs:boolean" minOccurs="0" /> 
+																							<xs:element name="fhog124" type="xs:boolean" minOccurs="0" />
+																							<xs:element name="fhogTransPurchasePrice" type="xs:decimal" minOccurs="0" /> 
+																							<xs:element name="fhogTransContractDt" type="xs:date" minOccurs="0" /> 
+																							<xs:element name="fhogTransSettlementDt" type="xs:date" minOccurs="0" /> 
+																							<xs:element name="fhogTransIsAllEvidenceSighted" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransPersonSighted" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransPayEligibilityDt" type="xs:date" minOccurs="0" /> 
+																						</xs:sequence>
+																					</xs:complexType>								
+																				</xs:element>
+																				<xs:element name="fhog_vic_section5" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>																	
+																							<xs:element name="fhogTransFinancialBranchName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransAccName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransBSBNo" type="xs:int" minOccurs="0" /> 
+																							<xs:element name="fhogTransAccNo" type="xs:string" minOccurs="0" /> 
+																							</xs:sequence>
+																					</xs:complexType>								
+																				</xs:element>
+																				<xs:element name="fhog_vic_section6" maxOccurs="unbounded" minOccurs="0">
+																					<xs:complexType>
+																						<xs:sequence>																		
+																							<xs:element name="fhogTransAplicantName" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransSign" type="xs:string" minOccurs="0" /> 
+																							<xs:element name="fhogTransDt" type="xs:string" minOccurs="0" /> 
+																						</xs:sequence>
+																					</xs:complexType>								
+																				</xs:element>
+																				<xs:element name="fhog_vic_section7" maxOccurs="unbounded" minOccurs="0">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="fhogTransSpouseDeclName" type="xs:string" minOccurs="0" /> 
+																				<xs:element name="fhogTransSign2" type="xs:string" minOccurs="0" /> 
+																				<xs:element name="fhogTransSpouseDeclDt" type="xs:string" minOccurs="0" /> 
+																				<xs:element name="fhogTransWitnessSign2" type="xs:string" minOccurs="0" /> 
+																				<xs:element name="fhogTransWitnessDetails2" type="xs:string" minOccurs="0" /> 
+																			</xs:sequence>
+																		</xs:complexType>	
+																  </xs:element>
+																			</xs:sequence>	
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>	
+														</xs:complexType>
+													</xs:element>													
+													</xs:sequence>
+											</xs:complexType>
+										 </xs:element>
+										<!--  COMPLIANCE DETAILS END -->
+									</xs:sequence>
+								</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    activeTab="0"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <generalConfiguration
+            jcr:primaryType="nt:unstructured"
+            title="General"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <totalResult
+                    jcr:primaryType="cq:Widget"
+                    emptyText_noI18n="5"
+                    fieldDescription="Total Results to be shown by default"
+                    fieldLabel="Total Result"
+                    maxLength="{Long}30"
+                    name="./totalResult"
+                    vtype="digits"
+                    xtype="textfield"/>
+                <chooseStyle
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="{Boolean}true"
+                    fieldLabel="Style Type"
+                    name="./style"
+                    type="select"
+                    xtype="selection">
+                    <options jcr:primaryType="cq:WidgetCollection">
+                        <nostyle
+                            jcr:primaryType="nt:unstructured"
+                            value="No Style"/>
+                        <defaultstyle
+                            jcr:primaryType="nt:unstructured"
+                            value="Default Style"/>
+                        <customstyle
+                            jcr:primaryType="nt:unstructured"
+                            value="Custom Style"/>
+                    </options>
+                </chooseStyle>
+                <customstyle
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="{Boolean}true"
+                    editable="{Boolean}false"
+                    fieldLabel="Custom Style Path"
+                    name="./customStylePath"
+                    rootPath="/"
+                    xtype="pathfield"/>
+                <displayOptions
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Display Options"
+                    name="./displayOptions"
+                    type="radio"
+                    xtype="selection">
+                    <options jcr:primaryType="cq:WidgetCollection">
+                        <draftOnly
+                            jcr:primaryType="nt:unstructured"
+                            text="Draft Forms Only"
+                            value="draftOnly"/>
+                        <submitOnly
+                            jcr:primaryType="nt:unstructured"
+                            text="Submitted Forms Only"
+                            value="submittedOnly"/>
+                        <both
+                            jcr:primaryType="nt:unstructured"
+                            text="Both"
+                            value="both"/>
+                    </options>
+                </displayOptions>
+                <defaultTab
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Default Tab"
+                    name="./defaultTab"
+                    type="radio"
+                    xtype="selection">
+                    <options jcr:primaryType="cq:WidgetCollection">
+                        <draft
+                            jcr:primaryType="nt:unstructured"
+                            text="Draft Forms Tab"
+                            value="draftTab"/>
+                        <submit
+                            jcr:primaryType="nt:unstructured"
+                            text="Submitted Forms Tab"
+                            value="submittedGuideTab"/>
+                    </options>
+                </defaultTab>
+            </items>
+        </generalConfiguration>
+        <draftConfiguration
+            jcr:primaryType="nt:unstructured"
+            title="Draft Forms Tab Configuration"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <draftTitleText
+                    jcr:primaryType="cq:Widget"
+                    emptyText_noI18n="Draft Forms"
+                    fieldDescription="Provide custom title for Drafts Tab"
+                    fieldLabel="Custom Title "
+                    maxLength="30"
+                    name="./draftTitleText"
+                    xtype="textfield"/>
+                <templatePath
+                    jcr:primaryType="cq:Widget"
+                    defaultValue="Default"
+                    fieldLabel="Layout Template"
+                    name="./draftTemplate"
+                    options="/libs/fd/fp/content/searchTemplate.json?type=draftsTemplate"
+                    optionsTextField="text"
+                    optionsValueField="value"
+                    type="select"
+                    xtype="selection"/>
+            </items>
+        </draftConfiguration>
+        <submittedFormsConfiguration
+            jcr:primaryType="nt:unstructured"
+            title="Submitted Forms Tab Configuration"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <submittedTitleText
+                    jcr:primaryType="cq:Widget"
+                    emptyText_noI18n="Submitted Forms"
+                    fieldDescription="Provide custom title for Submitted Forms Tab"
+                    fieldLabel="Custom Title"
+                    maxLength="30"
+                    name="./submittedTitleText"
+                    xtype="textfield"/>
+                <templatePath
+                    jcr:primaryType="cq:Widget"
+                    defaultValue="Default"
+                    fieldLabel="Layout Template"
+                    name="./submissionTemplate"
+                    options="/libs/fd/fp/content/searchTemplate.json?type=submissionsTemplate"
+                    optionsTextField="text"
+                    optionsValueField="value"
+                    type="select"
+                    xtype="selection"/>
+            </items>
+        </submittedFormsConfiguration>
+    </items>
+</jcr:root>
