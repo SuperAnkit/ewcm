@@ -13573,7 +13573,7 @@
                                                         bindRef="/afData/account/accountsDate"
                                                         guideNodeClass="guideTextBox"
                                                         name="accountsDate"
-                                                        validateExp="isValidDate(this.value);"/>
+                                                        validateExp="isValidDate(this.value,false);"/>
                                                     <guideradiobutton
                                                         jcr:created="{Date}2015-10-09T13:58:14.454+05:30"
                                                         jcr:createdBy="admin"
