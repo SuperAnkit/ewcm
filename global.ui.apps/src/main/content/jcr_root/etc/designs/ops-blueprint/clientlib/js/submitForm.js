@@ -16,15 +16,17 @@
  * from Adobe Systems Incorporated.
  *
  */
-handleOPSSubmit = function (state, redirect){
+handleOPSSubmit = function (state, successRedirect, failureRedirect, formAppNo){
 	var responsedata = "";
 
  	var formUserName = $("#user_name").val();
-    var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
-    var reDirect = $("#redirect").val();
+    //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
+    //var reDirect = $("#redirect").val();
+
+    alert("APP NO TO SUBMIT " + formAppNo);
 
 	$('#isValidation').attr('value','true');
-    $('#redirect').val(redirect);
+    //$('#redirect').val(redirect);
 
     var user_name = "user_name=" + formUserName;
     var application_no = "application_no=" + formAppNo;
@@ -39,18 +41,24 @@ handleOPSSubmit = function (state, redirect){
 
     console.log("URL "+ url);
 
+    // grey out the page while processing
+    $('#progress').removeClass('DisplayNone');
+    $('#progress').addClass('DisplayBlock');
+
 
     console.log("4564564 call");
 
     window.guideBridge.submit({
 
         error: function(guideResultObject) { 
-            console.log("error on submit"); 
+            console.log("error on submit");
+                $('#progress').removeClass('DisplayBlock');
+   				$('#progress').addClass('DisplayNone');
             alert("The form could not be processed, please try again in sometime.");
         } ,
   		success: function(guideResultObject) {
             console.log("called here");
-            window.location = redirect;
+            //window.location = redirect;
             $.ajax({
                   url: url,
                   async:false,
@@ -60,7 +68,15 @@ handleOPSSubmit = function (state, redirect){
                   },
                   dataType: 'text',
                   success: function(data) {
-                    var newData = data;
+                    var resCode = data;
+                    //alert("code++" + resCode + "++");
+					if(resCode == 'SUCCESS'){
+                        window.location = successRedirect;
+                    }
+                      else{
+						window.location = failureRedirect + "?errorMsg=" + resCode;
+                      }
+
                   },
                   type: 'POST'
              }); 
@@ -69,6 +85,7 @@ handleOPSSubmit = function (state, redirect){
     });
     console.log("finish me:" );
     console.log("after call");
-
+    $('#progress').removeClass('DisplayBlock');
+    $('#progress').addClass('DisplayNone');
 
 }

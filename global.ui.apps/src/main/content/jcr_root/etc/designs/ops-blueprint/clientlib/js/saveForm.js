@@ -16,71 +16,80 @@
  * from Adobe Systems Incorporated.
  *
  */
+handleOPSSave = function (formAppNo){
+    var guideName;
+    var guidePath = window.guideBridge.getGuideContext().data[window.guideBridge.GUIDE_PATH];
+    guidePath = guidePath.substr(0,guidePath.lastIndexOf("jcr:content/guideContainer")-1);
+    guidePath = "/content/dam/formsanddocuments" + guidePath.substring(17);
+    guideName = guidePath.substring(guidePath.lastIndexOf("/")+1);
+    var resultObj,errorObj, guideState;
+    var draftID;
 
+    //add bApplicationNumber to the formInstance
+    //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
 
-handleOPSSave = function (state, redirect){
-	var responsedata = "";
-
- 	var formUserName = $("#user_name").val();
-    var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
-    var reDirect = $("#redirect").val();
-
-
-	if ($("#user_group").val() == "checker_group") {
-		state = "ops:review";
-	}
-
-
-    $('#redirect').val(redirect);
-
-    var user_name = "user_name=" + formUserName;
-    var application_no = "application_no=" + formAppNo;
-    var status = "state=" + state;
-
-    var submitData = user_name + "&" + application_no + "&" + status ;
-
-
-    var url = '/bin/save';
-
-    console.log("URL "+ url);
-
-
-
-    console.log("Submit");
-
-
-    window.guideBridge.validate = function(errorList, somExpression){
-        return true;
+    if(typeof window.guideBridge.customContextProperty("draftID") === "undefined"){
+        var time = new Date();
+        time = time.getTime();
+        draftID = guideName + "_" + formAppNo + "_af";
+        window.guideBridge.customContextProperty("draftID",draftID);
+    }else{
+        draftID =  window.guideBridge.customContextProperty("draftID");
+    }
+    $("#draftID").attr("value",draftID);
+    var currentNodePath = $("#saveButtonPath").data("savebuttonpath");
+    var contextPath = window.guideBridge._getUrl(currentNodePath);
+    var fileUploadPath = contextPath+".fp.attach.jsp/"+draftID;
+    var paramObj = {
+        "success":function(result){
+            window.guideBridge.trigger(
+                "saveStarted",
+                window.guidelib.event.GuideModelEvent.createEvent("saveStarted")
+            );
+            guideState = result.data;
+            var urlForDraft = contextPath + ".fp.draft.json?func=saveDraft";
+            $.ajax({
+                type:"POST",
+                url: urlForDraft,
+                async: true,
+                cache: false,
+                mimeType:"multipart/form-data",
+                data: {
+                    'formName'  : guideName,
+                    'formPath'  : guidePath,
+                    'formData'  : JSON.stringify(guideState),
+                    'draftID'   : draftID,
+                    'formType'  : "af",
+                    '_charset_' : "UTF-8"
+                },
+                success: function (result) {
+                    $(".__FP_Saved_Message").show();
+                    $(".__FP_Saved_Message" ).fadeOut( 1600, "linear");
+                    window.guideBridge.trigger(
+                        "saveCompleted",
+                        window.guidelib.event.GuideModelEvent.createEvent("saveCompleted")
+                    );
+                    window.guideBridge.customContextProperty("draftID",result.draftID);
+                },
+                error : function (result) {
+                    if(result.status == "503"){
+                        alert(guidelib.util.GuideUtil.getLocalizedMessage("", guidelib.i18n.LogMessages["AEM-AF-901-008"]));
+                    }else{
+                        alert(guidelib.util.GuideUtil.getLocalizedMessage("", guidelib.i18n.LogMessages["AEM-AF-901-009"]));
+                    }
+                }
+            });
+        },
+        "error": function(result){
+            errorObj = result;
+            if(errorObj != null){
+                console.log(guidelib.util.GuideUtil.getLocalizedMessage("", guidelib.i18n.LogMessages["AEM-AF-901-009"]));
+                return 0;
+            }
+        },
+        "fileUploadPath": fileUploadPath
     }
 
-
-    window.guideBridge.submit({
-
-        error: function(guideResultObject) { 
-            console.log("error on submit"); 
-            alert("The form could not be saved, please try again in sometime.");
-        } ,
-  		success: function(guideResultObject) {
-            console.log("called here");
-            window.location = redirect;
-            $.ajax({
-                  url: url,
-                  async:false,
-                  data: submitData,
-                  error: function() {
-                     $('#info').html('<p>An error has occurred</p>');
-                  },
-                  dataType: 'text',
-                  success: function(data) {
-                    var newData = data;
-                  },
-                  type: 'POST'
-             }); 
-        }
-
-    });
-    console.log("finish me:" );
-    console.log("after call");
-
+    window.guideBridge.getGuideState(paramObj);
 
 }

@@ -16,15 +16,17 @@
  * from Adobe Systems Incorporated.
  *
  */
-handleOPSApprove = function (state, redirect){
+handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo){
 	var responsedata = "";
 
  	var formUserName = $("#user_name").val();
-    var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
-    var reDirect = $("#redirect").val();
+    //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
+    //var reDirect = $("#redirect").val();
 
     $('#isValidation').attr('value','true');
-    $('#redirect').val(redirect);
+    //$('#redirect').val(redirect);
+
+    alert("APP NO TO APPROVE " + formAppNo);
 
     var user_name = "user_name=" + formUserName;
     var application_no = "application_no=" + formAppNo;
@@ -39,6 +41,9 @@ handleOPSApprove = function (state, redirect){
 
     console.log("URL "+ url);
 
+    // grey out the page while processing
+    $('#progress').removeClass('DisplayNone');
+    $('#progress').addClass('DisplayBlock');
 
 
     console.log("Submit");
@@ -50,7 +55,8 @@ handleOPSApprove = function (state, redirect){
     window.guideBridge.submit({
 
         error: function(guideResultObject) { 
-            console.log("error on submit"); 
+            console.log("error on submit");
+            $("#progress").hide();
             alert("The form could not be processed, please try again in sometime.");
         } ,
   		success: function(guideResultObject) {
@@ -65,7 +71,14 @@ handleOPSApprove = function (state, redirect){
                   },
                   dataType: 'text',
                   success: function(data) {
-                    var newData = data;
+                    var resCode = data;
+                    //alert("code++" + resCode + "++");
+					if(resCode == 'SUCCESS'){
+                        window.location = successRedirect;
+                    }
+                      else{
+						window.location = failureRedirect;
+                      }
                   },
                   type: 'POST'
              }); 
@@ -74,6 +87,7 @@ handleOPSApprove = function (state, redirect){
     });
     console.log("finish me:" );
     console.log("after call");
-
+	$('#progress').removeClass('DisplayBlock');
+    $('#progress').addClass('DisplayNone');
 
 }

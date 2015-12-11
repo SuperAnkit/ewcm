@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    height="{Long}600"
+    title="Edit drop-down list"
+    xtype="dialog">
+    <items jcr:primaryType="cq:TabPanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <title
+                jcr:primaryType="nt:unstructured"
+                title="Title and text"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <items
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/title/items.infinity.json"
+                        xtype="cqinclude"/>
+                    <multiSelect
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Allows multiple selection"
+                        inputValue="true"
+                        name="./multiSelect"
+                        type="checkbox"
+                        xtype="selection"/>
+                    <defaultValue
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Must be one of the options"
+                        fieldLabel="Default value"
+                        name="./_value"
+                        xtype="textfield"/>
+                    <multiValuePath
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Items load path"
+                        name="./optionsLoadPath"
+                        xtype="textfield"/>
+                    <options
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Enter values in {value}={text} format."
+                        fieldLabel="Country"
+                        name="./options"
+                        typeHint="String[]"
+                        xtype="multifield">
+                        <fieldConfig
+                            jcr:primaryType="nt:unstructured"
+                            allowBlank="{Boolean}false"
+                            xtype="textfield"/>
+                    </options>
+                </items>
+            </title>
+            <script
+                jcr:primaryType="nt:unstructured"
+                labelWidth="{Long}160"
+                title="Script"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <valueCommitScript
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/valueCommitScript.infinity.json"
+                        xtype="cqinclude"/>
+                    <calcExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/calcExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <visibleExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/visibleExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <enabledExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/enabledExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExpMessage
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExpMessage.infinity.json"
+                        xtype="cqinclude"/>
+                    <bindref
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Bind reference"
+                        name="./bindRef"
+                        xtype="textfield">
+                        <listeners
+                            jcr:primaryType="nt:unstructured"
+                            loadcontent="function() { guidelib.author.GuideExtJSDialogUtils.disableMultiSelection.apply(this, arguments); }"/>
+                    </bindref>
+                    <optionExpression
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Options expression"
+                        name="./optionsExp"
+                        xtype="textfield"/>
+                </items>
+            </script>
+            <styling
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/styling.infinity.json"
+                xtype="cqinclude"/>
+            <help
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/help.infinity.json"
+                xtype="cqinclude"/>
+            <accessibility
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/accessiblity.infinity.json"
+                xtype="cqinclude"/>
+        </items>
+    </items>
+    <listeners
+        jcr:primaryType="nt:unstructured"
+        beforehide="function(){guidelib.author.GuideExtJSDialogUtils.beforeHideHandler.apply(this);}"
+        loadcontent="function(dialog) { &#xa; var field = dialog.getField('./options'); &#xa; if(field.getValue())&#xa; { &#xa; /*a servlet, webservice or script that returns either an arraylist or JSON object can be used to populate the values*/&#xa; var values = [&quot;1=Afghanistan&quot;,&#xa;&quot;3=Albania&quot;,&#xa;&quot;4=Algeria&quot;,&#xa;&quot;5=American Samoa&quot;,&#xa;&quot;6=Andorra&quot;,&#xa;&quot;7=Angola&quot;,&#xa;&quot;8=Anguilla&quot;,&#xa;&quot;9=Antarctica&quot;,&#xa;&quot;10=Antigua and Barbuda&quot;,&#xa;&quot;11=Argentina&quot;,&#xa;&quot;12=Armenia&quot;,&#xa;&quot;13=Aruba&quot;,&#xa;&quot;14=Australia&quot;,&#xa;&quot;15=Austria&quot;,&#xa;&quot;16=Azerbaijan&quot;,&#xa;&quot;17=Bahamas&quot;,&#xa;&quot;18=Bahrain&quot;,&#xa;&quot;19=Bangladesh&quot;,&#xa;&quot;20=Barbados&quot;,&#xa;&quot;22=Belarus&quot;,&#xa;&quot;23=Belgium&quot;,&#xa;&quot;24=Belize&quot;,&#xa;&quot;25=Benin&quot;,&#xa;&quot;26=Bermuda&quot;,&#xa;&quot;27=Bhutan&quot;,&#xa;&quot;28=Bolivia&quot;,&#xa;&quot;29=Bosnia and Herzegovina&quot;,&#xa;&quot;30=Botswana&quot;,&#xa;&quot;31=Bouvet Island&quot;,&#xa;&quot;32=Brazil&quot;,&#xa;&quot;33=Brit Indian Ocean&quot;,&#xa;&quot;34=Brunei&quot;,&#xa;&quot;35=Bulgaria&quot;,&#xa;&quot;36=Burkina Faso&quot;,&#xa;&quot;38=Burundi&quot;,&#xa;&quot;39=Cambodia&quot;,&#xa;&quot;40=Cameroon&quot;,&#xa;&quot;41=Canada&quot;,&#xa;&quot;42=Cape Verde&quot;,&#xa;&quot;43=Cayman Islands&quot;,&#xa;&quot;44=Central African Rep&quot;,&#xa;&quot;45=Chad&quot;,&#xa;&quot;46=Chile&quot;,&#xa;&quot;47=China&quot;,&#xa;&quot;48=Christmas Island&quot;,&#xa;&quot;49=Cocos (Keeling) Is&quot;,&#xa;&quot;50=Colombia&quot;,&#xa;&quot;51=Comoros&quot;,&#xa;&quot;52=Congo&quot;,&#xa;&quot;53=Cook Islands&quot;,&#xa;&quot;54=Costa Rica&quot;,&#xa;&quot;55=Cote D'Ivoire&quot;,&#xa;&quot;56=Croatia&quot;,&#xa;&quot;57=Cuba&quot;,&#xa;&quot;58=Cyprus&quot;,&#xa;&quot;59=Czech Republic&quot;,&#xa;&quot;60=Denmark&quot;,&#xa;&quot;61=Djibouti&quot;,&#xa;&quot;62=Dominica&quot;,&#xa;&quot;63=Dominican Republic&quot;,&#xa;&quot;64=Ecuador&quot;,&#xa;&quot;65=Egypt&quot;,&#xa;&quot;66=El Salvador&quot;,&#xa;&quot;67=Equatorial Guinea&quot;,&#xa;&quot;68=Eritrea&quot;,&#xa;&quot;70=Estonia&quot;,&#xa;&quot;71=Ethiopia&quot;,&#xa;&quot;72=Falkland Islands&quot;,&#xa;&quot;73=Faroe Islands&quot;,&#xa;&quot;74=Fiji&quot;,&#xa;&quot;75=Finland&quot;,&#xa;&quot;76=France&quot;,&#xa;&quot;77=French Guiana&quot;,&#xa;&quot;78=French Polynesia&quot;,&#xa;&quot;79=French Southern Terr&quot;,&#xa;&quot;80=Gabon&quot;,&#xa;&quot;81=Gambia&quot;,&#xa;&quot;82=Georgia&quot;,&#xa;&quot;83=Germany&quot;,&#xa;&quot;84=Ghana&quot;,&#xa;&quot;85=Gibraltar&quot;,&#xa;&quot;86=Greece&quot;,&#xa;&quot;87=Greenland&quot;,&#xa;&quot;88=Grenada&quot;,&#xa;&quot;89=Guadeloupe&quot;,&#xa;&quot;90=Guam&quot;,&#xa;&quot;91=Guatemala&quot;,&#xa;&quot;92=Guinea&quot;,&#xa;&quot;93=Guinea-Bissau&quot;,&#xa;&quot;94=Guyana&quot;,&#xa;&quot;95=Haiti&quot;,&#xa;&quot;96=Heard &amp; McDonald Is&quot;,&#xa;&quot;97=Vatican City State&quot;,&#xa;&quot;98=Honduras&quot;,&#xa;&quot;99=Hong Kong&quot;,&#xa;&quot;100=Hungary&quot;,&#xa;&quot;101=Iceland&quot;,&#xa;&quot;102=India&quot;,&#xa;&quot;103=Indonesia&quot;,&#xa;&quot;104=Iran&quot;,&#xa;&quot;105=Iraq&quot;,&#xa;&quot;106=Ireland&quot;,&#xa;&quot;107=Israel&quot;,&#xa;&quot;108=Italy&quot;,&#xa;&quot;109=Jamaica&quot;,&#xa;&quot;110=Japan&quot;,&#xa;&quot;111=Jordan&quot;,&#xa;&quot;112=Kazakhstan&quot;,&#xa;&quot;113=Kenya&quot;,&#xa;&quot;114=Kiribati&quot;,&#xa;&quot;115=North Korea&quot;,&#xa;&quot;116=South Korea&quot;,&#xa;&quot;117=Kuwait&quot;,&#xa;&quot;118=Kyrgyzstan&quot;,&#xa;&quot;119=Lao Democratic Rep&quot;,&#xa;&quot;120=Latvia&quot;,&#xa;&quot;121=Lebanon&quot;,&#xa;&quot;122=Lesotho&quot;,&#xa;&quot;123=Liberia&quot;,&#xa;&quot;125=Libya Arab Jamahirya&quot;,&#xa;&quot;126=Liechtenstein&quot;,&#xa;&quot;127=Lithuania&quot;,&#xa;&quot;128=Luxembourg&quot;,&#xa;&quot;129=Macao&quot;,&#xa;&quot;130=Macedonia&quot;,&#xa;&quot;131=Madagascar&quot;,&#xa;&quot;132=Malawi&quot;,&#xa;&quot;133=Malaysia&quot;,&#xa;&quot;134=Maldives&quot;,&#xa;&quot;135=Mali&quot;,&#xa;&quot;136=Malta&quot;,&#xa;&quot;137=Marshall Islands&quot;,&#xa;&quot;138=Martinique&quot;,&#xa;&quot;139=Mauritania&quot;,&#xa;&quot;141=Mauritius&quot;,&#xa;&quot;142=Mayotte&quot;,&#xa;&quot;143=Mexico&quot;,&#xa;&quot;144=Micronesia&quot;,&#xa;&quot;145=Moldova&quot;,&#xa;&quot;146=Monaco&quot;,&#xa;&quot;147=Mongolia&quot;,&#xa;&quot;148=Montserrat&quot;,&#xa;&quot;149=Morocco&quot;,&#xa;&quot;150=Mozambique&quot;,&#xa;&quot;151=Myanmar&quot;,&#xa;&quot;153=Namibia&quot;,&#xa;&quot;154=Nauru&quot;,&#xa;&quot;155=Nepal&quot;,&#xa;&quot;156=Netherlands&quot;,&#xa;&quot;157=Netherlands Antilles&quot;,&#xa;&quot;158=New Caledonia&quot;,&#xa;&quot;159=New Zealand&quot;,&#xa;&quot;160=Nicaragua&quot;,&#xa;&quot;161=Niger&quot;,&#xa;&quot;162=Nigeria&quot;,&#xa;&quot;163=Niue&quot;,&#xa;&quot;164=Norfolk Island&quot;,&#xa;&quot;165=Northern Mariana Is&quot;,&#xa;&quot;166=Norway&quot;,&#xa;&quot;167=Oman&quot;,&#xa;&quot;168=Pakistan&quot;,&#xa;&quot;170=Palau&quot;,&#xa;&quot;172=Panama&quot;,&#xa;&quot;173=Papua New Guinea&quot;,&#xa;&quot;174=Paraguay&quot;,&#xa;&quot;175=Peru&quot;,&#xa;&quot;176=Philippines&quot;,&#xa;&quot;177=Pitcairn&quot;,&#xa;&quot;178=Poland&quot;,&#xa;&quot;179=Portugal&quot;,&#xa;&quot;180=Puerto Rico&quot;,&#xa;&quot;181=Qatar&quot;,&#xa;&quot;182=Reunion&quot;,&#xa;&quot;183=Romania&quot;,&#xa;&quot;184=Russian Federation&quot;,&#xa;&quot;185=Rwanda&quot;,&#xa;&quot;186=Saint Helena&quot;,&#xa;&quot;187=Saint Kitts &amp; Nevis&quot;,&#xa;&quot;188=Saint Lucia&quot;,&#xa;&quot;189=San Marino&quot;,&#xa;&quot;190=Sao Tome &amp; Principe&quot;,&#xa;&quot;191=Saudi Arabia&quot;,&#xa;&quot;192=Senegal&quot;,&#xa;&quot;193=Seychelles&quot;,&#xa;&quot;194=Sierra Leone&quot;,&#xa;&quot;195=Singapore&quot;,&#xa;&quot;196=Slovakia&quot;,&#xa;&quot;197=Slovenia&quot;,&#xa;&quot;198=Solomon Islands&quot;,&#xa;&quot;199=Somalia&quot;,&#xa;&quot;200=South Africa&quot;,&#xa;&quot;201=S Georgia &amp; Sandwich&quot;,&#xa;&quot;202=Spain&quot;,&#xa;&quot;203=Sri Lanka&quot;,&#xa;&quot;204=Sudan&quot;,&#xa;&quot;205=Suriname&quot;,&#xa;&quot;206=Svalbard &amp; Jan Mayen&quot;,&#xa;&quot;207=Swaziland&quot;,&#xa;&quot;208=Sweden&quot;,&#xa;&quot;209=Switzerland&quot;,&#xa;&quot;210=Syrian Arab Republic&quot;,&#xa;&quot;211=Taiwan&quot;,&#xa;&quot;212=Tajikistan&quot;,&#xa;&quot;213=Tanzania&quot;,&#xa;&quot;214=Thailand&quot;,&#xa;&quot;215=East Timor&quot;,&#xa;&quot;216=Togo&quot;,&#xa;&quot;217=Tokelau&quot;,&#xa;&quot;218=Tonga&quot;,&#xa;&quot;219=Trinidad &amp; Tobago&quot;,&#xa;&quot;220=Tunisia&quot;,&#xa;&quot;221=Turkey&quot;,&#xa;&quot;222=Turkmenistan&quot;,&#xa;&quot;223=Turks and Caicos Is&quot;,&#xa;&quot;224=Tuvalu&quot;,&#xa;&quot;225=Uganda&quot;,&#xa;&quot;226=Ukraine&quot;,&#xa;&quot;227=United Arab Emirates&quot;,&#xa;&quot;228=United Kingdom&quot;,&#xa;&quot;229=United States&quot;,&#xa;&quot;230=Uruguay&quot;,&#xa;&quot;231=Uzbekistan&quot;,&#xa;&quot;232=Vanuatu&quot;,&#xa;&quot;233=Venezuela&quot;,&#xa;&quot;234=Vietnam&quot;,&#xa;&quot;235=Virgin Islands (BRI)&quot;,&#xa;&quot;236=Virgin Islands (US)&quot;,&#xa;&quot;237=Wallis &amp; Futuna&quot;,&#xa;&quot;238=Western Sahara&quot;,&#xa;&quot;239=Yemen&quot;,&#xa;&quot;240=Zambia&quot;,&#xa;&quot;241=Zimbabwe&quot;,&#xa;&quot;242=Canary Islands&quot;,&#xa;&quot;243=France Metropoliton&quot;,&#xa;&quot;244=Isle of Man&quot;,&#xa;&quot;245=Jersey&quot;,&#xa;&quot;246=Kampuchea&quot;,&#xa;&quot;247=Ross Dependency&quot;,&#xa;&quot;248=St Pierre &amp; Miquelon&quot;,&#xa;&quot;249=St Vincent &amp; Grenadi&quot;,&#xa;&quot;250=Tahiti&quot;,&#xa;&quot;251=US Minor Outlying Is&quot;,&#xa;&quot;252=West Indies&quot;,&#xa;&quot;253=Western Samoa&quot;,&#xa;&quot;254=Yugoslavia&quot;,&#xa;&quot;255=Zaire&quot;,&#xa;&quot;256=Unknown&quot;&#xa; ];&#xa; field.setValue(values);&#xa; }; &#xa; return true;&#xa; }"/>
+</jcr:root>

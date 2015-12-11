@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.jcr.Binary;
 import javax.jcr.ItemNotFoundException;
@@ -30,17 +28,13 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.day.cq.commons.Externalizer;
+import ops.global.core.servlets.OPSConstants;
 
 @SlingServlet(paths = { "/bin/save" }, methods = { "POST" }, metatype = true)
 public class OPSSaveServlet extends SlingAllMethodsServlet {
 	
 	// initializing all the constants
 	private static final long serialVersionUID = 1;
-	private static final String USER_NAME = "user_name";
-	private static final String STATE = "state";
-	private static final String APP_NO = "application_no";
 	private String newFormNode;
 	@Reference
 	private ResourceResolverFactory resourceResolverFactory;
@@ -56,9 +50,9 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 		this.logger.info("+++++++++++++++++++POST LOGGER");
 	
 		// fetching all the parameters
-			String user_name = request.getParameter("user_name");
-			String state = request.getParameter("state");
-			String app_no = request.getParameter("application_no");
+			String user_name = request.getParameter(OPSConstants.USER_NAME);
+			String state = request.getParameter(OPSConstants.STATE);
+			String app_no = request.getParameter(OPSConstants.APP_NO);
 			ResourceResolver resResolver = null;
 		
 				try {
@@ -87,8 +81,8 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							this.logger.info("+++++++++++++++++++COPIED FILE START");
 							Node newSavedNode = resSession.getNodeByUUID(this.newFormNode);
 							// update the user_name, state properties of the node
-							newSavedNode.setProperty("user_name", user_name);
-							newSavedNode.setProperty("state", state);
+							newSavedNode.setProperty(OPSConstants.USER_NAME, user_name);
+							newSavedNode.setProperty(OPSConstants.STATE, state);
 							newSavedNode.save();
 							InputStream content = newSavedNode.getProperty("jcr:data")
 									.getBinary().getStream();
@@ -138,14 +132,6 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 					counter++;
 
 					}
-					
-				
-				
-				
-			
-				
-		
-		
 	}
 		
 	
@@ -158,7 +144,7 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 		String sqlStatement = "SELECT * FROM [sling:Folder] AS s WHERE bApplicationNumber = '"
 				+ app_no
 				+ "' "
-				+ "and ISDESCENDANTNODE(s,'/content/usergenerated/content/forms/af/ops/') "
+				+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"') "
 				+ "ORDER BY [jcr:created] DESC";
 		this.logger
 				.info("SQL++++++++++++++++++++++++++++++++++" + sqlStatement);

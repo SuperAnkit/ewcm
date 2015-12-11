@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
     
 	private static final long serialVersionUID = 1L;  
+	private static int ldPurposeCategoryGroupValue;
    
         private Logger logger = LoggerFactory.getLogger(OPSSelectPurposeServlet.class);
      
@@ -92,7 +93,13 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
 
 			
 			String ldPurposeCategoryGroup = request.getParameter("ldPurposeCategory");
-			int ldPurposeCategoryGroupValue = Integer.parseInt(ldPurposeCategoryGroup);
+			
+			if (ldPurposeCategoryGroup.length() > 0) {
+				ldPurposeCategoryGroupValue = Integer.parseInt(ldPurposeCategoryGroup);
+			} else {
+				ldPurposeCategoryGroupValue = 1001;
+			}
+			 
 			
 			JSONArray ldPurposeCategoryJsonArray = new JSONArray();
 			
@@ -135,8 +142,9 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
 				ldPurposeCategoryJsonArray = new JSONArray();
                 for (String ldPurposeCategory : Supplementary) {
                 	ldPurposeCategoryJsonArray.put(ldPurposeCategory);
-                }
+                }  
 			}
+			
                 response.setContentType("application/json");
                 response.getWriter().write(ldPurposeCategoryJsonArray.toString());
              

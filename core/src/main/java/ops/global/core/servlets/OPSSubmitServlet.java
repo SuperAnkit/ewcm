@@ -5,14 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.jcr.Binary;
 import javax.jcr.ItemNotFoundException;
@@ -37,9 +34,6 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.Externalizer;
-
-
 @SlingServlet(paths={"/bin/submit "}, methods={"POST"}, metatype=true)
 
 
@@ -47,12 +41,8 @@ public class OPSSubmitServlet
 extends SlingAllMethodsServlet {
 	// initializing all the constants
     private static final long serialVersionUID = 1;
-    private static final String USER_NAME = "user_name";
-    private static final String STATE = "state";
-    private static final String APP_NO = "application_no";
     private String newFormNode;
     InputStream content;
-    private String url = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/get";
     
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
@@ -63,20 +53,17 @@ extends SlingAllMethodsServlet {
     }
 
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-
-this.logger.info("+++++++++++++++++++POST LOGGER");
 		
 		// fetching all the parameters
-		String user_name = request.getParameter("user_name");
-		String state = request.getParameter("state");
-		String app_no = request.getParameter("application_no");
+		String user_name = request.getParameter(OPSConstants.USER_NAME);
+		String state = request.getParameter(OPSConstants.STATE);
+		String app_no = request.getParameter(OPSConstants.APP_NO);
 		ResourceResolver resResolver = null;
 		InputStream content = null;
 		Binary contentValue = null;
 	
 			try {
-				resResolver = this.resourceResolverFactory
-						.getAdministrativeResourceResolver(null);
+				resResolver = this.resourceResolverFactory.getAdministrativeResourceResolver(null);
 			} catch (LoginException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,26 +74,24 @@ this.logger.info("+++++++++++++++++++POST LOGGER");
 		List<String> tempSet = this.getNodeSet(resSession, user_name, state,
 				app_no);
 		int counter = 1;
+		Node verifyNode = null ;
 		for (String nodePath : tempSet) {
-			this.logger.info("+++++++++++++++++++CHECKING NODE" + nodePath);
-			this.logger.info("+++++++++++++++++++COUNTER" + counter);
 				Node savedNode;
 				try {
 					savedNode = resSession.getNodeByUUID(nodePath);
-					if (counter == 1) {
+					if (counter == 1) { // fetching the latest XML file
 						this.newFormNode = nodePath;
-						this.logger.info("+++++++++++++++++++COPIED FILE START");
 						Node newSavedNode = resSession.getNodeByUUID(this.newFormNode);
-						newSavedNode.setProperty("user_name", user_name);
-						newSavedNode.setProperty("state", state);
-						newSavedNode.save();
-						content = newSavedNode.getProperty("jcr:data")
-								.getBinary().getStream();
-						this.logger.info("+++++++++++++++++++COPIED FILE STOP");
+						verifyNode = resSession.getNodeByUUID(this.newFormNode);
+						newSavedNode.setProperty(OPSConstants.USER_NAME, user_name);
+						newSavedNode.setProperty(OPSConstants.STATE, state);
+						newSavedNode.save(); //save the properties for the latest sling:Folder
+						
+						//update & create XML file under sling:Folder
+						content = newSavedNode.getProperty("jcr:data").getBinary().getStream();
 						String mimeType = "application/octet-stream";
 						ValueFactory valueFactory = resSession.getValueFactory();
 						contentValue = valueFactory.createBinary(content);
-						this.logger.info("+++++++++++++++++++CONTENT FILE STOP" + contentValue);
 						Node fileNode = newSavedNode.addNode(app_no + ".xml", "nt:file");
 						fileNode.addMixin("mix:referenceable");
 						Node resNode = fileNode.addNode("jcr:content", "nt:resource");
@@ -118,23 +103,15 @@ this.logger.info("+++++++++++++++++++POST LOGGER");
 						newSavedNode.save();
 						resNode.save();
 						resSession.save();
-						response.getWriter().write("++++++++++++++++++++++FROM POST");
 
 				        
 				} 
 					else {
-						this.logger.info("+++++++++++++++++++NODE DELETE START");
+						//delete the older XML files and folder
 						Node toSave = (Node) request.getResourceResolver().getResource(nodePath.substring(0,nodePath.lastIndexOf("/"))).adaptTo((Class) Node.class);
-						this.logger.info("+++++++++++++++++++NODE DELEYTE PATH:"
-								+ savedNode.getPath());
-						this.logger
-								.info("+++++++++++++++++++NODE DELEYTE PATH UP LEVEL:"
-										+ toSave.getPath());
 						savedNode.remove();
-						//savedNode.save();
 						toSave.save();
 						resSession.save();
-						this.logger.info("+++++++++++++++++++NODE DELEYTED");
 					} 	
 				
 				}catch (ItemNotFoundException e) {
@@ -152,14 +129,30 @@ this.logger.info("+++++++++++++++++++POST LOGGER");
 			
 		//make ws call to submit data
         try {
-			passSubmittedData(contentValue.getStream(), resResolver);
+			String resArray[] = passSubmittedData(contentValue.getStream(), resResolver, user_name);
+			response.getWriter().write(resArray[1]);
+			int resCode = Integer.parseInt(resArray[0]);
+			//revert the sling:folder change back to Draft in case of submit failure
+			if (resCode != OPSConstants.RESPONSE_200) {
+				verifyNode.setProperty(OPSConstants.STATE, OPSConstants.DRAFT_STATUS);
+				verifyNode.save();
+				resSession.save();
+				logger.info("Submit failed at BL for application {}", app_no);
+			}
+			else{
+				logger.info("Submit successful at BL for application {}", app_no);
+			}
+			
+			
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			
 		
-			
+	
+        
+    	
 	
 	
 
@@ -167,11 +160,8 @@ this.logger.info("+++++++++++++++++++POST LOGGER");
     
 }
 
-private void passSubmittedData(InputStream content, ResourceResolver resResolver) throws IOException {
+private String[] passSubmittedData(InputStream content, ResourceResolver resResolver, String user_name) throws IOException {
 	// TODO Auto-generated method stub
-	
-	//String param = "{\"applicationNumber\":\"23\", \"userName\":\"\", \"sessionToken\":\"401064664\", \"stage\":\"NEW_APPLICATION\"}";
-	
 	
 	BufferedReader br = null;
 	StringBuilder sb = new StringBuilder();
@@ -198,21 +188,11 @@ private void passSubmittedData(InputStream content, ResourceResolver resResolver
 
 		
 	
-	Externalizer externalizer = resResolver.adaptTo(
-			Externalizer.class);
-	String getServiceURL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/saveXMLRequest?status=DEProg";
-	//String getServiceURL = externalizer.externalLink(resResolver, "saveXMLRequest","") + "?status=DEProg";
-	logger.info("EXT ++++++" + getServiceURL + "++++");
-	logger.info("EXT ++++++" + content.toString() + "++++");
-	//logger.info("EXT ++++++" + content.toString());
-	
-	
-	
 	logger.info("Rquest XML : " + sb.toString());
-	logger.info("Rquest XML sfter");
 	
-	URL URLobj = new URL(getServiceURL);
-	 URLConnection connection = URLobj.openConnection();
+	URL URLobj = new URL(OPSConstants.WS_SUBMIT_URL.replace("USER_NAME", user_name));
+	 //URLConnection connection = URLobj.openConnection();
+	 HttpURLConnection connection = (HttpURLConnection)URLobj.openConnection();
 	
 	String charset = "UTF-8"; 
 	  //URLConnection connection = new URL(url).openConnection();
@@ -225,24 +205,46 @@ private void passSubmittedData(InputStream content, ResourceResolver resResolver
 	  	wr.write(sb.toString().getBytes());
 			wr.flush();
 			wr.close();
+			StringBuilder response = new StringBuilder();
+			BufferedReader buffReader = null;
+			String responseline;
+			try{
 
-		String responseCode = connection.getContent().toString();
-		logger.info("INSIDE GET LKOGGER responseCode+++++++++++" + responseCode);
-		//System.out.println("INSIDE GET LKOGGER+++++++++++" + newresponse.toString());
-	//System.out.println("\nSending 'POST' request to URL : " + url);
-	//System.out.println("Post parameters : " + urlParameters);
-	//System.out.println("Response Code : " + responseCode);
-
-	BufferedReader in = new BufferedReader(
-	        new InputStreamReader(connection.getInputStream()));
-	String inputLine;
-	StringBuffer newresponse = new StringBuffer();
-
-	while ((inputLine = in.readLine()) != null) {
-		newresponse.append(inputLine);
+				buffReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				while ((responseline = buffReader.readLine()) != null) {
+					response.append(responseline);
+				}
+			}catch(Exception e){
+				
+				buffReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+				while ((responseline = buffReader.readLine()) != null) {
+					response.append(responseline);
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+	logger.info("RES FROM DB" + response.toString());	
+	
+	int code = connection.getResponseCode();
+	logger.info("RES CODE" + code);
+	
+	String responseArray[] = new String[2];
+	responseArray[0]= Integer.toString(code);
+	if (code == OPSConstants.RESPONSE_200) {
+		responseArray[1] =  "SUCCESS";
+	} else {
+		responseArray[1] =  response.toString();
 	}
-	in.close();
-	logger.info("NEW RESPONSE+++++++++++" + newresponse.toString());
+	
+    return responseArray;
+	
+
 
 }
 
@@ -252,10 +254,8 @@ private List<String> getNodeSet(Session session, String user_name,
 	String sqlStatement = "SELECT * FROM [sling:Folder] AS s WHERE bApplicationNumber = '"
 			+ app_no
 			+ "' "
-			+ "and ISDESCENDANTNODE(s,'/content/usergenerated/content/forms/af/ops/') "
+			+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"') "
 			+ "ORDER BY [jcr:created] DESC";
-	this.logger
-			.info("SQL++++++++++++++++++++++++++++++++++" + sqlStatement);
 	tempNodeSet = this.getCurrentPaths(session, sqlStatement, tempNodeSet);
 	return tempNodeSet;
 }
@@ -273,17 +273,10 @@ private List<String> getCurrentPaths(Session session, String sqlStatement,
 		query = queryManager.createQuery(sqlStatement, "JCR-SQL2");
 		QueryResult result = null;
 		result = query.execute();
-		this.logger.info("THE RESULT ++++++++++++++++++++++++"
-				+ result.toString());
 		NodeIterator nodeIter = result.getNodes();
-		this.logger.info("CHECK ++++++++++++++" + nodeIter.getSize());
 		while (nodeIter.hasNext()) {
 			String tempNodePath = nodeIter.nextNode().getPath().trim();
-			this.logger.info("INTO LOOP++++++++++++++++++++++++++");
 			tempNodeSet.add(tempNodePath);
-			this.logger
-					.info("NODES FOUND------------------------------------------------------------------------"
-							+ tempNodePath + "--------------------");
 		}
 	} catch (RepositoryException e) {
 		e.printStackTrace();

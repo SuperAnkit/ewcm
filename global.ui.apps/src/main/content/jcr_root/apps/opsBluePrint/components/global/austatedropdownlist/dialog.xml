@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    height="{Long}600"
+    title="Edit drop-down list"
+    xtype="dialog">
+    <items jcr:primaryType="cq:TabPanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <title
+                jcr:primaryType="nt:unstructured"
+                title="Title and text"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <items
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/title/items.infinity.json"
+                        xtype="cqinclude"/>
+                    <multiSelect
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Allows multiple selection"
+                        inputValue="true"
+                        name="./multiSelect"
+                        type="checkbox"
+                        xtype="selection"/>
+                    <defaultValue
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Must be one of the options"
+                        fieldLabel="Default value"
+                        name="./_value"
+                        xtype="textfield"/>
+                    <multiValuePath
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Items load path"
+                        name="./optionsLoadPath"
+                        xtype="textfield"/>
+                    <options
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Enter values in {value}={text} format."
+                        fieldLabel="State"
+                        name="./options"
+                        typeHint="String[]"
+                        xtype="multifield">
+                        <fieldConfig
+                            jcr:primaryType="nt:unstructured"
+                            allowBlank="{Boolean}false"
+                            xtype="textfield"/>
+                    </options>
+                </items>
+            </title>
+            <script
+                jcr:primaryType="nt:unstructured"
+                labelWidth="{Long}160"
+                title="Script"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <valueCommitScript
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/valueCommitScript.infinity.json"
+                        xtype="cqinclude"/>
+                    <calcExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/calcExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <visibleExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/visibleExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <enabledExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/enabledExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExpMessage
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExpMessage.infinity.json"
+                        xtype="cqinclude"/>
+                    <bindref
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Bind reference"
+                        name="./bindRef"
+                        xtype="textfield">
+                        <listeners
+                            jcr:primaryType="nt:unstructured"
+                            loadcontent="function() { guidelib.author.GuideExtJSDialogUtils.disableMultiSelection.apply(this, arguments); }"/>
+                    </bindref>
+                    <optionExpression
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Options expression"
+                        name="./optionsExp"
+                        xtype="textfield"/>
+                </items>
+            </script>
+            <styling
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/styling.infinity.json"
+                xtype="cqinclude"/>
+            <help
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/help.infinity.json"
+                xtype="cqinclude"/>
+            <accessibility
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/accessiblity.infinity.json"
+                xtype="cqinclude"/>
+        </items>
+    </items>
+    <listeners
+        jcr:primaryType="nt:unstructured"
+        beforehide="function(){guidelib.author.GuideExtJSDialogUtils.beforeHideHandler.apply(this);}"
+        loadcontent="function(dialog) { &#xa; var field = dialog.getField('./options'); &#xa; if(field.getValue())&#xa; { &#xa; /*a servlet, webservice or script that returns either an arraylist or JSON object can be used to populate the values*/&#xa; var values = [&quot;1=VIC&quot;, &#xa; &quot;2=NSW&quot;, &#xa; &quot;3=QLD&quot;, &#xa; &quot;4=WA&quot;, &#xa; &quot;5=SA&quot;, &#xa; &quot;6=NT&quot;, &#xa; &quot;7=ACT&quot;, &#xa; &quot;8=TAS&quot;,&#xa; &quot;9=N/A&quot;&#xa; ];&#xa; field.setValue(values);&#xa; }; &#xa; return true;&#xa; }"/>
+</jcr:root>

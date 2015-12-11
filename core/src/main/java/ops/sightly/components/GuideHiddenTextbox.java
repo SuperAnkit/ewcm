@@ -39,47 +39,36 @@ public class GuideHiddenTextbox extends WCMUse {
 		String listGroup = getProperties().get(PROP_LIST, String.class);
 				
 		if (listGroup.equals(PROP_LIST_OPTION1)) {
-        	log.info("IN LIST 1++++++++++++++++");
 			UserManager userManager = getResourceResolver().adaptTo(UserManager.class);
 	        Authorizable opsBluPrintUser = userManager.getAuthorizable(getRequest().getUserPrincipal());
-	        log.info("IN LIST 1 USR NAME++++++++++++++++" + getRequest().getUserPrincipal().getName());
 			Iterator<Group> groups = opsBluPrintUser.memberOf();
 			for (;groups.hasNext();) {
 	        		String groupName = groups.next().getPrincipal().getName();
-	            	log.info("IN LIST 1 GRP NAME++++++++++++++++" + groupName);
 
 					if ((groupName.equals(MAKER_GROUP)) || (groupName.equals(CHECKER_GROUP)) || (groupName.equals(READER_GROUP)) ) {	
 						hiddenFieldValue = groupName ;	
-						log.info("IN LIST 1 VALUE++++++++++++++++" + hiddenFieldValue);
 					}
 	        		
 			}
 			
 		} 
         else if (listGroup.equals(PROP_LIST_OPTION2)) {
-        	log.info("IN LIST 2++++++++++++++++");
 
         	hiddenFieldValue = getRequest().getUserPrincipal().getName();
-        	log.info("IN LIST 2 VALUE++++++++++++++++" + hiddenFieldValue);
 		}  
 		else if (listGroup.equals(PROP_LIST_OPTION3)) {
-        	log.info("IN LIST 3++++++++++++++++");
         	// to be added
 			
 		}
 		else if (listGroup.equals(PROP_LIST_OPTION4)) {
-        	log.info("IN LIST 3++++++++++++++++");
         	hiddenFieldValue = getProperties().get(STATIC_VALUE, String.class);
 			
 		}
 			
 	}
 
-
-	
 	
 	public String getHiddenFieldValue() {
-		log.info("HIDDEN VALUE+++++++++++++++++++++++++++++++" + hiddenFieldValue);
 		return hiddenFieldValue;
 	}
 	

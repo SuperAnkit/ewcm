@@ -24,6 +24,7 @@ import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ops.global.core.servlets.OPSConstants;
 
 import com.adobe.cq.sightly.WCMUse;
 
@@ -91,12 +92,12 @@ public class TabularFormDisplay extends WCMUse {
 	        		Set<String> draftNodeSet = new HashSet<String>();
 	        		Set<String> reviewNodeSet = new HashSet<String>();
 
-					if (groupName.equals(MAKER_GROUP)) {	
+					if (groupName.equals(OPSConstants.MAKER_GROUP)) {	
 						log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
 	        			//get user draft Nodes
 						 Set<String> tempDraftSet = getNodeSet(
 								getResourceResolver().adaptTo(Session.class),
-								USER_NAME, DRAFT_STATUS, MY_FORMS);
+								USER_NAME, OPSConstants.DRAFT_STATUS, MY_FORMS);
 						 //get all user workitems
 						 workingItemsLinkSet = getSavedNodeSet(
 									getResourceResolver().adaptTo(Session.class),
@@ -120,7 +121,7 @@ public class TabularFormDisplay extends WCMUse {
 	        			// get all draft Nodes
 						 Set<String> tempReviewtSet = getNodeSet(
 									getResourceResolver().adaptTo(Session.class),
-									USER_NAME, DRAFT_STATUS, ALL_FORMS);
+									USER_NAME, OPSConstants.DRAFT_STATUS, ALL_FORMS);
 	        			log.info("STARTING REVEW DET++++++++++++++++++++++++++++++++++" );
 	        			// get all the node links
 	        			reviewFormLinks = getNodePaths(getResourceResolver().adaptTo(Session.class), tempReviewtSet);
@@ -138,16 +139,16 @@ public class TabularFormDisplay extends WCMUse {
 	        			reviewDisplay = BLOCK_VALUE;
 	        			workItemDisplay = BLOCK_VALUE;
 					}
-	        		if (groupName.equals(CHECKER_GROUP)) {
+	        		if (groupName.equals(OPSConstants.CHECKER_GROUP)) {
 	        			log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
 	        			//get user review-draft Nodes
 						 Set<String> tempDraftSet = getNodeSet(
 								getResourceResolver().adaptTo(Session.class),
-								USER_NAME, REVIEW_STATUS, MY_FORMS);
+								USER_NAME, OPSConstants.REVIEW_STATUS, MY_FORMS);
 						//get all review-draft Nodes
 						 Set<String> tempReviewtSet = getNodeSet(
 									getResourceResolver().adaptTo(Session.class),
-									USER_NAME, REVIEW_STATUS, ALL_FORMS);
+									USER_NAME, OPSConstants.REVIEW_STATUS, ALL_FORMS);
 						 //get user workitems nodes
 						 workingItemsLinkSet = getSavedNodeSet(
 									getResourceResolver().adaptTo(Session.class),
@@ -181,7 +182,7 @@ public class TabularFormDisplay extends WCMUse {
 	        			workItemDisplay = BLOCK_VALUE;
 
 					}
-	        		if (groupName.equals(READER_GROUP)) {
+	        		if (groupName.equals(OPSConstants.READER_GROUP)) {
 	        			log.info("GROUPNAME++++++++++++++++++++++++++++++++++" + groupName);
 						//get details for DB and no tab visible for reader
 	        			draftDisplay = reviewDisplay = workItemDisplay = NONE_VALUE;
@@ -301,7 +302,7 @@ public class TabularFormDisplay extends WCMUse {
 		List linkSet = new ArrayList();
 		for (int i = 0; i < formLink.size(); i++) {
         	
-			String tempLinkSet = "<a href='"+ FP_FORMS_PATH + FP_FORMS_QRY_STRING + formLink.get(i) + "/"+ formTitles.get(i) + ".xml" +"' class='list-group-item'><span class='glyphicon'></span> "+ formTitles.get(i) +"<span class='badge'> "+ userInfoSet.get(i) +" </span></a>";
+			String tempLinkSet = "<a href='"+ OPSConstants.FP_FORMS_PATH + OPSConstants.FP_FORMS_QRY_STRING + formLink.get(i) + "/"+ formTitles.get(i) + ".xml" +"' class='list-group-item'><span class='glyphicon'></span> "+ formTitles.get(i) +"<span class='badge'> "+ userInfoSet.get(i) +" </span></a>";
 			linkSet.add(tempLinkSet);
 			//log.info("START------------------------------------------------------------------------" + tempLinkSet + "---------------------END");
 		}
@@ -387,13 +388,13 @@ public class TabularFormDisplay extends WCMUse {
 					//+ "loan_no = '"+ LOAN_APP_NO +"' "
 					+ "user_name = '"+ USER_NAME +"' "
 					+ "and state = '"+ status +"' "
-					+ "and ISDESCENDANTNODE(s,'/content/usergenerated/content/forms/af/ops/')";
+					+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"')";
 		} else {
 			sqlStatement = "SELECT * FROM [sling:Folder] As s WHERE "
 					//+ "loan_no = '"+ LOAN_APP_NO +"' "
 					+ "user_name <> '"+ USER_NAME +"' "
 					+ "and state = '"+ status +"' "
-					+ "and ISDESCENDANTNODE(s,'/content/usergenerated/content/forms/af/ops/')";
+					+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"')";
 		}
 		log.info("SQL++++++++++++++++++++++++++++++++++" + sqlStatement);
 		

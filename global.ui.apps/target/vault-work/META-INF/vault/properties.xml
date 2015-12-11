@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>OPS- Global Apps</comment>
+<comment>OPS - Global UI Apps</comment>
 <entry key="createdBy">selvav</entry>
 <entry key="name">ops.global.apps</entry>
-<entry key="created">2015-11-23T11:21:51.686+0530</entry>
+<entry key="created">2015-12-09T15:20:41.652+0530</entry>
 <entry key="groupId">ops</entry>
 <entry key="version">1.0.0-SNAPSHOT</entry>
 <entry key="requiresRoot">false</entry>
-<entry key="group">ops/apps</entry>
+<entry key="group">ops</entry>
 <entry key="description">Global Apps Package</entry>
 <entry key="artifactId">ops.global.apps</entry>
-<entry key="path">/etc/packages/ops/apps/ops.global.apps.zip</entry>
+<entry key="path">/etc/packages/ops/ops.global.apps.zip</entry>
 </properties>

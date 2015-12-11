@@ -23,6 +23,7 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ops.global.core.servlets.OPSConstants;
 
 import com.day.cq.commons.Externalizer;
 
@@ -34,8 +35,6 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
     
 	// initializing all the constants
     private static final long serialVersionUID = 1L;
-    private static final String SEARCH_KEYWORD = "loanNum";
-    private static final String DOC_TYPE = "docType";
     private String search_keyword;
     private String docType;
 	HttpClient client = new HttpClient();
@@ -53,14 +52,13 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
     	logger.info("+++++++++++++++++++INTO OPS SEARCH");
     	
     	// fetch all the parameters
-    	search_keyword = request.getParameter(SEARCH_KEYWORD);
-    	docType = request.getParameter(DOC_TYPE);
+    	search_keyword = request.getParameter(OPSConstants.SEARCHED_APP_NO);
+    	docType = request.getParameter(OPSConstants.DOC_TYPE);
     	
     	logger.info("SRCH TXT" + search_keyword);
 	
 		// populate json structure for querying DB		
-    	String param = "{\"applicationNumber\":\""
-    			+ search_keyword + "\", \"userName\":\"\", \"sessionToken\":\"401064664\", \"stage\":\"" + docType + "\"}";
+    	String param = OPSConstants.READER_PARAM.replace(OPSConstants.SEARCHED_APP_NO, search_keyword).replace(OPSConstants.DOC_TYPE, docType);
     	ResourceResolver resResolver = null;
         
         try {
@@ -68,7 +66,7 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
 			logger.info("PARAM  " + param);
 			// fetch WS URL from externalizer
 	    	Externalizer externalizer = resResolver.adaptTo(Externalizer.class);
-			String getServiceURL = externalizer.externalLink(resResolver, "readerGet","");
+			String getServiceURL = OPSConstants.WS_GET_READER_URL;
 			logger.info("EXT ++++++" + getServiceURL);
 			
 			// create WS connection

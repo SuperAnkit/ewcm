@@ -16,6 +16,7 @@
 	<modules>
 		<module>core</module>
 		<module>global.ui.apps</module>
+		<module>global.ui.content</module>
 	</modules>
 
 	<properties>

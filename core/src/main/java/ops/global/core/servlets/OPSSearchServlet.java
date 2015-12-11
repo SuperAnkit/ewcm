@@ -6,21 +6,13 @@ import javax.jcr.query.QueryResult;
 import javax.jcr.NodeIterator;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,37 +39,21 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.Externalizer;
 
 @SlingServlet(paths = "/bin/opsSearch", methods = { "POST" }, metatype = true)
 public class OPSSearchServlet extends SlingAllMethodsServlet {
 
 	// initializing all the constants
 	private static final long serialVersionUID = 1L;
-	private static final String USER_NAME = "user_name";
-	private static final String USER_GRP = "user_group";
-	private static final String SEARCH_KEYWORD = "frmSearch_txt";
-	private static final String DOC_TYPE = "docType";
-	private static final String MAKER_GROUP = "maker_group";
-	private static final String CHECKER_GROUP = "checker_group";
-	private static final String READER_GROUP = "reader_group";
-	private static final String DRAFT_STATUS = "ops:draft";
-	private static final String REVIEW_STATUS = "ops:review";
+
+
 	private static Set<String> searchNodeSet;
-	private static final String FP_FORMS_QRY_STRING = "?wcmmode=disabled&dataRef=crx://";
-	private static final String FP_FORMS_PATH = "/content/forms/af/ops/mortgage.html";
-	private static final String FP_READER_FORMS_PATH = "/content/ops/readerpage.html";
-	private static final String HIDDEN_PATH = "/content/usergenerated/hidden/";
-	private static final String RESULT_FOUND = "Result found";
 	private static final String RESULT_NOT_FOUND = "No Result Found";
 	private String searchResult = RESULT_NOT_FOUND;
-	private boolean formInJCR = false;
 	private String search_keyword;
 	private String document_type;
 	HttpClient client = new HttpClient();
 	private String toReturnResults = null;
-	private String newFormNode;
-	int failedResponse = 204;
 
 	GetMethod method = null;
 
@@ -93,10 +69,10 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 		logger.info("+++++++++++++++++++INTO OPS SEARCH");
 
 		// fetch all the parameters
-		String user_name = request.getParameter(USER_NAME);
-		String user_group = request.getParameter(USER_GRP);
-		search_keyword = request.getParameter(SEARCH_KEYWORD);
-		document_type = request.getParameter(DOC_TYPE);
+		String user_name = request.getParameter(OPSConstants.USER_NAME);
+		String user_group = request.getParameter(OPSConstants.USER_GRP);
+		search_keyword = request.getParameter(OPSConstants.SEARCH_KEYWORD);
+		document_type = request.getParameter(OPSConstants.DOC_TYPE);
 		logger.info("+++++++++++++++++++GOT ALL PARA");
 
 		logger.info("+++++++++++++++++++GOT KWRD" + search_keyword);
@@ -111,11 +87,11 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 			// create a session object
 			Session resSession = resResolver.adaptTo(Session.class);
 
-			if (user_group.equals(MAKER_GROUP)) {
+			if (user_group.equals(OPSConstants.MAKER_GROUP)) {
 				try {
 					// get user draft forms from JCR
 					searchNodeSet = getNodePaths(resSession, search_keyword,
-							DRAFT_STATUS);
+							OPSConstants.DRAFT_STATUS);
 				} catch (ItemNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -134,11 +110,11 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 					
 					if (iPStream != null) { 
 						// found in DB
-						searchResult = RESULT_FOUND;
+						searchResult = OPSConstants.RESULT_FOUND;
 						
 						Node savedNode;
 						try {
-							savedNode = resSession.getNode(HIDDEN_PATH);
+							savedNode = resSession.getNode(OPSConstants.HIDDEN_PATH);
 
 							if (!savedNode.hasNode(search_keyword + ".xml")) { // check
 																				// if
@@ -152,7 +128,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 								logger.info("+++++++++++++++++++COPIED FILE STOP");
 							} else {
 								// delete the current node
-								String nodePath = HIDDEN_PATH + search_keyword + ".xml";
+								String nodePath = OPSConstants.HIDDEN_PATH + search_keyword + ".xml";
 								
 								logger.info("+++++++++++++++++++NODE DELETE START" + nodePath);
 								
@@ -181,9 +157,9 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 						// create html for the result found
 
 						toReturnResults = "<a href='"
-								+ FP_FORMS_PATH
-								+ FP_FORMS_QRY_STRING
-								+ HIDDEN_PATH
+								+ OPSConstants.FP_FORMS_PATH
+								+ OPSConstants.FP_FORMS_QRY_STRING
+								+ OPSConstants.HIDDEN_PATH
 								+ search_keyword
 								+ ".xml' class='list-group-item'><span class='glyphicon'></span> "
 								+ search_keyword + " </a>";
@@ -201,7 +177,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 								+ "+++");
 						if (nodePath == "") {
 						} else {
-							searchResult = RESULT_FOUND;
+							searchResult = OPSConstants.RESULT_FOUND;
 							// prepare list of all results
 							for (String set : searchNodeSet) {
 								logger.info("LOOP NODE FINAL++++++++++++++++++++++++++++++++++++"
@@ -212,8 +188,8 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 								// +"' class='list-group-item'><span class='glyphicon glyphicon-camera'></span> "+
 								// search_keyword +" </a>");
 								toReturnResults = "<a href='"
-										+ FP_FORMS_PATH
-										+ FP_FORMS_QRY_STRING
+										+ OPSConstants.FP_FORMS_PATH
+										+ OPSConstants.FP_FORMS_QRY_STRING
 										+ set
 										+ "' class='list-group-item'><span class='glyphicon'></span> "
 										+ search_keyword + " </a>";
@@ -231,11 +207,11 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 						+ searchResult);
 
 			}
-			if (user_group.equals(CHECKER_GROUP)) {
+			if (user_group.equals(OPSConstants.CHECKER_GROUP)) {
 				try {
 					// get user review forms
 					searchNodeSet = getNodePaths(resSession, search_keyword,
-							REVIEW_STATUS);
+							OPSConstants.REVIEW_STATUS);
 				} catch (ItemNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -252,7 +228,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 						searchResult = RESULT_NOT_FOUND;
 
 					} else {
-						searchResult = RESULT_FOUND;
+						searchResult = OPSConstants.RESULT_FOUND;
 					}
 
 				}
@@ -265,8 +241,8 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 
 
 					toReturnResults = "<a href='"
-							+ FP_FORMS_PATH
-							+ FP_FORMS_QRY_STRING
+							+ OPSConstants.FP_FORMS_PATH
+							+ OPSConstants.FP_FORMS_QRY_STRING
 							+ set
 							+ "' class='list-group-item'><span class='glyphicon'></span> "
 							+ search_keyword + " </a>";
@@ -276,7 +252,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 				}
 
 			}
-			if (user_group.equals(READER_GROUP)) {
+			if (user_group.equals(OPSConstants.READER_GROUP)) {
 				toReturnResults = null;
 
 				logger.info("+++++++++++++++++++INTO READR LOOP");
@@ -284,11 +260,14 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 
 				String newresponse = getApplicationDataFromDB(search_keyword,
 						document_type, resResolver);
+				
+				logger.info("RESULT ++++" + newresponse + "++++");
 
-				if (!newresponse.toString().contains("\"applicationID\":null")) {
+				if (!newresponse.equals("NO_RESULT")) {	
+					searchResult = OPSConstants.RESULT_FOUND;
 
 					toReturnResults = "<a href='"
-							+ FP_READER_FORMS_PATH
+							+ OPSConstants.FP_READER_FORMS_PATH
 							+ "#?loanNum="
 							+ search_keyword
 							+ "&docType="
@@ -298,6 +277,9 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 					logger.info("LOOP NODE FINAL++++++++++++++++++++++++++++++++++++"
 							+ toReturnResults);
 					// System.out.println(set);
+				}
+				else{
+					searchResult = RESULT_NOT_FOUND;
 				}
 				// logger.info("LOOP NODE FINAL++++++++++++++++++++++++++++++++++++"
 				// + set);
@@ -333,18 +315,14 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 	private InputStream getXMLDataFromDB(String search_keyword,
 			String document_type, ResourceResolver resResolver) throws IOException {
 		// TODO Auto-generated method stub
-		String param = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><aemRequestWrapper><afData/><applicationNumber>"+search_keyword+"</applicationNumber><sessionToken>401064664</sessionToken><stage>"+document_type+"</stage></aemRequestWrapper>";
+		String param = OPSConstants.SEARCH_XML_PARAM.replace(OPSConstants.SEARCH_KEYWORD, search_keyword).replace(OPSConstants.DOC_TYPE, document_type);
     			
 		System.out.println("PARAM "+param);
 		
     	logger.info("+++++++++++++++++++INTO READR LOOP PARAM" + param);
     	
-    
-    	Externalizer externalizer = resResolver.adaptTo(
-				Externalizer.class);
-		String getServiceURL = externalizer.externalLink(resResolver, "getXMLRequest","");
-		logger.info("EXT ++++++" + getServiceURL);
-    	URL URLobj = new URL(getServiceURL);
+ 
+    	URL URLobj = new URL(OPSConstants.WS_GET_APP_URL);
     	
 		//URLConnection connection = URLobj.openConnection();
 		HttpURLConnection connection = (HttpURLConnection)URLobj.openConnection();
@@ -363,7 +341,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
   			int code = connection.getResponseCode();
   			logger.info("RES CODE" + code);
 		
-		if (code != failedResponse ) {
+		if (code != OPSConstants.RESPONSE_204 ) {
 			return connection.getInputStream();
 		} else {
 			return null;
@@ -383,7 +361,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 		String newmimeType = "application/octet-stream";
 		logger.info("CONNT VALUE DATA ++++before+++++");
 
-	   	Node node = resSession.getNode("/content/usergenerated/hidden");
+	   	Node node = resSession.getNode(OPSConstants.HIDDEN_PATH);
 		ValueFactory newvalueFactory = resSession.getValueFactory();
 		Binary newcontentValue = newvalueFactory.createBinary(iPStream);
 		logger.info("CONNT VALUE DATA ++++AFTER+++++");
@@ -416,18 +394,12 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 			String document_type, ResourceResolver resResolver)
 			throws IOException {
 		// TODO Auto-generated method stub
-		String param = "{\"applicationNumber\":\""
-				+ search_keyword
-				+ "\", \"userName\":\"\", \"sessionToken\":\"401064664\", \"stage\":\""
-				+ document_type + "\"}";
+		String param = OPSConstants.READER_PARAM.replace(OPSConstants.SEARCHED_APP_NO, search_keyword).replace(OPSConstants.DOC_TYPE, document_type);
+				
 
 		logger.info("+++++++++++++++++++INTO READR LOOP PARAM" + param);
 
-		Externalizer externalizer = resResolver.adaptTo(Externalizer.class);
-		String getServiceURL = externalizer.externalLink(resResolver,
-				"readerGet", "");
-		logger.info("EXT ++++++" + getServiceURL);
-		URL URLobj = new URL(getServiceURL);
+		URL URLobj = new URL(OPSConstants.WS_GET_READER_URL);
 
 		//URLConnection connection = URLobj.openConnection();
 		HttpURLConnection connection = (HttpURLConnection)URLobj.openConnection();
@@ -458,10 +430,10 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 		int code = connection.getResponseCode();
 			logger.info("RES CODE" + code);
 	
-	if (code != failedResponse ) {
+	if (code != OPSConstants.RESPONSE_204 ) {
 		return newresponse.toString();
 	} else {
-		return null;
+		return "NO_RESULT";
 	}
 	
 	
@@ -484,7 +456,7 @@ public class OPSSearchServlet extends SlingAllMethodsServlet {
 				+ "and state = '"
 				+ status
 				+ "' "
-				+ "and ISDESCENDANTNODE(s,'/content/usergenerated/content/forms/af/ops/')";
+				+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"')";
 
 		logger.info("SQL STMT++++++++++++++++++++++++++++++++++++++++"
 				+ sqlStatement);

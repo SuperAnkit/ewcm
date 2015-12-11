@@ -3,6 +3,7 @@ package ops.global.core.servlets;
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -19,14 +20,15 @@ import org.slf4j.LoggerFactory;
         metatype = true)
 public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
     
-	private static final long serialVersionUID = 1L;  
+	private static final long serialVersionUID = 1L;
+	private static int eOccupationalGroupValue;
    
         private Logger logger = LoggerFactory.getLogger(OPSSelectOccupationalServlet.class);
      
         protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
             IOException {
     	
-
+        	
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -60,7 +62,7 @@ public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
                     "128=Small bus. Proprietr",
                     "124=Student",
                     "127=Unemployed"};
-			String Management[] = {"130=ALower levl mgr/admin",
+			String Management[] = {"130=Lower levl mgr/admin",
                     "66=middle level mgr/adm",
                     "65=senior level mgr/adm"};
 			String Office_Workers[] = {"72=Acct/payroll clerk",
@@ -124,8 +126,14 @@ public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
 			"104=truck driver",
 			"102=warehouseman"
 			};
+			
 			String eOccupationalGroup = request.getParameter("eOccupationalGroup");
-			int eOccupationalGroupValue = Integer.parseInt(eOccupationalGroup);
+			if (eOccupationalGroup.length() > 0) {
+				eOccupationalGroupValue = Integer.parseInt(eOccupationalGroup);
+			} else {
+				eOccupationalGroupValue = 1001;
+			}
+			
 			
             JSONArray eoccupationalJsonArray = new JSONArray();
                 if (eOccupationalGroupValue == 1) {
@@ -188,7 +196,7 @@ public class OPSSelectOccupationalServlet extends SlingAllMethodsServlet {
                     for (String eoccupational : Unknown) {
                     	eoccupationalJsonArray.put(eoccupational);
                     }
-                }
+                } 
                 response.setContentType("application/json");
                 response.getWriter().write(eoccupationalJsonArray.toString());
          

@@ -2,11 +2,8 @@
 <workspaceFilter version="1.0">
 <filter root="/apps/ops/install" mode="update" />  
   <filter root="/apps/opsBluePrint" mode="update" /> 
-  <filter root="/etc/designs/ops-blueprint" mode="update" /> 
-  <filter root="/content/dam/ops/blueprint" mode="update" /> 
+  <filter root="/etc/designs/ops-blueprint" mode="update" />  
   <filter root="/content/dam/formsanddocuments/ops" mode="update" />
-  <filter root="/content/ops" mode="update" />
-  <filter root="/content/forms/af/ops/mortgage" mode="update" />  
   <filter root="/libs/fd/af/components/guideContainer/guideContainer.jsp" mode="update" /> 
   <filter root="/etc/clientlibs/fd/af/common/js/GuideUtil.js" mode="update" /> 
   <filter root="/etc/clientlibs/fd/fp/saveAsDraft/js/saveGuideDraft.js" mode="update" /> 

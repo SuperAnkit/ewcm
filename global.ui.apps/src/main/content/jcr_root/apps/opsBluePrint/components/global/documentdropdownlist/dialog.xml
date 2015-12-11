@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    height="{Long}600"
+    title="Edit drop-down list"
+    xtype="dialog">
+    <items jcr:primaryType="cq:TabPanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <title
+                jcr:primaryType="nt:unstructured"
+                title="Title and text"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <items
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/title/items.infinity.json"
+                        xtype="cqinclude"/>
+                    <multiSelect
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Allows multiple selection"
+                        inputValue="true"
+                        name="./multiSelect"
+                        type="checkbox"
+                        xtype="selection"/>
+                    <defaultValue
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Must be one of the options"
+                        fieldLabel="Default value"
+                        name="./_value"
+                        xtype="textfield"/>
+                    <multiValuePath
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Items load path"
+                        name="./optionsLoadPath"
+                        xtype="textfield"/>
+                    <options
+                        jcr:primaryType="cq:Widget"
+                        fieldDescription="Enter values in {value}={text} format."
+                        fieldLabel="Document"
+                        name="./options"
+                        typeHint="String[]"
+                        xtype="multifield">
+                        <fieldConfig
+                            jcr:primaryType="nt:unstructured"
+                            allowBlank="{Boolean}false"
+                            xtype="textfield"/>
+                    </options>
+                </items>
+            </title>
+            <script
+                jcr:primaryType="nt:unstructured"
+                labelWidth="{Long}160"
+                title="Script"
+                xtype="panel">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <valueCommitScript
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/valueCommitScript.infinity.json"
+                        xtype="cqinclude"/>
+                    <calcExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/calcExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <visibleExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/visibleExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <enabledExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/enabledExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExp
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExp.infinity.json"
+                        xtype="cqinclude"/>
+                    <validateExpMessage
+                        jcr:primaryType="nt:unstructured"
+                        path="/libs/fd/af/components/guidefield/dialog/items/script/items/validateExpMessage.infinity.json"
+                        xtype="cqinclude"/>
+                    <bindref
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Bind reference"
+                        name="./bindRef"
+                        xtype="textfield">
+                        <listeners
+                            jcr:primaryType="nt:unstructured"
+                            loadcontent="function() { guidelib.author.GuideExtJSDialogUtils.disableMultiSelection.apply(this, arguments); }"/>
+                    </bindref>
+                    <optionExpression
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Options expression"
+                        name="./optionsExp"
+                        xtype="textfield"/>
+                </items>
+            </script>
+            <styling
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/styling.infinity.json"
+                xtype="cqinclude"/>
+            <help
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/help.infinity.json"
+                xtype="cqinclude"/>
+            <accessibility
+                jcr:primaryType="nt:unstructured"
+                path="/libs/fd/af/components/guidefield/dialog/items/accessiblity.infinity.json"
+                xtype="cqinclude"/>
+        </items>
+    </items>
+    <listeners
+        jcr:primaryType="nt:unstructured"
+        beforehide="function(){guidelib.author.GuideExtJSDialogUtils.beforeHideHandler.apply(this);}"
+        loadcontent="function(dialog) { &#xa; var field = dialog.getField('./options'); &#xa; if(field.getValue())&#xa; { &#xa; /*a servlet, webservice or script that returns either an arraylist or JSON object can be used to populate the values*/&#xa; var values = [&quot;1=Customer Application - Declaration&quot;,&#xa;&quot;2=Guarantor's Assessment Checklist&quot;,&#xa;&quot;3=Deposit&quot;,&#xa;&quot;4=Passport&quot;,&#xa;&quot;5=Australian Birth certificate&quot;,&#xa;&quot;6=Australian Visa&quot;,&#xa;&quot;7=Australian citizenhip certificate&quot;,&#xa;&quot;8=New zealand passport&quot;,&#xa;&quot;9=Contract of sale&quot;,&#xa;&quot;10=Contract to build&quot;,&#xa;&quot;11=Marriage certificate&quot;,&#xa;&quot;12=Divorce certificate&quot;,&#xa;&quot;13=Customer Application  - Cover Sheets - Breakfree From&quot;,&#xa;&quot;14=Council Approved Plans&quot;,&#xa;&quot;15=Building Permit&quot;,&#xa;&quot;16=Building Contract - Schedule Of payment&quot;,&#xa;&quot;17=TOC Valuation&quot;,&#xa;&quot;18=FHOG&quot;,&#xa;&quot;19=Customer Application  - SP&quot;,&#xa;&quot;20=Trust/ Partnership Tax Return - Income Document&quot;,&#xa;&quot;21=OFI Statement&quot;,&#xa;&quot;22=Company Tax Return - Income Document&quot;,&#xa;&quot;23=Trust/ Company/ Partnership Financial Statements&quot;,&#xa;&quot;24=Individual tax Returns&quot;,&#xa;&quot;25=ATO Notice of assessment&quot;,&#xa;&quot;26=Payslips&quot;,&#xa;&quot;27=PAYG Summary&quot;,&#xa;&quot;28=DSS Statement&quot;,&#xa;&quot;29=Rental statement/ Rental Agreement&quot;,&#xa;&quot;30=Customer Application  - Cover Sheets - Breakfree From&quot;,&#xa;&quot;31=Disbursement and Settlement Authority&quot;,&#xa;&quot;32=Direct Loan Payment Request&quot;,&#xa;&quot;33=Letter of Offer&quot;,&#xa;&quot;34=Disbursement &amp; Settlement Authority&quot;,&#xa;&quot;35=Direct Loan Payment&quot;,&#xa;&quot;36=Mortgage&quot;,&#xa;&quot;37=Individual Guarantee and Indemnity&quot;,&#xa;&quot;38=Corporate Guarantee&quot;,&#xa;&quot;39=Guarantor's acknowledgement&quot;,&#xa;&quot;40=Statutory Declaration&quot;,&#xa;&quot;41=Authority to Complete&quot;,&#xa;&quot;42=Building Insurance&quot;,&#xa;&quot;43=Company Searchy or an ASIC&quot;,&#xa;&quot;44=Statutory Declaration – RE Company Assets&quot;,&#xa;&quot;45=Cross Guarantee and Indemnity&quot;,&#xa;&quot;46=Change of Name&quot;,&#xa;&quot;47=Certificate of Title&quot;,&#xa;&quot;48=Discharge Request&quot;,&#xa;&quot;49=Document Declaration&quot;,&#xa;&quot;50=Discharge of Mortgage&quot;,&#xa;&quot;51=MDB&quot;,&#xa;&quot;52=Certificate of Independent Financial Advice&quot;,&#xa;&quot;53=Australia Practitioner’s Certificate&quot;,&#xa;&quot;54=Mortgage Debenture&quot;,&#xa;&quot;55=TDS&quot;,&#xa;&quot;56=Watercraft&quot;,&#xa;&quot;57=Authority to Appropriate and Set-Off ANZ TD&quot;,&#xa;&quot;58=ANZ Mortgagor and Witness Acknowledgement&quot;,&#xa;&quot;59=ACT frontsheet&quot;,&#xa;&quot;60=Application for Initial Crown Lease&quot;,&#xa;&quot;61=ACT Land Lease TS&quot;,&#xa;&quot;62=Annexure to Mortgage - ACT - Power of Attorney&quot;,&#xa;&quot;63=Change of name application&quot;,&#xa;&quot;64=Notice of Sale&quot;,&#xa;&quot;65=Ref of Loan Stat Dec - new&quot;,&#xa;&quot;66=Watercraft&quot;,&#xa;&quot;67=NSW frontsheet&quot;,&#xa;&quot;68=Company Mortgage&quot;,&#xa;&quot;69=MORT over LEASE&quot;,&#xa;&quot;70=Annexure to Mortgage - NSW - Power of Attorney&quot;,&#xa;&quot;71=Limited Title&quot;,&#xa;&quot;72=Change of name application - 10CN e1208&quot;,&#xa;&quot;73=Watercraft&quot;,&#xa;&quot;74=NT frontsheet&quot;,&#xa;&quot;75=Crown lease&quot;,&#xa;&quot;76=Deed of resignation from trust&quot;,&#xa;&quot;77=Watercraft&quot;,&#xa;&quot;78=QLD frontsheet&quot;,&#xa;&quot;79=Form 20&quot;,&#xa;&quot;80=Bodycorp letter for share certificate&quot;,&#xa;&quot;81=Change of Ownership- Financial Agreement example&quot;,&#xa;&quot;82=COS and Nominee example&quot;,&#xa;&quot;83=Overseas witness- Notary public example&quot;,&#xa;&quot;84=QLD LTO - Administrative Advices on Title&quot;,&#xa;&quot;85=Settlement notice lodged&quot;,&#xa;&quot;86=Lease hold state-freehold&quot;,&#xa;&quot;87=Certified copy of Binding Financial Agreement&quot;,&#xa;&quot;88=SA frontsheet&quot;,&#xa;&quot;89=New SA Mortgage with VOI&quot;,&#xa;&quot;90=Court Order&quot;,&#xa;&quot;91=TAS frontsheet&quot;,&#xa;&quot;92=TOL as trustee&quot;,&#xa;&quot;93=Form 36I&quot;,&#xa;&quot;94=Comapany Search or an ASIC&quot;,&#xa;&quot;95=Contract of Sale - Farming Business&quot;,&#xa;&quot;96=Discharge Authority&quot;,&#xa;&quot;97=General Security Details - GOPM&quot;,&#xa;&quot;98=General Security Details - MDB&quot;,&#xa;&quot;99=Goods statement for Residential Land&quot;,&#xa;&quot;101=Goods Statutory Declaration&quot;,&#xa;&quot;102=Letter of Financial Advise&quot;,&#xa;&quot;104=Letter of Legal Advise&quot;,&#xa;&quot;105=LTO Stat Dec ID&quot;,&#xa;&quot;106=Nomination Form&quot;,&#xa;&quot;107=Notice of Acquisition&quot;,&#xa;&quot;108=Notification of details of a Charge&quot;,&#xa;&quot;109=Pensioner Exemption/concession Declaration&quot;,&#xa;&quot;110=Principal Place of Residence (PPR) concession and eligible First Home Buyer duty reduction Declaration&quot;,&#xa;&quot;111=Principal Place of Residence (PPR) concession declaration&quot;,&#xa;&quot;112=Specific Security Agreement&quot;,&#xa;&quot;113=Specific Security Details - Watercraft&quot;,&#xa;&quot;114=Transaction Treated as Sub-sales&quot;,&#xa;&quot;115=VIC Frontsheet&quot;,&#xa;&quot;116=TOL - Bankrupt Estate&quot;,&#xa;&quot;117=TOL - Directing Party&quot;,&#xa;&quot;118=TOL - transfer 100th Share to another party&quot;,&#xa;&quot;119=Company MORT - Sole Director and Secretary&quot;,&#xa;&quot;120=Form 7E - First home owner's concession.&quot;,&#xa;&quot;121=Form 12 - Primary production and water entitlements.&quot;,&#xa;&quot;122=Market Valuation or Letter of Appraisal&quot;,&#xa;&quot;123=WA frontsheet&quot;,&#xa;&quot;124=WA Application by a trustee in bankruptcy&quot;,&#xa;&quot;125=Application for a new title balance&quot;,&#xa;&quot;126=Substituted COS purchase&quot;,&#xa;&quot;127=Refinance advice police nurse letter&quot;,&#xa;&quot;128=TOL consideration court order consent&quot;,&#xa;&quot;129=TOL creates Covenant at registration&quot;,&#xa;&quot;130=Deed of assumption for caveats NOT absolute&quot;,&#xa;&quot;131=DHA Caveat - request for consent&quot;,&#xa;&quot;132=Letter of Undertaking - VICTORIA PARK CAVEAT&quot;,&#xa;&quot;133=Mortgagee's Deed of Covenant&quot;,&#xa;&quot;134=Dola legal fix letter.&quot;,&#xa;&quot;135=Contract of Sale&quot;,&#xa;&quot;136=Transfer of Land&quot;,&#xa;&quot;137=Valuation Document&quot;,&#xa;&quot;138=Invoice&quot;,&#xa;&quot;139=Stat Dec&quot;,&#xa;&quot;140=Individual Guarantee and Indemnity&quot;,&#xa;&quot;141=Packets details&quot;,&#xa;&quot;142=Share Certificate&quot;,&#xa;&quot;143=Title Search&quot;&#xa; ];&#xa; field.setValue(values);&#xa; }; &#xa; return true;&#xa; }"/>
+</jcr:root>
