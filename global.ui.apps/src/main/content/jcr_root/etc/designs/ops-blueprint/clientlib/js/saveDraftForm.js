@@ -18,10 +18,11 @@
  */
 
 
-handleOPSDraftSave = function (state, redirect, formAppNo){
+handleOPSDraftSave = function (state, redirect, formAppNo, mandatoryFlushCounter){
 	var responsedata = "";
 
  	var formUserName = $("#user_name").val();
+    var formUserGroup = $("#user_group").val();
     //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
     var reDirect = $("#redirect").val();
 
@@ -31,6 +32,14 @@ handleOPSDraftSave = function (state, redirect, formAppNo){
 	}
 	alert("APP NO TO SAVE " + formAppNo);
 
+
+    if(formUserGroup == 'checker_group'){
+		mandatoryFlushCounter.value = parseInt(mandatoryFlushCounter.value) + 1;
+    }
+    if(formUserGroup == 'maker_group'){
+		mandatoryFlushCounter.value = 0;
+    }
+    
     $('#redirect').val(redirect);
 
     var user_name = "user_name=" + formUserName;

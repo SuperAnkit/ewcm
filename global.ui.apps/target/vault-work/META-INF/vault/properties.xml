@@ -4,7 +4,7 @@
 <comment>OPS - Global UI Apps</comment>
 <entry key="createdBy">selvav</entry>
 <entry key="name">ops.global.apps</entry>
-<entry key="created">2015-12-09T15:20:41.652+0530</entry>
+<entry key="created">2015-12-15T17:31:18.006+0530</entry>
 <entry key="groupId">ops</entry>
 <entry key="version">1.0.0-SNAPSHOT</entry>
 <entry key="requiresRoot">false</entry>

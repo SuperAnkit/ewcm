@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1449816549525
+Bnd-LastModified: 1450269229344
 Build-Jdk: 1.7.0_79
 Built-By: selvav
 Bundle-Description: Core bundle for OPS
@@ -8,18 +8,19 @@ Bundle-Name: OPS - Core
 Bundle-SymbolicName: ops.global.core
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
-Export-Package: ops.global.core.servlets;uses:="javax.servlet,org.apache
- .sling.api,org.apache.sling.api.resource,org.apache.sling.api.servlets"
- ;version="1.0.0",ops.sightly.components;uses:="com.adobe.cq.sightly";ve
- rsion="1.0.0"
+Export-Package: ops.global.core.servlets;version="1.0.0";uses:="javax.se
+ rvlet,org.apache.sling.api,org.apache.sling.api.resource,org.apache.sli
+ ng.api.servlets",ops.sightly.components;version="1.0.0";uses:="com.adob
+ e.cq.sightly,javax.jcr,org.apache.sling.api"
 Import-Package: com.adobe.cq.sightly;version="[2.2,3)",com.day.cq.common
  s;version="[5.7,6)",javax.jcr;version="[2.0,3)",javax.jcr.query;version
- ="[2.0,3)",javax.servlet,org.apache.commons.httpclient;version="[3.1,4)
- ",org.apache.commons.httpclient.methods;version="[3.1,4)",org.apache.ja
- ckrabbit.api.security.user;version="[2.3,3)",org.apache.sling.api;versi
- on="[2.3,3)",org.apache.sling.api.resource;version="[2.5,3)",org.apache
- .sling.api.servlets;version="[2.1,3)",org.apache.sling.commons.json;ver
- sion="[2.0,3)",org.slf4j;version="[1.5,2)"
+ ="[2.0,3)",javax.servlet,javax.servlet.http,org.apache.commons.httpclie
+ nt;version="[3.1,4)",org.apache.commons.httpclient.methods;version="[3.
+ 1,4)",org.apache.jackrabbit.api.security.user;version="[2.3,3)",org.apa
+ che.sling.api;version="[2.3,3)",org.apache.sling.api.resource;version="
+ [2.5,3)",org.apache.sling.api.servlets;version="[2.1,3)",org.apache.sli
+ ng.commons.json;version="[2.0,3)",org.slf4j;version="[1.5,2)"
+Originally-Created-By: Apache Maven Bundle Plugin
 Provide-Capability: osgi.service;effective:=active;objectClass="javax.se
  rvlet.Servlet";service.vendor=Adobe
 Require-Capability: osgi.service;effective:=active;filter:="(objectClass
@@ -28,13 +29,16 @@ Require-Capability: osgi.service;effective:=active;filter:="(objectClass
 Service-Component: OSGI-INF/ops.global.core.servlets.OPSReverseSelectSta
  tementCycleServlet.xml,OSGI-INF/ops.global.core.servlets.OPSSelectState
  mentCycleServlet.xml,OSGI-INF/ops.global.core.servlets.OPSReverseSelect
- PurposeServlet.xml,OSGI-INF/ops.global.core.servlets.OPSReverseSelectSu
- bProductServlet.xml,OSGI-INF/ops.global.core.servlets.OPSApproveServlet
- .xml,OSGI-INF/ops.global.core.servlets.OPSSaveServlet.xml,OSGI-INF/ops.
- global.core.servlets.OPSSelectPurposeServlet.xml,OSGI-INF/ops.global.co
- re.servlets.OPSSubmitServlet.xml,OSGI-INF/ops.global.core.servlets.OPSR
- eaderServlet.xml,OSGI-INF/ops.global.core.servlets.OPSReverseSelectOccu
- pationalServlet.xml,OSGI-INF/ops.global.core.servlets.OPSSearchServlet.
- xml,OSGI-INF/ops.global.core.servlets.OPSSelectSubProductServlet.xml,OS
- GI-INF/ops.global.core.servlets.OPSSelectOccupationalServlet.xml
+ PurposeServlet.xml,OSGI-INF/ops.global.core.servlets.OPSValidatePostCod
+ eServlet.xml,OSGI-INF/ops.sightly.components.RedirectServiceImpl.xml,OS
+ GI-INF/ops.global.core.servlets.OPSReverseSelectSubProductServlet.xml,O
+ SGI-INF/ops.global.core.servlets.OPSApproveServlet.xml,OSGI-INF/ops.glo
+ bal.core.servlets.OPSSaveServlet.xml,OSGI-INF/ops.global.core.servlets.
+ OPSSelectPurposeServlet.xml,OSGI-INF/ops.global.core.servlets.OPSSubmit
+ Servlet.xml,OSGI-INF/ops.global.core.servlets.OPSReaderServlet.xml,OSGI
+ -INF/ops.global.core.servlets.OPSSelectFromStaticModelServlet.xml,OSGI-
+ INF/ops.global.core.servlets.OPSReverseSelectOccupationalServlet.xml,OS
+ GI-INF/ops.global.core.servlets.OPSSelectSubProductServlet.xml,OSGI-INF
+ /ops.global.core.servlets.OPSSearchServlet.xml,OSGI-INF/ops.global.core
+ .servlets.OPSSelectOccupationalServlet.xml
 Tool: Bnd-2.3.0.201405100607

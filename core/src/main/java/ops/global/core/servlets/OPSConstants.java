@@ -39,6 +39,12 @@ public final class OPSConstants {
     // Web-service URL for fetching the statement cycle code static data from DB for auto-populated statement cycle code option
     public static final String WS_GET_STATEMENT_CYCLE_CODE_VALUE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getStatementCycleValue?statementCycleID=ldDDAStatementCycle";
 
+    // Generic Web-service URL for fetching the entity from the Static Model
+    public static final String WS_GET_STATIC_MODEL_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getStaticModelByEntity?entity=entityName";
+
+    // Generic Web-service URL for validating the postcode
+    public static final String WS_VALIDATE_POSTCODE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/validatePostCode?PostCode=_postcode&City=_city&state=_state";
+
     // CRX path for auto-generated form XML
     public static final String FORMS_FOLDER_PATH = "/content/usergenerated/content/forms/af/ops/";
 
@@ -47,6 +53,9 @@ public final class OPSConstants {
     
     // CRX path for the mortgage form
     public static final String FP_FORMS_PATH = "/content/forms/af/ops/mortgage.html";
+    
+    // CRX path for the mortgage form landing page
+    public static final String FP_FORMS_LANDING_PATH = "/content/ops/homeloanportal.html";
     
     // CRX path for reader panel 
 	public static final String FP_READER_FORMS_PATH = "/content/ops/readerpage.html";
@@ -110,4 +119,9 @@ public final class OPSConstants {
 	public static final String SEARCH_XML_PARAM = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><aemRequestWrapper><afData/><applicationNumber>"+SEARCH_KEYWORD+"</applicationNumber><sessionToken>"+SESSION_TOKEN+"</sessionToken><stage>"+DOC_TYPE+"</stage></aemRequestWrapper>";
 	
 
+	// Login Page redirect for OPS Pages and forms
+	public static final String REDIRECT_LOGIN_URL = "/libs/granite/core/content/login.html";
+	
+	// QueryString parameter for login option
+	public static final String LOGIN_STRING = "&$$login$$=$$login$$";
 }

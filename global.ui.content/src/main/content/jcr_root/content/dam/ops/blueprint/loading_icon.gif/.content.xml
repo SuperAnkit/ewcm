@@ -2,12 +2,12 @@
 <jcr:root xmlns:tiff="http://ns.adobe.com/tiff/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dam="http://www.day.com/dam/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="dam:Asset">
     <jcr:content
-        jcr:lastModified="{Date}2015-12-02T17:51:23.329+05:30"
+        jcr:lastModified="{Date}2015-12-14T11:31:11.104+05:30"
         jcr:lastModifiedBy="admin"
         jcr:primaryType="dam:AssetContent">
         <metadata
             dam:Bitsperpixel="{Long}8"
-            dam:extracted="{Date}2015-12-02T17:51:22.874+05:30"
+            dam:extracted="{Date}2015-12-04T19:26:34.749+11:00"
             dam:Fileformat="GIF"
             dam:MIMEtype="image/gif"
             dam:Numberofimages="{Long}1"
@@ -20,6 +20,9 @@
             dam:sha1="6afe3e56672ced7931c5d376d370e59c48f4bbf8"
             dam:size="{Long}56233"
             dc:format="image/gif"
+            dc:modified="{Date}2015-12-04T19:26:31.208+11:00"
+            jcr:lastModified="{Date}2015-12-14T11:31:11.104+05:30"
+            jcr:lastModifiedBy="admin"
             jcr:mixinTypes="[cq:Taggable]"
             jcr:primaryType="nt:unstructured"
             tiff:ImageLength="{Long}200"

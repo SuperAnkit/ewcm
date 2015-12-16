@@ -55,12 +55,15 @@ function populateEmployerName(employers) {
 }
 
 
-function populateApplicantName(rootPanel) {
+function populateApplicantName(rootPanel, applicant_calcOnly) {
 	rooPanel = rootPanel;
 	var aarr = [];
 
 	for (var i = 1; i < rootPanel._children.length; i++) {
 		var cpanel = rootPanel._children[i];
+
+        if(cpanel.name == 'pApplicant'){
+
 		var primary_applicant = cpanel._children[1];
 		var customer_type = primary_applicant._children[7];
 		var firstName_text_field = customer_type._children[1];
@@ -75,13 +78,22 @@ function populateApplicantName(rootPanel) {
 		var lastNameValue = lastName_text_field.value;
 		var middleNameValue = middleName_text_field.value;
 		var sequence_number = primary_applicant._children[0].value;
+
+			if (firstNameValue==null)
+            firstNameValue="";
+        	if (middleNameValue==null)
+            middleNameValue="";
+        	if (lastNameValue==null)
+            lastNameValue="";
+		var applicant_calcOnly = applicant_calcOnly;
 		var Value = sequence_number + "=" + firstNameValue + " "+ middleNameValue + " "+ lastNameValue;
-		Value = Value.replace(" null", "");
+		Value = Value.replace("null", "");
 		aarr.push(Value);
 
+	}
 
 	}
-	console.log(aarr);
+	//console.log(aarr);
 	return aarr;
 }
 
@@ -183,7 +195,16 @@ $(document).ready(function() {
         }
     });
 
+    $("#frmSearch_txt").bind("paste", function(e){
+        $("#btnSearch").removeAttr("disabled");
+    } );
 
+    $('#frmSearch_txt').bind("keypress", function (e) {
+		if (e.keyCode == 13) {
+			searchResults(); 
+			return false; 
+		}
+	});
 
 });
 
@@ -294,10 +315,29 @@ function getInitCounter(element,isAppFin) {
         return value;
     }
 
-    console.log(panelId);
+    //console.log(panelId);
     return sg_new.get(panelId);
 
 }
 // Methods for sequence numbers - Stop
+
+// To disable all text fields on the form. call the below function.
+function disableTextFields() {
+	var f = document.getElementsByTagName('input');
+	for(var i=0;i<f.length;i++) {
+    	if(f[i].getAttribute('type')=='text'){
+			f[i].setAttribute('disabled',true);
+  		}
+	}
+}
+
+// To disable all select dropdowns on the form. call the below function.
+function disableSelectDropdowns() {
+	var s = document.getElementsByTagName('select');
+    for(var i=0;i<s.length;i++) {
+       s[i].setAttribute('disabled',true);
+    }
+}
+
 
 

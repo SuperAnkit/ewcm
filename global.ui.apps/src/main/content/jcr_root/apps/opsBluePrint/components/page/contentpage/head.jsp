@@ -14,7 +14,8 @@
   is strictly forbidden unless prior written permission is obtained
   from Adobe Systems Incorporated.
 --%><%
-%><%@include file="/libs/foundation/global.jsp" %><%
+%><%@include file="/libs/foundation/global.jsp" %>
+<%
 %>
 <head>
     <meta charset="utf-8" />
@@ -22,6 +23,8 @@
 
     <title><%= xssAPI.encodeForHTML( currentPage.getTitle() == null ? currentPage.getName() : currentPage.getTitle() ) %></title>
     <% currentDesign.writeCssIncludes(pageContext); %>
+    <% ops.sightly.components.RedirectService loginRedirect = sling.getService(ops.sightly.components.RedirectService.class);
+	loginRedirect.redirectPath(slingRequest, slingResponse);%>
     <cq:include script="/libs/wcm/core/components/init/init.jsp"/>
     <cq:include script="/libs/foundation/components/page/stats.jsp"/>
     <cq:include script="/libs/wcm/mobile/components/simulator/simulator.jsp"/>

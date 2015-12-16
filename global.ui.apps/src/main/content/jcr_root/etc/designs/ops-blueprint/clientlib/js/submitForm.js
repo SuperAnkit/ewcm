@@ -16,17 +16,23 @@
  * from Adobe Systems Incorporated.
  *
  */
-handleOPSSubmit = function (state, successRedirect, failureRedirect, formAppNo){
+handleOPSSubmit = function (state, successRedirect, failureRedirect, formAppNo, mandatoryFlushCounter){
 	var responsedata = "";
 
  	var formUserName = $("#user_name").val();
-    //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
-    //var reDirect = $("#redirect").val();
+    var formUserGroup = $("#user_group").val();
 
     alert("APP NO TO SUBMIT " + formAppNo);
 
+    if(formUserGroup == 'checker_group'){
+		mandatoryFlushCounter.value = parseInt(mandatoryFlushCounter.value) + 1;
+    }
+    if(formUserGroup == 'maker_group'){
+		mandatoryFlushCounter.value = 0;
+    }
+
+
 	$('#isValidation').attr('value','true');
-    //$('#redirect').val(redirect);
 
     var user_name = "user_name=" + formUserName;
     var application_no = "application_no=" + formAppNo;

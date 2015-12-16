@@ -16,7 +16,7 @@
  * from Adobe Systems Incorporated.
  *
  */
-handleOPSSave = function (formAppNo){
+handleOPSSave = function (formAppNo, mandatoryFlushCounter){
     var guideName;
     var guidePath = window.guideBridge.getGuideContext().data[window.guideBridge.GUIDE_PATH];
     guidePath = guidePath.substr(0,guidePath.lastIndexOf("jcr:content/guideContainer")-1);
@@ -24,6 +24,14 @@ handleOPSSave = function (formAppNo){
     guideName = guidePath.substring(guidePath.lastIndexOf("/")+1);
     var resultObj,errorObj, guideState;
     var draftID;
+
+    var formUserGroup = $("#user_group").val();
+	if(formUserGroup == 'checker_group'){
+		mandatoryFlushCounter.value = parseInt(mandatoryFlushCounter.value) + 1;
+    }
+    if(formUserGroup == 'maker_group'){
+		mandatoryFlushCounter.value = 0;
+    }
 
     //add bApplicationNumber to the formInstance
     //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();

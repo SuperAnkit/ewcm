@@ -62,9 +62,13 @@ function isMOSValid(subject, isMandatory) {
 
 }
 
-function isTaDValid(subject, isMandatory) {
+function isTaDValid(subject, isMandatory, yearOrMonthVal) {
 
-	if (isMandatory == true) {
+    //alert("year and month values"+subject +"---" +yearOrMonthVal);
+
+    if(subject != 00 || subject != 0 && yearOrMonthVal != 00 || yearOrMonthVal != 0){
+
+		if (isMandatory == true) {
 
 		if (subject.match(/^(0?[0-9]|[1-9][0-9])$/)) {
 			return true;
@@ -81,7 +85,12 @@ function isTaDValid(subject, isMandatory) {
 		}
 	}
 
+    }
+    else{
+		return false;
+    }
 }
+
 
 
 function isBSBValid(subject, isMandatory) {
@@ -170,27 +179,43 @@ function isDropDownValid(dropdownVal) {
 }
 
 // function to validate credit limit for account section
-
-function creditLimitvalidate(subject, aCardCategory, isMandatory) {
-	if (isMandatory == true) {
-		if (aCardCategory == 'ANZ Rewards Black') {
-			(subject > 6000) ? true : false
-		} else {
-			(subject > 15000) ? true : false
-		};
-	} else {
-		if (subject == null) {
-			return true;
-		} else {
+function creditLimitvalidate(subject, aCardCategory, aCardType, isMandatory) {
+	if ((aCardType == 'New Credit Card Account Required') || (aCardType == 'Upgrade of Existing Card')) {
+		if (isMandatory == 'true') {
 			if (aCardCategory == 'ANZ Rewards Black') {
-				(subject > 6000) ? true : false
+				if (subject > 6000) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
-				(subject > 15000) ? true : false
-			};
+				if (subject > 15000) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} else {
+			if (subject == null) {
+				return true;
+			} else {
+				if (aCardCategory == 'ANZ Rewards Black') {
+					if (subject > 6000) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					if (subject > 15000) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			}
 		}
-	}
+	} else return true;
 }
-
 
 function makeMandatory(currentElement, valueFromElement) {
 	console.log("makeMandootry============>>>>>>>>>>>>" + valueFromElement.value);
@@ -266,90 +291,333 @@ function isValidAccountNumber(subject, isMandatory) {
 
 // Function to get the dropdown value
 
-function getDDValue(subject){
+/*function getDDValue(subject){
 	var ddElement = document.getElementById(document.getElementById(subject.id).children[1].lastElementChild.id);
 	var ddValue =  ddElement.options[ddElement.selectedIndex].text
-	alert(ddValue);
-	//return ddValue;
-}
-
-// Function to get the dropdown value
-
-function getStateFromValue(securityState){
-	var ddElement = document.getElementById(document.getElementById(securityState.id).children[1].lastElementChild.id);
-	var ddValue =  ddElement.options[ddElement.selectedIndex].text
-
+	//alert(ddValue);
 	return ddValue;
-}
+}*/
 
-// Function to get the Panel Name for Security Tab
-function getSecurityPannelName(Address1,Address2,city,state,postCode)
+function getSecurityPanelName(Address1,Address2,city,state,postCode)
 {
-    state = getStateFromValue(state);
     var ConcatinateAddress;
-	if(Address1 == null && Address2 == null && city == null && postCode == null){
-		return "Security";
+	if(Address1 == null && Address2 == null && city == null && postCode == null && state.value == null){
+	return "Security";
     }
     else{
+        var stateValue = $("#"+state.id+" :selected").text();
+        if (Address1==null)
+            Address1="";
+        if (Address2==null)
+            Address2="";
+        if (city==null)
+            city="";
+        if (postCode==null)
+            postCode="";
 
- 		ConcatinateAddress =(Address1 + " " + Address2 + " " +city + " " + state + " " + postCode).replace("null", ",").replace(",,,"," ");
-		return ConcatinateAddress;
+		ConcatinateAddress =Address1 + " " + Address2 + " " +city + " " + stateValue + " " + postCode;
+
+        return ConcatinateAddress;
     }
 
 }
 
 
-// Function to get the Formatted Names for Applicant Tab
-function getFormattedNames(Title, firstName, middleName, lastName, shortName, FormalSaluation, mailTitle)
-{
-var ApplicantShortName;
-var ApplicantFormalName;
-var ApplicantMailingTitle;
 
-    if(firstName && middleName && lastName == null)
-{
-shortName.value=" ";
-FormalSaluation=" ";
-mailTitle=" ";
+function getFormattedNames(Title, firstName, middleName, lastName, shortName, FormalSaluation, mailTitle) {
+
+    var fname="";
+    var mname="";
+    var lname="";
+    var salutation;
+
+    if (firstName==null && middleName==null && lastName==null) {
+		shortName.value="";
+		mailTitle.value="";
+		FormalSaluation.value="";
+        return true;
+    }
+
+    if (firstName!=null && firstName!="") 
+        fname = firstName.charAt(0);
+    else
+        fname = "";
+
+    if (middleName!=null) 
+        mname = middleName.charAt(0);
+    else
+        mname = "";
+
+    if (lastName!=null) {
+        lname = lastName.charAt(0);
+    } else {
+        lname = "";
+        lastName = "";
+    }
+
+	shortName.value=lastName + " " + fname + " " + mname;
+	mailTitle.value=Title + " " + fname + " " + mname + " " + lastName;
+	FormalSaluation.value = Title + " " + lastName;
 }
-    var fName=firstName.charAt(0);
-     if (middleName != null && middleName !== undefined) {
-        var mName=middleName.charAt(0);
-   }
-else{
-    var mName="";
-    }
- ApplicantShortName =(lastName + " " + fName  + mName).replace("null", " ");
- shortName.value=ApplicantShortName;
 
-  ApplicantFormalName =(Title + " " + lastName ).replace("null", " ");
-FormalSaluation.value=ApplicantFormalName;
+// function to display names on Applicant Panel
 
-if (firstName != null && firstName !== undefined ) {
-        var fName=firstName.charAt(0);
-}else
-    {
-    var fName="";
-    }
-     if (middleName != null && middleName !== undefined ) {
-        var mName=middleName.charAt(0);
-   }
-else{
-    var mName="";
-    }
- ApplicantMailingTitle =(Title + " " + fName + " " + mName + " "  + lastName).replace("null", " ");
+function displayApplicantPanelName(applFirstName, applMiddleName, applLastName, companyName, isIndividual){
 
-mailTitle.value = ApplicantMailingTitle;
+    if(isIndividual == '1'){
+
+        if(applFirstName == null && applMiddleName == null && applLastName == null){
+			return "Applicant";
+			}
+    	else{
+
+			if (applFirstName==null)
+            applFirstName="";
+        	if (applMiddleName==null)
+            applMiddleName="";
+        	if (applLastName==null)
+            applLastName="";
+
+   			var panelDisplayName = applFirstName + " " + applMiddleName + " "+ applLastName;
+			panelDisplayName = panelDisplayName.replace("null", "");
+			return panelDisplayName;
+
+		}
+    }
+
+    else{
+		 if(companyName == null){
+			return "Applicant";
+			}
+		else{
+			if (companyName==null)
+            companyName="";
+
+			var panelDisplayName = companyName;
+			panelDisplayName = panelDisplayName.replace("null", "");
+			return panelDisplayName;
+        }
+    }
 }
 
 
 // Function to select 'Select' as default for dropdowns
 function makeSelectasDefault(subject)
 {
-    alert('VAL: ' + '#' + subject.id + ' select');
-    $('#' + subject.id + ' select').val(-1);
+    console.log("SELECT TEST: " + subject.id)
+    console.log("SELECT TEST:-" + subject.value + "----")
+    if(subject.value == null ){
+        console.log("INSIDE IF");
+        return -1;
+    }
+    else{
+        console.log("INSIDE ELSE");
+		return subject.value;
+    }
 
 }
+
+
+// Function to flush mandatory fields for checker for first time only
+function flushMandatoryForChecker(mandatoryFlushCounter, subject, type, isMandatory) {
+    console.log('M V ID:' + subject.value);
+    var formUserGroup = $("#user_group").val();
+    if(mandatoryFlushCounter == 0 && formUserGroup == 'checker_group'){
+        if(type == 'textbox' || type == 'radio' || type == 'checkbox'){
+        return '';
+        }
+        if(type == 'dropdown'){
+         if(isMandatory == 'true'){
+                return '';
+            }
+            else{
+                return -1;
+            }
+        }
+
+    }
+    else{
+		return subject.value;
+        }
+
+}
+
+function getEmploymentPanelSummaryName(applicantName,employmentCategory)
+{
+    //alert("In Function");
+    var employmentDetails;
+	
+	if(applicantName.value == null && employmentCategory == null){
+	return "Employment";
+    }
+    else{
+
+        var applicantNameValue = $("#"+applicantName.id+" :selected").text();
+        if (applicantName==null)
+            applicantName="";
+			
+
+        if (employmentCategory==null)
+        {
+            employmentCategory="";
+        }
+
+       else if(employmentCategory=="primary")
+            {
+            employmentCategory="Primary";
+            }
+       else if(employmentCategory=="additional")
+            {
+            employmentCategory="Additional";
+            }
+       else if(employmentCategory=="previous")
+            {
+            employmentCategory="Previous";
+            }
+
+        employmentDetails = (employmentCategory + " Employment for  " + applicantNameValue).replace("null","").replace("null","");
+        return employmentDetails;
+    }
+
+}
+
+// function to check only one spouse is selected
+var spusex = 0;
+function validateApplicantSpouse(spouseEle){
+
+	var s = document.getElementsByTagName('select');
+    for(var i=0;i<s.length;i++) {
+		console.log("Spouse dd length"+s.length);
+        if(s[i].getAttribute('aria-label') == 'Relationship Type'){
+
+			console.log("Printing inside relationship Type");
+			console.log("SPOUSE VALIDATION IF LOOP"+s[i].options[s[i].selectedIndex].text +"===="+getConditionalDropDownText(spouseEle));
+            if(spusex == 0){
+				spusex = spusex + 1;
+				return true;
+
+            }else{
+ 			if(s[i].options[s[i].selectedIndex].text == getConditionalDropDownText(spouseEle) 
+                && getConditionalDropDownText(spouseEle) == 'Spouse'){
+				return false;
+            }else{return true;}
+
+            }
+
+
+		//alert('Inside spouse element');
+        }
+      // s[i].setAttribute('disabled',true);
+    }
+}
+
+// function for validate date time and future date
+
+function validateBrokerDateTime(subject, isMandatory) {
+
+    var dateformat = /(^(((0?[1-9]|1[0-9]|2[0-8])[/](0?[1-9]|1[012]))|((29|30|31)[/](0?[13578]|1[02]))|((29|30)[/](0?[4,6,9]|11)))[/](19|0?[2-9][0-9])\d\d$)|(^29[/]0?2[/](19|0?[2-9]0?[0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
+    var timeFormat = /([0-1]?[0-9]):([0-5]?[0-9])(([ap]m)|([AP]M))?$/;
+    var enteredDate = subject.split(" ")[0];
+    var enteredTime = subject.split(" ")[1];
+
+    if (subject!=null) {
+        if( !enteredDate.match(dateformat)) {
+            //alert("Date format should be in dd/mm/yyyy format");
+            return false;
+        }
+
+        if (isFutureDate(enteredDate)) {
+            //alert("please do not enter future date");
+            return false;
+        }
+
+        if(enteredTime != undefined && !enteredTime.match(timeFormat)) {
+            //alert("Invalid time format: " + enteredTime);
+            return false;
+        }else{
+			return true;
+        }
+
+    }
+
+
+}
+
+function isFutureDate(idate){
+    var today = new Date().getTime(),
+        idate = idate.split("/");
+
+    idate = new Date(idate[2], idate[1] - 1, idate[0]).getTime();
+    return (today - idate) < 0 ? true : false;
+}
+
+//Function to copy data in MakerOnly attribute and alert checker if value is different
+function checkerValidation(subject, makerElement) {
+    console.log('M V ID:' + subject);
+    var formUserGroup = $("#user_group").val();
+    if(formUserGroup == 'maker_group'){
+       return subject; 
+
+    }
+    else if(formUserGroup == 'checker_group'){
+    	if (subject != makerElement) {
+    		alert("MISMATCH");
+		} 
+    	return makerElement;
+    }
+    else{
+    	return makerElement;
+    }
+
+}
+
+//Function for validating postcode
+function validatePostCode(city, state, postcode, applicantCust, isMandatory){
+    alert('ffff');
+	if(applicantCust.value=='1'){
+		if(postcode.value.match(/^[0-9]{4,10}$/)){
+			// make ajax call to validate postcode
+            var submitData = "postcode=" + postcode.value + "&state=" + state.value + "&city=" + city.value + "&isMandatory=" + isMandatory ;
+            $.ajax({
+                  url: '/bin/validatePostcode',
+                  async:false,
+                  data: submitData,
+                  error: function() {
+                     $('#info').html('<p>An error has occurred</p>');
+                  },
+                  dataType: 'text',
+                  success: function(data) {
+                    var resCode = data;
+                    //alert("code++" + resCode + "++");
+					if(resCode == 'true'){
+                        return true;
+                    }
+                      else{
+						return false;
+                      }
+
+                  },
+                  type: 'POST'
+             });
+
+		}else {
+			return false;
+		}
+    }
+		else{
+			return true;
+			}
+
+	
+	
+}
+
+
+
+
+
+
+
 
 
 

@@ -1,145 +1,154 @@
+//global variables used for Conditional Mandatory
+
+var defaultCssName = "mandatory-fld";
+var defaultMandatoryAemParam = "aria-required";
+
+var _zeroDependentsForApplicant = '0';
+var _statDecTrue = 'true';
+var _firstLoanConditionValue = 'Refi Non ANZ Inv Ln';
+var _secondLoanConditionValue = 'Refi Non ANZ Home Ln';
+var _propStatusConditionValue = 'To be Built';
+var _firstLoanCategoryConditionValue = 'Construction';
+var _secondLoanCategoryConditionValue = 'Pur Estab Dwellings';
+var _thirdLoanCategoryConditionValue = 'Pur of New Dwellings';
+var _fourthLoanCategoryConditionValue = 'Purchase of Land';
+var _unemployed = '6';
+
 // NEW FUNCTIONS for Conditional Manditory Fields
 // function for conditional mand -- Panel Applicant -- Number of dependents..Age of Dependent
 
 
-function dependentCondMand(mandElement, condElement){
+function dependentCondMand(mandatoryElement, conditionalElement){
 
-     if(condElement.value !='0'){
-		$("#"+mandElement.id).parent().parent().addClass("mandatory-fld");
-        mandElement.mandatory = true;
-		$("#"+mandElement.id).attr("aria-required",true);
+     if(conditionalElement.value != _zeroDependentsForApplicant){
+		setMandatoryEle(mandatoryElement);
 
     }else{
-         mandElement.mandatory = false;
-        $("#"+mandElement.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement.id).removeAttr("aria-required",true);
+        removeMandatoryEle(mandatoryElement);
     }
-
-
 }
 
 // function for conditional mand -- Panel Applicant -- Is Stat Dec Held
 
 
-function statDecCondMand(mandElement1, mandElement2, condElement){
+function statDecCondMand(mandatoryElement_1, mandatoryElement_2, conditionalElement){
 
-     if(condElement.value == 'true'){
-		$("#"+mandElement1.id).parent().parent().addClass("mandatory-fld");
-        mandElement1.mandatory = true;
-		$("#"+mandElement1.id).attr("aria-required",true);
-         $("#"+mandElement2.id).parent().parent().addClass("mandatory-fld");
-        mandElement2.mandatory = true;
-		$("#"+mandElement2.id).attr("aria-required",true);
+     if(conditionalElement.value == _statDecTrue){
+
+		setMandatoryEle(mandatoryElement_1);
+        setMandatoryEle(mandatoryElement_2);
 
     }else{
-         mandElement1.mandatory = false;
-        $("#"+mandElement1.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement1.id).removeAttr("aria-required",true);
-        mandElement2.mandatory = false;
-        $("#"+mandElement2.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement2.id).removeAttr("aria-required",true);
+
+        removeMandatoryEle(mandatoryElement_1);
+        removeMandatoryEle(mandatoryElement_2);
+
     }
-
-
 }
 
 // function for conditional mand -- Panel Loan and OFI -- For all Refi Non-ANZ Inv Loan & Non-ANZ Home Loan
 
-function refiCondMand(mandElement1, mandElement2, condElement){
+function refiCondMand(mandatoryElement_1, mandatoryElement_2, conditionalElement){
 
-//alert(mandElement1.id +"---" + mandElement2.id +"===="+condElement.text + "````"+ $("#"+condElement.id+" :selected").text());
+	var ddConditionalTextValue = getConditionalDropDownText(conditionalElement);
 
-    if($("#"+condElement.id+" :selected").text() == 'Refi Non ANZ Inv Ln' || 
-       						$("#"+condElement.id+" :selected").text() == 'Refi Non ANZ Home Ln'){
+    if( ddConditionalTextValue == _firstLoanConditionValue || 
+       						ddConditionalTextValue == _secondLoanConditionValue){
 
-		$("#"+mandElement1.id).parent().parent().addClass("mandatory-fld");
-        mandElement1.mandatory = true;
-		$("#"+mandElement1.id).attr("aria-required",true);
-         $("#"+mandElement2.id).parent().parent().addClass("mandatory-fld");
-        mandElement2.mandatory = true;
-		$("#"+mandElement2.id).attr("aria-required",true);
+		setMandatoryEle(mandatoryElement_1);
+        setMandatoryEle(mandatoryElement_2);
 
     }else{
 
-		mandElement1.mandatory = false;
-        $("#"+mandElement1.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement1.id).removeAttr("aria-required",true);
-        mandElement2.mandatory = false;
-        $("#"+mandElement2.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement2.id).removeAttr("aria-required",true);
+		removeMandatoryEle(mandatoryElement_1);
+        removeMandatoryEle(mandatoryElement_2);
 
     }
 }
+
 
 // function for conditional mand -- Panel Security -- If Property Status is To Be built
 
 
-function propStatusCondMand(mandElement1, mandElement2, condElement){
+function propStatusCondMand(mandatoryElement_1, mandatoryElement_2, conditionalElement){
 
-     if($("#"+condElement.id+" :selected").text() == 'To be Built'){
-		$("#"+mandElement1.id).parent().parent().addClass("mandatory-fld");
-        mandElement1.mandatory = true;
-		$("#"+mandElement1.id).attr("aria-required",true);
-         $("#"+mandElement2.id).parent().parent().addClass("mandatory-fld");
-        mandElement2.mandatory = true;
-		$("#"+mandElement2.id).attr("aria-required",true);
+	var ddConditionalTextValue = getConditionalDropDownText(conditionalElement);
+
+    if(ddConditionalTextValue == _propStatusConditionValue){
+
+		setMandatoryEle(mandatoryElement_1);
+        setMandatoryEle(mandatoryElement_2);
 
     }else{
-         mandElement1.mandatory = false;
-        $("#"+mandElement1.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement1.id).removeAttr("aria-required",true);
-        mandElement2.mandatory = false;
-        $("#"+mandElement2.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+mandElement2.id).removeAttr("aria-required",true);
+
+        removeMandatoryEle(mandatoryElement_1);
+        removeMandatoryEle(mandatoryElement_2);
+
     }
 }
 
-// OLD FUNCTIONS to check for conditional mandatory - NOT IN USE
+// funtion for conditional mand - Solicitator Name on Loan Details - Purpose Cat/ purpose change
 
 
-function makeMandatory(currentElement, valueFromElement){
-    console.log("makeMandootry============>>>>>>>>>>>>" + valueFromElement.value);
-    if(valueFromElement.value !=null){
-		$("#"+currentElement.id).parent().parent().addClass("mandatory-fld");
-        currentElement.mandatory = true;
-        console.log("TRUE============>>>>>>>>>>>>" );
-		$("#"+currentElement.id).attr("aria-required",true);
+function soliNameCondMand(mandatoryElement_1, conditionalElement){
 
-        //return false;
+    var ddConditionalTextValue = getConditionalDropDownText(conditionalElement);
+
+    if( ddConditionalTextValue == _firstLoanCategoryConditionValue || 
+       						ddConditionalTextValue == _secondLoanCategoryConditionValue || 
+       						ddConditionalTextValue == _thirdLoanCategoryConditionValue || 
+       						ddConditionalTextValue == _fourthLoanCategoryConditionValue){
+		setMandatoryEle(mandatoryElement_1);
 
     }else{
-         console.log("FALSE============>>>>>>>>>>>>");
-         currentElement.mandatory = true;
-        $("#"+currentElement.id).parent().parent().removeClass("mandatory-fld");
-        $("#"+currentElement.id).removeAttr("aria-required",true);
-       // return true;
+        removeMandatoryEle(mandatoryElement_1);
     }
 }
 
+// function for Employemnt Conditional mandatory changes
 
-function checkMand(subject, conditionValue){
-    alert(conditionValue );
-    if(conditionValue != '')
-    {
-var yy = window.guideBridge.resolveNode("guide[0].guide1[0].guideRootPanel[0].broker[0].subpanel-broker[0].bCPID[0]");
-        alert(yy);
-        yy.mandatory = true;
-        /*
-        alert("Inside IF");
-        $("#"+subject.id).addClass('mandatory-fld');
+function unemployedCondMand(eOccupationalGroup,eOccupational,eGrossMonthly,eNetMonthly,timeEmploymentYears,timeEmploymentMonths,eEmploymentType,eProbationaryPeriod){
 
-          $("#"+subject.id).attr('required','true');
-
-         $("#"+subject.id).attr('aria-required','true');
-*/
-
+     if(eEmploymentType.value != _unemployed){
+        setMandatoryEle(eOccupationalGroup);
+        setMandatoryEle(eOccupational);
+        setMandatoryEle(eGrossMonthly);
+        setMandatoryEle(eNetMonthly);
+        setMandatoryEle(timeEmploymentYears);
+        setMandatoryEle(timeEmploymentMonths);
+        setMandatoryEle(eProbationaryPeriod); 
+    }else{
+        removeMandatoryEle(eOccupationalGroup);
+        removeMandatoryEle(eOccupational);
+        removeMandatoryEle(eGrossMonthly);
+        removeMandatoryEle(eNetMonthly);
+        removeMandatoryEle(timeEmploymentYears);
+        removeMandatoryEle(timeEmploymentMonths);
+        removeMandatoryEle(eProbationaryPeriod); 
     }
-    else{
-        $("#"+subject.id).removeClass('mandatory-fld')
-    }
-    alert( subject.id );
-    alert(subject.name);
+}
 
-	//subject.addClass(mandatory-fld);
+// functions for adding/removing mandatory validation to the elements
 
+function setMandatoryEle(ele){
+
+		$("#"+ele.id).parent().parent().addClass(defaultCssName);
+        ele.mandatory = true;
+		$("#"+ele.id).attr(defaultMandatoryAemParam,true);
+
+
+}
+
+function removeMandatoryEle(ele){
+
+  		ele.mandatory = false;
+        $("#"+ele.id).parent().parent().removeClass(defaultCssName);
+        $("#"+ele.id).removeAttr(defaultMandatoryAemParam,true);
+
+}
+
+// function for getting selected Dropdown text value
+
+function getConditionalDropDownText(ele){
+		return $("#"+ele.id+" :selected").text();
 }

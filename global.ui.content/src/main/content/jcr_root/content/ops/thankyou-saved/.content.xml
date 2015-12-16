@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:designPath="/etc/designs/ops-blueprint"
-        cq:lastModified="{Date}2015-11-05T08:18:53.773+05:30"
+        cq:lastModified="{Date}2015-12-04T20:36:22.475+11:00"
         cq:lastModifiedBy="admin"
         cq:template="/apps/opsBluePrint/templates/page-blank"
         jcr:primaryType="cq:PageContent"
@@ -15,11 +15,11 @@
             <text
                 jcr:created="{Date}2015-10-26T23:54:35.475+05:30"
                 jcr:createdBy="admin"
-                jcr:lastModified="{Date}2015-11-05T08:18:53.771+05:30"
+                jcr:lastModified="{Date}2015-12-04T20:36:22.460+11:00"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="foundation/components/text"
-                text="&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;p>&lt;b>The form has been saved into your drafts. &lt;a adhocenable=&quot;false&quot; href=&quot;/content/ops/homeloanportal.html&quot;>Go to Home page&lt;/a>.&lt;/b>&lt;/p>&#xa;"
+                text="&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;p>&lt;b>The form has been saved into your drafts. &lt;a adhocenable=&quot;false&quot; href=&quot;/content/ops/homeloanportal.html?wcmmode=disabled&quot;>Go to Home page&lt;/a>.&lt;/b>&lt;/p>&#xa;"
                 textIsRich="true"/>
         </par>
         <rightpar

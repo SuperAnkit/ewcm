@@ -15,9 +15,12 @@
   from Adobe Systems Incorporated.
 --%><%
 %><%@include file="/libs/fd/af/components/guidesglobal.jsp"%>
+<%@include file="/libs/foundation/global.jsp" %>
 <!DOCTYPE html>
 <head>
     <title><%= currentPage.getTitle() == null ? xssAPI.encodeForHTML(currentPage.getName()) : xssAPI.encodeForHTML(currentPage.getTitle()) %></title>
+    <% ops.sightly.components.RedirectService loginRedirect = sling.getService(ops.sightly.components.RedirectService.class);
+    loginRedirect.redirectPath(slingRequest, slingResponse);%>
     <meta http-equiv="X-UA-Compatible" content="IE=10,edge,chrome=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
