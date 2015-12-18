@@ -30,7 +30,7 @@ handleOPSDraftSave = function (state, redirect, formAppNo, mandatoryFlushCounter
 	if ($("#user_group").val() == "checker_group") {
 		state = "ops:review";
 	}
-	alert("APP NO TO SAVE " + formAppNo);
+	alert("APP NO. TO SAVE " + formAppNo);
 
 
     if(formUserGroup == 'checker_group'){

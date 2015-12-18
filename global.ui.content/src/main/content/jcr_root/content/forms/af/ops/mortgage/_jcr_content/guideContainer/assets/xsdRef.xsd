@@ -18,7 +18,7 @@
 													<xs:element name="bNominatedBranchofID" type="xs:string" minOccurs="0" />
                                                     <xs:element name="bNominatedBranchofID_calcOnly" type="xs:string" minOccurs="0" />
                                                     <xs:element name="mandatoryFlushCounter_calcOnly" type="xs:string" minOccurs="0" />
-                                                    <xs:element name="applicant_calcOnly" type="xs:string" minOccurs="0" />
+													<xs:element name="applicant_calcOnly" type="xs:string" minOccurs="0" />
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
@@ -82,7 +82,7 @@
 															  <xs:element name="pApplicantCurrentAddressLine2" type="xs:string" minOccurs="0" />
 															  <xs:element name="pApplicantCurrentAddressLine3" type="xs:string" minOccurs="0" />
 															  <xs:element name="pApplicantCurrentState" type="xs:int" minOccurs="0" />
-                                                              								  <xs:element name="pApplicantCurrentCity" type="xs:string" minOccurs="0" />
+                                                              <xs:element name="pApplicantCurrentCity" type="xs:string" minOccurs="0" />
 															  <xs:element name="pApplicantCurrentPostcode" type="xs:int" minOccurs="0" />
 															  <xs:element name="pApplicantCurrentCountry" type="xs:int" minOccurs="0" /> 
 															  <xs:element name="pApplicantHomePhone" type="xs:string" minOccurs="0" />
@@ -213,6 +213,8 @@
 																  <xs:element name="eFaxNumber" type="xs:string" minOccurs="0" /> 
 																  <xs:element name="eGrossMonthly" type="xs:decimal" minOccurs="0" /> 
 																  <xs:element name="eNetMonthly" type="xs:decimal" minOccurs="0" /> 
+																  <xs:element name="eGrossMonthly_calcOnly" type="xs:decimal" minOccurs="0" /> 
+																  <xs:element name="eNetMonthly_calcOnly" type="xs:decimal" minOccurs="0" />
 																  <xs:element name="timeEmploymentYears" type="xs:int" minOccurs="0" /> 
 																  <xs:element name="timeEmploymentMonths" type="xs:int" minOccurs="0" /> 
 																  <xs:element name="eProbationaryPeriod" type="xs:boolean" minOccurs="0" />
@@ -233,10 +235,12 @@
 															  <xs:element name="financialLinkID" type="xs:int" minOccurs="0" /> <!--  linked to applicant ID -->
                                                               <xs:element name="financialSequenceNo" type="xs:int" minOccurs="0" /> 
                                                               <xs:element name="spSpouseSOFP" type="xs:boolean" minOccurs="0" /> 
+															  <xs:element name="spSpouseSOFP_calcOnly" type="xs:boolean" minOccurs="0" /> 
                                                               <xs:element name="financialSpouseLinkID" type="xs:int" minOccurs="0" />
 															  <xs:element name="spDate" type="xs:date" minOccurs="0" /> 
 															  <xs:element name="spSigned" type="xs:boolean" minOccurs="0" /> 
 															  <xs:element name="fcSPDescription" type="xs:string" minOccurs="0" /> 
+															  <xs:element name="fcSPDescription_calcOnly" type="xs:string" minOccurs="0" />
 															  <xs:element name="assetdetails-container" maxOccurs="1" minOccurs="0">
 																<xs:complexType>
 																	<xs:sequence>
@@ -628,7 +632,8 @@
 																			<xs:element name="payDateTo" type="xs:date" minOccurs="0" />                                  
 																			<xs:element name="payName" type="xs:string" minOccurs="0" />                                    
 																			<xs:element name="payEmploymentType" type="xs:int" minOccurs="0" />                          
-																			<xs:element name="payEmploymentLoc" type="xs:string" minOccurs="0" />                           
+																			<xs:element name="payEmploymentLoc" type="xs:string" minOccurs="0" />   
+																			<xs:element name="payEmploymentLoc_calcOnly" type="xs:string" minOccurs="0" /> 
 																			<xs:element name="payEmployerName" type="xs:string" minOccurs="0" />
 																			<xs:element name="payEmployerABN" type="xs:string" minOccurs="0" />                            
 																			<xs:element name="payBaseIncome" type="xs:decimal" minOccurs="0" />                              
@@ -643,8 +648,7 @@
 																			<xs:element name="paySalaryDeductionPost" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="paySuperDeductionPre" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="paySuperDeductionPost" type="xs:decimal" minOccurs="0" />                      
-																			<xs:element name="payAmountStatedPre" type="xs:decimal" minOccurs="0" /> 
-																			<xs:element name="payAmountStatedPost" type="xs:decimal" minOccurs="0" />
+																			
 																			<xs:element name="payChildCareDeductionPre" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="payChildCareDeductionPost" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="payHECSDeductionPre" type="xs:decimal" minOccurs="0" />
@@ -654,6 +658,8 @@
 																					<xs:sequence>
 																						<xs:element name="payOtherDeductionDescritptionSequenceNo" type="xs:int" minOccurs="0" /> 
 																						<xs:element name="payOtherDeductionDescritption" type="xs:string" minOccurs="0" />
+																						<xs:element name="payAmountStatedPre" type="xs:decimal" minOccurs="0" /> 
+																						<xs:element name="payAmountStatedPost" type="xs:decimal" minOccurs="0" />
 																					</xs:sequence>
 																				</xs:complexType>				
 																			</xs:element> 
@@ -662,6 +668,11 @@
 																			<xs:element name="payAnnualIncome" type="xs:decimal" minOccurs="0" />                            
 																			<xs:element name="payYTDDetails" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="payYTDDetailsNet" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="payGross_calcOnly" type="xs:decimal" minOccurs="0" />                                   
+																			<xs:element name="payNet_calcOnly" type="xs:decimal" minOccurs="0" />                                     
+																			<xs:element name="payAnnualIncome_calcOnly" type="xs:decimal" minOccurs="0" />                            
+																			<xs:element name="payYTDDetails_calcOnly" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="payYTDDetailsNet_calcOnly" type="xs:decimal" minOccurs="0" />
 																		</xs:sequence>
 																	</xs:complexType>				
 																</xs:element>                                  
@@ -778,6 +789,7 @@
 																		<xs:sequence>
 																			<xs:element name="secApplicantLinkID" type="xs:int" minOccurs="0" /> <!-- Applicant \ customer ID pApplId -->
 																			<xs:element name="securitygivenbySequenceNo" type="xs:int" minOccurs="0" />
+																			<xs:element name="secApplicantLinkID_calcOnly" type="xs:int" minOccurs="0" />
 																		</xs:sequence>
 																	</xs:complexType>
 																</xs:element>
@@ -786,9 +798,18 @@
 																		<xs:sequence>
 																			<xs:element name="securityAddressLine1" type="xs:string"	minOccurs="0" />
 																			<xs:element name="secuirtyAddressLine2" type="xs:string" minOccurs="0" />
+																			<xs:element name="secuirtyAddressLine3" type="xs:string" minOccurs="0" />
 																			<xs:element name="securityCity" type="xs:string"	minOccurs="0" />
 																			<xs:element name="securityState" type="xs:int" minOccurs="0" />
 																			<xs:element name="securityPostcode" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityAddressLine1_calcOnly" type="xs:string"	minOccurs="0" />
+																			<xs:element name="secuirtyAddressLine2_calcOnly" type="xs:string" minOccurs="0" />
+																			<xs:element name="secuirtyAddressLine3_calcOnly" type="xs:string" minOccurs="0" />
+																			<xs:element name="securityCity_calcOnly" type="xs:string"	minOccurs="0" />
+																			<xs:element name="securityState_calcOnly" type="xs:int" minOccurs="0" />
+																			<xs:element name="securityPostcode_calcOnly" type="xs:string" minOccurs="0" />
+																			
+																			
 																			<xs:element name="securityCountry" type="xs:int" minOccurs="0" />
 																			<xs:element name="sDateSecurity" type="xs:date" minOccurs="0" />
 																			<xs:element name="sPropertyPurchase" type="xs:boolean" minOccurs="0" />
@@ -800,11 +821,20 @@
 																			<xs:element name="sPropertyuse" type="xs:int" minOccurs="0" />
 																			<xs:element name="sTitleType" type="xs:int" minOccurs="0" />
 																			<xs:element name="sDateContractSale" type="xs:date" minOccurs="0" />
+																			
 																			<xs:element name="sSecurityValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sSecurityValue_calcOnly" type="xs:decimal" minOccurs="0" />
+																			
 																			<xs:element name="sCustomerStatedValue" type="xs:decimal" minOccurs="0" />
+																			
 																			<xs:element name="sTransferLandValue" type="xs:decimal" minOccurs="0" />
+																			<xs:element name="sTransferLandValue_calcOnly" type="xs:decimal" minOccurs="0" />
+																			
 																			<xs:element name="sValuationRequired" type="xs:decimal" minOccurs="0" />
+																			
 																			<xs:element name="sSecurityStatus" type="xs:int" minOccurs="0" />
+																			<xs:element name="sSecurityStatus_calcOnly" type="xs:int" minOccurs="0" />
+																			
 																			<xs:element name="sStampingType" type="xs:int" minOccurs="0" />
 																			<xs:element name="sFirstMortgageValue" type="xs:decimal" minOccurs="0" />
 																			<xs:element name="sExistingStampValue" type="xs:decimal" minOccurs="0" />
@@ -848,14 +878,18 @@
 																				<xs:complexType>
 																					<xs:sequence>
 																						<xs:element name="sCOSSequenceNo" type="xs:int" minOccurs="0" /> 
-																						<xs:element name="sCOSTitleReference" type="xs:string" minOccurs="0" />				
+																						<xs:element name="sCOSTitleReference" type="xs:string" minOccurs="0" />
+																						<xs:element name="sCOSTitleReference_calcOnly" type="xs:string" minOccurs="0" />	
 																						<xs:element name="sCOSCarPark" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="sCOSSellerName" type="xs:string" minOccurs="0" />
 																						<xs:element name="sCOSBuyerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sCOSBuyerName_calcOnly" type="xs:string" minOccurs="0" />
 																						<xs:element name="sCOSPurchasePrice" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="sCOSPurchasePrice_calcOnly" type="xs:decimal" minOccurs="0" />
 																						<xs:element name="sCOSSettlementDate" type="xs:date" minOccurs="0" />
 																						<xs:element name="sCOSGoods" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="sCOSExecutionDate" type="xs:date" minOccurs="0" />
+																						<xs:element name="sCOSExecutionDate_calcOnly" type="xs:date" minOccurs="0" />
 																						<xs:element name="sCOSIsSpecialCondition" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="sCOSSpecialCondition" type="xs:string" minOccurs="0" />
 																						<xs:element name="isPOAinvolved" type="xs:int" minOccurs="0" />
@@ -878,8 +912,10 @@
 																						<xs:element name="sTOLTitleReference" type="xs:string" minOccurs="0" />  
 																						<xs:element name="sTOLSellerName" type="xs:string" minOccurs="0" />
 																						<xs:element name="sTOLBuyerName" type="xs:string" minOccurs="0" />
+																						<xs:element name="sTOLBuyerName_calcOnly" type="xs:string" minOccurs="0" />
 																						<xs:element name="sTOLpercentagesharedescription" type="xs:string" minOccurs="0" />
 																						<xs:element name="sTOLTransferLandValue" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="sTOLTransferLandValue_calcOnly" type="xs:decimal" minOccurs="0" />
 																						<xs:element name="sTOLisTrustinvolved" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="sTOLtrustname" type="xs:string" minOccurs="0" />
 																						<xs:element name="sTOLdirectingparty" type="xs:boolean" minOccurs="0" />
@@ -1019,7 +1055,7 @@
 												<xs:sequence>
 												    <xs:element name="ofiLinkId" type="xs:int" minOccurs="0" />  <!--  not used now as OFI is a type inside Application; no data will be passed now -->
 													<xs:element name="ofiBSB" type="xs:int" minOccurs="0" />
-                                                    <xs:element name="ofiBSB_calcOnly" type="xs:int" minOccurs="0" />
+													<xs:element name="ofiBSB_calcOnly" type="xs:int" minOccurs="0" />
                                                     <xs:element name="ofiSequenceNo" type="xs:int" minOccurs="0" /> 
 													<xs:element name="ofiBankName" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiName" type="xs:string" minOccurs="0" />
@@ -1037,7 +1073,7 @@
 													<xs:element name="ofiAccountNumber4" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiAccountNumber5" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiAccountNumber6" type="xs:string" minOccurs="0" />
-                                                    <xs:element name="ofiAccountNumber1_calcOnly" type="xs:string" minOccurs="0" />
+													<xs:element name="ofiAccountNumber1_calcOnly" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiAccountNumber2_calcOnly" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiAccountNumber3_calcOnly" type="xs:string" minOccurs="0" />
 													<xs:element name="ofiAccountNumber4_calcOnly" type="xs:string" minOccurs="0" />
@@ -1073,12 +1109,10 @@
 													<xs:element name="ldPurposeCategory" type="xs:int"	minOccurs="0" />
 													<xs:element name="ldPurpose" type="xs:int" minOccurs="0" />
 													<xs:element name="ldPurposeDesc" type="xs:string"	minOccurs="0" />
-                                                    <xs:element name="ldPurposeDesc_calcOnly" type="xs:string"	minOccurs="0" />
+													<xs:element name="ldPurposeDesc_calcOnly" type="xs:string"	minOccurs="0" />
 													<xs:element name="ldEstSettlementDate" type="xs:date"	minOccurs="0" />
 													<xs:element name="ldApprovedinPrice" type="xs:boolean" minOccurs="0" />
-                                                    <xs:element name="ldApprovedinPrice_calcOnly" type="xs:boolean" minOccurs="0" />
-                                                    <xs:element name="ldOwnerBuilder" type="xs:boolean" minOccurs="0" />
-                                                    <xs:element name="ldRapidRefinance" type="xs:boolean" minOccurs="0" />
+													<xs:element name="ldApprovedinPrice_calcOnly" type="xs:boolean" minOccurs="0" />
 													<xs:element name="ldBridgingPortion" type="xs:decimal"        minOccurs="0" /> 
                                                     <xs:element name="ldOngoingPortion" type="xs:decimal" minOccurs="0" />     
                                                     <xs:element name="ldAdditionalCosts" type="xs:decimal"        minOccurs="0" />     
@@ -1109,8 +1143,12 @@
 																<xs:element name="ldIntOnlyTermMonths" type="xs:int" minOccurs="0" />
 																<xs:element name="ldInterestFrequency" type="xs:int" minOccurs="0" />
 																<xs:element name="ldILSPaymentFrequency" type="xs:int" minOccurs="0" />
+                                                                <xs:element name="ldILSPaymentMethod" type="xs:int" minOccurs="0" />
 																<xs:element name="ldILSMarginOverrideReason" type="xs:int" minOccurs="0" />
 																<xs:element name="ldDDAAccountNumber" type="xs:int" minOccurs="0" />
+																<xs:element name="ldDDAAccountNameLine1" type="xs:string" minOccurs="0" />
+																<xs:element name="ldDDAAccountNameLine2" type="xs:string" minOccurs="0" />
+																<xs:element name="ldDDAAccountNameLine3" type="xs:string" minOccurs="0" />
 																<xs:element name="ldDDANumberSignatories" type="xs:int" minOccurs="0" />
 																<xs:element name="ldDDAATOType" type="xs:int" minOccurs="0" />
 																<xs:element name="ldODlimitAmt" type="xs:decimal" minOccurs="0" />
@@ -1121,7 +1159,7 @@
 																	<xs:complexType>
 																		<xs:sequence>
 																		<xs:element name="ldAssociatedProductBorrowersUISeqNo" type="xs:int" minOccurs="0" />
-																		<xs:element name="ldApplicantionParticipantID" type="xs:string" minOccurs="0" />
+																		<xs:element name="ldApplicantionParticipantID" type="xs:int" minOccurs="0" />
 																		<xs:element name="ldOverridenRoleID" type="xs:string" minOccurs="0" />
 																		<xs:element name="ldAddressTypeID" type="xs:string" minOccurs="0" />
 																		<xs:element name="ldIsNominatedBorrower " type="xs:boolean" minOccurs="0" />
@@ -1262,13 +1300,17 @@
 																	  <xs:element name="docType_dropdown" type="xs:int" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentName" type="xs:string" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentDOB" type="xs:date" minOccurs="0" /> 
-																	  <xs:element name="comIDDocumentExpiryDate" type="xs:date" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentExpiryDate" type="xs:date" minOccurs="0" />
+																	  <xs:element name="comIDDocumentExpiryDate_calcOnly" type="xs:date" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentPassportNo" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentPassportNo_calcOnly" type="xs:string" minOccurs="0" />
 																	  <xs:element name="comIDDocumentAusOrOverseasPassport" type="xs:int" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentChangeInName" type="xs:boolean" minOccurs="0" /> 
-																	  <xs:element name="comIDDocumentSubClassNo" type="xs:string" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentSubClassNo" type="xs:string" minOccurs="0" />
+																	  <xs:element name="comIDDocumentSubClassNo_calcOnly" type="xs:string" minOccurs="0" />
 																	  <xs:element name="comIDDocumentDateGranted" type="xs:date" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentDLIssueState" type="xs:int" minOccurs="0" /> 
+																	  <xs:element name="comIDDocumentDLIssueState_calcOnly" type="xs:int" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentDrivingLicNo" type="xs:string" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentApplicantsName" type="xs:string" minOccurs="0" /> 
 																	  <xs:element name="comIDDocumentConjugalStatus" type="xs:string" minOccurs="0" /> 

@@ -22,7 +22,7 @@ handleOPSSubmit = function (state, successRedirect, failureRedirect, formAppNo, 
  	var formUserName = $("#user_name").val();
     var formUserGroup = $("#user_group").val();
 
-    alert("APP NO TO SUBMIT " + formAppNo);
+    alert("APP NO. TO SUBMIT " + formAppNo);
 
     if(formUserGroup == 'checker_group'){
 		mandatoryFlushCounter.value = parseInt(mandatoryFlushCounter.value) + 1;

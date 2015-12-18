@@ -25,4 +25,5 @@
 <div id="loading" class="loading-progress"> 
 Processing...
 </div>
+    <img class="loading-icon" src="/content/dam/ops/blueprint/loading_icon.gif" alt="loading" >
 </div>

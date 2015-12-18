@@ -23,10 +23,13 @@ window.onload = function() {
 	$('#isValidation').attr('value', 'true');
 
 	//alert($('#guideContainer-rootPanel-guidepanel_879805661044659-panel1393766190488-guidetextbox_0___widget').val());
+	hideCalculateOnlyFields();
+
+	displayUserRole();
 
 }
 
-function populateEmployerName(employers) {
+function populateEmployerName(employers,applicantCalcOnly) {
 
 	var aarr = [];
 
@@ -55,8 +58,15 @@ function populateEmployerName(employers) {
 }
 
 
-function populateApplicantName(rootPanel, applicant_calcOnly) {
+function populateApplicantName(rootPanel,applicantCalcOnly) {
 	rooPanel = rootPanel;
+
+    console.log("====App rootPanel console======   " + rootPanel._children.length);
+    console.log("====App rootPanel console======   " + rootPanel._children[0].name);
+    console.log("====App rootPanel console======   " + rootPanel._children[1].name);
+    console.log("====App rootPanel console======   " + rootPanel._children[2].name);
+    console.log("====App rootPanel console======   " + rootPanel._children[3].name);
+
 	var aarr = [];
 
 	for (var i = 1; i < rootPanel._children.length; i++) {
@@ -67,7 +77,7 @@ function populateApplicantName(rootPanel, applicant_calcOnly) {
 		var primary_applicant = cpanel._children[1];
 		var customer_type = primary_applicant._children[7];
 		var firstName_text_field = customer_type._children[1];
-		
+
 		var lastName = primary_applicant._children[7];
 		var lastName_text_field = lastName._children[3];
 
@@ -78,6 +88,9 @@ function populateApplicantName(rootPanel, applicant_calcOnly) {
 		var lastNameValue = lastName_text_field.value;
 		var middleNameValue = middleName_text_field.value;
 		var sequence_number = primary_applicant._children[0].value;
+        //var applicantCalcOnly = applicantCalcOnly.value;    
+
+        		//alert(firstNameValue +"~~~" +lastNameValue +"~~~" +sequence_number+"~~~" +middleNameValue);
 
 			if (firstNameValue==null)
             firstNameValue="";
@@ -85,15 +98,17 @@ function populateApplicantName(rootPanel, applicant_calcOnly) {
             middleNameValue="";
         	if (lastNameValue==null)
             lastNameValue="";
-		var applicant_calcOnly = applicant_calcOnly;
-		var Value = sequence_number + "=" + firstNameValue + " "+ middleNameValue + " "+ lastNameValue;
+
+        var Value = sequence_number + "=" + firstNameValue + " "+ middleNameValue + " "+ lastNameValue;
+        //+ "::"+ tempNameValue + "::";
 		Value = Value.replace("null", "");
+        //alert(Value);
 		aarr.push(Value);
 
 	}
 
-	}
-	//console.log(aarr);
+}
+	console.log("arrr pushhhhed---"+aarr+"---");
 	return aarr;
 }
 
@@ -315,7 +330,7 @@ function getInitCounter(element,isAppFin) {
         return value;
     }
 
-    //console.log(panelId);
+    console.log(panelId);
     return sg_new.get(panelId);
 
 }
@@ -339,5 +354,26 @@ function disableSelectDropdowns() {
     }
 }
 
+// To hide calc only fields from form
+function hideCalculateOnlyFields() {
+	var s = document.getElementsByClassName('calc-only');
+    for(var i=0;i<s.length;i++) {
+       s[i].setAttribute('hidden',true);
+    }
+}
 
-
+function displayUserRole(){
+var role = $('#user_group').val();
+if(role == 'maker_group'){
+	document.getElementById('role_label').innerHTML = 'You are logged as MAKER';
+}
+else if(role == 'checker_group'){
+document.getElementById('role_label').innerHTML = 'You are logged as CHECKER';
+}
+else if(role == 'reader_group'){
+document.getElementById('role_label').innerHTML = 'You are logged as READER';
+}
+else {
+// do nothing
+}
+}

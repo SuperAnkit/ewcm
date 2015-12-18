@@ -551,6 +551,7 @@ function isFutureDate(idate){
     return (today - idate) < 0 ? true : false;
 }
 
+
 //Function to copy data in MakerOnly attribute and alert checker if value is different
 function checkerValidation(subject, makerElement) {
     console.log('M V ID:' + subject);
@@ -561,7 +562,7 @@ function checkerValidation(subject, makerElement) {
     }
     else if(formUserGroup == 'checker_group'){
     	if (subject != makerElement) {
-    		alert("MISMATCH");
+            alert('Caution: Value entered by you '+subject+ ' does not match '+makerElement+'.');
 		} 
     	return makerElement;
     }
@@ -572,55 +573,122 @@ function checkerValidation(subject, makerElement) {
 }
 
 //Function for validating postcode
-function validatePostCode(city, state, postcode, applicantCust, isMandatory){
-    alert('ffff');
-	if(applicantCust.value=='1'){
-		if(postcode.value.match(/^[0-9]{4,10}$/)){
-			// make ajax call to validate postcode
-            var submitData = "postcode=" + postcode.value + "&state=" + state.value + "&city=" + city.value + "&isMandatory=" + isMandatory ;
-            $.ajax({
-                  url: '/bin/validatePostcode',
-                  async:false,
-                  data: submitData,
-                  error: function() {
-                     $('#info').html('<p>An error has occurred</p>');
-                  },
-                  dataType: 'text',
-                  success: function(data) {
-                    var resCode = data;
-                    //alert("code++" + resCode + "++");
-					if(resCode == 'true'){
-                        return true;
-                    }
-                      else{
+function validatePostCode(city, state, postcode, applicantCust, pOverseasAddress, isMandatory){
+    console.log("state: " + state.value);
+    console.log("postcode: " + postcode.value);
+    console.log("city: " + city.value);
+	if(applicantCust=='1'){
+		
+
+		
+		if (isMandatory == 'true') {
+			if (pOverseasAddress=='true') {
+				if(postcode.value.match(/^[0-9]{4,10}$/)){	
+
+					return true;
+				}else { // else for if(postcode.value.match(/^[0-9]{4,10}$/)
+
+					return false;
+				}
+			}
+			else{
+
+				if((state.value == null) || (city.value == null) || (state.value == 'null') || (city.value == 'null')){ // check if city or state is null
+					return false;
+					}
+					else{ // else for city and state is null
+					if(postcode.value.match(/^[0-9]{4,10}$/)){	
+						// make ajax call to validate postcode
+                        var status = false;
+			            var submitData = "postcode=" + postcode.value + "&state=" + state.value + "&city=" + city.value ;
+			            $.ajax({
+			                  url: '/bin/validatePostcode',
+			                  async:false,
+			                  data: submitData,
+			                  error: function() {
+			                     $('#info').html('<p>An error has occurred</p>');
+			                  },
+			                  dataType: 'text',
+			                  success: function(data) {
+
+			                    console.log("code++" + data + "++");
+                                  status = data;
+
+
+			                  },
+			                  type: 'POST'
+			             });
+                        if(status == "true"){
+                            console.log("am in true");
+                            return true;
+                        }
+                        else{
+                            console.log('FALSE');
+                            return false;
+                        }
+					}else { // else for if(postcode.value.match(/^[0-9]{4,10}$/)
 						return false;
-                      }
+					}
+					}		
+			
+			}
+		} 
+		else { // else for if (isMandatory == 'true')
+			if (pOverseasAddress=='true') {
+				if(postcode.value.match(/^[0-9]{4,10}$/)){	
+					return true;
+				}else { // else for if(postcode.value.match(/^[0-9]{4,10}$/)
+					return false;
+				}
+			}
+			else{
+				if (postcode.value == '' || postcode.value== 'null' || postcode.value== null) {
+					return true;
+				} else { // else for checking if postcode is valid
+					if((state.value == null) || (city.value == null) || (state.value == 'null') || (city.value == 'null')){ // check if city or state is null
+						return false;
+					}
+						else{ // else for city and state is null
+						if(postcode.value.match(/^[0-9]{4,10}$/)){	
+							// make ajax call to validate postcode
+                        var status = false;
+			            var submitData = "postcode=" + postcode.value + "&state=" + state.value + "&city=" + city.value ;
+			            $.ajax({
+			                  url: '/bin/validatePostcode',
+			                  async:false,
+			                  data: submitData,
+			                  error: function() {
+			                     $('#info').html('<p>An error has occurred</p>');
+			                  },
+			                  dataType: 'text',
+			                  success: function(data) {
 
-                  },
-                  type: 'POST'
-             });
+			                    console.log("code++" + data + "++");
+                                  status = data;
 
-		}else {
-			return false;
+
+			                  },
+			                  type: 'POST'
+			             });
+                        if(status == "true"){
+                            console.log("am in true");
+                            return true;
+                        }
+                        else{
+                            console.log('FALSE');
+                            return false;
+                        }
+						}else { // else for if(postcode.value.match(/^[0-9]{4,10}$/)
+							return false;
+						}
+						}
+					}
+
+			}
 		}
     }
-		else{
+		else{ // else for if(applicantCust.value=='1')
+            console.log("outttt");
 			return true;
 			}
-
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

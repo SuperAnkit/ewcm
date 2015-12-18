@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1450269229344
+Bnd-LastModified: 1450415833025
 Build-Jdk: 1.7.0_79
-Built-By: selvav
+Built-By: punnau2
 Bundle-Description: Core bundle for OPS
 Bundle-ManifestVersion: 2
 Bundle-Name: OPS - Core

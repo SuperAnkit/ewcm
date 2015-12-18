@@ -26,7 +26,7 @@ handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo)
     $('#isValidation').attr('value','true');
     //$('#redirect').val(redirect);
 
-    alert("APP NO TO APPROVE " + formAppNo);
+    alert("APP NO. TO APPROVE " + formAppNo);
 
     var user_name = "user_name=" + formUserName;
     var application_no = "application_no=" + formAppNo;

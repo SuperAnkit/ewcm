@@ -4,8 +4,6 @@
   <filter root="/apps/opsBluePrint" mode="update" /> 
   <filter root="/etc/designs/ops-blueprint" mode="update" />  
   <filter root="/content/dam/formsanddocuments/ops" mode="update" />
-  <filter root="/libs/fd/af/components/guideContainer/guideContainer.jsp" mode="update" /> 
-  <filter root="/etc/clientlibs/fd/fp/saveAsDraft/js/saveGuideDraft.js" mode="update" /> 
   <filter root="/apps/system" mode="update" /> 
 	
 </workspaceFilter>

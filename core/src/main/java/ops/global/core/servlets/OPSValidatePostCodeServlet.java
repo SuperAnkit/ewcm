@@ -38,46 +38,17 @@ public class OPSValidatePostCodeServlet extends SlingAllMethodsServlet {
         	String postCode = request.getParameter("postcode");
         	String state = request.getParameter("state");
         	String city = request.getParameter("city");
-        	String isMandatory = request.getParameter("isMandatory");
-        	
+        	logger.info("REDAER LOG++postCode++++++++++++++++++++++" + postCode );
+        	logger.info("REDAER LOG++++++++state++++++++++++++++" + state );
+        	logger.info("REDAER LOG+++++++city+++++++++++++++++" + city );
 
-        	String toReturnResults = null;
-        	
-        	if (isMandatory.equals("true")) {
-        		//always validate
-        		//call ws for validating the postcode
-        		toReturnResults = validatePostCode(postCode, city, state);
-        		
-        	} else {
-        		//return true if no value provided and perform validation only if postcode provided
-        		if (!postCode.equals(null)) {
-					//call ws for validating the postcode
-        			toReturnResults = validatePostCode(postCode, city, state);
-				} else {
-					toReturnResults = "true";
-				}
-
-			}
-        	
-        	logger.info("REDAER FOR POSTCODE++++++++++++++++++++++" + toReturnResults);
-        	response.setContentType("application/text");
-            response.getWriter().write(toReturnResults);
-        	
-        	
-        	
-
-    }
-
-		private String validatePostCode(String postCode, String city,
-				String state) throws HttpException, IOException {
-			// TODO Auto-generated method stub
-			
         	GetMethod method = null;
-			String getServiceURL = OPSConstants.WS_VALIDATE_POSTCODE_URL.replace("_postcode", postCode).replace("_city", city).replace("_state", state);
+        	String isValid = null;
+			String getServiceURL = OPSConstants.WS_VALIDATE_POSTCODE_URL.replace("_postcode", postCode).replace("_city", city).replace("_state", state).replaceAll(" ","%20");
         	// create WS connection
         	method = new GetMethod(getServiceURL);
         	
-        	logger.info("REDAER LOG++++++++++++++++++++++++" + getServiceURL);
+        	logger.info("REDAER LOG++++++++++++++++++++++++" + getServiceURL );
         	
         	// Execute the method.
 			int statusCode = client.executeMethod(method);
@@ -94,8 +65,19 @@ public class OPSValidatePostCodeServlet extends SlingAllMethodsServlet {
 				newresponse.append(inputLine);
 			}
 			in.close();
-			return newresponse.toString();
-		}
+			
+			logger.info("REDAER LOG++ RETURN++++++++++++++++++++++" + newresponse.toString() + "------" );
+			logger.info("REDAER LOG++ STATUS++++++++++++++++++++++" + statusCode + "------" );
+			
+			
+        	logger.info("REDAER FOR POSTCODE++++++++++++++++++++++" + newresponse.toString());
+        	response.setContentType("application/text");
+            response.getWriter().write(newresponse.toString());
+        	
+        }
+        	
 
     }
+
+	
 
