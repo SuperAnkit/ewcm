@@ -1,0 +1,39 @@
+<uib-accordion-group heading="Solictors Details" ng-show="Solictors">
+                        <!-- Solictors Details -->
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Solicitors Details </div>
+                            <div class="{{data.application.solicitors.length > 1 ? 'col-md-6':'col-md-12'}}" ng-repeat="(key, solicitors) in data.application.solicitors">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <td class="info">Solicitor Name</td>
+                                            <td class="active">{{solicitors.solicitorName}}</td>
+                                            <td class="info">Firm</td>
+                                            <td class="active"> {{solicitors.firm}}</td>
+                                            <td class="info">Phone</td>
+                                            <td class="active">{{solicitors.address.phone1}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="info">Fax Number</td>
+                                            <td class="active"> {{solicitors.address.fax}}</td>
+                                            <td class="info">email ID</td>
+                                            <td class="active">{{solicitors.emailId}}</td>
+
+                                        </tr>
+                                        <tr>
+                                        	<td class="info">Address</td>
+                                            <td class="active"> {{solicitors.address.streetNumber}} {{solicitors.address.streetName}} {{solicitors.address.city}} {{solicitors.address.postCode}}
+                                            <span ng-repeat="countryID in staticData.country | filter:{countryID:solicitors.address.countryId}:true">{{countryID.countryName}}</span>
+                                           <span ng-repeat="staticStateName in staticData.state | filter:{stateID:solicitors.address.stateId}">{{staticStateName.stateName}}</span>
+                                           </td>
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!--- Solicitor Details End--->

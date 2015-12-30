@@ -755,7 +755,7 @@
 																			<xs:element name="ofiBankName" type="xs:string" minOccurs="0" />                                
 																			<xs:element name="ofiBankBSB" type="xs:int" minOccurs="0" />                                 
 																			<xs:element name="ofiAcNo" type="xs:int" minOccurs="0" />                                    
-																			<xs:element name="ofiCardNo" type="xs:int" minOccurs="0" />                                  
+																			<xs:element name="ofiCardNo" type="xs:string" minOccurs="0" />                                  
 																			<xs:element name="ofiOutstandingAmount" type="xs:decimal" minOccurs="0" />                       
 																			<xs:element name="ofiStatementFrom" type="xs:date" minOccurs="0" />                           
 																			<xs:element name="ofiStatementTo" type="xs:date" minOccurs="0" />                             
@@ -852,6 +852,7 @@
 																						<xs:element name="valFMV" type="xs:decimal" minOccurs="0" />
 																						<xs:element name="sDocValuationDate" type="xs:date" minOccurs="0" />
 																						<xs:element name="valRentalIncome" type="xs:decimal" minOccurs="0" />
+																						<xs:element name="valRentalIncomeFrequency" type="xs:int" minOccurs="0" />
 																						<xs:element name="secTobeErected" type="xs:boolean" minOccurs="0" />
 																						
 																						<xs:element name="sValuationNumberBed" type="xs:int" minOccurs="0" />
@@ -1112,7 +1113,8 @@
 													<xs:element name="ldPurposeDesc_calcOnly" type="xs:string"	minOccurs="0" />
 													<xs:element name="ldEstSettlementDate" type="xs:date"	minOccurs="0" />
 													<xs:element name="ldApprovedinPrice" type="xs:boolean" minOccurs="0" />
-													<xs:element name="ldApprovedinPrice_calcOnly" type="xs:boolean" minOccurs="0" />
+                                                    <xs:element name="ldOwnerBuilder" type="xs:boolean" minOccurs="0" />
+                                                    <xs:element name="ldRapidRefinance" type="xs:boolean" minOccurs="0" />
 													<xs:element name="ldBridgingPortion" type="xs:decimal"        minOccurs="0" /> 
                                                     <xs:element name="ldOngoingPortion" type="xs:decimal" minOccurs="0" />     
                                                     <xs:element name="ldAdditionalCosts" type="xs:decimal"        minOccurs="0" />     
@@ -1132,6 +1134,7 @@
 																<xs:element name="ldSubProductCode" type="xs:int" minOccurs="0" />
 																<xs:element name="ldRegulated" type="xs:boolean" minOccurs="0" />
 																<xs:element name="ldAmountSought" type="xs:decimal" minOccurs="0" />
+																<xs:element name="ldAmountSought_calcOnly" type="xs:decimal" minOccurs="0" />
 																<xs:element name="ldAmountThisAdvance" type="xs:decimal" minOccurs="0" />
 																<xs:element name="ldProgressiveDrawdown" type="xs:boolean" minOccurs="0" />
 																<xs:element name="ldLMI" type="xs:boolean" minOccurs="0" />

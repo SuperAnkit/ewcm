@@ -132,7 +132,7 @@
                                         shortDescription="&lt;p>Controlling Post Identification&lt;/p>"
                                         validateExp="if(this.value!=null){this.value.match(this.value.match(/^[a-zA-Z0-9]{4,6}$/)) ? true : false} else {false};"
                                         validateExpMessage="Please enter valid CPID."
-                                        valueCommitScript="bCPID_calcOnly.value = checkerValidation(this.value,bCPID_calcOnly.value);"/>
+                                        valueCommitScript="bCPID_calcOnly.value = checkerValidation(this,bCPID_calcOnly.value);"/>
                                     <guidetextbox_4
                                         jcr:created="{Date}2015-10-28T15:30:36.440+05:30"
                                         jcr:createdBy="admin"
@@ -183,7 +183,7 @@
                                         shortDescription="&lt;p>Third Party Mortgage Introducer - AO&lt;/p>"
                                         validateExp="if(this.value!=null){this.value.match(this.value.match(/^[a-zA-Z0-9]{3,7}$/)) ? true : false} else {false};"
                                         validateExpMessage="Please enter a valid TPMI AO"
-                                        valueCommitScript="bTPMIAO_calcOnly.value = checkerValidation(this.value,bTPMIAO_calcOnly.value);"/>
+                                        valueCommitScript="bTPMIAO_calcOnly.value = checkerValidation(this,bTPMIAO_calcOnly.value);"/>
                                     <guidetextbox_1
                                         jcr:created="{Date}2015-10-15T11:01:50.913+05:30"
                                         jcr:createdBy="admin"
@@ -202,7 +202,7 @@
                                         shortDescription="&lt;p>Third Party Mortgage Introducer - SAO&lt;/p>"
                                         validateExp="if(this.value!=null){this.value.match(this.value.match(/^[0-9]{1,3}$/)) ? true : false} else {false};"
                                         validateExpMessage="Please enter a valid TPMI SAO"
-                                        valueCommitScript="bTPMISAO_calcOnly.value = checkerValidation(this.value,bTPMISAO_calcOnly.value);"/>
+                                        valueCommitScript="bTPMISAO_calcOnly.value = checkerValidation(this,bTPMISAO_calcOnly.value);"/>
                                     <guideradiobutton
                                         jcr:created="{Date}2015-10-09T09:23:08.288+05:30"
                                         jcr:createdBy="admin"
@@ -234,7 +234,7 @@
                                         maxChars="20"
                                         name="bApplicationReceivedDate"
                                         shortDescription="&lt;p>Enter date in dd/mm/yyyy HH:MM AM/PM format&lt;/p>&#xa;"
-                                        validateExp="validateBrokerDateTime(this.value,true);"
+                                        validateExp="validateBrokerDateTime(this.value);"
                                         validateExpMessage="Please enter a valid DateTime"/>
                                     <guidedropdownlist
                                         jcr:created="{Date}2015-12-09T15:43:40.516+05:30"
@@ -268,7 +268,7 @@
                                         shortDescription="&lt;p>Enter 4 digits&lt;/p>&#xa;"
                                         validateExp="if(this.value!=null){this.value.match(this.value.match(/^[0-9]{4}$/)) ? true : false} else {false};"
                                         validateExpMessage="Please enter valid Nominated Branch ID"
-                                        valueCommitScript="bNominatedBranchofID_calcOnly.value = checkerValidation(this.value,bNominatedBranchofID_calcOnly);"/>
+                                        valueCommitScript="bNominatedBranchofID_calcOnly.value = checkerValidation(this,bNominatedBranchofID_calcOnly.value);"/>
                                     <guidehiddentextbox
                                         jcr:created="{Date}2015-10-19T15:01:12.298+05:30"
                                         jcr:createdBy="admin"
@@ -482,7 +482,6 @@
                                                 guideNodeClass="guideTextBox"
                                                 maxChars="2"
                                                 name="pApplicantMOSSequenceNumber"
-                                                shortDescription="&lt;p>Enter numeric values between 0-99&lt;/p>"
                                                 validateExp="isMOSValid(this.value,true);"
                                                 validateExpMessage="MOS sequence number should be 2 digits"
                                                 width="10"/>
@@ -604,7 +603,7 @@
                                                         shortDescription="&lt;p>Customer first name&lt;/p>&#xa;"
                                                         validateExp="if(pApplicantcustomer.value=='1'){(this.value!=null)? true : false}else{true};"
                                                         validateExpMessage="First name is required"
-                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantFirstName_calcOnly.value = checkerValidation(this.value,pApplicantFirstName_calcOnly.value);">
+                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantFirstName_calcOnly.value = checkerValidation(this,pApplicantFirstName_calcOnly.value);">
                                                         <layout
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="/libs/fd/af/layouts/gridFluidLayout"/>
@@ -624,7 +623,7 @@
                                                         maxChars="40"
                                                         name="pApplicantMiddleName"
                                                         shortDescription="&lt;p>Customer middle name&lt;/p>&#xa;"
-                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantMiddleName_calcOnly.value = checkerValidation(this.value,pApplicantMiddleName_calcOnly.value);">
+                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantMiddleName_calcOnly.value = checkerValidation(this,pApplicantMiddleName_calcOnly.value);">
                                                         <layout
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="/libs/fd/af/layouts/gridFluidLayout"/>
@@ -647,7 +646,7 @@
                                                         shortDescription="&lt;p>Customer last name&lt;/p>&#xa;"
                                                         validateExp="if(pApplicantcustomer.value=='1'){(this.value!=null)? true : false}else{true};"
                                                         validateExpMessage="Last name is required"
-                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantLastName_calcOnly.value = checkerValidation(this.value,pApplicantLastName_calcOnly.value);">
+                                                        valueCommitScript="getFormattedNames(pApplicantTitle.value,pApplicantFirstName.value,pApplicantMiddleName.value,pApplicantLastName.value,pApplicantShortName, pApplicantFormalSaluation, pApplicantMailingTitle);pApplicantLastName_calcOnly.value = checkerValidation(this,pApplicantLastName_calcOnly.value);">
                                                         <layout
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="/libs/fd/af/layouts/gridFluidLayout"/>
@@ -729,7 +728,7 @@
                                                         shortDescription="&lt;p>Customer date of birth&lt;/p>&#xa;"
                                                         validateExp="if(pApplicantcustomer.value=='1'){(isValidDate(this.value,true))? true : false}else{true};"
                                                         validateExpMessage="Valid date of birth is required"
-                                                        valueCommitScript="pApplicantDOB_calcOnly.value = checkerValidation(this.value,pApplicantDOB_calcOnly.value);">
+                                                        valueCommitScript="pApplicantDOB_calcOnly.value = checkerValidation(this,pApplicantDOB_calcOnly.value);">
                                                         <layout
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="/libs/fd/af/layouts/gridFluidLayout"/>
@@ -816,7 +815,7 @@
                                                         options="[Single=Single,Married/DeFacto=Married/DeFacto,Separated=Separated,Divorced=Divorced,Widowed=Widowed]"
                                                         validateExp="if(pApplicantcustomer.value=='1'){isDropDownValid(this.value)? true: false}else{true};"
                                                         validateExpMessage="Marital status is required"
-                                                        valueCommitScript="pApplicantMaritalStatus_calcOnly.value = checkerValidation(this.value,pApplicantMaritalStatus_calcOnly.value);"/>
+                                                        valueCommitScript="pApplicantMaritalStatus_calcOnly.value = checkerValidation(this,pApplicantMaritalStatus_calcOnly.value);"/>
                                                     <guidetextbox_3
                                                         jcr:created="{Date}2015-10-13T14:43:44.098+05:30"
                                                         jcr:createdBy="admin"
@@ -858,11 +857,12 @@
                                                         bindRef="/afData/applicantdetails/pApplicant/pApplicantNumberofDependents"
                                                         css="mandatory-fld"
                                                         guideNodeClass="guideDropDownList"
+                                                        initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'dropdown','true');"
                                                         name="pApplicantNumberofDependents"
                                                         options="[0=0,1=1,2=2,3=3,4=4,5=5,6=6,7=7,8=8,9=9,10=10]"
                                                         validateExp="if(pApplicantcustomer.value=='1'){isDropDownValid(this.value)? true: false}else{true};"
                                                         validateExpMessage="Please select the number of dependents"
-                                                        valueCommitScript="dependentCondMand(pApplicantDependentAge,this);"/>
+                                                        valueCommitScript="dependentCondMand(pApplicantDependentAge,this);pApplicantNumberofDependents_calcOnly.value = checkerValidation(this,pApplicantNumberofDependents_calcOnly.value);"/>
                                                     <guidetextbox_8
                                                         jcr:created="{Date}2015-10-19T08:55:16.201+05:30"
                                                         jcr:createdBy="admin"
@@ -874,9 +874,8 @@
                                                         assistPriority="custom"
                                                         bindRef="/afData/applicantdetails/pApplicant/pApplicantDependentAge"
                                                         guideNodeClass="guideTextBox"
-                                                        initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         name="pApplicantDependentAge"
-                                                        valueCommitScript="dependentCondMand(pApplicantDependentAge,this);pApplicantNumberofDependents_calcOnly.value = checkerValidation(this.value,pApplicantNumberofDependents_calcOnly.value);"
+                                                        valueCommitScript="dependentCondMand(pApplicantDependentAge,this)"
                                                         visibleExp="pApplicantNumberofDependents.value!=&quot;0&quot;"/>
                                                     <guidenumericbox_3
                                                         jcr:created="{Date}2015-10-13T10:47:46.618+05:30"
@@ -1027,7 +1026,7 @@
                                                                 options="[true=Yes,false=No]"
                                                                 validateExp="if(pApplicantcustomer.value=='1'){(isRadioValid(this.value))? true : false}else{true};"
                                                                 validateExpMessage="Please select one value"
-                                                                valueCommitScript="pIsPermanentResident_calcOnly.value = checkerValidation(this.value,pIsPermanentResident_calcOnly.value);"/>
+                                                                valueCommitScript="pIsPermanentResident_calcOnly.value = checkerValidation(this,pIsPermanentResident_calcOnly.value);"/>
                                                             <guidedropdownlist_2
                                                                 jcr:created="{Date}2015-10-15T13:02:57.169+05:30"
                                                                 jcr:createdBy="admin"
@@ -1076,7 +1075,7 @@
                                                                 shortDescription="&lt;p>Foreign Investment Review Board&#xa;&lt;/p>"
                                                                 validateExp="if(pApplicantcustomer.value=='1'){(isRadioValid(this.value))? true : false}else{true};"
                                                                 validateExpMessage="Please select one value"
-                                                                valueCommitScript="pApplicantFIRBApprovalHeld_calcOnly.value = checkerValidation(this.value,pApplicantFIRBApprovalHeld_calcOnly.value);"/>
+                                                                valueCommitScript="pApplicantFIRBApprovalHeld_calcOnly.value = checkerValidation(this,pApplicantFIRBApprovalHeld_calcOnly.value);"/>
                                                             <pIsPermanentResident_calcOnly
                                                                 jcr:created="{Date}2015-10-15T14:54:05.899+05:30"
                                                                 jcr:createdBy="admin"
@@ -1138,7 +1137,7 @@
                                                                 options="[true=Yes,false=No]"
                                                                 validateExp="if(pApplicantcustomer.value=='1'){(isRadioValid(this.value))? true : false}else{true};"
                                                                 validateExpMessage="Please select one value"
-                                                                valueCommitScript="pApplicantFirstHomeBuyer_calcOnly.value = checkerValidation(this.value,pApplicantFirstHomeBuyer_calcOnly.value);"/>
+                                                                valueCommitScript="pApplicantFirstHomeBuyer_calcOnly.value = checkerValidation(this,pApplicantFirstHomeBuyer_calcOnly.value);"/>
                                                             <guideradiobutton_6
                                                                 jcr:created="{Date}2015-10-19T13:47:18.141+05:30"
                                                                 jcr:createdBy="admin"
@@ -1228,7 +1227,7 @@
                                                                 jcr:lastModified="{Date}2015-11-18T10:20:08.677+05:30"
                                                                 jcr:lastModifiedBy="admin"
                                                                 jcr:primaryType="nt:unstructured"
-                                                                jcr:title="Is Overseas Addess?"
+                                                                jcr:title="Is Overseas Address?"
                                                                 sling:resourceType="fd/af/components/guideradiobutton"
                                                                 alignment="guideFieldHorizontalAlignment"
                                                                 bindRef="/afData/applicantdetails/pApplicant/pOverseasAddress"
@@ -1346,6 +1345,7 @@
                                                                 mandatoryMessage="Please enter postcode"
                                                                 maxChars="10"
                                                                 name="pApplicantCurrentPostcode"
+                                                                shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                                                 validateExp="validatePostCode(pApplicantCurrentCity, pApplicantCurrentState, this, pApplicantcustomer.value, pOverseasAddress.value,'true');"
                                                                 validateExpMessage="Please enter a valid postcode"
                                                                 visibleExp="pApplicantcustomer.value=='1'"/>
@@ -1453,7 +1453,7 @@
                                                                         jcr:lastModified="{Date}2015-12-09T16:26:59.483+05:30"
                                                                         jcr:lastModifiedBy="admin"
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        jcr:title="Is Overseas Addess?"
+                                                                        jcr:title="Is Overseas Address?"
                                                                         sling:resourceType="fd/af/components/guideradiobutton"
                                                                         alignment="guideFieldHorizontalAlignment"
                                                                         bindRef="/afData/applicantdetails/pApplicant/pMailingOverseasAddress"
@@ -1634,7 +1634,7 @@
                                                                                 jcr:lastModified="{Date}2015-12-09T16:30:50.623+05:30"
                                                                                 jcr:lastModifiedBy="admin"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                jcr:title="Is Overseas Addess?"
+                                                                                jcr:title="Is Overseas Address?"
                                                                                 sling:resourceType="fd/af/components/guideradiobutton"
                                                                                 alignment="guideFieldHorizontalAlignment"
                                                                                 bindRef="/afData/applicantdetails/pApplicant/pApplicantPreviousAddress/pApplicantPreviousOverseasAddress"
@@ -2098,7 +2098,7 @@
                                                         css="mandatory-fld"
                                                         guideNodeClass="guideRadioButton"
                                                         name="pIsSoleDirector"
-                                                        options="[1=Yes,0=No]"
+                                                        options="[true=Yes,false=No]"
                                                         validateExp="if(pApplicantcustomer.value=='2'){(this.value!=null)? true : false}else{true};"
                                                         validateExpMessage="Please select a valid option"/>
                                                     <guidetextbox_5
@@ -2115,9 +2115,9 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pDirectornameonASIC"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){this.value!=null?true:false}else{true}"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){this.value!=null?true:false}else{true}"
                                                         validateExpMessage="Director name is required"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_6
                                                         jcr:created="{Date}2015-10-13T16:10:21.364+05:30"
                                                         jcr:createdBy="admin"
@@ -2132,9 +2132,9 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleAddressLine1"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){this.value!=null?true:false}else{true}"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){this.value!=null?true:false}else{true}"
                                                         validateExpMessage="Valid address is required"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_8
                                                         jcr:created="{Date}2015-12-09T15:51:57.266+05:30"
                                                         jcr:createdBy="admin"
@@ -2147,9 +2147,9 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleAddressLine2"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){this.value!=null?true:false}else{true}"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){this.value!=null?true:false}else{true}"
                                                         validateExpMessage="Enter a valid address"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_7
                                                         jcr:created="{Date}2015-10-13T16:10:21.561+05:30"
                                                         jcr:createdBy="admin"
@@ -2162,9 +2162,9 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleAddressLine3"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){this.value!=null?true:false}else{true}"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){this.value!=null?true:false}else{true}"
                                                         validateExpMessage="Enter a valid address"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_15
                                                         jcr:created="{Date}2015-10-13T10:47:45.412+05:30"
                                                         jcr:createdBy="admin"
@@ -2192,9 +2192,9 @@
                                                         guideNodeClass="guideDropDownList"
                                                         name="pSoleState"
                                                         options="[1=VIC,2=NSW,3=QLD,4=WA,5=SA,6=NT,7=ACT,8=TAS]"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){this.value!=null?true:false}else{true}"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){this.value!=null?true:false}else{true}"
                                                         validateExpMessage="Select the state"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_9
                                                         jcr:created="{Date}2015-10-13T16:10:22.000+05:30"
                                                         jcr:createdBy="admin"
@@ -2209,9 +2209,10 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="4"
                                                         name="pSolePostcode"
-                                                        validateExp="if(pIsSoleDirector.value=='1'){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
+                                                        shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
+                                                        validateExp="if(pIsSoleDirector.value=='true'){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
                                                         validateExpMessage="Valid post code is required"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_10
                                                         jcr:created="{Date}2015-10-13T16:12:49.725+05:30"
                                                         jcr:createdBy="admin"
@@ -2226,7 +2227,7 @@
                                                         mandatoryMessage="Please enter a valid name"
                                                         maxChars="40"
                                                         name="pSecretorynameonASIC"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_11
                                                         jcr:created="{Date}2015-10-13T16:12:49.922+05:30"
                                                         jcr:createdBy="admin"
@@ -2239,7 +2240,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleSecretaryAddressLine1"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_13
                                                         jcr:created="{Date}2015-12-09T15:53:11.782+05:30"
                                                         jcr:createdBy="admin"
@@ -2252,7 +2253,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleSecretaryAddressLine2"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_12
                                                         jcr:created="{Date}2015-10-13T16:12:50.149+05:30"
                                                         jcr:createdBy="admin"
@@ -2265,7 +2266,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="40"
                                                         name="pSoleSecretaryAddressLine3"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidedropdownlist_1
                                                         jcr:created="{Date}2015-10-29T02:48:38.494+05:30"
                                                         jcr:createdBy="admin"
@@ -2280,7 +2281,7 @@
                                                         name="pSoleSecretaryState"
                                                         options="[1=VIC,2=NSW,3=QLD,4=WA,5=SA,6=NT,7=ACT,8=TAS]"
                                                         validateExpMessage="if((pApplicantcustomer.value=='2')&amp;&amp;(pIsSoleDirector.value==1)&amp;&amp;(pSoleSecretaryState!='0')){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <guidetextbox_14
                                                         jcr:created="{Date}2015-10-13T16:12:50.587+05:30"
                                                         jcr:createdBy="admin"
@@ -2294,8 +2295,9 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="4"
                                                         name="pSoleSecretaryPostcode"
+                                                        shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                                         validateExpMessage="Valid post code is required"
-                                                        visibleExp="pIsSoleDirector.value=='1'"/>
+                                                        visibleExp="pIsSoleDirector.value=='true'"/>
                                                     <pMultidirector
                                                         jcr:description="Multi Director"
                                                         jcr:lastModified="{Date}2015-11-18T12:09:29.932+05:30"
@@ -2305,7 +2307,7 @@
                                                         sling:resourceType="fd/af/components/panel"
                                                         guideNodeClass="guidePanel"
                                                         name="Multidirector"
-                                                        visibleExp="pIsSoleDirector.value=='0'">
+                                                        visibleExp="pIsSoleDirector.value=='false'">
                                                         <items
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="fd/af/layouts/gridFluidLayout">
@@ -2354,7 +2356,7 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="40"
                                                                         name="pMultiDirectornameonASIC"
-                                                                        validateExp="if($('#isValidation').val()!='true'){true} else {if(pIsSoleDirector.value=='0'){(this.value!=null)? true : false}else{true}};"
+                                                                        validateExp="if($('#isValidation').val()!='true'){true} else {if(pIsSoleDirector.value=='false'){(this.value!=null)? true : false}else{true}};"
                                                                         validateExpMessage="Director name is required"/>
                                                                     <guidetextbox_0
                                                                         jcr:created="{Date}2015-10-14T10:13:49.439+05:30"
@@ -2370,7 +2372,7 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="40"
                                                                         name="pMultiAddressLine1"
-                                                                        validateExp="if(pIsSoleDirector.value=='0'){(this.value!=null)? true : false}else{true};"
+                                                                        validateExp="if(pIsSoleDirector.value=='false'){(this.value!=null)? true : false}else{true};"
                                                                         validateExpMessage="Valid address is required"/>
                                                                     <guidetextbox_2
                                                                         jcr:created="{Date}2015-12-09T15:54:03.945+05:30"
@@ -2384,7 +2386,7 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="40"
                                                                         name="pMultiAddressLine2"
-                                                                        validateExp="if(pIsSoleDirector.value=='0'){(this.value!=null)? true : false}else{true};"
+                                                                        validateExp="if(pIsSoleDirector.value=='false'){(this.value!=null)? true : false}else{true};"
                                                                         validateExpMessage="Valid address is required"/>
                                                                     <guidetextbox_1
                                                                         jcr:created="{Date}2015-10-14T10:13:49.657+05:30"
@@ -2398,7 +2400,7 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="40"
                                                                         name="pMultiAddressLine3"
-                                                                        validateExp="if(pIsSoleDirector.value=='0'){(this.value!=null)? true : false}else{true};"
+                                                                        validateExp="if(pIsSoleDirector.value=='false'){(this.value!=null)? true : false}else{true};"
                                                                         validateExpMessage="Valid address is required"/>
                                                                     <guidetextbox_15
                                                                         jcr:created="{Date}2015-10-13T10:47:45.412+05:30"
@@ -2427,7 +2429,7 @@
                                                                         guideNodeClass="guideDropDownList"
                                                                         name="pMultiState"
                                                                         options="[1=VIC,2=NSW,3=QLD,4=WA,5=SA,6=NT,7=ACT,8=TAS]"
-                                                                        validateExp="if(pIsSoleDirector.value=='0'){(this.value!=null)? true : false}else{true};"
+                                                                        validateExp="if(pIsSoleDirector.value=='false'){(this.value!=null)? true : false}else{true};"
                                                                         validateExpMessage="Enter a valid state"/>
                                                                     <guidetextbox_3
                                                                         jcr:created="{Date}2015-10-14T10:13:50.389+05:30"
@@ -2443,7 +2445,7 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="4"
                                                                         name="pMultiPostcode"
-                                                                        validateExp="if(pIsSoleDirector.value=='0'){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
+                                                                        validateExp="if(pIsSoleDirector.value=='false'){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
                                                                         validateExpMessage="Valid postcode is required"/>
                                                                     <guidetextbox_4
                                                                         jcr:created="{Date}2015-10-14T10:13:50.623+05:30"
@@ -2522,7 +2524,8 @@
                                                                         guideNodeClass="guideTextBox"
                                                                         maxChars="4"
                                                                         name="pMultiSecretaryPostcode"
-                                                                        validateExp="if((pIsSoleDirector.value=='0')&amp;&amp;(this.value!=null)){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
+                                                                        shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
+                                                                        validateExp="if((pIsSoleDirector.value=='false')&amp;&amp;(this.value!=null)){(this.value.match(/^[0-9]{4}$/))? true : false}else{true};"
                                                                         validateExpMessage="Valid post code is required"/>
                                                                 </items>
                                                                 <layout
@@ -3098,10 +3101,10 @@
                                                 guideNodeClass="guideDropDownList"
                                                 name="eOccupationalGroup"
                                                 options="[1=Agricultural,2=General,3=Management,4=Office Workers,5=Prof Skill Trades,6=Professional,7=Sales,8=Semi-Professional,9=Service,10=Technical,11=Unskilled Trades,12=Unknown]"
-                                                validateExp="if((eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'){(isDropDownValid(this.value))? true : false}else{true};"
+                                                validateExp="if(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'){(isDropDownValid(this.value))? true : false}else{true};"
                                                 validateExpMessage="Please select one valid value"
                                                 valueCommitScript="eOccupational.value = null;"
-                                                visibleExp="(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'"/>
+                                                visibleExp="eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'"/>
                                             <guidedropdownlist_0
                                                 jcr:created="{Date}2015-10-21T16:16:28.513+05:30"
                                                 jcr:createdBy="admin"
@@ -3116,9 +3119,9 @@
                                                 guideNodeClass="guideDropDownList"
                                                 name="eOccupational"
                                                 optionsExp="JSON.parse(     $.ajax({         url: &quot;/bin/DDoccupational&quot;,         type: &quot;POST&quot;,         async: false,         data: {&quot;eOccupationalGroup&quot;: eOccupationalGroup.value},          success: function(res){},          error : function (message) {                 guideBridge._guide.logger().log(message);               successFlag = false;               }            }) .responseText);"
-                                                validateExp="if((eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'){(isDropDownValid(this.value))? true : false}else{true};"
+                                                validateExp="if(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'){(isDropDownValid(this.value))? true : false}else{true};"
                                                 validateExpMessage="Please select one valid value"
-                                                visibleExp="(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'"/>
+                                                visibleExp="eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'"/>
                                             <guidetextbox
                                                 jcr:created="{Date}2015-10-21T16:16:34.381+05:30"
                                                 jcr:createdBy="admin"
@@ -3249,6 +3252,7 @@
                                                 mandatoryMessage="Please enter a valid postcode"
                                                 maxChars="4"
                                                 name="ePostcode"
+                                                shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                                 validateExp="if(eEmploymentType.value!='6'){validatePostCode(eCity, eState, this, '1', 'false','false');}else{true}"
                                                 validateExpMessage="Enter valid Postcode"
                                                 visibleExp="eEmploymentType.value!='6'"/>
@@ -3297,10 +3301,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                 leadDigits="16"
                                                 name="eGrossMonthly"
-                                                validateExp="if((eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'){(isDropDownValid(this.value))? true : false}else{true};"
+                                                validateExp="if(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'){(isDropDownValid(this.value))? true : false}else{true};"
                                                 validateExpMessage="Please enter a valid value"
-                                                valueCommitScript="eGrossMonthly_calcOnly.value = checkerValidation(this.value,eGrossMonthly_calcOnly.value);"
-                                                visibleExp="(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'"/>
+                                                valueCommitScript="eGrossMonthly_calcOnly.value = checkerValidation(this,eGrossMonthly_calcOnly.value);"
+                                                visibleExp="eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'"/>
                                             <guidenumericbox_0
                                                 jcr:created="{Date}2015-10-21T16:16:40.388+05:30"
                                                 jcr:createdBy="admin"
@@ -3318,10 +3322,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                 leadDigits="16"
                                                 name="eNetMonthly"
-                                                validateExp="if((eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'){(isDropDownValid(this.value))? true : false}else{true};"
+                                                validateExp="if(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'){(isDropDownValid(this.value))? true : false}else{true};"
                                                 validateExpMessage="Please enter a valid value"
-                                                valueCommitScript="eNetMonthly_calcOnly.value = checkerValidation(this.value,eNetMonthly_calcOnly.value);"
-                                                visibleExp="(eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous')&amp;&amp; eEmploymentType.value!='6'"/>
+                                                valueCommitScript="eNetMonthly_calcOnly.value = checkerValidation(this,eNetMonthly_calcOnly.value);"
+                                                visibleExp="eEmploymentCategory.value=='primary' || eEmploymentCategory.value=='additional' || eEmploymentCategory.value=='previous'"/>
                                             <timeofemployment
                                                 jcr:lastModified="{Date}2015-10-09T12:29:56.620+05:30"
                                                 jcr:lastModifiedBy="admin"
@@ -3342,8 +3346,7 @@
                                                         sling:resourceType="fd/af/components/guidetextdraw"
                                                         _value="&lt;p>&lt;b>Time at Employment&lt;/b>&lt;/p>&#xa;"
                                                         guideNodeClass="guideTextDraw"
-                                                        name="eTimeEmployment"
-                                                        visibleExp="eEmploymentType.value!='6'"/>
+                                                        name="eTimeEmployment"/>
                                                     <guidenumericbox
                                                         jcr:created="{Date}2015-10-12T10:00:48.504+05:30"
                                                         jcr:createdBy="admin"
@@ -3358,9 +3361,8 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="2"
                                                         name="timeEmploymentYears"
-                                                        validateExp="if(eEmploymentType.value!='6'){isTaDValid(this.value,true,timeEmploymentMonths.value)? true : false}else{true};"
-                                                        validateExpMessage="Please enter valid values"
-                                                        visibleExp="eEmploymentType.value!='6'"/>
+                                                        validateExp="isTaDValid(this.value,true,timeEmploymentMonths.value);"
+                                                        validateExpMessage="Please enter valid values"/>
                                                     <guidenumericbox_0
                                                         jcr:created="{Date}2015-10-12T10:02:25.190+05:30"
                                                         jcr:createdBy="admin"
@@ -3375,9 +3377,8 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="2"
                                                         name="timeEmploymentMonths"
-                                                        validateExp="if(eEmploymentType.value!='6'){isTaDValid(this.value,true,timeEmploymentYears.value)? true : false}else{true};"
-                                                        validateExpMessage="Please enter valid values"
-                                                        visibleExp="eEmploymentType.value!='6'"/>
+                                                        validateExp="isTaDValid(this.value,true,timeEmploymentYears.value);"
+                                                        validateExpMessage="Please enter valid values"/>
                                                 </items>
                                                 <layout
                                                     jcr:primaryType="nt:unstructured"
@@ -3550,9 +3551,9 @@
                                                         guideNodeClass="guideRadioButton"
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'radio','true');"
                                                         name="spSpouseSOFP"
-                                                        options="[1=Yes,0=No]"
+                                                        options="[true=Yes,false=No]"
                                                         shortDescription="&lt;p>Statement of Financial Position&#xa;&lt;/p>"
-                                                        valueCommitScript="spSpouseSOFP_calcOnly.value = checkerValidation(this.value,spSpouseSOFP_calcOnly.value);"/>
+                                                        valueCommitScript="spSpouseSOFP_calcOnly.value = checkerValidation(this,spSpouseSOFP_calcOnly.value);"/>
                                                     <guidedropdownlist_01
                                                         jcr:created="{Date}2015-11-03T11:39:28.165+05:30"
                                                         jcr:createdBy="admin"
@@ -3567,7 +3568,7 @@
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialSpouseLinkID"
                                                         optionsExp="populateApplicantName(applicantdetails);"
-                                                        visibleExp="spSpouseSOFP.value==1"/>
+                                                        visibleExp="spSpouseSOFP.value=='true'"/>
                                                     <guidedatepicker
                                                         jcr:created="{Date}2015-10-19T16:03:12.128+05:30"
                                                         jcr:createdBy="admin"
@@ -3597,7 +3598,7 @@
                                                         custom="SP Signed by Customer?"
                                                         guideNodeClass="guideRadioButton"
                                                         name="spSigned"
-                                                        options="[1=Yes,0=No]"
+                                                        options="[true=Yes,false=No]"
                                                         shortDescription="&lt;p>Statement of Position&#xa;&lt;/p>"/>
                                                     <guidetextbox
                                                         jcr:created="{Date}2015-10-19T16:03:12.892+05:30"
@@ -3614,7 +3615,7 @@
                                                         maxChars="40"
                                                         name="fcSPDescription"
                                                         shortDescription="&lt;p>Statement of Position&#xa;&lt;/p>"
-                                                        valueCommitScript="fcSPDescription_calcOnly.value = checkerValidation(this.value,fcSPDescription_calcOnly.value);"/>
+                                                        valueCommitScript="fcSPDescription_calcOnly.value = checkerValidation(this,fcSPDescription_calcOnly.value);"/>
                                                     <spSpouseSOFP_calcOnly
                                                         jcr:created="{Date}2015-10-19T16:03:12.502+05:30"
                                                         jcr:createdBy="admin"
@@ -3629,7 +3630,7 @@
                                                         css="calc-only"
                                                         guideNodeClass="guideRadioButton"
                                                         name="spSpouseSOFP_calcOnly"
-                                                        options="[1=Yes,0=No]"/>
+                                                        options="[true=Yes,false=No]"/>
                                                     <fcSPDescription_calcOnly
                                                         jcr:created="{Date}2015-10-19T16:03:12.892+05:30"
                                                         jcr:createdBy="admin"
@@ -4372,7 +4373,7 @@
                                                                 css="customer-drop-down"
                                                                 guideNodeClass="guideDropDownList"
                                                                 name="financialTrustPartnershipsLinkID"
-                                                                optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                                optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                             <guidenumericbox
                                                                 jcr:created="{Date}2015-11-14T19:13:08.897+05:30"
                                                                 jcr:createdBy="admin"
@@ -5478,7 +5479,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialTaxDocumentsLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <company-information
                                                         jcr:description=""
                                                         jcr:primaryType="nt:unstructured"
@@ -5510,6 +5511,7 @@
                                                                 guideNodeClass="guideTextBox"
                                                                 maxChars="16"
                                                                 name="companyABN"
+                                                                shortDescription="&lt;p>Australian Business Number&lt;/p>"
                                                                 validateExp="isBSBValid(this.value,false);"/>
                                                             <guidetextbox
                                                                 jcr:created="{Date}2015-10-07T17:49:13.286+05:30"
@@ -6294,7 +6296,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialTrustCompanyPartnershipLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <business-details
                                                         jcr:description=""
                                                         jcr:primaryType="nt:unstructured"
@@ -6849,7 +6851,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialBalanceSheetLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidetextbox
                                                         jcr:created="{Date}2015-10-19T14:15:47.126+05:30"
                                                         jcr:createdBy="admin"
@@ -7012,7 +7014,7 @@
                                                         bindRef="/afData/financials/taxdocuments/Individual-tax-returns/financialTaxDocumentsLinkID"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialTaxDocumentsLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidenumericbox
                                                         jcr:created="{Date}2015-11-14T19:15:50.761+05:30"
                                                         jcr:createdBy="admin"
@@ -7121,7 +7123,8 @@
                                                                         displayPictureClause="num{($zzzzzzzzzzzzzzz9.99)}"
                                                                         guideNodeClass="guideNumericBox"
                                                                         leadDigits="16"
-                                                                        name="indIncomePAYG"/>
+                                                                        name="indIncomePAYG"
+                                                                        shortDescription="&lt;p>Pay as you go&lt;/p>"/>
                                                                     <guidetextbox
                                                                         jcr:created="{Date}2015-10-19T14:32:40.828+05:30"
                                                                         jcr:createdBy="admin"
@@ -8505,7 +8508,7 @@
                                                 css="customer-drop-down"
                                                 guideNodeClass="guideDropDownList"
                                                 name="atoLinkID"
-                                                optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                             <guidetextbox
                                                 jcr:created="{Date}2015-10-08T15:49:19.787+05:30"
                                                 jcr:createdBy="admin"
@@ -8760,7 +8763,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         name="payEmploymentLoc"
-                                                        valueCommitScript="payEmploymentLoc_calcOnly.value = checkerValidation(this.value,payEmploymentLoc_calcOnly.value);"/>
+                                                        valueCommitScript="payEmploymentLoc_calcOnly.value = checkerValidation(this,payEmploymentLoc_calcOnly.value);"/>
                                                     <guidetextbox_1
                                                         jcr:created="{Date}2015-10-08T16:11:45.303+05:30"
                                                         jcr:createdBy="admin"
@@ -8786,6 +8789,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         maxChars="14"
                                                         name="payEmployerABN"
+                                                        shortDescription="&lt;p>Australian Business Number&lt;/p>"
                                                         validateExp="isBSBValid(this.value,false);"
                                                         validateExpMessage="ABN Number Should be 11 Digits only"/>
                                                     <payslips-multi
@@ -9237,7 +9241,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="payGross"
-                                                        valueCommitScript="payGross_calcOnly.value = checkerValidation(this.value,payGross_calcOnly.value);"/>
+                                                        valueCommitScript="payGross_calcOnly.value = checkerValidation(this,payGross_calcOnly.value);"/>
                                                     <guidenumericbox_4
                                                         jcr:created="{Date}2015-10-20T20:29:58.191+05:30"
                                                         jcr:createdBy="admin"
@@ -9254,7 +9258,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="payNet"
-                                                        valueCommitScript="payNet_calcOnly.value = checkerValidation(this.value,payNet_calcOnly.value);"/>
+                                                        valueCommitScript="payNet_calcOnly.value = checkerValidation(this,payNet_calcOnly.value);"/>
                                                     <guidenumericbox_5
                                                         jcr:created="{Date}2015-10-20T20:29:59.033+05:30"
                                                         jcr:createdBy="admin"
@@ -9271,7 +9275,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="payAnnualIncome"
-                                                        valueCommitScript="payAnnualIncome_calcOnly.value = checkerValidation(this.value,payAnnualIncome_calcOnly.value);"/>
+                                                        valueCommitScript="payAnnualIncome_calcOnly.value = checkerValidation(this,payAnnualIncome_calcOnly.value);"/>
                                                     <guidenumericbox_6
                                                         jcr:created="{Date}2015-10-20T20:29:59.454+05:30"
                                                         jcr:createdBy="admin"
@@ -9287,7 +9291,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="payYTDDetails"
-                                                        valueCommitScript="payYTDDetails_calcOnly.value = checkerValidation(this.value,payYTDDetails_calcOnly.value);"/>
+                                                        valueCommitScript="payYTDDetails_calcOnly.value = checkerValidation(this,payYTDDetails_calcOnly.value);"/>
                                                     <YTD_net
                                                         jcr:created="{Date}2015-10-20T20:29:59.454+05:30"
                                                         jcr:createdBy="admin"
@@ -9303,7 +9307,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="payYTDDetailsNet"
-                                                        valueCommitScript="payYTDDetailsNet_calcOnly.value = checkerValidation(this.value,payYTDDetailsNet_calcOnly.value);"/>
+                                                        valueCommitScript="payYTDDetailsNet_calcOnly.value = checkerValidation(this,payYTDDetailsNet_calcOnly.value);"/>
                                                     <payEmploymentLoc_calcOnly
                                                         jcr:created="{Date}2015-10-08T16:08:13.095+05:30"
                                                         jcr:createdBy="admin"
@@ -9453,7 +9457,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialPayGLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidetextbox
                                                         jcr:created="{Date}2015-10-08T16:41:27.936+05:30"
                                                         jcr:createdBy="admin"
@@ -9493,7 +9497,8 @@
                                                         bindRef="/afData/financials/payslips-section/paygsummary/paygPayeeABN"
                                                         guideNodeClass="guideNumericBox"
                                                         leadDigits="16"
-                                                        name="paygPayeeABN"/>
+                                                        name="paygPayeeABN"
+                                                        shortDescription="&lt;p>Australian Business Number&lt;/p>"/>
                                                     <guidedatepicker
                                                         jcr:created="{Date}2015-10-08T16:51:08.553+05:30"
                                                         jcr:createdBy="admin"
@@ -9631,7 +9636,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialDSSStatementLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidetextbox
                                                         jcr:created="{Date}2015-10-08T16:55:33.506+05:30"
                                                         jcr:createdBy="admin"
@@ -10012,7 +10017,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialRentalIncomeLinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidenumericbox
                                                         jcr:created="{Date}2015-10-08T17:49:12.261+05:30"
                                                         jcr:createdBy="admin"
@@ -10155,33 +10160,7 @@
                                                         css="customer-drop-down"
                                                         guideNodeClass="guideDropDownList"
                                                         name="financialOFILinkID"
-                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"/>
-                                                    <guidedatepicker_2
-                                                        jcr:created="{Date}2015-10-19T12:20:39.268+05:30"
-                                                        jcr:createdBy="admin"
-                                                        jcr:lastModified="{Date}2015-10-25T17:49:15.293+05:30"
-                                                        jcr:lastModifiedBy="admin"
-                                                        jcr:primaryType="nt:unstructured"
-                                                        jcr:title="Date To"
-                                                        sling:resourceType="fd/af/components/guidetextbox"
-                                                        assistPriority="custom"
-                                                        bindRef="/afData/financials/payslips-section/ofi-statement/ofiDateTo"
-                                                        guideNodeClass="guideTextBox"
-                                                        name="ofiDateTo"
-                                                        validateExp="isValidDate(this.value,false);"/>
-                                                    <guidedatepicker_3
-                                                        jcr:created="{Date}2015-10-19T12:20:39.673+05:30"
-                                                        jcr:createdBy="admin"
-                                                        jcr:lastModified="{Date}2015-10-25T17:49:39.386+05:30"
-                                                        jcr:lastModifiedBy="admin"
-                                                        jcr:primaryType="nt:unstructured"
-                                                        jcr:title="Date From"
-                                                        sling:resourceType="fd/af/components/guidetextbox"
-                                                        assistPriority="custom"
-                                                        bindRef="/afData/financials/payslips-section/ofi-statement/ofiDateFrom"
-                                                        guideNodeClass="guideTextBox"
-                                                        name="ofiDateFrom"
-                                                        validateExp="isValidDate(this.value,false);"/>
+                                                        optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value,'false');"/>
                                                     <guidetextbox
                                                         jcr:created="{Date}2015-10-08T18:04:29.215+05:30"
                                                         jcr:createdBy="admin"
@@ -10497,7 +10476,7 @@
                                                                 jcr:title="UI Sequence no"
                                                                 sling:resourceType="fd/af/components/guidetextbox"
                                                                 assistPriority="custom"
-                                                                bindRef="/afData/security-container/security/secSequenceNo"
+                                                                bindRef="/afData/security-container/security/security-givenby/securitygivenbySequenceNo"
                                                                 css="flsecuritygivenbySequenceNo"
                                                                 guideNodeClass="guideTextBox"
                                                                 initScript="this.value=getInitCounter(this)"
@@ -10520,7 +10499,7 @@
                                                                 optionsExp="populateApplicantName(applicantdetails,applicant_calcOnly.value);"
                                                                 validateExp="isDropDownValid(this.value);"
                                                                 validateExpMessage="Please select a valid option"
-                                                                valueCommitScript="secApplicantLinkID_calcOnly.value = checkerValidation(this.value,secApplicantLinkID_calcOnly.value);"/>
+                                                                valueCommitScript="secApplicantLinkID_calcOnly.value = checkerValidation(this,secApplicantLinkID_calcOnly.value);"/>
                                                             <secApplicantLinkID_calcOnly
                                                                 jcr:created="{Date}2015-11-03T11:39:28.165+05:30"
                                                                 jcr:createdBy="admin"
@@ -10590,7 +10569,7 @@
                                                                 name="securityAddressLine1"
                                                                 validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){(this.value==null)? false : true} else {true};"
                                                                 validateExpMessage="Please enter address"
-                                                                valueCommitScript="securityAddressLine1_calcOnly.value = checkerValidation(this.value,securityAddressLine1_calcOnly.value);"/>
+                                                                valueCommitScript="securityAddressLine1_calcOnly.value = checkerValidation(this,securityAddressLine1_calcOnly.value);"/>
                                                             <guidetextbox_2
                                                                 jcr:created="{Date}2015-10-13T12:57:06.141+05:30"
                                                                 jcr:createdBy="admin"
@@ -10604,7 +10583,7 @@
                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                 maxChars="40"
                                                                 name="securityAddressLine2"
-                                                                valueCommitScript="securityAddressLine2_calcOnly.value = checkerValidation(this.value,securityAddressLine2_calcOnly.value);"/>
+                                                                valueCommitScript="securityAddressLine2_calcOnly.value = checkerValidation(this,securityAddressLine2_calcOnly.value);"/>
                                                             <securityAddressLine3
                                                                 jcr:created="{Date}2015-10-13T12:57:06.141+05:30"
                                                                 jcr:createdBy="admin"
@@ -10618,7 +10597,7 @@
                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                 maxChars="40"
                                                                 name="securityAddressLine3"
-                                                                valueCommitScript="securityAddressLine3_calcOnly.value = checkerValidation(this.value,securityAddressLine3_calcOnly.value);"/>
+                                                                valueCommitScript="securityAddressLine3_calcOnly.value = checkerValidation(this,securityAddressLine3_calcOnly.value);"/>
                                                             <guidetextbox_4
                                                                 jcr:created="{Date}2015-10-08T09:31:06.139+05:30"
                                                                 jcr:createdBy="admin"
@@ -10636,7 +10615,7 @@
                                                                 name="securityCity"
                                                                 validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){(this.value==null)? false : true} else {true};"
                                                                 validateExpMessage="Please enter city"
-                                                                valueCommitScript="securityCity_calcOnly.value = checkerValidation(this.value,securityCity_calcOnly.value); securityPostcode.value = ''"/>
+                                                                valueCommitScript="securityCity_calcOnly.value = checkerValidation(this,securityCity_calcOnly.value); securityPostcode.value = ''"/>
                                                             <guidedropdownlist
                                                                 jcr:created="{Date}2015-10-09T14:01:12.556+05:30"
                                                                 jcr:createdBy="admin"
@@ -10654,7 +10633,7 @@
                                                                 options="[1=VIC,2=NSW,3=QLD,4=WA,5=SA,6=NT,7=ACT,8=TAS]"
                                                                 validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){isDropDownValid(this.value)} else {true};"
                                                                 validateExpMessage="Please select a valid state"
-                                                                valueCommitScript="securityState_calcOnly.value = checkerValidation(this.value,securityState_calcOnly.value); securityPostcode.value = ''"/>
+                                                                valueCommitScript="securityState_calcOnly.value = checkerValidation(this,securityState_calcOnly.value); securityPostcode.value = ''"/>
                                                             <guidetextbox_3
                                                                 jcr:created="{Date}2015-10-13T12:57:06.384+05:30"
                                                                 jcr:createdBy="admin"
@@ -10670,10 +10649,10 @@
                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                 maxChars="4"
                                                                 name="securityPostcode"
-                                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>&#xa;"
+                                                                shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                                                 validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){validatePostCode(securityCity, securityState, this, '1', 'false','true');}else{true}"
                                                                 validateExpMessage="Please enter a valid postcode"
-                                                                valueCommitScript="securityPostcode_calcOnly.value = checkerValidation(this.value,securityPostcode_calcOnly.value);"/>
+                                                                valueCommitScript="securityPostcode_calcOnly.value = checkerValidation(this,securityPostcode_calcOnly.value);"/>
                                                             <sDateSecurity
                                                                 jcr:created="{Date}2015-10-17T10:53:32.698+05:30"
                                                                 jcr:createdBy="admin"
@@ -10899,7 +10878,7 @@
                                                                         shortDescription="&lt;p>Fair Market Value&lt;/p>"
                                                                         validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){(this.value==null)? false : true} else {true};"
                                                                         validateExpMessage="Please enter a valid value"
-                                                                        valueCommitScript="sSecurityValue_calcOnly.value = checkerValidation(this.value,sSecurityValue_calcOnly.value);"/>
+                                                                        valueCommitScript="sSecurityValue_calcOnly.value = checkerValidation(this,sSecurityValue_calcOnly.value);"/>
                                                                     <guidetextbox_0
                                                                         jcr:created="{Date}2015-10-21T22:11:37.881+05:30"
                                                                         jcr:createdBy="admin"
@@ -10938,7 +10917,7 @@
                                                                         name="sTransferLandValue"
                                                                         shortDescription="&lt;p>Enter numeric values&lt;/p>&#xa;"
                                                                         validateExpMessage="Please enter an valid value"
-                                                                        valueCommitScript="sTransferLandValue_calcOnly.value = checkerValidation(this.value,sTransferLandValue_calcOnly.value);"/>
+                                                                        valueCommitScript="sTransferLandValue_calcOnly.value = checkerValidation(this,sTransferLandValue_calcOnly.value);"/>
                                                                     <sValuationRequired
                                                                         jcr:created="{Date}2015-10-21T22:11:39.501+05:30"
                                                                         jcr:createdBy="admin"
@@ -10972,7 +10951,7 @@
                                                                         options="[1=Held,2=To be Taken]"
                                                                         validateExp="if((securityType.value == 3) || (securityType.value == 5) || (securityType.value == 6) || (securityType.value == 7)){isRadioValid(this.value)} else {true};"
                                                                         validateExpMessage="Valid option is required"
-                                                                        valueCommitScript="sSecurityStatus_calcOnly.value = checkerValidation(this.value,sSecurityStatus_calcOnly.value);"/>
+                                                                        valueCommitScript="sSecurityStatus_calcOnly.value = checkerValidation(this,sSecurityStatus_calcOnly.value);"/>
                                                                     <guideradiobutton
                                                                         jcr:created="{Date}2015-10-21T22:11:39.501+05:30"
                                                                         jcr:createdBy="admin"
@@ -10998,8 +10977,10 @@
                                                                         jcr:title="First Mortgage Value"
                                                                         sling:resourceType="fd/af/components/guidenumericbox"
                                                                         assistPriority="custom"
+                                                                        bindRef="/afData/security-container/security/property-details/sFirstMortgageValue"
                                                                         dataType="decimal"
                                                                         displayPictureClause="num{($zzzzzzzzzzzzzzz9.99)}"
+                                                                        guideNodeClass="guideNumericBox"
                                                                         leadDigits="16"
                                                                         name="sFirstMortgageValue"
                                                                         shortDescription="&lt;p>Enter numeric values&lt;/p>&#xa;"
@@ -11268,6 +11249,20 @@
                                                                                 guideNodeClass="guideNumericBox"
                                                                                 leadDigits="16"
                                                                                 name="valRentalIncome"/>
+                                                                            <guidedropdownlist
+                                                                                jcr:created="{Date}2015-11-16T20:50:15.859+05:30"
+                                                                                jcr:createdBy="admin"
+                                                                                jcr:lastModified="{Date}2015-11-18T11:05:01.942+05:30"
+                                                                                jcr:lastModifiedBy="admin"
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                jcr:title="Rental Income Frequency "
+                                                                                sling:resourceType="fd/af/components/guidedropdownlist"
+                                                                                _value="-1"
+                                                                                assistPriority="custom"
+                                                                                bindRef="/afData/security-container/security/property-details/valuationdoc/valRentalIncomeFrequency"
+                                                                                guideNodeClass="guideDropDownList"
+                                                                                name="valRentalIncomeFrequency"
+                                                                                options="[-1=Select,1=Fortnightly,2=Monthly,3=Weekly]"/>
                                                                             <guideradiobutton_2
                                                                                 jcr:created="{Date}2015-10-22T12:12:42.532+05:30"
                                                                                 jcr:createdBy="admin"
@@ -11400,7 +11395,7 @@
                                                                                         jcr:lastModified="{Date}2015-11-19T21:15:43.979+05:30"
                                                                                         jcr:lastModifiedBy="admin"
                                                                                         jcr:primaryType="nt:unstructured"
-                                                                                        jcr:title="Land"
+                                                                                        jcr:title="Land Areas"
                                                                                         sling:resourceType="fd/af/components/guidenumericbox"
                                                                                         assistPriority="custom"
                                                                                         bindRef="/afData/security-container/security/property-details/valuationdoc/valLand"
@@ -11655,7 +11650,7 @@
                                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                                 maxChars="40"
                                                                                 name="sCOSTitleReference"
-                                                                                valueCommitScript="sCOSTitleReference_calcOnly.value = checkerValidation(this.value,sCOSTitleReference_calcOnly.value);"/>
+                                                                                valueCommitScript="sCOSTitleReference_calcOnly.value = checkerValidation(this,sCOSTitleReference_calcOnly.value);"/>
                                                                             <guideradiobutton_1
                                                                                 jcr:created="{Date}2015-10-10T11:11:17.185+05:30"
                                                                                 jcr:createdBy="admin"
@@ -11700,7 +11695,7 @@
                                                                                 multiLine="true"
                                                                                 name="sCOSBuyerName"
                                                                                 shortDescription="&lt;p>Contract of Sale&#xa;&lt;/p>"
-                                                                                valueCommitScript="sCOSBuyerName_calcOnly.value = checkerValidation(this.value,sCOSBuyerName_calcOnly.value);"/>
+                                                                                valueCommitScript="sCOSBuyerName_calcOnly.value = checkerValidation(this,sCOSBuyerName_calcOnly.value);"/>
                                                                             <guidenumericbox
                                                                                 jcr:created="{Date}2015-10-10T11:06:45.887+05:30"
                                                                                 jcr:createdBy="admin"
@@ -11717,7 +11712,7 @@
                                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                                 leadDigits="16"
                                                                                 name="sCOSPurchasePrice"
-                                                                                valueCommitScript="sCOSPurchasePrice_calcOnly.value = checkerValidation(this.value,sCOSPurchasePrice_calcOnly.value);"/>
+                                                                                valueCommitScript="sCOSPurchasePrice_calcOnly.value = checkerValidation(this,sCOSPurchasePrice_calcOnly.value);"/>
                                                                             <guidetextbox_3
                                                                                 jcr:created="{Date}2015-10-10T11:07:50.489+05:30"
                                                                                 jcr:createdBy="admin"
@@ -11762,7 +11757,7 @@
                                                                                 shortDescription="&lt;p>dd-mm-yyyy 00:00:00&lt;/p>&#xa;"
                                                                                 validateExp="isValidDate(this.value,false);"
                                                                                 validateExpMessage="Please enter a valid date"
-                                                                                valueCommitScript="sCOSExecutionDate_calcOnly.value = checkerValidation(this.value,sCOSExecutionDate_calcOnly.value);"/>
+                                                                                valueCommitScript="sCOSExecutionDate_calcOnly.value = checkerValidation(this,sCOSExecutionDate_calcOnly.value);"/>
                                                                             <guideradiobutton
                                                                                 jcr:created="{Date}2015-10-10T11:11:17.185+05:30"
                                                                                 jcr:createdBy="admin"
@@ -12033,7 +12028,7 @@
                                                                                 maxChars="500"
                                                                                 multiLine="true"
                                                                                 name="sTOLBuyerName"
-                                                                                valueCommitScript="sTOLBuyerName_calcOnly.value = checkerValidation(this.value,sTOLBuyerName_calcOnly.value);"/>
+                                                                                valueCommitScript="sTOLBuyerName_calcOnly.value = checkerValidation(this,sTOLBuyerName_calcOnly.value);"/>
                                                                             <guidetextbox_10
                                                                                 jcr:created="{Date}2015-10-10T11:22:52.547+05:30"
                                                                                 jcr:createdBy="admin"
@@ -12063,7 +12058,7 @@
                                                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                                                 leadDigits="16"
                                                                                 name="sTOLTransferLandValue"
-                                                                                valueCommitScript="sTOLTransferLandValue_calcOnly.value = checkerValidation(this.value,sTOLTransferLandValue_calcOnly.value);"/>
+                                                                                valueCommitScript="sTOLTransferLandValue_calcOnly.value = checkerValidation(this,sTOLTransferLandValue_calcOnly.value);"/>
                                                                             <guideradiobutton_1
                                                                                 jcr:created="{Date}2015-10-10T11:17:25.981+05:30"
                                                                                 jcr:createdBy="admin"
@@ -12264,7 +12259,8 @@
                                                                                 jcr:title="statdec"
                                                                                 sling:resourceType="fd/af/components/panel"
                                                                                 guideNodeClass="guidePanel"
-                                                                                name="statdec-sub">
+                                                                                name="statdec-sub"
+                                                                                shortDescription="&lt;p>Statutory Declaration&lt;/p>">
                                                                                 <items jcr:primaryType="nt:unstructured">
                                                                                     <statdec-sub
                                                                                         jcr:lastModified="{Date}2015-11-20T17:12:53.625+05:30"
@@ -12351,6 +12347,7 @@
                                                                                                 guideNodeClass="guideTextBox"
                                                                                                 maxChars="15"
                                                                                                 name="sStatdecMortgageNumber"
+                                                                                                shortDescription="&lt;p>Statutory Declaration&lt;/p>"
                                                                                                 validateExp="if($('#isValidation').val()!='true'){true} else {if(this.value!=null){this.value.match(/^[a-zA-Z0-9]{6,15}$/)? true : false}else{true}};"
                                                                                                 validateExpMessage="Please enter an valid number"/>
                                                                                         </items>
@@ -13332,7 +13329,7 @@
                                         name="ldPurposeDesc"
                                         validateExp="this.value!=null? true : false"
                                         validateExpMessage="Please enter purpose description."
-                                        valueCommitScript="ldPurposeDesc_calcOnly.value = checkerValidation(this.value,ldPurposeDesc_calcOnly.value);"/>
+                                        valueCommitScript="ldPurposeDesc_calcOnly.value = checkerValidation(this,ldPurposeDesc_calcOnly.value);"/>
                                     <guidedatepicker
                                         jcr:created="{Date}2015-10-09T16:34:39.540+05:30"
                                         jcr:createdBy="admin"
@@ -13361,12 +13358,10 @@
                                         bindRef="/afData/loandetails/ldApprovedinPrice"
                                         css="mandatory-fld"
                                         guideNodeClass="guideRadioButton"
-                                        initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'radio','true');"
                                         name="ldApprovedinPrice"
                                         options="[true=Yes,false=No]"
                                         validateExp="isRadioValid(this.value);"
-                                        validateExpMessage="Please select an option"
-                                        valueCommitScript="ldApprovedinPrice_calcOnly.value = checkerValidation(this.value,ldApprovedinPrice_calcOnly.value);"/>
+                                        validateExpMessage="Please select an option"/>
                                     <guideradiobutton_4
                                         jcr:created="{Date}2015-10-09T16:37:16.056+05:30"
                                         jcr:createdBy="admin"
@@ -13387,7 +13382,7 @@
                                         jcr:lastModified="{Date}2015-11-18T10:59:20.197+05:30"
                                         jcr:lastModifiedBy="admin"
                                         jcr:primaryType="nt:unstructured"
-                                        jcr:title="Rapid Refinance"
+                                        jcr:title="3 months Statement Held?"
                                         sling:resourceType="fd/af/components/guideradiobutton"
                                         alignment="guideFieldHorizontalAlignment"
                                         bindRef="/afData/loandetails/ldRapidRefinance"
@@ -13409,20 +13404,6 @@
                                         guideNodeClass="guideTextBox"
                                         multiLine="true"
                                         name="ldPurposeDesc_calcOnly"/>
-                                    <ldApprovedinPrice_calcOnly
-                                        jcr:created="{Date}2015-10-09T16:37:16.056+05:30"
-                                        jcr:createdBy="admin"
-                                        jcr:lastModified="{Date}2015-11-18T10:59:20.197+05:30"
-                                        jcr:lastModifiedBy="admin"
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="Approval in Price Sought?"
-                                        sling:resourceType="fd/af/components/guideradiobutton"
-                                        alignment="guideFieldHorizontalAlignment"
-                                        bindRef="/afData/loandetails/ldApprovedinPrice_calcOnly"
-                                        css="calc-only"
-                                        guideNodeClass="guideRadioButton"
-                                        name="ldApprovedinPrice_calcOnly"
-                                        options="[true=Yes,false=No]"/>
                                     <loan-amount
                                         jcr:lastModified="{Date}2015-11-16T18:59:29.558+05:30"
                                         jcr:lastModifiedBy="admin"
@@ -13724,10 +13705,12 @@
                                                         dataType="decimal"
                                                         displayPictureClause="num{($zzzzzzzzzzzzzzz9.99)}"
                                                         guideNodeClass="guideNumericBox"
+                                                        initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         leadDigits="16"
                                                         name="ldAmountSought"
                                                         validateExp="this.value!=null? true : false"
-                                                        validateExpMessage="Please enter the amount"/>
+                                                        validateExpMessage="Please enter the amount"
+                                                        valueCommitScript="ldAmountSought_calcOnly.value = checkerValidation(this,ldAmountSought_calcOnly.value);"/>
                                                     <guidenumericbox_0
                                                         jcr:created="{Date}2015-11-25T22:06:47.065+05:30"
                                                         jcr:createdBy="admin"
@@ -13758,7 +13741,7 @@
                                                         guideNodeClass="guideRadioButton"
                                                         name="ldProgressiveDrawdown"
                                                         options="[true=Yes,false=No]"
-                                                        validateExp="isRadioValid(this.value);"
+                                                        validateExp="if(ldProductCode.value=='1'){isRadioValid(this.value)}else{true};"
                                                         validateExpMessage="Please select an option"
                                                         visibleExp="ldProductCode.value=='1'"/>
                                                     <panel_0
@@ -14369,6 +14352,21 @@
                                                             nonNavigable="false"
                                                             toolbarPosition="Bottom"/>
                                                     </ldAssociatedProductBorrowers>
+                                                    <ldAmountSought_calcOnly
+                                                        jcr:created="{Date}2015-11-25T22:06:46.896+05:30"
+                                                        jcr:createdBy="admin"
+                                                        jcr:lastModified="{Date}2015-11-25T22:06:46.896+05:30"
+                                                        jcr:lastModifiedBy="admin"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        jcr:title="Amount Sought"
+                                                        sling:resourceType="fd/af/components/guidenumericbox"
+                                                        assistPriority="custom"
+                                                        bindRef="/afData/loandetails/productcodepanel/ldAmountSought_calcOnly"
+                                                        css="calc-only"
+                                                        dataType="decimal"
+                                                        displayPictureClause="num{($zzzzzzzzzzzzzzz9.99)}"
+                                                        guideNodeClass="guideNumericBox"
+                                                        name="ldAmountSought_calcOnly"/>
                                                 </items>
                                                 <layout
                                                     jcr:primaryType="nt:unstructured"
@@ -14647,6 +14645,7 @@
                                         guideNodeClass="guideTextBox"
                                         maxChars="4"
                                         name="sPostCode"
+                                        shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                         validateExp="validatePostCode(sCity, sState, this, '1', 'false','false');"
                                         validateExpMessage="Please enter a valid postcode"/>
                                     <countrydropdownlist
@@ -14786,7 +14785,7 @@
                                         shortDescription="&lt;p>Bank State Branch&lt;/p>"
                                         validateExp="isBSBValid(this.value,false);"
                                         validateExpMessage="Please enter a valid BSB"
-                                        valueCommitScript="ofiBSB_calcOnly.value = checkerValidation(this.value,ofiBSB_calcOnly.value);"/>
+                                        valueCommitScript="ofiBSB_calcOnly.value = checkerValidation(this,ofiBSB_calcOnly.value);"/>
                                     <ofiBankName
                                         jcr:created="{Date}2015-10-14T17:13:51.333+05:30"
                                         jcr:createdBy="admin"
@@ -14902,6 +14901,7 @@
                                         guideNodeClass="guideTextBox"
                                         maxChars="4"
                                         name="ofiPostcode"
+                                        shortDescription="&lt;p>Please update suburb/city and state before updating postcode!&lt;/p>"
                                         validateExp="validatePostCode(ofiCity, ofiState, this, '1', 'false','false');"
                                         validateExpMessage="Please enter a valid postcode"/>
                                     <guidetextbox_0
@@ -14957,10 +14957,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber1"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>&#xa;"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber1_calcOnly.value = checkerValidation(this.value,ofiAccountNumber1_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber1_calcOnly.value = checkerValidation(this,ofiAccountNumber1_calcOnly.value);"/>
                                             <guidenumericbox_1
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -14975,10 +14975,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber2"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber2_calcOnly.value = checkerValidation(this.value,ofiAccountNumber2_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber2_calcOnly.value = checkerValidation(this,ofiAccountNumber2_calcOnly.value);"/>
                                             <guidenumericbox_2
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -14993,10 +14993,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber3"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber3_calcOnly.value = checkerValidation(this.value,ofiAccountNumber3_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber3_calcOnly.value = checkerValidation(this,ofiAccountNumber3_calcOnly.value);"/>
                                             <guidenumericbox_3
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -15011,10 +15011,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber4"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber4_calcOnly.value = checkerValidation(this.value,ofiAccountNumber4_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber4_calcOnly.value = checkerValidation(this,ofiAccountNumber4_calcOnly.value);"/>
                                             <guidenumericbox_4
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -15029,10 +15029,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber5"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber5_calcOnly.value = checkerValidation(this.value,ofiAccountNumber5_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber5_calcOnly.value = checkerValidation(this,ofiAccountNumber5_calcOnly.value);"/>
                                             <guidenumericbox_5
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -15047,10 +15047,10 @@
                                                 initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','false');"
                                                 maxChars="20"
                                                 name="ofiAccountNumber6"
-                                                shortDescription="&lt;p>Enter minimum 10 digits&lt;/p>&#xa;"
-                                                validateExp="isValidAccountNumber(this.value,false);"
+                                                shortDescription="&lt;p>Enter minimum 4 digits&lt;/p>"
+                                                validateExp="isValidOFIAccountNumber(this.value,false);"
                                                 validateExpMessage="Please enter a valid account number"
-                                                valueCommitScript="ofiAccountNumber6_calcOnly.value = checkerValidation(this.value,ofiAccountNumber6_calcOnly.value);"/>
+                                                valueCommitScript="ofiAccountNumber6_calcOnly.value = checkerValidation(this,ofiAccountNumber6_calcOnly.value);"/>
                                             <ofiAccountNumber1_calcOnly
                                                 jcr:created="{Date}2015-10-08T10:30:45.534+05:30"
                                                 jcr:createdBy="admin"
@@ -15947,7 +15947,7 @@
                                                 css="mandatory-fld"
                                                 guideNodeClass="guideRadioButton"
                                                 name="comSignBroker"
-                                                options="[1=Yes,0=No]"
+                                                options="[true=Yes,false=No]"
                                                 validateExp="isRadioValid(this.value);"/>
                                             <guidedatepicker
                                                 jcr:created="{Date}2015-10-10T13:07:56.592+05:30"
@@ -15976,7 +15976,7 @@
                                                 css="mandatory-fld"
                                                 guideNodeClass="guideRadioButton"
                                                 name="comCustSign"
-                                                options="[1=Yes,0=No]"
+                                                options="[true=Yes,false=No]"
                                                 validateExp="isRadioValid(this.value);"/>
                                             <guidedatepicker_0
                                                 jcr:created="{Date}2015-10-10T13:07:57.285+05:30"
@@ -16969,7 +16969,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID28"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID28"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_25
                                                                 jcr:created="{Date}2015-10-10T13:15:01.990+05:30"
                                                                 jcr:createdBy="admin"
@@ -16982,7 +16982,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID29"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID29"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_26
                                                                 jcr:created="{Date}2015-10-10T13:15:02.197+05:30"
                                                                 jcr:createdBy="admin"
@@ -16995,7 +16995,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID30"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID30"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_27
                                                                 jcr:created="{Date}2015-10-10T13:15:02.412+05:30"
                                                                 jcr:createdBy="admin"
@@ -17008,7 +17008,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID31"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID31"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_28
                                                                 jcr:created="{Date}2015-10-10T13:15:02.605+05:30"
                                                                 jcr:createdBy="admin"
@@ -17021,7 +17021,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID32"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID32"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_29
                                                                 jcr:created="{Date}2015-10-10T13:15:02.815+05:30"
                                                                 jcr:createdBy="admin"
@@ -17034,7 +17034,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID33"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID33"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_30
                                                                 jcr:created="{Date}2015-10-10T13:15:03.030+05:30"
                                                                 jcr:createdBy="admin"
@@ -17047,7 +17047,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID34"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID34"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guideradiobutton_31
                                                                 jcr:created="{Date}2015-10-10T13:15:03.240+05:30"
                                                                 jcr:createdBy="admin"
@@ -17060,7 +17060,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID35"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID35"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                             <guidetextbox
                                                                 jcr:created="{Date}2015-10-21T12:01:54.485+05:30"
                                                                 jcr:createdBy="admin"
@@ -17086,7 +17086,7 @@
                                                                 bindRef="/afData/Compliance/Guarantors-Assessment-Checklist/comGuarantorChecklistID37"
                                                                 guideNodeClass="guideRadioButton"
                                                                 name="comGuarantorChecklistID37"
-                                                                options="[1=Yes,0=No]"/>
+                                                                options="[true=Yes,false=No]"/>
                                                         </items>
                                                     </fhog-Post-Guarantors-Container-Panel>
                                                 </items>
@@ -17244,7 +17244,7 @@
                                                         name="comIDDocumentExpiryDate"
                                                         shortDescription="&lt;p>dd-mm-yyyy&lt;/p>&#xa;"
                                                         validateExp="isValidDate(this.value,false);"
-                                                        valueCommitScript="comIDDocumentExpiryDate_calcOnly.value = checkerValidation(this.value,comIDDocumentExpiryDate_calcOnly.value);"
+                                                        valueCommitScript="comIDDocumentExpiryDate_calcOnly.value = checkerValidation(this,comIDDocumentExpiryDate_calcOnly.value);"
                                                         visibleExp="((docType_dropdown.value=='1') || (docType_dropdown.value=='3') || (docType_dropdown.value=='6'))?true:false"/>
                                                     <guidenumericbox
                                                         jcr:created="{Date}2015-10-15T15:12:09.004+05:30"
@@ -17259,7 +17259,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         name="comIDDocumentPassportNo"
-                                                        valueCommitScript="comIDDocumentPassportNo_calcOnly.value = checkerValidation(this.value,comIDDocumentPassportNo_calcOnly.value);"
+                                                        valueCommitScript="comIDDocumentPassportNo_calcOnly.value = checkerValidation(this,comIDDocumentPassportNo_calcOnly.value);"
                                                         visibleExp="((docType_dropdown.value=='5')||(docType_dropdown.value=='1'))?true:false"/>
                                                     <countrydropdownlist
                                                         jcr:created="{Date}2015-11-19T12:00:42.885+05:30"
@@ -17289,7 +17289,7 @@
                                                         guideNodeClass="guideTextBox"
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'textbox','true');"
                                                         name="comIDDocumentSubClassNo"
-                                                        valueCommitScript="comIDDocumentSubClassNo_calcOnly.value = checkerValidation(this.value,comIDDocumentSubClassNo_calcOnly.value);"
+                                                        valueCommitScript="comIDDocumentSubClassNo_calcOnly.value = checkerValidation(this,comIDDocumentSubClassNo_calcOnly.value);"
                                                         visibleExp="(docType_dropdown.value=='3')?true:false"/>
                                                     <guidedatepicker_1
                                                         jcr:created="{Date}2015-10-31T16:53:08.408+05:30"
@@ -17320,7 +17320,7 @@
                                                         initScript="this.value = flushMandatoryForChecker(mandatoryFlushCounter_calcOnly.value,this,'dropdown','true');"
                                                         name="comIDDocumentDLIssueState"
                                                         options="[1=VIC,2=NSW,3=QLD,4=WA,5=SA,6=NT,7=ACT,8=TAS]"
-                                                        valueCommitScript="comIDDocumentDLIssueState_calcOnly.value = checkerValidation(this.value,comIDDocumentDLIssueState_calcOnly.value);"
+                                                        valueCommitScript="comIDDocumentDLIssueState_calcOnly.value = checkerValidation(this,comIDDocumentDLIssueState_calcOnly.value);"
                                                         visibleExp="(docType_dropdown.value=='6')?true:false"/>
                                                     <guidetextbox_1
                                                         jcr:created="{Date}2015-10-31T17:00:43.673+05:30"
@@ -17564,7 +17564,7 @@
                                                 bindRef="/afData/Compliance/saleContract-container/comContOwnerSign"
                                                 guideNodeClass="guideRadioButton"
                                                 name="comContOwnerSign"
-                                                options="[1=Yes,0=No]"/>
+                                                options="[true=Yes,false=No]"/>
                                             <guideradiobutton_01
                                                 jcr:created="{Date}2015-10-14T11:43:48.757+05:30"
                                                 jcr:createdBy="admin"
@@ -17577,7 +17577,7 @@
                                                 bindRef="/afData/Compliance/saleContract-container/comContrBuilderSign"
                                                 guideNodeClass="guideRadioButton"
                                                 name="comContrBuilderSign"
-                                                options="[1=Yes,0=No]"/>
+                                                options="[true=Yes,false=No]"/>
                                             <guidetextbox_8
                                                 jcr:created="{Date}2015-10-10T14:25:03.175+05:30"
                                                 jcr:createdBy="admin"
@@ -19346,12 +19346,12 @@
                                                                         jcr:title="UI Sequence no"
                                                                         sling:resourceType="fd/af/components/guidetextbox"
                                                                         assistPriority="custom"
-                                                                        bindRef="/afData/Compliance/fhog-container/fhog_vic/fhog_vic_section7/fhogTransSpouseDeclName"
-                                                                        css="fhogTransSpouseDeclName"
+                                                                        bindRef="/afData/Compliance/fhog-container/fhog_vic/fhog_vic_section7/fhogTransSpouseDeclSequenceNo"
+                                                                        css="fhogTransSpouseDeclSequenceNo"
                                                                         guideNodeClass="guideTextBox"
                                                                         initScript="this.value=getInitCounter(this)"
                                                                         maxChars="16"
-                                                                        name="fhogTransSpouseDeclName"/>
+                                                                        name="fhogTransSpouseDeclSequenceNo"/>
                                                                     <guidetextbox
                                                                         jcr:created="{Date}2015-10-12T20:54:43.039+05:30"
                                                                         jcr:createdBy="admin"
@@ -19534,7 +19534,7 @@
                         sling:resourceType="fd/af/components/actions/submit"
                         assistPriority="custom"
                         buttonType="button-default"
-                        clickExp="handleOPSApprove('ops:approve','/content/ops/thankyou-approved.html','/content/ops/error-page.html',bApplicationNumber.value)"
+                        clickExp="handleOPSApprove('ops:approve','/content/ops/thankyou-approved.html','/content/ops/error-page.html',bApplicationNumber.value,mandatoryFlushCounter_calcOnly)"
                         guideNodeClass="guideButton"
                         name="submit"
                         type="submit"

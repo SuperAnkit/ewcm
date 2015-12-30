@@ -19,6 +19,8 @@ import org.apache.sling.commons.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.Externalizer;
+
 
 @SlingServlet(paths = "/bin/DDfromStaticModel",
         methods = {"POST"},
@@ -29,7 +31,7 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
 	HttpClient client = new HttpClient();
 	String toReturnResults = null;
    
-        private Logger logger = LoggerFactory.getLogger(OPSSelectFromStaticModelServlet.class);
+        private Logger log = LoggerFactory.getLogger(OPSSelectFromStaticModelServlet.class);
      
         protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
             IOException {
@@ -40,18 +42,16 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
         	
         	GetMethod method = null;
         	
-        	logger.info("VALUE of entityName++" + entityName + "+++");
-        	logger.info("VALUE of isMandatory++" + isMandatory + "+++");
-        	
+        	//Get the URL based on run-mode
+    		Externalizer externalizer = request.getResourceResolver().adaptTo(Externalizer.class);
+    		String webServiceURL = externalizer.externalLink(request.getResourceResolver(),"WSRequest","");
+        	        	
         	if (!isMandatory.equals("true")) {
-        		logger.info("INTO NOT TRUE LOOP+++++++++++++++++++++++");
         		if (entityName.length() > 0 ) {
-            		String getServiceURL = OPSConstants.WS_GET_STATIC_MODEL_URL.replace("entityName", entityName);
+            		String getServiceURL = OPSConstants.WS_GET_STATIC_MODEL_URL.replace("entityName", entityName).replace(OPSConstants.WS_URL, webServiceURL);
                 	// create WS connection
                 	method = new GetMethod(getServiceURL);
-                	
-                	logger.info("REDAER LOG++++++++++++++++++++++++" + getServiceURL);
-                	
+                	                	
                 	// Execute the method.
         			int statusCode = client.executeMethod(method);
         			
@@ -65,7 +65,6 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
 
         			while ((inputLine = in.readLine()) != null) {
         				newresponse.append(inputLine);
-        				logger.info("IP LINE++++++++++++++++++++++++" + inputLine);
         			}
         			in.close();
         			
@@ -74,14 +73,11 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
     				toReturnResults = "[\"-1=Select\"]";
     			}
 			} else {
-				logger.info("INTO TRUE LOOP+++++++++++++++++++++++");
 				if (entityName.length() > 0 ) {
-	        		String getServiceURL = OPSConstants.WS_GET_STATIC_MODEL_URL.replace("entityName", entityName);
+	        		String getServiceURL = OPSConstants.WS_GET_STATIC_MODEL_URL.replace("entityName", entityName).replace(OPSConstants.WS_URL, webServiceURL);
 	            	// create WS connection
 	            	method = new GetMethod(getServiceURL);
-	            	
-	            	logger.info("REDAER LOG++++++++++++++++++++++++" + getServiceURL);
-	            	
+	            		            	
 	            	// Execute the method.
 	    			int statusCode = client.executeMethod(method);
 	    			
@@ -94,7 +90,6 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
 
 	    			while ((inputLine = in.readLine()) != null) {
 	    				newresponse.append(inputLine);
-	    				logger.info("IP LINE++++++++++++++++++++++++" + inputLine);
 	    			}
 	    			in.close();
 	    			
@@ -105,16 +100,7 @@ public class OPSSelectFromStaticModelServlet extends SlingAllMethodsServlet {
 
 			}
         	
-        	
-        	
-        	
 	
-
-	
-	
-	//toReturnResults = newresponse.toString();
-	logger.info("FINAL OP LOG++++++++++++++++++++++++" + toReturnResults);
-
 	response.setContentType("application/json");
     response.getWriter().write(toReturnResults.toString());
 	

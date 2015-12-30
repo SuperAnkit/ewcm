@@ -1,0 +1,54 @@
+<!-- Broker Details Start -->
+                    <uib-accordion-group heading="Broker Details" ng-show="broker">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Broker Details </div>
+                            <div class="col-md-12">
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <td class="info">Application Number</td>
+                                            <td class="active">{{data.application.applicationNumber}}</td>
+                                            <td class="info">Delivery Method </td>
+                                            <td  class="active" ng-repeat="deliveryMethodID in staticData.deliveryMethod | filter:{deliveryMethodID:data.application.deliveryMethodId}:true">{{deliveryMethodID.deliveryMethod}}</td>
+											<td class="info">Channel</td>
+                                            <td class="active" ng-repeat="channelTypeID in staticData.channelType | filter:{channelTypeID:data.application.channel.channelTypeID}">{{channelTypeID.channelType}}</td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">CPID</td>
+                                            <td class="active" >{{data.application.cpid}}</td>
+                                            <td class="info">Application Branch ID</td>
+                                            <td class="active"> {{data.application.nominatedBSB}}</td>
+                                            <td class="info">Application Received Date/Time</td>
+                                            <td class="active">{{data.application.applicationReceivedDate}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">TPMI - AO</td>
+                                            <td class="active">{{data.application.channel.ao}}</td>
+                                            <td class="info">TPMI - SAO</td>
+                                            <td class="active">{{data.application.channel.sao}}</td>
+                                            <td class="info">Is MIG Available</td>
+                                            <td class="active">{{ returnRadioValue(data.application.channel.isMIGAvailable)}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info"> Lo Doc Application </td>
+                                            <td class="active"> {{ returnRadioValue(data.application.eligibilityCheck) }}</td>
+                                            <td class="info">Nominated Branch of ID</td>
+                                            <td class="active">{{data.application.channel.nominatedBranchID}} </td>
+											<td class="info">Broker Domicile State</td>
+                                            <td class="active" ng-repeat="staticStateName in staticData.state | filter:{stateID:data.application.channel.stateID}:true"> {{staticStateName.stateName}}</td>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!-- Broker Details End -->

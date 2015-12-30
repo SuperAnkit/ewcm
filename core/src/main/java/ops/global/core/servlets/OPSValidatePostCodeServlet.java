@@ -20,6 +20,8 @@ import org.apache.sling.commons.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.Externalizer;
+
 
 @SlingServlet(paths = "/bin/validatePostcode",
         methods = {"POST"},
@@ -29,7 +31,7 @@ public class OPSValidatePostCodeServlet extends SlingAllMethodsServlet {
 	private static final long serialVersionUID = 1L;  
 	HttpClient client = new HttpClient();
    
-        private Logger logger = LoggerFactory.getLogger(OPSValidatePostCodeServlet.class);
+        private Logger log = LoggerFactory.getLogger(OPSValidatePostCodeServlet.class);
      
         protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
             IOException {
@@ -38,18 +40,18 @@ public class OPSValidatePostCodeServlet extends SlingAllMethodsServlet {
         	String postCode = request.getParameter("postcode");
         	String state = request.getParameter("state");
         	String city = request.getParameter("city");
-        	logger.info("REDAER LOG++postCode++++++++++++++++++++++" + postCode );
-        	logger.info("REDAER LOG++++++++state++++++++++++++++" + state );
-        	logger.info("REDAER LOG+++++++city+++++++++++++++++" + city );
-
+ 
         	GetMethod method = null;
-        	String isValid = null;
-			String getServiceURL = OPSConstants.WS_VALIDATE_POSTCODE_URL.replace("_postcode", postCode).replace("_city", city).replace("_state", state).replaceAll(" ","%20");
+        	
+        	//Get the URL based on run-mode
+    		Externalizer externalizer = request.getResourceResolver().adaptTo(Externalizer.class);
+    		String webServiceURL = externalizer.externalLink(request.getResourceResolver(),"WSRequest","");
+        	
+        	
+			String getServiceURL = OPSConstants.WS_VALIDATE_POSTCODE_URL.replace("_postcode", postCode).replace("_city", city).replace("_state", state).replaceAll(" ","%20").replace(OPSConstants.WS_URL, webServiceURL);
         	// create WS connection
         	method = new GetMethod(getServiceURL);
-        	
-        	logger.info("REDAER LOG++++++++++++++++++++++++" + getServiceURL );
-        	
+        	        	
         	// Execute the method.
 			int statusCode = client.executeMethod(method);
 			
@@ -66,11 +68,6 @@ public class OPSValidatePostCodeServlet extends SlingAllMethodsServlet {
 			}
 			in.close();
 			
-			logger.info("REDAER LOG++ RETURN++++++++++++++++++++++" + newresponse.toString() + "------" );
-			logger.info("REDAER LOG++ STATUS++++++++++++++++++++++" + statusCode + "------" );
-			
-			
-        	logger.info("REDAER FOR POSTCODE++++++++++++++++++++++" + newresponse.toString());
         	response.setContentType("application/text");
             response.getWriter().write(newresponse.toString());
         	

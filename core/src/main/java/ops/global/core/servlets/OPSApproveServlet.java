@@ -22,6 +22,7 @@ import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
+import com.day.cq.commons.Externalizer;
 
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -178,6 +179,10 @@ public class OPSApproveServlet extends SlingAllMethodsServlet {
 	private String[] passSubmittedData(InputStream content, ResourceResolver resResolver, String user_name) throws IOException {
 		// TODO Auto-generated method stub
 		
+		//Get the URL based on run-mode
+		Externalizer externalizer = resResolver.adaptTo(Externalizer.class);
+		String webServiceURL = externalizer.externalLink(resResolver,"WSRequest","");
+		
 		BufferedReader br = null;
 		StringBuilder sb = new StringBuilder();
 
@@ -201,7 +206,7 @@ public class OPSApproveServlet extends SlingAllMethodsServlet {
 			}
 		}
 		
-		URL URLobj = new URL(OPSConstants.WS_APPROVE_URL.replace("USER_NAME", user_name));
+		URL URLobj = new URL(OPSConstants.WS_APPROVE_URL.replace("USER_NAME", user_name).replace(OPSConstants.WS_URL, webServiceURL));
 		 //URLConnection connection = URLobj.openConnection();
 		 HttpURLConnection connection = (HttpURLConnection)URLobj.openConnection();
 		
@@ -237,6 +242,7 @@ public class OPSApproveServlet extends SlingAllMethodsServlet {
 		
 		int code = connection.getResponseCode();
 		
+		// create array of response code and response message
 		String responseArray[] = new String[2];
 		responseArray[0]= Integer.toString(code);
 		if (code == OPSConstants.RESPONSE_200) {
@@ -274,11 +280,11 @@ private List<String> getCurrentPaths(Session session, String sqlStatement,
 	} catch (RepositoryException e) {
 		e.printStackTrace();
 	}
-	try {
+	try { // create query and execute
 		query = queryManager.createQuery(sqlStatement, "JCR-SQL2");
 		QueryResult result = null;
 		result = query.execute();
-		NodeIterator nodeIter = result.getNodes();
+		NodeIterator nodeIter = result.getNodes();  // push all query results into NodeSet
 		while (nodeIter.hasNext()) {
 			String tempNodePath = nodeIter.nextNode().getPath().trim();
 			tempNodeSet.add(tempNodePath);

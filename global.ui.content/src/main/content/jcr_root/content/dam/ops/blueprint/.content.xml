@@ -4,6 +4,7 @@
     jcr:primaryType="sling:OrderedFolder">
     <loading.gif/>
     <jcr:content
+        jcr:mixinTypes="[]"
         jcr:primaryType="nt:unstructured"
         jcr:title="OPS BluPrint Assets">
         <folderThumbnail/>

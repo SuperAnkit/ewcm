@@ -182,14 +182,14 @@ function isDropDownValid(dropdownVal) {
 function creditLimitvalidate(subject, aCardCategory, aCardType, isMandatory) {
 	if ((aCardType == 'New Credit Card Account Required') || (aCardType == 'Upgrade of Existing Card')) {
 		if (isMandatory == 'true') {
-			if (aCardCategory == 'ANZ Rewards Black') {
-				if (subject > 6000) {
+			if (aCardCategory != 'ANZ Rewards Black') {
+				if (subject >= 6000) {
 					return true;
 				} else {
 					return false;
 				}
 			} else {
-				if (subject > 15000) {
+				if (subject >= 15000) {
 					return true;
 				} else {
 					return false;
@@ -199,14 +199,14 @@ function creditLimitvalidate(subject, aCardCategory, aCardType, isMandatory) {
 			if (subject == null) {
 				return true;
 			} else {
-				if (aCardCategory == 'ANZ Rewards Black') {
-					if (subject > 6000) {
+				if (aCardCategory != 'ANZ Rewards Black') {
+					if (subject >= 6000) {
 						return true;
 					} else {
 						return false;
 					}
 				} else {
-					if (subject > 15000) {
+					if (subject >= 15000) {
 						return true;
 					} else {
 						return false;
@@ -268,12 +268,11 @@ function checkMand(subject, conditionValue) {
 
 
 // Validation for Account numbers
-
 function isValidAccountNumber(subject, isMandatory) {
 
 	if (isMandatory == true) {
 
-		if (subject.match(/^[A-Za-z0-9.-]{10,20}$/)) {
+		if (subject.match(/^[A-Za-z0-9.-]{4,20}$/)) {
 			return true;
 		} else {
 			return false;
@@ -281,7 +280,28 @@ function isValidAccountNumber(subject, isMandatory) {
 
 
 	} else {
-		if (subject == null || subject.match(/^[A-Za-z0-9.-]{10,20}$/)) {
+		if (subject == null || subject.match(/^[A-Za-z0-9.-]{4,20}$/)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+// Validation for OFI Account numbers
+function isValidOFIAccountNumber(subject, isMandatory) {
+
+	if (isMandatory == true) {
+
+		if (subject.match(/^[A-Za-z0-9.-]{4,20}$/)) {
+			return true;
+		} else {
+			return false;
+		}
+
+
+	} else {
+		if (subject == null || subject.match(/^[A-Za-z0-9.-]{4,20}$/)) {
 			return true;
 		} else {
 			return false;
@@ -455,7 +475,7 @@ function getEmploymentPanelSummaryName(applicantName,employmentCategory)
         var applicantNameValue = $("#"+applicantName.id+" :selected").text();
         if (applicantName==null)
             applicantName="";
-			
+
 
         if (employmentCategory==null)
         {
@@ -513,34 +533,25 @@ function validateApplicantSpouse(spouseEle){
 
 // function for validate date time and future date
 
-function validateBrokerDateTime(subject, isMandatory) {
 
-    var dateformat = /(^(((0?[1-9]|1[0-9]|2[0-8])[/](0?[1-9]|1[012]))|((29|30|31)[/](0?[13578]|1[02]))|((29|30)[/](0?[4,6,9]|11)))[/](19|0?[2-9][0-9])\d\d$)|(^29[/]0?2[/](19|0?[2-9]0?[0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
-    var timeFormat = /([0-1]?[0-9]):([0-5]?[0-9])(([ap]m)|([AP]M))?$/;
+function validateBrokerDateTime(subject) {
+	subject = subject.trim();
+	var dateTimeFormat = /^([1-9]|([012][0-9])|(3[01]))[/]([0]{0,1}[1-9]|1[012])[/]\d\d\d\d ([012]{0,1}[0-9]:[0-5][0-9]{0,1}) (([AP]M)|([ap]m))$/;    
     var enteredDate = subject.split(" ")[0];
     var enteredTime = subject.split(" ")[1];
 
     if (subject!=null) {
-        if( !enteredDate.match(dateformat)) {
-            //alert("Date format should be in dd/mm/yyyy format");
-            return false;
-        }
 
         if (isFutureDate(enteredDate)) {
             //alert("please do not enter future date");
             return false;
         }
-
-        if(enteredTime != undefined && !enteredTime.match(timeFormat)) {
-            //alert("Invalid time format: " + enteredTime);
-            return false;
-        }else{
+        if(subject.match(dateTimeFormat)){
 			return true;
+        }else{
+			return false;
         }
-
     }
-
-
 }
 
 function isFutureDate(idate){
@@ -554,23 +565,34 @@ function isFutureDate(idate){
 
 //Function to copy data in MakerOnly attribute and alert checker if value is different
 function checkerValidation(subject, makerElement) {
-    console.log('M V ID:' + subject);
     var formUserGroup = $("#user_group").val();
     if(formUserGroup == 'maker_group'){
-       return subject; 
+       return subject.value; 
 
     }
     else if(formUserGroup == 'checker_group'){
-    	if (subject != makerElement) {
-            alert('Caution: Value entered by you '+subject+ ' does not match '+makerElement+'.');
-		} 
-    	return makerElement;
+        if (subject.value!="" && subject.value !=null && subject.value !='null' && subject.value !=undefined) {
+            if (subject.value != makerElement) {
+                var response = confirm('Caution: Value entered by you '+subject.value+' does not match '+makerElement+'. Pls confirm if you want to overwrite?');
+                if (response == false) {
+                    subject.value = makerElement;
+                //txt = "You pressed OK!";
+                    } 
+                return makerElement;
+            } 
+            else {
+                return makerElement;
+            }
+        } else {
+			return makerElement;
+        }
     }
     else{
     	return makerElement;
     }
 
 }
+
 
 //Function for validating postcode
 function validatePostCode(city, state, postcode, applicantCust, pOverseasAddress, isMandatory){

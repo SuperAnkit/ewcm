@@ -1,5 +1,12 @@
 package ops.global.core.servlets;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jcr.Session;
+
+import org.apache.sling.api.resource.ResourceResolver;
+
 import aQute.bnd.annotation.ProviderType;
 
 /**
@@ -14,42 +21,48 @@ public final class OPSConstants {
     
     // Session Token to be passed with each request
 	public static final int SESSION_TOKEN = 401064664;
+	
+	// Session Token to be passed with each request
+	public static final String WS_URL = "webservice.url";	
     
 	// Web-service URL for submitting the application data to DB for maker groups
-    public static final String WS_SUBMIT_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/saveXMLRequest?status=DEProg&user_name=USER_NAME&session_token=" + SESSION_TOKEN;
+    public static final String WS_SUBMIT_URL = WS_URL + "OBPHL/rest/application/saveXMLRequest?status=DEProg&user_name=USER_NAME&session_token=" + SESSION_TOKEN;
     
 	// Web-service URL for submitting the application data to DB for checker groups
-    public static final String WS_APPROVE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/saveXMLRequest?status=DEComp&user_name=USER_NAME&session_token=" + SESSION_TOKEN;
+    public static final String WS_APPROVE_URL = WS_URL + "OBPHL/rest/application/saveXMLRequest?status=DEComp&user_name=USER_NAME&session_token=" + SESSION_TOKEN;
     
     // Web-service URL for fetching the application data from DB for reader groups in JSON format
-    public static final String WS_GET_READER_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/get";
+    public static final String WS_GET_READER_URL = WS_URL + "OBPHL/rest/application/get";
     
 	// Web-service URL for fetching the application data from DB for maker groups in XML format
-    public static final String WS_GET_APP_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getXMLRequest";
+    public static final String WS_GET_APP_URL = WS_URL + "OBPHL/rest/application/getXMLRequest";
 
     // Web-service URL for fetching the subproduct code data from DB for selected purpose and productcode
-    public static final String WS_GET_SUBPRODUCT_CODE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getSubProductCode?PurposeID=ldPurposeCategory&ProductCodeID=ldProductCode";
+    public static final String WS_GET_SUBPRODUCT_CODE_URL = WS_URL + "OBPHL/rest/application/getSubProductCode?PurposeID=ldPurposeCategory&ProductCodeID=ldProductCode";
 
     // Web-service URL for fetching the subproduct code static data from DB for auto-populated subproduct code option
-    public static final String WS_GET_SUBPRODUCT_CODE_VALUE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getSubProductCodeValue?subProductCodeID=ldSubProductCode";
+    public static final String WS_GET_SUBPRODUCT_CODE_VALUE_URL = WS_URL + "OBPHL/rest/application/getSubProductCodeValue?subProductCodeID=ldSubProductCode";
 
     // Web-service URL for fetching the statement cycle code static data from DB for selected subproduct code
-    public static final String WS_GET_STATEMENT_CYCLE_CODE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getStatementCycleByProductCode?ProductCodeID=ldProductCode";
+    public static final String WS_GET_STATEMENT_CYCLE_CODE_URL = WS_URL + "OBPHL/rest/application/getStatementCycleByProductCode?ProductCodeID=ldProductCode";
 
     // Web-service URL for fetching the statement cycle code static data from DB for auto-populated statement cycle code option
-    public static final String WS_GET_STATEMENT_CYCLE_CODE_VALUE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getStatementCycleValue?statementCycleID=ldDDAStatementCycle";
+    public static final String WS_GET_STATEMENT_CYCLE_CODE_VALUE_URL = WS_URL + "OBPHL/rest/application/getStatementCycleValue?statementCycleID=ldDDAStatementCycle";
 
     // Generic Web-service URL for fetching the entity from the Static Model
-    public static final String WS_GET_STATIC_MODEL_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/getStaticModelByEntity?entity=entityName";
+    public static final String WS_GET_STATIC_MODEL_URL = WS_URL + "OBPHL/rest/application/getStaticModelByEntity?entity=entityName";
 
     // Generic Web-service URL for validating the postcode
-    public static final String WS_VALIDATE_POSTCODE_URL = "http://wasau301mel0050.globaltest.anz.com:9080/OBPHL/rest/application/validatePostCode?PostCode=_postcode&City=_city&state=_state";
+    public static final String WS_VALIDATE_POSTCODE_URL = WS_URL + "OBPHL/rest/application/validatePostCode?PostCode=_postcode&City=_city&state=_state";
+
+    // Generic Web-service URL for fetching Occupational SubGroup
+    public static final String WS_GET_OCCUPATIONAL_SUBGROUP_URL = WS_URL + "OBPHL/rest/application/getOccupationSubGroupByGroup?OccupationGroupID=eOccupationalGroup";
 
     // CRX path for auto-generated form XML
     public static final String FORMS_FOLDER_PATH = "/content/usergenerated/content/forms/af/ops/";
 
     // QueryString to create pre-fill URL for the forms
-    public static final String FP_FORMS_QRY_STRING = "?wcmmode=disabled&dataRef=crx://";
+    public static final String FP_FORMS_QRY_STRING = "?dataRef=crx://";
     
     // CRX path for the mortgage form
     public static final String FP_FORMS_PATH = "/content/forms/af/ops/mortgage.html";
@@ -124,4 +137,15 @@ public final class OPSConstants {
 	
 	// QueryString parameter for login option
 	public static final String LOGIN_STRING = "&$$login$$=$$login$$";
+	
+	// QueryString parameter for wcmMode Disabled option
+	public static final String WCM_MODE_DISABLED = "&wcmmode=disabled";
+	
+	// Parameter for lastname
+	public static final String FORM_USER_LASTNAME = "profile/familyName";
+		
+	// Parameter for firstname
+	public static final String FORM_USER_FIRSTNAME = "profile/givenName";
+
+	
 }

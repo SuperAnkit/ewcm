@@ -32,7 +32,6 @@ public class ErrorMessage extends WCMUse {
 	
 	
 	public String getMessage() {
-		log.info("ERRO+++++++++++++++++++++++++++++++" + message);
 		return message;
 	}
 	

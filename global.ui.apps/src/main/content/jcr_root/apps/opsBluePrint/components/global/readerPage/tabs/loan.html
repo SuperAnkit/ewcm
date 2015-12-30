@@ -1,0 +1,278 @@
+ <!-- Loan Details Start -->
+                    <uib-accordion-group heading="Purpose & Products" ng-show="Loan">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Purpose & Products </div>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" ng-repeat="(key,LoanPurpose) in data.application.applicationPurposes">
+
+
+
+                                        <tr>
+                                            <td class="info">Purpose Category</td>
+                                            <td class="active" ng-repeat="purposeCategoryID in staticData.purposeCategory | filter:{purposeCategoryID:LoanPurpose.purposeCategoryID}:true">{{purposeCategoryID.purposeCategory}}</td>
+
+                                            <td class="info">Purpose</td>
+
+                                            <td class="active" ng-repeat="purposedata in staticData.purpose | filter:{purposeID:LoanPurpose.purposeID}:true">{{purposedata.purposeDescription}}</td>
+
+                                            <td class="info">Purpose Description</td>
+                                            <td class="active">{{LoanPurpose.description}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Est Settlement Date</td>
+                                            <td class="active">{{LoanPurpose.estSettlementDate}}</td>
+                                            <td class="info">Approval in Price Sought?</td>
+                                            <td class="active">{{ returnRadioValue (LoanPurpose.approvalInPriceSought)}}</td>
+										</tr>	
+										<tr>
+                                            <td class="info" ng-if="LoanPurpose.purposeCategoryID == 7">3 months Statement Held?</td>
+                                            <td class="active" ng-if="LoanPurpose.purposeCategoryID == 7">{{returnRadioValue (LoanPurpose.isRapidRefinance)}}</td>
+											<td class="info" ng-if="LoanPurpose.purposeCategoryID == 2">Owner Builder?</td>
+                                            <td class="active" ng-if="LoanPurpose.purposeCategoryID == 2">{{ returnRadioValue (LoanPurpose.isOwnerBuilder)}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Additional Costs</td>
+                                            <td class="active">{{LoanPurpose.additionalCostAmount | currency}}</td>
+                                            <td class="info">Own Funds</td>
+                                            <td class="active">{{LoanPurpose.ownFundsAmount | currency}}</td>
+											<td class="info">Deposit Paid</td>
+                                            <td class="active">{{LoanPurpose.depositPaidAmount | currency}}</td>
+											
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Gifts</td>
+                                            <td class="active">{{LoanPurpose.giftsAmount | currency}}</td>
+                                            <td class="info">Bal Loans Re-fi</td>
+                                            <td class="active">{{LoanPurpose.balanceLoanRefinanceAmount | currency}}</td>
+											 <td class="info">Purchase Price</td>
+                                            <td class="active">{{LoanPurpose.purchasePriceAmount | currency}}</td>
+											
+                                        </tr>
+
+
+
+                                        <tr ng-repeat="productCode in LoanPurpose.applicationPurposeProducts">
+
+                                            <td class="info">Product Code</td>
+                                            <td class="active" ng-repeat="productCodeID in staticData.productCode | filter:{productCodeID:productCode.productCodeID}">{{productCodeID.productCode}}</td>
+
+                                            <td class="info">Sub-Product Code</td>
+                                            <td class="active" ng-repeat="subProductCodeID in staticData.subProductCode | filter:{subProductCodeID:productCode.subProductCodeID}">{{subProductCodeID.subProductCode}}</td>
+                                            <td class="info">Regulated?</td>
+                                            <td class="active">{{ returnRadioValue(data.application.isRegulated )}}</td>
+
+                                        </tr>
+
+
+
+
+                                    </table>
+                                </div>
+
+                                <div class="table-responsive" ng-repeat="(key,ilsData) in data.application.applicationPurposes">
+                                    <div ng-repeat="appPurposeData in ilsData.applicationPurposeProducts ">
+                                        <div ng-repeat="ilsDetails in appPurposeData.ilsProductDetails">
+
+                                            <table class="table table-bordered">
+                                                <tr> <span class="boldHeader" > Product Code </span></tr>
+
+                                                <tr>
+
+
+                                                    <td class="info">Amount Sought</td>
+                                                    <td class="active">{{ilsDetails.amountSought | currency}}</td>
+                                                    <td class="info">Amount this Advance</td>
+                                                    <td class="active">{{ilsDetails.amountThisAdvance | currency}}</td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td class="info">Progressive Drawdown?</td>
+                                                <td class="active">{{ returnRadioValue (ilsDetails.isProgressiveDrawdown)}}</td>
+                                                    <td class="info">LMI</td>
+                                                    <td class="active">{{ returnRadioValue (data.application.isLMI) }}</td>
+                                                </tr>
+
+												<tr>
+                                                    <td class="info">Account Number</td>
+                                                    <td class="active">{{appPurposeData.accountNumber}}</td>
+                                                    <td class="info">Account Name</td>
+                                                    <td class="active">{{appPurposeData.accountName1}}</td>
+                                                    <td class="active">{{appPurposeData.accountName2}}</td>
+                                                    <td class="active">{{appPurposeData.accountName3}}</td>
+                                                </tr>
+                                                <tr>
+
+                                                    <td class="info">Loan Term</td>
+													<td class="info">Years</td>
+                                                    <td class="active">{{ilsDetails.loanTermYears}}</td>
+													<td class="info">Months</td>
+													<td class="active">{{ilsDetails.loanTermMonths}}</td>
+													
+												</tr>
+												<tr>												
+                                                    <td class="info">Interest Only Term</td>
+													<td class="info">Years</td>
+                                                    <td class="active"> {{ilsDetails.interestOnlyTermYears}}</td>
+													<td class="info">Months</td>
+													<td class="active">{{ilsDetails.interestOnlyTermMonths}}</td>
+													
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Fixed Rate Term</td>
+													<td class="info">Years</td>
+                                                    <td class="active">{{ilsDetails.fixedRateTermYears}}</td>
+													<td class="info">Months</td>
+													<td class="active">{{ilsDetails.fixedRateTermMonths}} </td>
+												</tr>	
+												<tr>
+                                                    <td class="info">Interest Frequency</td>
+													 <td class="active" ng-repeat="interestFrequencyID in staticData.interestFrequency | filter:{interestFrequencyID:ilsDetails.interestFrequencyID}">{{interestFrequencyID.interestFrequency}}</td>
+                                                </tr>
+                                                <!-- loan Term details End -->
+
+
+                                                <!-- Loan Payment Details Start-->
+                                                <tr>
+
+                                                    <table class="table table-bordered">
+
+                                                        <tr><span class="boldHeader" > Loan Payment Details</span> </tr>
+                                                        <tr>
+                                                            <td class="info">Payment Frequency</td>
+															 <td class="active" ng-repeat="paymentFrequencyID in staticData.paymentFrequency | filter:{paymentFrequencyID:ilsDetails.paymentFrequencyID}">{{paymentFrequencyID.paymentFrequency}}</td>
+
+															  <td class="info">Margin Override Reason</td>
+															   <td class="active" ng-repeat="marginOverrideReasonID in staticData.marginOverrideReason | filter:{marginOverrideReasonID:ilsDetails.marginOverrideReasonID}">{{marginOverrideReasonID.marginOverrideReason}}</td>
+
+                                                              <td class="info">Payment Method</td>
+															 <td class="active" ng-repeat="paymentMethodID in staticData.repaymentMethod | filter:{repaymentMethodID:appPurposeData.repaymentMethodID}">{{paymentMethodID.repaymentMethod}}</td>
+
+
+                                                         </tr>
+
+                                                        <!-- Statement Details Details Start-->
+                                                        <tr>
+
+                                                            <table class="table table-bordered">
+
+                                                                <tr><span class="boldHeader" > Statement Details</span></tr>
+                                                                <tr>
+                                                                    <td class="info">Statement Mail Code</td>
+                                                                    <td class="active">{{ilsDetails.statementMailCode}}</td>
+                                                                    <td class="info">Statement Cycle</td>
+																	<td class="active" ng-repeat="statementCycleID in staticData.statementCycle | filter:{statementCycleID:ilsDetails.statementCycleID}">{{statementCycleID.statementCycle}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+
+
+
+                                                        <!-- Statement Details Details End -->
+
+
+                                                        <!-- Loan Package Start-->
+                                                        <tr>
+
+                                                            <table class="table table-bordered">
+
+                                                                <tr> <span class="boldHeader" >Loan Package </span></tr>
+                                                                <tr>
+                                                                    <td class="info">Discount Package Type</td>
+                                                                    <td class="active" ng-repeat="discountPackageID in staticData.discountPackage | filter:{discountPackageID:ilsDetails.discountPackageID}">{{discountPackageID.discountPackage}}</td>
+
+                                                                </tr>
+
+
+
+
+                                                            </table>
+                                                        </tr>
+
+                                                        <!-- Loan Package End -->
+
+
+
+                                                    </table>
+
+                                                </tr>
+
+
+                                                <!-- loan Payment Details End -->
+                                                <tr>
+                                                    <table class="table table-bordered" ng-repeat="(key,Loandisbursedt) in data.application.disbursementAndSettlements">
+
+                                                        <tr><span class="boldHeader" > Settlement Instructions</span></tr>
+
+
+                                                        <tr>
+                                                            <td class="info">Repayment Type</td>
+                                                           <!-- <td class="active">{{data.application.repaymentTypeID}}</td>-->
+															<td class="active" ng-repeat="repaymentTypeID in staticData.repaymentType | filter:{repaymentTypeID:data.application.repaymentTypeID}">{{repaymentTypeID.repaymentType}}</td>
+															
+                                                            <td class="info">Settlement amount</td>
+                                                            <td class="active">{{Loandisbursedt.settlementAmount | currency}}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="info">Surplus / Shortfall amount</td>
+                                                            <td class="active">{{Loandisbursedt.surplusShortfallAmount | currency}}</td>
+                                                            <td class="info">Maximum amount on Surplus / Shortfall amount</td>
+                                                            <td class="active">{{Loandisbursedt.maximumAmount | currency}}</td>
+
+                                                        </tr>
+
+
+
+                                                    </table>
+
+                                                </tr>
+												<!-- Associated Product Borrowers  start-->
+                                                        <tr >
+
+                                                            <table class="table table-bordered">
+
+                                                                 <tr> <span class="boldHeader"> Associated Product Borrowers </span></tr>
+                                                                 <tr>
+                                                                    <td class="info">Applicant Participant</td>
+																	<td class="info">Relationship</td>
+																	<td class="info">Address Type</td>
+																	<td class="info">Is Nominated borrower</td>
+                                                                </tr>
+                                                                <tr ng-repeat="assocPdctBorr in appPurposeData.applicationPurposeProductParticipantsA">
+																	<td class="active" >
+                                                                        <span ng-repeat="(key,testparticipants) in data.application.applicationParticipants">
+                                                                        <span ng-if="assocPdctBorr.applicationParticipantID==testparticipants.applicantSequenceNo">{{testparticipants.participant.person.firstName}} {{testparticipants.participant.person.middleName}} {{testparticipants.participant.person.lastName}}
+                                                                        </span>
+                                                                        </span>																	
+                                                                    </td>
+                                                                    <td class="active">{{assocPdctBorr.overridenRole}}</td>
+                                                                    <td class="active">{{assocPdctBorr.productAddressType}}</td>
+                                                                    <td class="active">{{ returnRadioValue(assocPdctBorr.isNominatedBorrower)}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+
+                                                        <!-- Associated Product Borrowers End -->
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!--- Loan Details End--->

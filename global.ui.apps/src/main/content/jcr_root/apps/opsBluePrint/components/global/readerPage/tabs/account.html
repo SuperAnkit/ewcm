@@ -1,0 +1,82 @@
+
+                    <!-- Account Details -->
+                    <uib-accordion-group heading="Account Details" ng-show="Account">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Account Details </div>
+                            <div class="col-md-12" ng-repeat="(key,acctdetils) in data.application.breakFree.breakFreeApplicants">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr> <span class="boldHeader" > Existing Account </span></tr>
+
+                                        <tr>
+                                            <td class="info">Has the Applicant opted for Breakfree?</td>
+                                            <td class="active">{{data.application.isBreakfreeOpted == true ? 'Yes' : 'No' }}</td>
+
+                                            <td class="info">Existing BF customer </td>
+                                            <td class="active">{{returnRadioValue(acctdetils.isExistingBreakFreeCustomer)}}</td>
+                                            <td class="info">Loan application number</td>
+                                            <td class="active">{{data.application.applicationNumber}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Loans to be included in Package?</td>
+                                            <td class="active">{{}}</td>
+                                            <td class="info">I/We will nominate the following ANZ Transaction Account as part of this package</td>
+                                            <td class="active">{{breakfreedt.nominatedTransactionAccount}}</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td class="info">I/We will need to open a new transaction account as a part of this package </td>
+                                            <td class="active">{{}}</td>
+                                            <td class="info">ANZ Assured </td>
+                                            <td class="active">{{}}</td>
+                                            <td class="info">Card Type, Cred Limit, Primary Card Holder</td>
+                                            <td class="active">{{}}</td>
+
+
+                                        </tr>
+
+                                        <!-- Disbursement Details -->
+                                        <tr>
+                                            <table class="table table-bordered" ng-repeat="(key,disbursedt) in data.application.disbursementAndSettlements">
+
+                                                <tr class=""><span class="boldHeader">Disbursement and Settlement Authority</span></tr>
+
+
+                                                <tr>
+                                                    <td class="info">Offset account</td>
+                                                    <td class="active">{{disbursedt.offsetAccount}}</td>
+                                                    <td class="info">Product</td>
+                                                    <td class="active">{{disbursedt.offsectAcctProductName}}</td>
+                                                    <td class="info">Loan amount</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Repayment Account Number</td>
+                                                    <td class="active">{{disbursedt.repaymentAcctNumber}}</td>
+                                                    <td class="info">Additional Cardholder</td>
+                                                    <td class="active">{{disbursedt.offsectAcctProductName}}</td>
+                                                    <td class="info">Account Holder's Name</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Date</td>
+                                                    <td class="active">{{disbursedt.isSigned}}</td>
+                                                    <td class="info">Signature</td>
+                                                    <td class="active">{{disbursedt.dateSigned}}</td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <!-- Disbursement Details End -->
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!-- Account Details End -->

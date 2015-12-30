@@ -16,6 +16,7 @@
         dam:s7damWidth="{Long}3000"
         jcr:lastModified="{Date}2015-11-17T19:21:36.061+05:30"
         jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[]"
         jcr:primaryType="dam:AssetContent"
         restored="{Boolean}true">
         <metadata

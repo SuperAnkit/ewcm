@@ -1,0 +1,205 @@
+ <uib-accordion-group heading="Customer Details" ng-show="Customer" >
+
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Customer Details </div>
+                            <div class="col-md-12" ng-repeat="(key,participants) in data.application.applicationParticipants">
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="info">MOS Sequence Number</td>
+                                            <td class="active">{{participants.participant.person.mosRowNumber}}</td>
+											<td  class="info">Customer Locate Row Number from Cap</td>
+											<td class="active">{{participants.participant.person.capROWNumber}}</td>
+											
+
+											
+                                            <td class="info">Customer Type</td>
+                                            <td class="active" ng-repeat="applicantType in staticData.applicantRole | filter:{applicantRoleID:participants.applicantRoleID}">{{applicantType.roleName}}</td>
+                                            <td class="info">Customer</td>
+                                            <td class="active" ng-repeat="customerType in staticData.entityType | filter:{entityTypeID:participants.participant.entityTypeID}">{{customerType.entityType}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Is Trust Involved?</td>
+                                            <td class="active"> {{ participants.participant.trustParticipantMappings.length > 0 ? "Yes" : "No" }}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Title</td>
+                                            <td class="active">{{participants.participant.person.ttileID}}</td>
+                                            <td class="info">Name</td>
+                                            <td class="active">{{participants.participant.person.firstName}} {{participants.participant.person.middleName}} {{participants.participant.person.lastName}}</td>
+											<td class="info">Branch of ID</td>
+                                            <td class="active">{{participants.participant.person.nominatedBranchID}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="info">Mailing Title</td>
+                                            <td class="active">{{participants.participant.person.mailingTitle}}</td>
+                                            <td class="info">Formal Salutation</td>
+                                            <td class="active">{{participants.participant.person.formalSalutation}}</td>
+                                            <td class="info">Email Id</td>
+                                            <td class="active">{{participants.participant.person.emailId}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Gender</td>
+                                            <td class="active">{{participants.participant.person.gender}}</td>
+
+                                            <td class="info">Current Housing</td>
+
+                                            <td class="active" ng-repeat="currentHusId in staticData.currentHousing | filter:{currentHousingID:participants.participant.person.currentHousingId}">{{currentHusId.currentHousing}}</td>
+
+                                            <td class="info">Credit Authority Held/Signed</td>
+                                            <td class="active">{{ returnRadioValue(participants.participant.person.isCreditAutoritySigned)}}</td>
+
+                                        </tr>
+
+                                        <tr ng-repeat="relationType in participants.participant.participantRelationships">
+                                            <td class="info">RelationShip Type</td>
+                                            <td class="active" ng-repeat="partRelType in staticData.particpantRelationType | filter:{particpantRelationTypeID:relationType.particpantRelationTypeID}">{{partRelType.particpantRelationType}}</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="info">FIRB Approval Held?</td>
+                                            <td class="active" >{{ returnRadioValue(participants.participant.person.isFIRBApprovalHeld)}}</td>
+                                            <td class="info">First Home Buyer</td>
+                                            <td class="active" >{{participants.participant.person.isFirstHomeBuyer ==true? 'Yes':'No'}}</td>
+                                            <td class="info">ANZ Employee</td>
+                                            <td class="active" >{{participants.participant.person.isANZEmployee ==true? 'Yes':'No'}}
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Disclosure</td>
+                                            <td class="active" >{{participants.participant.person.isDisclosure ==true? 'Yes':'No'}}</td>
+                                            <td class="info">Advertising</td>
+                                            <td class="active">{{participants.participant.person.isAdvertizing ==true? 'Yes':'No'}}</td>
+                                            <td class="info">Date of Birth</td>
+                                            <td class="active" >{{participants.participant.person.dateOfBirth}}</td>
+											
+											 <td class="info">Nationality</td>
+											 <td class="active" ng-repeat="countryID in staticData.country | filter:{countryID:participants.participant.person.nationalityID}:true">{{countryID.countryName}}</td>
+											
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Driving Lic</td>
+                                            <td class="active" > {{participants.participant.person.dLN}} </td>
+                                            <td class="info">DL Issued State</td>
+                                            <td class="active" ng-repeat="staticStateName in staticData.state | filter:{stateID:participants.participant.person.dLIssuedStateID}:true"> {{staticStateName.stateName}}</td>
+
+                                            <td class="info"> Marital Status : </td>
+                                            <td class="active" >{{participants.participant.person.maritalStatus}}</td>
+                                        </tr>
+                                        <!-- Dependant Details -->
+                                        <tr>
+                                            <td class="info"> No of Depedents </td>
+                                            <td class="active" >{{participants.participant.person.dependents.length}} </td>
+                                            <td class="info"> Name of Spouse </td>
+                                            <td class="active" >{{participants.participant.person.nameOfSpouse}} </td>
+                                            <td class="info"> Security Code </td>
+                                            <td class="active" >{{participants.participant.person.securityCode}} </td>
+                                             <td class="info"> Is Stat Dec Held  </td>
+                                            <td class="active" >{{participants.participant.person.isStatDecHeld==true? 'Yes':'No'}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info"> Permanenet Resident </td>
+                                            <td class="active" >{{participants.participant.person.isPermanentResident==true? 'Yes':'No'}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <table class="table table-bordered">
+                                                <tr ng-repeat="(key,dependents) in participants.participant.person.dependents ">
+                                                    <td class="info">Dependant {{dependents.number}} Age</td>
+                                                    <td class="active"> {{dependents.age}}</td>
+                                                </tr>
+                                            </table>
+                                        </tr>
+                                        <!-- Dependant Details End -->
+
+                                        <tr>
+                                            <table class="table table-bordered">
+                                                <tr >
+                                                    <td class="active" > Relationship Details</td>
+                                                </tr>
+                                                <tr>
+													<td class="info">Applicant</td>
+													<td class="info">Relationship To</td>
+                                                    <td class="info">Relationship Type</td>
+                                                </tr>
+                                                <tr  ng-repeat="relationType in participants.participant.participantRelationships">
+
+                                                    <td class="active" >{{participants.participant.person.firstName}} {{participants.participant.person.middleName}} {{participants.participant.person.lastName}}</td>
+
+                                                    <td class="active"  >
+                                                        <span ng-repeat="(key,testparticipants) in data.application.applicationParticipants">
+                                                        {{relationType.relatedParticipant==testparticipants.applicantSequenceNo? testparticipants.participant.person.firstName+' '+testparticipants.participant.person.lastName:''}}
+														</span>
+													</td>
+                                                    <td class="active" ng-repeat="partRelType in staticData.particpantRelationType | filter:{particpantRelationTypeID:relationType.particpantRelationTypeID}">{{partRelType.particpantRelationType}}</td>
+                                                </tr>
+                                           </table>
+                                        </tr>
+
+                                        <tr>
+
+                                            <table class="table table-bordered" ng-repeat="(key,personAddress) in participants.participant.person.addresses">
+                                                <tr ng-if="personAddress.addresses.isMailingAddress ==true &&  personAddress.addresses.isCurrent ==true">
+                                                    <td class="active" > Current Address </td>
+                                                </tr>
+												<tr ng-if="personAddress.addresses.isMailingAddress !=true &&  personAddress.addresses.isCurrent ==true">
+                                                    <td class="active" > Mailing Address  </td>
+                                                </tr>
+												<tr ng-if="personAddress.addresses.isCurrent !=true">
+                                                    <td class="active" > Previous Address  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Is Overseas Address? </td>
+                                                    <td class="active" >{{personAddress.addresses.isOverseas ==true? 'Yes':'No'}} </td>
+													<td class="info">Is the mailing address same as the current address? </td>
+                                                    <td class="active">{{personAddress.addresses.isMailingAddress ==true? 'Yes':'No'}} </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td class="info"> Address </td>
+                                                     <td class="active" > {{personAddress.addresses.streetNumber}} {{personAddress.addresses.streetName}} {{personAddress.addresses.city}} {{personAddress.addresses.postCode}}
+													<span ng-repeat="staticStateName in staticData.state | filter:{stateID:personAddress.addresses.stateId}:true">{{staticStateName.stateName}}</span>
+													<span ng-repeat="countryID in staticData.country | filter:{countryID:personAddress.addresses.countryId}:true">{{countryID.countryName}}</span>
+
+													</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Home Phone</td>
+                                                    <td class="active" > {{personAddress.addresses.phone1}} </td>
+                                                    <td class="info">Business Phone</td>
+                                                    <td class="active" > {{personAddress.addresses.phone2}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Mobile Phone</td>
+                                                    <td class="active"> {{participants.participant.person.mobilePhone}} </td>
+                                                    <td class="info">Fax Number </td>
+                                                    <td class="active"> {{personAddress.addresses.fax}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Time at Address </td>
+                                                    <td class="active">{{personAddress.addresses.years}} Years </td> 
+                                                    <td class="active">{{personAddress.addresses.months}} Months</td> 
+                                                </tr>
+
+                                            </table>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>

@@ -1,0 +1,79 @@
+<!-- Employee Details Start -->
+                    <uib-accordion-group heading="Employment Details" ng-show="Employment">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Employment Details </div>
+                            <div class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-12'}}" ng-repeat="(key,empDet) in data.application.applicationParticipants">
+                                <div class="table-responsive" ng-repeat="personEmpDt in empDet.participant.person.employments">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                        	<td class="info">Employee</td>
+											<td class="active" >
+											{{empDet.participant.person.firstName}} {{empDet.participant.person.middleName}} {{empDet.participant.person.lastName}}
+                                            </td>
+                                            <td class="info">Employment Category</td>
+											<td class="active" >
+											{{employmentCategory(personEmpDt.isCurrent,personEmpDt.isPrimary)}}
+                                            </td>
+
+                                            <td class="info">Employment Type</td>
+                                            <td class="active" ng-repeat="employmentTyp in staticData.employmentType | filter:{employmentTypeID:personEmpDt.employmentTypeID}">{{employmentTyp.employmentType}}</td>
+
+                                        </tr>
+                                        <tr>
+                                        	<td class="info">Employer Type</td>
+                                            <td class="active" ng-repeat="emploerType in staticData.employerType | filter:{employerTypeID:personEmpDt.employerTypeID}">{{emploerType.employerType}}</td>
+
+                                            <td class="info">Occupational Group</td>
+                                            <td class="active" ng-repeat="occupationGroupID in staticData.occupationGroup | filter:{occupationGroupID: personEmpDt.occupationGroupID}:true">{{occupationGroupID.occupationGroupDescription}}</td>
+
+
+                                            <td class="info">Occupational</td>
+                                            <td class="active" ng-repeat="occupationSubGroupID in staticData.occupationSubGroup | filter:{occupationSubGroupID:personEmpDt.occupationSubGroupID}:true">{{occupationSubGroupID.occupationSubGroup}}</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="info">Designation</td>
+                                            <td class="active" >{{personEmpDt.designation}}</td>
+                                            <!-- <td class="info">Primary Employment?</td><td>{{personEmpDt.isPrimaryEmployment}}</td> -->
+                                            <td class="info">Employer Name</td>
+                                            <td class="active" >{{personEmpDt.employerName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="info"> Address </td>
+                                            <td class="active" >
+                                            {{personEmpDt.address.streetNumber}} {{personEmpDt.address.streetName}}  {{personEmpDt.address.city}} {{personEmpDt.address.postCode}}
+											<span ng-repeat="staticStateName in staticData.state | filter:{stateID:personEmpDt.address.stateId}:true">{{staticStateName.stateName}}</span>
+											<span ng-repeat="countryID in staticData.country | filter:{countryID:personEmpDt.address.countryId}:true">{{countryID.countryName}}</span>
+											</td>
+											<!-- <td ng-repeat="countryID in staticData.country | filter:{countryId:personEmpDt.address.countryId}">{{countryID.countryName}}</td> -->
+                                            <td class="info">Phone</td>
+                                            <td class="active">{{personEmpDt.address.phone1}}</td>
+                                            <td class="info">Fax Number</td>
+                                            <td class="active">{{personEmpDt.address.fax}}</td>
+                                            </tr>
+
+                                        <tr>
+                                            <td class="info">Gross Monthly</td>
+                                            <td class="active" >{{personEmpDt.grossMonthly | currency}}</td>
+                                            <td class="info">Net Monthly</td>
+                                            <td class="active" >{{personEmpDt.netMonthly | currency}}</td>
+										</tr>
+										<tr>
+                                            <td class="info">Time at Employment</td>
+                                            <td class="active" >{{personEmpDt.years }} Years </td>
+											<td class="active" >{{personEmpDt.months }} Months</td>
+                                        </tr>
+                                        <tr>
+
+                                            <!-- <td class="info">Is Previous Employment Entry required?</td> <td></td> -->
+                                            <td class="info">Is Employee under a Probationary Period?</td>
+                                            <td class="active" >{{personEmpDt.isUnderProbation == true? 'Yes':'No'}}</td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!--- Employment Details--->

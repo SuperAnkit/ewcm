@@ -1,0 +1,506 @@
+<!-- Security Details Start -->
+                    <uib-accordion-group heading="Security Details" ng-show="Security">
+
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Security Details </div>
+                            <div class="col-md-12" ng-repeat="(key,securityEntityDt) in data.application.security.securityEntities">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <tr ng-repeat="securityTypeID in staticData.securityType | filter:{securityTypeID: securityEntityDt.securityTypeID}">
+                                            <td class="info">Security Type</td>
+                                            <td class="active" >{{securityTypeID.securityType}} </td>
+                                            <!-- <td class="info">Security Entity</td><td>{{securityEntityDt.securityEntityID}}</td> -->
+                                        </tr>
+										<tr ng-repeat="testSecGivenBy in securityEntityDt.securityParticipantMappings">
+                                        	<td class="info">Security Given By</td>
+                                            <td class="active" >
+											<span ng-repeat="(key,testparticipants) in data.application.applicationParticipants">
+                                             <span ng-if="testSecGivenBy.aEMSecurityApplicantID==testparticipants.applicantSequenceNo">{{testparticipants.participant.person.firstName}} {{testparticipants.participant.person.middleName}} {{testparticipants.participant.person.lastName}}</span>
+                                            </span>
+											</td>
+                                        </tr>
+                                        <!-- Property Section Details -->
+                                        <tr>
+
+                                            <table class="table table-bordered">
+                                                <tr><span class="boldHeader" >Property Details </span></tr>
+
+                                                <tr>
+                                                    <td class="info"> Address </td>
+                                                    <td class="active" >{{securityEntityDt.property.address.streetNumber}} {{securityEntityDt.property.address.streetName}} {{securityEntityDt.property.address.city}}
+													<span ng-repeat="staticStateName in staticData.state | filter:{stateID:securityEntityDt.property.address.stateId}">{{staticStateName.stateName}}</span> {{securityEntityDt.property.address.postCode}}</td>
+
+                                                    <td class="info">Date of Security</td>
+                                                    <td class="active">{{securityEntityDt.dataOfSecurity}} </td>
+
+                                                </tr>
+                                                <!-- Property Type Details Start  -->
+                                                <tr>
+                                                    <table class="table table-bordered">
+
+                                                        <tr> <span class="boldHeader" >Property Type Details </span></tr>
+
+                                                        <tr>
+                                                            <td class="info">Property Purchase?</td>
+                                                            <td class="active" >{{returnRadioValue(securityEntityDt.property.isPropertyPurchase)}} </td>
+                                                            <td class="info">On Market Transaction?</td>
+                                                            <td class="active">{{returnRadioValue(securityEntityDt.property.isOnMarketTransaction)}} </td>
+                                                            <td class="info">Property Status</td>
+                                                            <td class="active" ng-repeat="propertyStatusID in staticData.propertyStatus | filter:{propertyStatusID: securityEntityDt.property.propertyStatusID}:true">{{propertyStatusID.propertyStatus}}</td>
+
+                                                        </tr>
+
+                                                        <tr>
+
+                                                            <td class="info">Property Type</td>
+                                                            <td class="active" ng-repeat="propertyTypeID in staticData.propertyType | filter:{propertyTypeID: securityEntityDt.property.propertyTypeID}">{{propertyTypeID.propertyType}}</td>
+
+                                                            <td class="info">Property Tenure</td>
+                                                            <td class="active" ng-repeat="propertyTenureID in staticData.propertyTenure | filter:{propertyTenureID: securityEntityDt.property.propertyTenureID}">{{propertyTenureID.propertyTenure}}</td>
+
+                                                            <td class="info">Property Zoning</td>
+                                                            <td class="active" ng-repeat="propertyZoningID in staticData.propertyZoning | filter:{propertyZoningID: securityEntityDt.property.propertyZoningID}">{{propertyZoningID.propertyZoning}}</td>
+                                                        </tr>
+
+                                                        <tr>
+
+                                                            <td class="info">Property use</td>
+                                                            <td class="active" ng-repeat="propertyUseID in staticData.propertyUse | filter:{propertyUseID: securityEntityDt.property.propertyUseID}">{{propertyUseID.propertyUse}}</td>
+                                                            <td class="info">Title Type</td>
+                                                            <td class="active" ng-repeat="titleTypeID in staticData.titleType | filter:{titleTypeID: securityEntityDt.property.titleTypeID}">{{titleTypeID.titleType}}</td>
+
+
+                                                        </tr>
+
+                                                        <!-- Start of value Details -->
+                                                        <tr>
+
+                                                            <table class="table table-bordered">
+
+                                                                <tr> <span class="boldHeader" >Value Details </span> </tr>
+
+                                                                <tr>
+                                                                    <td class="info">Security Value (FMV)</td>
+                                                                    <td class="active">{{securityEntityDt.property.securityValue | currency}}</td>
+                                                                    <td class="info">Customer Stated Value</td>
+                                                                    <td class="active" >{{securityEntityDt.property.customerStatedValue | currency}}</td>
+                                                                    <td class="info">Transfer of Land Value</td>
+                                                                    <td class="active">{{securityEntityDt.property.transferOfLandValue | currency}}</td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="info">Valuation Required</td>
+                                                                    <td class="active">{{returnRadioValue(securityEntityDt.property.isValuationRequired)}}</td>
+                                                                    <td class="info">Security Status</td>
+                                                                    <td class="active" ng-repeat="securityStatusID in staticData.securityStatus | filter:{securityStatusID: securityEntityDt.property.securityStatusID}:true">{{securityStatusID.securityStatusDescription}}</td>
+
+                                                                    <td class="info">Stamping Type</td>
+                                                                    <td class="active" ng-repeat="stampingTypeID in staticData.stampingType | filter:{stampingTypeID: securityEntityDt.property.stampingTypeID}:true">{{stampingTypeID.stampingType}}</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="info">Stamping Value</td>
+                                                                    <td class="active">{{securityEntityDt.property.stampingValue | currency}}</td>
+                                                                    <td class="info">Existing Loan Amount</td>
+                                                                    <td class="active">{{securityEntityDt.property.existingLoanValue | currency}}</td>
+                                                                    <td class="info">Valuation Date</td>
+                                                                    <td class="active">{{securityEntityDt.property.valuationDate}} </td>
+
+                                                                </tr>
+																<tr>
+                                                                    <td class="info">First Mortgage Value</td>
+                                                                    <td class="active">{{securityEntityDt.property.firstMortgageValue | currency}} </td>
+                                                                       <td class="info">Existing Stamp Value</td>
+                                                                       <td class="active">{{securityEntityDt.property.existingStampValue | currency}} </td>
+                                                                       <td class="info">Upstamping Value</td>
+                                                                       <td class="active">{{securityEntityDt.property.upStampingValue | currency}} </td>
+
+
+                                                                </tr>
+                                                                <tr>
+                                                                       <td class="info">Is fixed Price Contract</td>
+                                                                       <td class="active">{{ returnRadioValue(securityEntityDt.property.isFixedPriceContract) }}</td>
+
+
+                                                                </tr>
+
+
+                                                                <!-- Value Details Details End  -->
+
+                                                            </table>
+                                                        </tr>
+
+
+                                                    </table>
+                                                </tr>
+
+
+                                                <!-- Property Type Details End  -->
+                                            </table>
+                                        </tr>
+
+                                        <!-- Property Section Details End -->
+
+                                        <!-- Valuation Details Start -->
+                                        <tr>
+
+                                            <table class="table table-bordered" ng-repeat="valuationdt in securityEntityDt.property.valuations">
+
+                                                 <tr><span class="boldHeader" > Valuation Doc </span></tr>
+                                                <tr>
+
+                                                    <td class="info"> What type of Valuation is recd? </td>
+                                                    <td class="active" ng-repeat="valuationTypeID in staticData.valuationType | filter:{valuationTypeID: valuationdt.valuationTypeID}:true">{{valuationTypeID.valuationType}}</td>
+                                                    <td class="info">FMV</td>
+                                                    <td class="active">{{valuationdt.fmv | currency}}</td>
+                                                    <td class="info"> Valuation Date</td>
+                                                    <td class="active">{{valuationdt.valuationDate}}</td>
+													<td class="info">Rental income </td>
+                                                    <td class="active">{{valuationdt.rentalIncome | currency}}</td>
+                                                </tr>
+
+												<!-- Show only for TOC and Full Valuation Start -->
+
+
+                                                <tr ng-if="valuationdt.valuationTypeID == '1' ||  valuationdt.valuationTypeID == '4'">
+                                                    <td class="info">To be Erected / Tentative on Completion </td>
+                                                    <td class="active">{{ returnRadioValue(valuationdt.toBeErected) }}</td>						
+
+                                                </tr>
+
+
+
+                                                <!-- Show only for TOC and Full Valuation End -->
+
+                                                <!-- Show only for Model Estimate and Keberside Start -->
+
+                                                <tr ng-if="valuationdt.valuationTypeID == '3' || valuationdt.valuationTypeID == '2' ">	
+														 <td class="active"><b>Main Building and Land</b></td>
+                                                </tr>
+
+                                                <tr ng-if="valuationdt.valuationTypeID == '3' || valuationdt.valuationTypeID == '2' ">	
+                                                    <td class="info">Number of bed room</td>
+                                                    <td class="active">{{valuationdt.noOfBedroom}}</td>
+                                                    <td class="info">Number of bath room</td>
+                                                    <td class="active">{{valuationdt.noOfBathroom}}</td>
+                                                    <td class="info">Number of car park</td>
+                                                    <td class="active">{{valuationdt.noOfCarPark}}</td>
+
+                                                </tr>
+                                                <!-- Show only for Model Estimate and Keberside End -->
+
+                                                <!-- to Show for only Keberside validation -->
+
+                                                <tr ng-if="valuationdt.valuationTypeID == '2' ">
+                                                    <td class="info">Living areas</td>
+                                                    <td class="active">{{valuationdt.livingArea}}</td>
+                                                    <td class="info">Outdoor Areas</td>
+                                                    <td class="active">{{valuationdt.outdoorArea}}</td>
+                                                    <td class="info">Other Areas</td>
+                                                    <td class="active">{{valuationdt.otherArea}}</td>
+                                                </tr>
+
+                                                <tr ng-if="valuationdt.valuationTypeID == '2' ">
+                                                    <td class="info">Value component</td>
+                                                    <td class="active">{{valuationdt.valueComponent | currency}}</td>
+                                                    <td class="info">Land Area</td>
+                                                    <td class="active">{{valuationdt.landValuation | currency}}</td>
+                                                    <td class="info">Ancillary Improvements</td>
+                                                    <td class="active">{{valuationdt.improvementValuation | currency}}</td>
+                                                </tr>
+												<tr ng-if="valuationdt.valuationTypeID == '2' ">	
+														 <td class="active"><b>Property Risk Ratings</b></td>
+                                                </tr>
+                                                <tr ng-if="valuationdt.valuationTypeID == '2' ">
+													<td class="info">Location & Neighbour</td>
+                                                    <td class="active">{{valuationdt.rrlocation}}</td>
+                                                    <td class="info">Land</td>
+                                                    <td class="active">{{valuationdt.rrland}}</td>
+                                                    <td class="info">Enviroment</td>
+                                                    <td class="active">{{valuationdt.rrenvironment}}</td>
+                                                    <td class="info">Improvement</td>
+                                                    <td class="active">{{valuationdt.rrimprovement}}</td>
+                                                </tr>
+												<tr ng-if="valuationdt.valuationTypeID == '2' ">	
+														 <td class="active"><b>Market Risk Ratings</b></td>
+                                                </tr>
+                                                <tr ng-if="valuationdt.valuationTypeID == '2' ">
+
+                                                    <td class="info">Recent market direction</td>
+                                                    <td class="active">{{valuationdt.rrrecentMarketDirection}}</td>
+                                                    <td class="info">Market volatility</td>
+                                                    <td class="active">{{valuationdt.rrmarketVolatility}}</td>
+                                                    <td class="info">Local economy</td>
+                                                    <td class="active">{{valuationdt.rrlocalEconomy}}</td>
+                                                    <td class="info">Market Segment </td>
+                                                    <td class="active">{{valuationdt.rrmarketSegment}}</td>
+                                                </tr>
+                                                <!-- to Show for only Keberside validation End  -->
+
+
+                                                <!-- To Show Contract of Sales -->
+                                                <tr>
+                                                    <table class="table table-bordered" ng-repeat="cosDt in data.application.contractOfSales">
+
+                                                        <tr><span class="boldHeader" >Contract of Sale </span></tr>
+
+                                                        <tr>
+                                                            <td class="info">Seller Name (COS)</td>
+                                                            <td class="active" ng-repeat="sellName in cosDt.propertyVendor">{{sellName.vendorName}}</td>
+                                                            <td class="info">Buyer Name (COS)</td>
+                                                            <td class="active" ng-repeat="buyName in cosDt.propertyBuyer">{{buyName.buyerName}}</td>
+                                                            <td class="info">COS - Purchase Price</td>
+                                                            <td class="active">{{cosDt.purchasePrice | currency}}</td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="info">Settlement Date</td>
+                                                            <td class="active">{{cosDt.settlementDate}}</td>
+                                                            <td class="info">Goods</td>
+                                                            <td class="active">{{returnRadioValue(cosDt.isGoods)}}</td>
+                                                            <td class="info">Execution Date</td>
+                                                            <td class="active">{{cosDt.executionDate}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="info">Car Park</td>
+                                                        <td class="active">{{ returnRadioValue (cosDt.isCarParkAvailable )}}</td>
+                                                            <td class="info">Is Special Condition</td>
+                                                            <td class="active">{{ returnRadioValue(cosDt.doesSpecialConditionExist)}}</td>
+                                                           <!-- <td class="info">Special Condition</td> -->
+                                                           <!-- <td class="active">{{}}</td> -->
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="info">Is POA involved?</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">POS</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Unregistered plan</td>
+                                                            <td class="active">{{}}</td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="info">Being part of the land</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Proposed lot or proposed plan</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Title subject to subdivision</td>
+                                                            <td class="active">{{}}</td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="info">Seller buyer signature</td>
+                                                            <td class="active">{{cosDt.hasVendorrSigned == true && cosDt.hasBuyerSigned == true ? 'Yes':'No'}}{{}}</td>
+
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+
+                                                <!-- To Show Contract of Sales End -->
+
+                                                <!-- To Show TOL Start -->
+
+                                                <tr>
+                                                    <table class="table table-bordered" ng-repeat="tolDt in data.application.transferOfLands">
+
+                                                        <tr><span class="boldHeader" >TOL </span></tr>
+
+                                                        <tr>
+                                                            <td class="info">Title Reference</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Seller Name (COS)</td>
+                                                            <td class="active" ng-repeat="sellName in tolDt.propertyVendor">{{sellName.vendorName}}</td>
+                                                            <td class="info">Buyer Name (COS)</td>
+                                                            <td class="active" ng-repeat="buyName in tolDt.propertyBuyer">{{buyName.buyerName}}</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="info">Percentage of share description</td>
+                                                            <td class="active">{{tolDt.percentageOfShareDescription}}</td>
+                                                            <td class="info">Transfer of Land Value</td>
+                                                            <td class="active">{{tolDt.tolvalue | currency }}</td>
+                                                            <td class="info">Is Trust Involved?</td>
+                                                            <td class="active">{{ returnRadioValue (tolDt.isTrustInvolved)}}</td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="info">Directing Party</td>
+                                                            <td class="active">{{ returnRadioValue(tolDt.directingParty)}}</td>
+                                                        </tr>
+                                                    </table>
+
+                                                </tr>
+                                                <!-- To Show TOL End -->
+                                            </table>
+
+                                        </tr>
+                                        <!-- Non-Property Type Details -->
+                                        <tr>
+
+                                            <table class="table table-bordered">
+
+                                                <tr> <span class="boldHeader" >Non-Property Type Details </span></tr>
+
+                                                <tr>
+                                                    <td class="info">Nature of Security</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Security description</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Account Prod Code</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Certificate Number</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Account Number</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Registration Period</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+
+                                            </table>
+
+                                        </tr>
+
+                                        <!-- Start of Deposit Details -->
+                                        <tr>
+
+                                            <table class="table table-bordered">
+
+                                                <tr> <span class="boldHeader" >Deposit </span></tr>
+
+                                                <tr>
+                                                    <td class="info">Date</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Deposit Invoice</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Deposit Amount</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Tax agent name</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Signed</td>
+                                                    <td class="active">{{}}</td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </tr>
+
+                                        <!-- Start of Share Certificate -->
+                                        <tr>
+
+                                            <table class="table table-bordered">
+
+                                                <tr><span class="boldHeader" > Share Certificate </span></tr>
+                                                <tr>
+                                                    <td class="info">Share Company Name</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Share Certificate No</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Share Type</td>
+                                                    <td class="active">{{}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Share From</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Share To</td>
+                                                    <td class="active">{{}}</td>
+
+
+                                                </tr>
+
+                                            </table>
+
+                                        </tr>
+
+                                        <!-- Start of e-Packet Details -->
+                                        <tr>
+
+                                            <table class="table table-bordered">
+
+                                                <tr> <span class="boldHeader" >e-Packet Details </span></tr>
+                                                <tr>
+                                                    <td class="info">eFile Case ID (E-Packets)</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Vendor Packet ID (E-Packets)</td>
+                                                    <td class="active">{{}}</td>
+                                                    <td class="info">Name of Packet</td>
+                                                    <td class="active">{{}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Title Reference (E-Packets)</td>
+                                                    <td class="active">{{}}</td>
+                                                </tr>
+
+                                                <!-- Starting of Stat Dec -->
+                                                <tr>
+                                                    <table class="table table-bordered">
+                                                        <tr> <span class="boldHeader" >Stat Dec</span></tr>
+                                                        <tr>
+                                                            <td class="info">Title Reference</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Customer Name</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Mortgage Date (Stat Dec)</td>
+                                                            <td class="active">{{}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="info">Mortgage Number (Stat Dec)</td>
+                                                            <td class="active">{{}}</td>
+                                                        </tr>
+                                                    </table>
+
+
+                                                </tr>
+                                                <!-- Individual Guarantee and Indemnity -->
+
+                                                <tr>
+                                                    <table class="table table-bordered">
+                                                        <tr ><span class="boldHeader" > Individual Guarantee and Indemnity</span></tr>
+
+                                                        <tr>
+                                                            <td class="info">Title Reference</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Customer Name</td>
+                                                            <td class="active">{{}}</td>
+                                                            <td class="info">Mortgage Date (Stat Dec)</td>
+                                                            <td class="active">{{}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="info">Mortgage Number (Stat Dec)</td>
+                                                            <td class="active">{{}}</td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                </tr>
+
+
+                                            </table>
+
+                                        </tr>
+
+
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!--- Security Details End--->

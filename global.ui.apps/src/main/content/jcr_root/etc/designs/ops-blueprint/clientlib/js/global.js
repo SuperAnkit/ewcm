@@ -58,8 +58,17 @@ function populateEmployerName(employers,applicantCalcOnly) {
 }
 
 
-function populateApplicantName(rootPanel,applicantCalcOnly) {
+function populateApplicantName(rootPanel,applicantCalcOnly,isMandatory) {
+
+    var aarr = [];
+    var Value;
 	rooPanel = rootPanel;
+
+	 if(isMandatory=='false'){
+       // alert("Inside isMandatory");
+        Value = "-1=Select";
+        aarr.push(Value);
+    }
 
     console.log("====App rootPanel console======   " + rootPanel._children.length);
     console.log("====App rootPanel console======   " + rootPanel._children[0].name);
@@ -67,7 +76,7 @@ function populateApplicantName(rootPanel,applicantCalcOnly) {
     console.log("====App rootPanel console======   " + rootPanel._children[2].name);
     console.log("====App rootPanel console======   " + rootPanel._children[3].name);
 
-	var aarr = [];
+
 
 	for (var i = 1; i < rootPanel._children.length; i++) {
 		var cpanel = rootPanel._children[i];
@@ -99,7 +108,7 @@ function populateApplicantName(rootPanel,applicantCalcOnly) {
         	if (lastNameValue==null)
             lastNameValue="";
 
-        var Value = sequence_number + "=" + firstNameValue + " "+ middleNameValue + " "+ lastNameValue;
+        Value = sequence_number + "=" + firstNameValue + " "+ middleNameValue + " "+ lastNameValue;
         //+ "::"+ tempNameValue + "::";
 		Value = Value.replace("null", "");
         //alert(Value);
@@ -362,15 +371,16 @@ function hideCalculateOnlyFields() {
     }
 }
 
+
 function displayUserRole(){
 var role = $('#user_group').val();
-if(role == 'maker_group'){
+if(role == 'maker_group' && document.getElementById('role_label')!=null){
 	document.getElementById('role_label').innerHTML = 'You are logged as MAKER';
 }
-else if(role == 'checker_group'){
+else if(role == 'checker_group' && document.getElementById('role_label')!=null){
 document.getElementById('role_label').innerHTML = 'You are logged as CHECKER';
 }
-else if(role == 'reader_group'){
+else if(role == 'reader_group' && document.getElementById('role_label')!=null){
 document.getElementById('role_label').innerHTML = 'You are logged as READER';
 }
 else {

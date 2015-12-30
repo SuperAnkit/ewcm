@@ -1,0 +1,355 @@
+  <!-- Compliance Details -->
+                    <uib-accordion-group heading="Compliance Details" ng-show="Compliance">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Compliance Details </div>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <!-- Customer Application Declaration -->
+                                        <tr>
+                                            <table class="table table-bordered">
+                                                <tr ><span class="boldHeader" >Customer Application - Declaration</span> </tr>
+                                                <tr>
+
+                                                    <td class="info">Signature Broker</td>
+                                                    <td class="active">{{returnRadioValue(data.application.channel.isSignatureDone)}}</td>
+                                                    <td class="info">Date Broker</td>
+                                                    <td class="active">{{data.application.channel.signatureDate}}</td>
+                                                    <td class="info">Signature Customer</td>
+                                                    <td class="active">{{returnRadioValue(data.application.isCustomerSignatureDone)}}</td>
+                                                    <td class="info">Date Signature</td>
+                                                    <td class="active"> {{data.application.customerSignatureDate}}</td>
+
+                                                </tr>
+                                            </table>
+                                        </tr>
+                                        <!-- Customer Application Declaration End -->
+
+                                        <!-- Guarantor's Assessment Checklist Start -->
+
+                                        <tr>
+
+                                            <table class="table table-bordered">
+                                                <tr> <span class="boldHeader" >Guarantor's Assessment Checklist</span></tr>
+                                                <tr>
+
+                                                    <td class="info">Date of Interview</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Loan Facilities to be Guaranteed</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Guarantor's Full Name</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Guarantor's Occupation</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Customer's Full Name</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Driving Licence Number</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">State of Issue</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Date of Birth</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                            </table>
+
+                                        </tr>
+                                        <!-- Guarantor's Assessment Checklist End -->
+
+                                        <!-- Interview's Section Start -->
+                                        <tr>
+                                            <table class="table table-bordered">
+                                                <tr class=""> <span class="boldHeader" >Interview </span></tr>
+                                                <tr>
+                                                    <td class="info">The interview is being conducted face to face</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Please confirm the Guarantor is the only person present at the interview other than yourself. No Borrowers or Co-Guarantors can be present</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Please advise the Guarantor that it is strongly recommended that they seek independent legal and/or financial advice before entering into the Guarantee</td>
+                                                    <td class="active" ></td>
+                                                </tr>
+                                            </table>
+
+                                        </tr>
+
+                                        <!-- Interview's Section End -->
+
+                                        <!-- GUARANTOR OPINION Start -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr class=""> <span class="boldHeader" >GUARANTOR OPINION </span></tr>
+                                                <tr>
+                                                    <td class="info">Are you under any pressure to give this Guarantee (e.g. are you afraid someone will do something, or refuse to do something, if you do not sign this Guarantee)?</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+                                            </table>
+                                        </tr>
+
+                                        <!-- GUARANTOR OPINION End -->
+
+                                        <!-- GUARANTOR Eligibility Start -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr class=""> <span class="boldHeader" >GUARANTOR'S ELIGIBILITY</span>
+                                                <td colspan="2">Is there any reason to suspect the Guarantor is: </td> </tr>
+                                                <tr>
+                                                    <td class="info">under pressure to givethis Guarantee?</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">subject to any misrepresentation as to why the Guarantee is needed?</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">subject to any unreasonable or unfair conduct by anyone involved in this transaction?
+                                                    </td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">having difficulty understanding their obligations as Guarantor</td>
+                                                    <td class="active"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">2. Is the Guarantee to be executed under power of attorney on behalf of an individual?
+                                                    </td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">3. Is the Guarantor a minor (less than 18 years old)?</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                            </table>
+                                        </tr>
+
+                                        <!-- GUARANTOR Eligibility End -->
+
+                                        <!-- TYPE OF GUARANTEE -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr class=""> <span class="boldHeader" >TYPE OF GUARANTEE </span></tr>
+
+                                                <tr>
+                                                    <td class="info">Security Guarantee (complete section 5,7,8 & if required 9)</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Servicing Guarantee (complete section 6,7,8 & if required 9)</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Security and Servicing Guarantee (complete all sections)</td>
+                                                    <td class="active"></td>
+                                                </tr>
+                                            </table>
+                                        </tr>
+
+                                        <!-- TYPE OF GUARANTEE END -->
+
+
+                                        <!-- TYPE OF SECURITY GUARANTEE -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr class=""> <span class="boldHeader" >SECURITY GUARANTEE </span></tr>
+
+                                                <tr>
+                                                    <td class="info">(Ask the Guarantor) Do you understand that should the Borrower be unable to meet the commitments of the loan or fails to meet those commitments for any reason, you may be required to pay the guaranteed amount?</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Is the Guarantor in a spousal/de facto relationship with the Borrower and a joint statement of position has been obtained? If YES, skip questions 2 & 3 below.If NO, answer questions 2 & 3 below.
+                                                    </td>
+                                                    <td class="active"></td>
+                                                </tr>
+
+                                            </table>
+                                        </tr>
+
+                                        <!-- TYPE OF SECURITY GUARANTEE END -->
+
+                                        <!-- TYPE OF SERVICING GUARANTEE -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr class=""><span class="boldHeader" >SERVICING GUARANTEE</span></tr>
+
+                                                <tr>
+                                                    <td class="info">1. Have you confirmed that the Guarantor is in a spousal/de facto relationship with the Borrower OR Have you confirmed that the Guarantor is a parent/step parent of the Borrower, and is wealthy and sophisticated. </td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">2. (Ask the Guarantor) Do you understand that throughout the term of the proposed loan you are expected to make repayments for the Borrower, and are you willing to do this.</td>
+                                                    <td class="active"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">3. (Ask the Guarantor) Do you understand that the Borrower is relying on payments from you to meet repayments for the proposed loan, and that the Borrower's other independent income will not be sufficient to service the loan repayments?</td>
+                                                    <td class="active"> </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">4. (If the Guarantor is a parent/step parent) have you confirmed that by making funds available to the Borrower to meet loan repayments there is some benefit for the Guarantor or the family (i.e., enabling the Borrower to leave the family home and/or assisting in making the Borrower more financially independent, etc).</td>
+                                                    <td class="active"> </td>
+                                                </tr>
+
+
+                                            </table>
+                                        </tr>
+
+                                        <!-- TYPE OF SERVICING GUARANTEE END -->
+
+                                        <!-- ng-repeat="(key,empDet) in data.application.applicationParticipants">
+	 <div class="table-responsive" ng-repeat="personEmpDt in empDet.participant.person.employments"> -->
+
+                                        <!-- ID DOCUMENTS -->
+                                        <tr>
+                                            <div class="table-responsive" ng-repeat="(key,idDocdt) in data.application.applicationParticipants">
+                                                <table class="table table-bordered" ng-repeat="idDocDetails in idDocdt.participant.person.idDocuments">
+
+                                                    <tr class=""> <span class="boldHeader" > ID DOCUMENTS </span></tr>
+
+                                                    <tr>
+                                                        <td class="info">Doc Types</td>
+                                                        <td class="active" ng-repeat="iddocumentType in staticData.idDocumentType | filter:{iddocumentType:idDocDetails.iddocumentTypeID}:true">{{iddocumentType.iddocumentTypeName}}</td>
+
+                                                        <td class="info">Name</td>
+                                                        <td class="active">{{idDocDetails.name}}</td>
+                                                        <td class="info">Date of Birth</td>
+                                                        <td class="active">{{idDocDetails.dateOfBirth}}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="info">Expiry date</td>
+                                                        <td class="active"> {{}}</td>
+                                                        <td class="info">State of Issue</td>
+                                                        <td class="active" ng-repeat="staticStateName in staticData.state | filter:{stateID:idDocDetails.countryID}:true"> {{staticStateName.stateName}}</td>
+
+                                                        <td class="info">Driving License #</td>
+                                                        <td class="active">{{idDocDetails.idnumber}}</td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </tr>
+
+                                        <!-- ID DOCUMENTS -->
+
+
+                                        <!-- Contract to Build -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr><span class="boldHeader" > Contract to Build</span></tr>
+
+                                                <tr>
+                                                    <td class="info">Name of the applicant</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Property address</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Title Reference</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="info">Owner Signature</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Builder signature</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Progress Payments</td>
+                                                    <td class="active"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Builder Name</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Builder State</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Total Contract Price</td>
+                                                    <td class="active"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="info">Name of Stage</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Amount</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Percentage of Total Price</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </table>
+                                        </tr>
+
+                                        <!-- Contract to Build END -->
+
+                                        <!-- Council Approved Plans -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr > <span class="boldHeader" >Council Approved Plans </span> </tr>
+
+                                                <tr>
+                                                    <td class="info">Construction address</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Approved Stamp</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Permit Number/Certifier Number</td>
+                                                    <td class="active"></td>
+
+                                                </tr>
+
+
+                                            </table>
+                                        </tr>
+
+                                        <!-- Council Approved Plans End -->
+
+                                        <!-- Building Permit -->
+                                        <tr>
+                                            <table class="table table-bordered">
+
+                                                <tr > <span class="boldHeader" > Council Approved Plans </span></tr>
+
+                                                <tr>
+                                                    <td class="info">Customer Name</td>
+                                                    <td class="active"></td>
+                                                    <td class="info">Construction address</td>
+                                                    <td class="active"></td>
+
+
+                                                </tr>
+
+
+                                            </table>
+                                        </tr>
+
+                                        <!-- Building Permit End -->
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--- Compliance Section Details End--->

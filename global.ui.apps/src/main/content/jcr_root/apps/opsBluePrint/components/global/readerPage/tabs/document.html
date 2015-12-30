@@ -1,0 +1,45 @@
+
+                    <!-- Documents Details Start -->
+                    <uib-accordion-group heading="Document Details" ng-show="Document">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> Document Details </div>
+                            <div class="col-md-12" ng-repeat="(key,docsVerify) in data.application.docVerifications">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <td class="info">List of Documents</td>
+                                            <td class="active" ng-repeat="documentListID in staticData.documentList | filter:{documentListID:docsVerify.documentId}:true">{{documentListID.documentName}}</td>
+
+                                            <td class="info">Document Exists</td>
+                                            <td class="active">{{ returnRadioValue (docsVerify.isAvailable)}}</td>
+                                            <td class="info">Verified</td>
+                                            <td class="active">{{ returnRadioValue (docsVerify.isVerified )}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="info">Document Signed & Dated</td>
+                                            <td class="active">{{ returnRadioValue(docsVerify.isSigned )}}</td>
+                                            <td class="info">Source (Original/ Fax / photo Copy)</td>
+                                            <td class="active" ng-repeat="docSourceID in staticData.docSource | filter:{docSourceID:docsVerify.docSourceID}:true">{{docSourceID.docSource}}</td>
+
+                                            <td class="info">Document Status (Active/Inactive/Destroyed/Filing)</td>
+                                            <td class="active" ng-repeat="docStatusID in staticData.docStatus | filter:{docStatusID:docsVerify.docStatusID}:true">{{docStatusID.docStatus}}</td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Comments - Scanning Errors or Observations</td>
+                                            <td class="active">{{docsVerify.comments}}</td>
+											<td class="info">Is All Document in Order?</td>
+                                            <td class="active">{{ returnRadioValue (docsVerify.isAllDocumentsInOrder)}}</td>
+											
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!-- Documents Details End-->

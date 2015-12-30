@@ -2724,8 +2724,8 @@
       "entityTypeID": 1,
       "dateCreated": null,
       "dateUpdated": null,
-      "entityType": "Person",
-      "entityTypeDescription": "Person",
+      "entityType": "Individual",
+      "entityTypeDescription": "Individual",
       "userCreated": null,
       "userUpdated": null
     },
@@ -61644,7 +61644,7 @@
     {
       "securityStatusID": 2,
       "securityStatus": "T  To be Taken",
-      "securityStatusDescription": "Property to be acquired"
+      "securityStatusDescription": "Property to be taken"
     }
   ],
   "assetType": [
@@ -71972,6 +71972,40 @@
       "anzassuredID": 3,
       "anzassured": "Already Have ANZ Assured Facility",
       "anzassuredDescription": "Already Have ANZ Assured Facility"
+    }
+  ],
+  "repaymentMethod": [
+    {
+      "repaymentMethodID":1,
+      "dateCreated":null,
+        "dateUpdated":null,
+        "repaymentMethod":"ANZPAY",
+        "userCreated":null,
+        "userUpdated":null
+    },
+    {
+        "repaymentMethodID":2,
+        "dateCreated":null,
+        "dateUpdated":null,
+        "repaymentMethod":"Coupon Book",
+        "userCreated":null,
+        "userUpdated":null
+    },
+    {
+        "repaymentMethodID":3,
+        "dateCreated":null,
+        "dateUpdated":null,
+        "repaymentMethod":"Direct Loan Payment",
+        "userCreated":null,
+        "userUpdated":null
+    },
+    {
+        "repaymentMethodID":4,
+        "dateCreated":null,
+        "dateUpdated":null,
+        "repaymentMethod":"Multiple Methods",
+        "userCreated":null,
+        "userUpdated":null
     }
   ],
   "status": 0

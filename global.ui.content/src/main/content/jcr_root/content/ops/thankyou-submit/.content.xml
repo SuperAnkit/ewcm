@@ -19,7 +19,7 @@
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="foundation/components/text"
-                text="&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;p>&lt;b>The form has been submitted for review.&amp;nbsp;&lt;a adhocenable=&quot;false&quot; href=&quot;/content/ops/homeloanportal.html?wcmmode=disabled&quot;>Go to Home Page&lt;/a>.&lt;/b>&lt;/p>&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xa;"
+                text="&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;p>&lt;b>The form has been submitted for review.&amp;nbsp;&lt;a adhocenable=&quot;false&quot; href=&quot;/content/ops/homeloanportal.html&quot;>Go to Home Page&lt;/a>.&lt;/b>&lt;/p>&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xa;"
                 textIsRich="true"/>
         </par>
         <rightpar

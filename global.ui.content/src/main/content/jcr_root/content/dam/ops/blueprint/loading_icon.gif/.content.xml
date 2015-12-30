@@ -4,6 +4,7 @@
     <jcr:content
         jcr:lastModified="{Date}2015-12-04T19:26:35.326+11:00"
         jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[]"
         jcr:primaryType="dam:AssetContent">
         <metadata
             dam:Bitsperpixel="{Long}8"

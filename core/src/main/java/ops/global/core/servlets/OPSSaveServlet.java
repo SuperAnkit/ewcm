@@ -47,7 +47,6 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 	protected void doPost(SlingHttpServletRequest request,
 			SlingHttpServletResponse response) throws ServletException,
 			IOException {
-		this.logger.info("+++++++++++++++++++POST LOGGER");
 	
 		// fetching all the parameters
 			String user_name = request.getParameter(OPSConstants.USER_NAME);
@@ -64,21 +63,18 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 				}
 
 			
-			Session resSession = (Session) resResolver.adaptTo((Class) Session.class);
+			Session resSession = resResolver.adaptTo(Session.class);
 			
 			// fetch all the nodes with the given applicationNumber
 			List<String> tempSet = this.getNodeSet(resSession, user_name, state,
 					app_no);
 			int counter = 1; // set counter to get the latest node
 			for (String nodePath : tempSet) {
-				this.logger.info("+++++++++++++++++++CHECKING NODE" + nodePath);
-				this.logger.info("+++++++++++++++++++COUNTER" + counter);
 					Node savedNode;
 					try {
 						savedNode = resSession.getNodeByUUID(nodePath);
 						if (counter == 1) {
 							this.newFormNode = nodePath;
-							this.logger.info("+++++++++++++++++++COPIED FILE START");
 							Node newSavedNode = resSession.getNodeByUUID(this.newFormNode);
 							// update the user_name, state properties of the node
 							newSavedNode.setProperty(OPSConstants.USER_NAME, user_name);
@@ -86,7 +82,6 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							newSavedNode.save();
 							InputStream content = newSavedNode.getProperty("jcr:data")
 									.getBinary().getStream();
-							this.logger.info("+++++++++++++++++++COPIED FILE STOP");
 							String mimeType = "application/octet-stream";
 							ValueFactory valueFactory = resSession.getValueFactory();
 							Binary contentValue = valueFactory.createBinary(content);
@@ -103,22 +98,14 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							newSavedNode.save();
 							resNode.save();
 							resSession.save();
-							response.getWriter().write("++++++++++++++++++++++FROM POST");
 					} 
 						else {
 							// delete the older versions of the node
-							this.logger.info("+++++++++++++++++++NODE DELETE START");
 							Node toSave = (Node) request.getResourceResolver().getResource(nodePath.substring(0,nodePath.lastIndexOf("/"))).adaptTo((Class) Node.class);
-							this.logger.info("+++++++++++++++++++NODE DELEYTE PATH:"
-									+ savedNode.getPath());
-							this.logger
-									.info("+++++++++++++++++++NODE DELEYTE PATH UP LEVEL:"
-											+ toSave.getPath());
 							savedNode.remove();
 							//savedNode.save();
 							toSave.save();
 							resSession.save();
-							this.logger.info("+++++++++++++++++++NODE DELEYTED");
 						} 	
 					
 					}catch (ItemNotFoundException e) {
@@ -132,6 +119,8 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 					counter++;
 
 					}
+			
+			logger.info("Save as Draft successful for application {}", app_no);
 	}
 		
 	
@@ -146,8 +135,6 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 				+ "' "
 				+ "and ISDESCENDANTNODE(s,'"+ OPSConstants.FORMS_FOLDER_PATH +"') "
 				+ "ORDER BY [jcr:created] DESC";
-		this.logger
-				.info("SQL++++++++++++++++++++++++++++++++++" + sqlStatement);
 		tempNodeSet = this.getCurrentPaths(session, sqlStatement, tempNodeSet);
 		return tempNodeSet;
 	}
@@ -165,17 +152,10 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 			query = queryManager.createQuery(sqlStatement, "JCR-SQL2");
 			QueryResult result = null;
 			result = query.execute();
-			this.logger.info("THE RESULT ++++++++++++++++++++++++"
-					+ result.toString());
 			NodeIterator nodeIter = result.getNodes();
-			this.logger.info("CHECK ++++++++++++++" + nodeIter.getSize());
 			while (nodeIter.hasNext()) {
 				String tempNodePath = nodeIter.nextNode().getPath().trim();
-				this.logger.info("INTO LOOP++++++++++++++++++++++++++");
 				tempNodeSet.add(tempNodePath);
-				this.logger
-						.info("NODES FOUND------------------------------------------------------------------------"
-								+ tempNodePath + "--------------------");
 			}
 		} catch (RepositoryException e) {
 			e.printStackTrace();

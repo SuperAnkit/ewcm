@@ -16,6 +16,7 @@
         dam:s7damWidth="{Long}80"
         jcr:lastModified="{Date}2015-12-01T11:34:08.710+05:30"
         jcr:lastModifiedBy="admin"
+        jcr:mixinTypes="[]"
         jcr:primaryType="dam:AssetContent">
         <metadata
             dam:Bitsperpixel="{Long}24"

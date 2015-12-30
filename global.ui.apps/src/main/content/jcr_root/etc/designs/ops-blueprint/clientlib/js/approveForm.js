@@ -16,10 +16,11 @@
  * from Adobe Systems Incorporated.
  *
  */
-handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo){
+handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo, mandatoryFlushCounter){
 	var responsedata = "";
 
  	var formUserName = $("#user_name").val();
+    var formUserGroup = $("#user_group").val();
     //var formAppNo = $("#guideContainer-rootPanel-Broker-broker-guidetextbox_2___widget").val();
     //var reDirect = $("#redirect").val();
 
@@ -27,6 +28,13 @@ handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo)
     //$('#redirect').val(redirect);
 
     alert("APP NO. TO APPROVE " + formAppNo);
+
+    if(formUserGroup == 'checker_group'){
+		mandatoryFlushCounter.value = parseInt(mandatoryFlushCounter.value) + 1;
+    }
+    if(formUserGroup == 'maker_group'){
+		mandatoryFlushCounter.value = 0;
+    }
 
     var user_name = "user_name=" + formUserName;
     var application_no = "application_no=" + formAppNo;
@@ -61,7 +69,6 @@ handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo)
         } ,
   		success: function(guideResultObject) {
             console.log("called here");
-            window.location = redirect;
             $.ajax({
                   url: url,
                   async:false,
@@ -77,7 +84,7 @@ handleOPSApprove = function (state, successRedirect, failureRedirect, formAppNo)
                         window.location = successRedirect;
                     }
                       else{
-						window.location = failureRedirect;
+						window.location = failureRedirect + "?errorMsg=" + resCode;
                       }
                   },
                   type: 'POST'

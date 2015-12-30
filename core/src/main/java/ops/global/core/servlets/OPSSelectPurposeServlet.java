@@ -23,7 +23,7 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
 	private static final long serialVersionUID = 1L;  
 	private static int ldPurposeCategoryGroupValue;
    
-        private Logger logger = LoggerFactory.getLogger(OPSSelectPurposeServlet.class);
+        private Logger log = LoggerFactory.getLogger(OPSSelectPurposeServlet.class);
      
         protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
             IOException {
@@ -149,7 +149,7 @@ public class OPSSelectPurposeServlet extends SlingAllMethodsServlet {
                 response.getWriter().write(ldPurposeCategoryJsonArray.toString());
              
         } catch ( Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
     }

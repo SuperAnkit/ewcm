@@ -27,32 +27,132 @@ var app = angular.module('opsblue', [ 'ui.bootstrap']);
 		/*Function for Card Details */
 		$scope.cardDetails = function(){
 			var cardData = [];
+            var uniqueNames = [];
+            var names={};
+            //console.log("function called");
+
 			for(var i = 0 ; i < $scope.data.application.applicationParticipants.length; i++){
-				
-				for( j=0 ; j< $scope.data.application.applicationParticipants[i].sofp.creditCardLiabilities.length ; j++) {
-				if( $scope.data.application.applicationParticipants[i].sofp.creditCardLiabilities[j].creditCardTypeID == 2) {
-					
-					cardData.push($scope.data.application.applicationParticipants[i].sofp.creditCardLiabilities[j])
-				
-				}
-				}
-			}
+				names[i] = $scope.data.application.applicationParticipants[i].sofp.sofpid;
+            }
+            $.each(names, function(i, el){
+				if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+			});
+
+            for (k=0;k<uniqueNames.length;k++) {
+
+                var status = false;
+
+                for(var m = 0 ; m < $scope.data.application.applicationParticipants.length; m++){
+
+                    if (uniqueNames[k]==$scope.data.application.applicationParticipants[m].sofp.sofpid && status==false) {
+							status = true;
+                        	//console.log("am here once");
+                        for( j=0 ; j< $scope.data.application.applicationParticipants[m].sofp.creditCardLiabilities.length ; j++) {
+                            if( $scope.data.application.applicationParticipants[m].sofp.creditCardLiabilities[j].creditCardTypeID == 2) {
+                                
+                                cardData.push($scope.data.application.applicationParticipants[m].sofp.creditCardLiabilities[j])
+                            
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
 				return cardData;
 
 		};
-	/*Function for Loan Details */
-	$scope.loanDetails = function(){
+
+      $scope.fulldata = function(){
+          var jsonData = [];
+          var names={};
+          var uniqueNames = [];
+
+		  for(var i = 0 ; i < $scope.data.application.applicationParticipants.length; i++){
+              names[i] = $scope.data.application.applicationParticipants[i].sofp.sofpid;
+          }
+          $.each(names, function(i, el){
+              if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+          });
+          for (k=0;k<uniqueNames.length;k++) {
+              console.log("==============================");
+              var status = false;
+              
+              for(var m = 0 ; m < $scope.data.application.applicationParticipants.length; m++){
+
+
+                  
+                  if (uniqueNames[k]==$scope.data.application.applicationParticipants[m].sofp.sofpid && status==false) {
+                      status = true;
+                      //console.log("am here once");
+                     // for( j=0 ; j< $scope.data.application.applicationParticipants[m].sofp ; j++) {
+
+                          jsonData.push($scope.data.application.applicationParticipants[m]);  
+
+                     // }
+                      
+                  }
+                  
+              }
+              
+          }
+          return jsonData;
+
+      }
+
+       $scope.taxDetailsData = function(){
+          var jsonData1 = [];
+
+           for(var m = 0 ; m < $scope.data.application.applicationParticipants.length; m++){
+               for (var j=0; j<$scope.data.application.applicationParticipants[m].participant.taxReturns.length;j++) {
+              	 jsonData1.push($scope.data.application.applicationParticipants[m].participant.taxReturns[j]);  
+               }
+           }
+              
+
+          return jsonData1;
+
+      }
+
+/*Function for Loan Details */
+		$scope.loanDetails = function(){
 			var loanData = [];
+            var uniqueNames = [];
+            var names={};
+            //console.log("function called");
+
 			for(var i = 0 ; i < $scope.data.application.applicationParticipants.length; i++){
-				
-				for( j=0 ; j< $scope.data.application.applicationParticipants[i].sofp.loanLiabilities.length ; j++) {
-				if( $scope.data.application.applicationParticipants[i].sofp.loanLiabilities[j].loanTypeID == 4) {
-					
-					loanData.push($scope.data.application.applicationParticipants[i].sofp.loanLiabilities[j])
-				
-				}
-				}
-			}
+				names[i] = $scope.data.application.applicationParticipants[i].sofp.sofpid;
+            }
+            $.each(names, function(i, el){
+				if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+			});
+
+            for (k=0;k<uniqueNames.length;k++) {
+
+                var status = false;
+
+                for(var m = 0 ; m < $scope.data.application.applicationParticipants.length; m++){
+
+                    if (uniqueNames[k]==$scope.data.application.applicationParticipants[m].sofp.sofpid && status==false) {
+							status = true;
+                        	//console.log("am here once");
+                        for( j=0 ; j< $scope.data.application.applicationParticipants[m].sofp.loanLiabilities.length ; j++) {
+                            if( $scope.data.application.applicationParticipants[m].sofp.loanLiabilities[j].loanTypeID == 4) {
+                                
+                                loanData.push($scope.data.application.applicationParticipants[m].sofp.loanLiabilities[j])
+                            
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
 				return loanData;
 
 		};
@@ -77,11 +177,11 @@ var app = angular.module('opsblue', [ 'ui.bootstrap']);
 						
 			if($scope.data.application.applicationParticipants.length > 1 ) {
 				/* To do logic to be Implemented */
-				spouseSigned = true;
+				spouseSigned = 'Yes';
 							
 			} else {
 
-			  spouseSigned = false;
+			  spouseSigned = 'No';
 				
 			}
 			
@@ -93,9 +193,13 @@ var app = angular.module('opsblue', [ 'ui.bootstrap']);
       	$scope.returnRadioValue = function(flag){ 
 	if(flag === true) {	
 		return "Yes";
-	} else {
+	} 
+    else if(flag === false){
 		return "No";
 		}
+    else{
+		return " ";
+        }
 	};
 
       /* THis is for enabling check box */

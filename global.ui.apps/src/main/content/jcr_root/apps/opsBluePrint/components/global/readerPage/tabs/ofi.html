@@ -1,0 +1,60 @@
+ <!-- OFI Details Start -->
+                    <uib-accordion-group heading="OFI Details" ng-show="OFI">
+                        <div class="row">
+                            <div class="container-fluid boldHeader"> OFI Details </div>
+                            <div class="col-md-12" ng-repeat="(key,ofidetail) in data.application.ofidetails">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <td class="info">Bank Name</td>
+                                            <td class="active">{{ofidetail.ofiname}}</td>
+                                            <td class="info">BSB</td>
+                                            <td class="active"> {{ofidetail.ofibsb}}</td>
+                                            <td class="info">OFI Contact Name</td>
+                                            <td class="active">{{ofidetail.ofiContactName}}</td>
+
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="info">Address</td>
+                                            <td class="active">{{ofidetail.address.streetNumber}} {{ofidetail.address.streetName}} {{ofidetail.address.city}} {{ofidetail.address.postCode}}
+                                            <span ng-repeat="staticStateName in staticData.state | filter:{stateID:ofidetail.address.stateId}:true"> {{staticStateName.stateName}} </span>
+                                            <span ng-repeat="countryID in staticData.country | filter:{countryID:ofidetail.address.countryId}:true"> {{countryID.countryName}} </span>
+                                            </td>
+											 <td class="info">Phone</td>
+                                            <td class="active">{{ofidetail.address.phone1}}</td>
+                                            <td class="info">Fax Number</td>
+                                            <td class="active">{{ofidetail.address.fax}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber1}}</td>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber2}}</td>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber3}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber4}}</td>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber5}}</td>
+                                            <td class="info">Account Number</td>
+                                            <td class="active">{{ofidetail.loanAccountNumber6}}</td>
+
+                                        </tr>
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-accordion-group>
+                    <!--- OFI Details End--->

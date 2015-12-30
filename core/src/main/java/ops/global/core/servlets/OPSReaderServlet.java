@@ -23,6 +23,7 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import ops.global.core.servlets.OPSConstants;
 
 import com.day.cq.commons.Externalizer;
@@ -49,25 +50,23 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
             IOException {
-    	logger.info("+++++++++++++++++++INTO OPS SEARCH");
     	
     	// fetch all the parameters
     	search_keyword = request.getParameter(OPSConstants.SEARCHED_APP_NO);
     	docType = request.getParameter(OPSConstants.DOC_TYPE);
-    	
-    	logger.info("SRCH TXT" + search_keyword);
-	
+    		
 		// populate json structure for querying DB		
     	String param = OPSConstants.READER_PARAM.replace(OPSConstants.SEARCHED_APP_NO, search_keyword).replace(OPSConstants.DOC_TYPE, docType);
     	ResourceResolver resResolver = null;
         
         try {
 			resResolver = this.resourceResolverFactory.getAdministrativeResourceResolver(null);
-			logger.info("PARAM  " + param);
-			// fetch WS URL from externalizer
+
+			// fetch WS URL from externalizer based upon the run-mode
 	    	Externalizer externalizer = resResolver.adaptTo(Externalizer.class);
-			String getServiceURL = OPSConstants.WS_GET_READER_URL;
-			logger.info("EXT ++++++" + getServiceURL);
+	    	String webServiceURL = externalizer.externalLink(resResolver,"WSRequest","");
+	    	
+			String getServiceURL = OPSConstants.WS_GET_READER_URL.replace(OPSConstants.WS_URL, webServiceURL);
 			
 			// create WS connection
 	    	URL URLobj = new URL(getServiceURL);
@@ -98,8 +97,6 @@ public class OPSReaderServlet extends SlingAllMethodsServlet {
 
 	String toReturnResults = null;
 	toReturnResults = newresponse.toString();
-	logger.info("REDAER LOG PAREM++++++++++++++++++++++++" + param);
-	logger.info("REDAER LOG++++++++++++++++++++++++" + toReturnResults);
 
 	if (toReturnResults != null) {
 		response.getWriter().write(toReturnResults);

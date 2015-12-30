@@ -1,0 +1,514 @@
+
+                    <!-- Financial Data Start -->
+
+                    <uib-accordion-group heading="Financial Details" ng-show="Financial">
+                        <div class="row">
+                            <!-- Financial Details Container Start -->
+                            <div class="container-fluid boldHeader"> Financial Details </div>
+                            <!-- Financial Details Container Start -->
+
+
+                            <div class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-12'}}" ng-repeat="financedata in fulldata()" >
+							  <!-- General Financial Details-->
+								<div class="table-responsive ">
+									 <table class="table table-bordered">
+									 <tr><span class="boldHeader" > Personal Statement of Financial Position </span></tr>
+										<tr>
+										 <td class="info">Spouse jointly giving SOFP?</td>
+										 <td class="active">{{isSpouseJointly()}}</td>
+										  <td class="info">Date of S/P</td>
+										  <td class="active">{{financedata.sofp.dateOfSOFP}}</td>
+										  <td class="info">SP Signed by Customer?</td>
+										  <td class="active">{{returnRadioValue(financedata.sofp.isSOFPSignedByCustomer)}}</td>
+										  <td class="info">SP Description</td>
+										  <td class="active">{{financedata.sofp.description}}</td>
+										</tr>
+										
+										
+									</table>
+								</div>
+								<!-- General Financial Details End -->
+								
+								<!-- Asset Details Start -->
+								<div class="table-responsive">
+								<table class="table table-bordered">
+                                    <tr><span class="boldHeader" > Assests </span></tr>
+    
+                                    <tr >
+                                        <td class="info">Assest Type </td>
+                                        <td class="info">Assest Description</td> 
+                                         <td class="info">No of Vehicles</td>
+                                        <td class="info" >Asset Value</td> 			
+                                    </tr>
+                                    
+                                    <tr ng-repeat="assetDetail in financedata.sofp.assets">
+                                        <td class="active" ng-repeat="assetTypeID in staticData.assetType | filter:{assetTypeID: assetDetail.assetTypeID}">{{assetTypeID.assetType}} </td>
+                                        <td class="active" >{{assetDetail.assetDescription}} </td>
+                                        <td class="active" >{{assetDetail.noOfVehicles}} </td>
+                                        <td class="active">{{assetDetail.assetValue | currency}} </td>
+                                    </tr>
+
+    
+    
+                                    <tr>
+                                    <td class="info">TOTAL ASSETS (Cash assets + Property + Other Assets Value) </td> 
+                                    <td class="active">{{financedata.sofp.totalAssets | currency}}</td>
+                                    </tr>
+                                 </table>
+								
+								</div>
+								<!-- Assest Details End -->
+
+								
+								<!-- Liabilities Details Start -->
+								<div class="table-responsive">
+								<table class="table table-bordered"  >
+								<tr> <span class="boldHeader" >Liabilities </span> </tr>
+
+
+
+								<tr >
+                                    <td class="info"> Liability Type </td>
+                                    <td class="info"> Liability Description</td> 
+                                    <td class="info"> Liability Account Number</td> 
+                                    <td class="info"> Liability Limit</td> 
+                                    <td class="info"> Amount Owning</td> 
+                                </tr>
+
+                                <tr ng-repeat ="(key,liabilityDt) in financedata.sofp.otherLiabilities">
+									<td class="active" ng-repeat="otherLiabilityTypeID in staticData.otherLiabilityType | filter:{otherLiabilityTypeID: liabilityDt.otherLiabilityTypeID}"> {{otherLiabilityTypeID.liabilityType}}</td>
+									<td class="active" >{{liabilityDt.description}}</td>
+									<td class="active">{{liabilityDt.liabilityAccountNumber}}</td>
+									<td class="active" >{{liabilityDt.liabilityLimit | currency}}</td>
+									<td class="active">{{liabilityDt.amount | currency}}</td>
+                                </tr>
+
+
+
+
+		<tr>
+		<td class="info"> TOTAL LIABILITIES</td> <td class="active">{{financedata.sofp.totalLiabilities | currency}}</td>
+		</tr>
+
+
+								</table>
+								
+								</div>
+								<!-- Liabilities Details End -->
+
+
+
+								
+								
+								<!-- Income  Details Start -->
+								<div class="table-responsive">
+								<table class="table table-bordered" >
+									<tr><span class="boldHeader" >Other Income </span></tr>	
+
+
+									<tr >
+										<td class="info"> IncomeType</td> 
+										<td class="info"> Income Description</td>
+										<td class="info"> Stated Net Monthly Amount</td>
+										
+									</tr> 
+
+                                    <tr  ng-repeat ="(key,otherIncmDt) in financedata.sofp.otherIncomes">
+										<td class="active" ng-repeat="otherIncomeTypeID in staticData.otherIncomeType | filter:{otherIncomeTypeID: otherIncmDt.otherIncomeTypeID}"> {{otherIncomeTypeID.otherIncomeType}}</td>
+										 <td class="active">{{otherIncmDt.amount | currency}}</td>
+										 <td class="active">{{otherIncmDt.otherIncomeDescription | currency}}</td>
+                                    </tr>
+
+
+
+									<tr>
+									<td class="info" > TOTAL INCOME</td> <td class="active">{{financedata.sofp.toalIncome | currency}}</td>
+									 
+									</tr>
+									
+									</table>
+								
+								</div>
+								<!-- Income Details End -->
+								
+								<!-- Expenditure  Details Start -->
+								<div class="table-responsive">
+								<table class="table table-bordered" >
+									<tr><span class="boldHeader" >Expenditure </span></tr>		
+
+
+
+									<tr > 
+									
+                                        <td class="info"> Expenditure Type</td>
+                                        
+                                        <td class="info"> Other Expenses Description</td> 
+    
+                                        <td class="info"> Declared Amount</td> 
+									</tr>
+
+                                    <tr ng-repeat ="(key,otherExpenDt) in financedata.sofp.otherExpens">
+										<td class="active" ng-repeat="otherExpenseTypeID in staticData.otherExpenseType | filter:{otherExpenseTypeID: otherExpenDt.otherExpenseTypeID}">{{otherExpenseTypeID.otherExpenseType}}</td>
+										<td class="active" >{{otherExpenDt.otherExpenseDescription}}</td>
+										<td>{{otherExpenDt.amount | currency}}</td>
+                                   </tr>
+
+									
+									<tr> <td class="info">  TOTAL EXPENDITURE </td> <td class="active">{{financedata.sofp.totalExpenses | currency}} </td><tr>
+									<tr> <td class="info"> Uncommitted Monthly Income (Income - Expenses) </td> 
+									<td class="active" >{{financedata.sofp.uncommittedMonthlyIncome | currency}} </td> </tr>
+									
+									
+									</table>
+								
+								</div>
+								<!-- Expenditure Details End -->
+
+									<!-- ATODOC Details Start -->
+								
+								<div class="table-responsive">
+								<table class="table table-bordered" ng-repeat ="(key,atodocdetailsDt) in financedata.sofp.atoNotices">
+								<tr> <span class="boldHeader" >ATO NOTICES </span></tr>
+								<tr>
+		
+							<td class="info">Name</td><td class="active" > {{atodocdetailsDt.name}}</td>
+							<td class="info">Postal Address </td><td class="active">{{atodocdetailsDt.address.streetName }} {{atodocdetailsDt.address.city}}</td>
+							<td class="info">Document Financial Year </td><td class="active">{{atodocdetailsDt.documentFinancialYear}}</td>
+							<td class="info">Total taxable income</td> <td class="active">{{atodocdetailsDt.totalTaxableIncome | currency}}</td>
+							</tr>
+							
+							<tr>
+							<td class="info">Total Tax Payable</td> <td class="active"> {{atodocdetailsDt.totalTaxPayable | currency}}</td>
+							<td class="info">Totla Tax Refund </td> <td class="active"> {{atodocdetailsDt.totalTaxRefund | currency}}</td>
+							<td class="info">Help/HECS deduction </td> <td class="active">{{atodocdetailsDt.helpHECSDeduction}}</td>
+							</tr>
+								
+							</table>
+								
+								</div>
+								<!-- ATO Details End -->
+								<!-- PaySlips Details Start -->
+								<div class="table-responsive">
+
+								<div class="table-reponsive" ng-repeat ="(key,paySlipDt) in financedata.sofp.payslips" >
+								<span class="boldHeader">PaySlips</span>
+								<table class="table table-bordered" >
+													
+								<tr>
+								<td class="info">Payment Frequency </td>
+								<td class="active" ng-repeat="paymentFrequencyID in staticData.paymentFrequency | filter:{paymentFrequencyID: paySlipDt.frequency}"> {{paymentFrequencyID.paymentFrequency}} </td>
+								
+								<td class="info">Date From</td> <td class="active">{{paySlipDt.payCycleDateFrom}} </td>
+								<td class="info">Date To</td> <td class="active" >{{paySlipDt.payCycleDateTo}} </td>
+								<td class="info">Name </td> <td class="active" >{{paySlipDt.name}} </td>
+								</tr>
+								
+								 <tr>
+								<td class="info"> Type of employment </td> 
+								<td class="active" ng-repeat="employmentTypeID in staticData.employmentType | filter:{employmentTypeID: paySlipDt.employmentTypeID}">{{employmentTypeID.employmentType}} </td>
+
+								<td class="info"> Employement Location </td> <td class="active">{{paySlipDt.employmentLocation}}</td>
+								<td class="info"> Employer Name</td> <td class="active">{{paySlipDt.employerName}}</td>
+								<td class="info"> ABN</td> <td class="active">{{paySlipDt.abn}}</td>
+								</tr> 
+
+
+								</table>
+
+								<div class="table-responsive"> 
+								
+								<span class="boldHeader">Income </span>
+								<table class="table table-bordered" >
+								<tr>
+								<td class="info">Gross </td><td class="active">{{paySlipDt.gross| currency}}</td>
+								<td class="info">Net</td> <td class="active">{{paySlipDt.net | currency}} </td>
+								<td class="info">Annual income</td> <td class="active">{{paySlipDt.annualIncome | currency}} </td>
+                                </tr>
+                                <tr>    
+								<td class="info">Year to Date(Gross) </td> <td class="active" >{{paySlipDt.ytddetails| currency}} </td>
+                                <td class="info">Year to Date(Net) </td> <td class="active" >{{paySlipDt.ytdnet| currency}} </td>
+								</tr>
+								
+								</table>
+								
+								</div>
+								
+								<div class="col-md-12"> 
+								
+								<!-- Allowances Earned --> 
+								
+								<div class="table-responsive col-md-6">
+								<span class="boldHeader"> Allowances </span>
+								
+								<table class="table table-bordered">
+								<tr ng-repeat ="(key,allowanceErndDt) in paySlipDt.allowancesEarneds"> 
+								
+								<td class="info" ng-repeat="allowanceID in staticData.allowance | filter:{allowanceID: allowanceErndDt.allowanceID}:true">{{allowanceID.allowances}} </td>
+								<td class="active">{{allowanceErndDt.allowancesEarnedPreTax | currency}}</td>
+								
+								</tr>
+								
+								
+								</table>
+								
+								</div>
+								<!-- Allowances Earned End -->
+								<!-- Deductions Earned --> 
+								<div class="table-responsive col-md-6">
+								<span class="boldHeader"> Deductions </span>
+
+								<table class="table table-bordered">
+								<tr>
+									<td></td>
+                                    <td><span class="boldHeader"> Deductions Pre Tax</span></td>
+                                    <td><span class="boldHeader"> Deductions Post Tax</span></td>
+                                </tr>
+								<tr ng-repeat ="(key,deductiondDt) in paySlipDt.deductionsApplied"> 
+								
+								<td class="info" ng-repeat="deductionID in staticData.deduction | filter:{deductionID: deductiondDt.deductionID}:true">{{deductionID.deduction}} </td>
+								<td class="active">{{deductiondDt.deductionsAppliedPreTax | currency }}</td>
+								<td class="active">{{deductiondDt.deductionsAppliedPostTax | currency }}</td>
+								</tr>
+								
+								
+								</table>
+								
+								</div>
+								
+								
+								</div>
+								
+								<!-- Deductions Earned End -->
+								
+								
+								
+								</div>
+									
+									<!-- PaySlips Details End -->
+								</div>
+								
+								<!-- PaySlips container div End -->
+								
+								
+								<!-- Details of PAYG  Start -->
+								<div class="table-responsive">
+						<table class="table table-bordered" ng-repeat ="(key,paygsDt) in financedata.sofp.paygs">
+						<tr> <span class="boldHeader" > PAYG SUMMARY </span></tr>
+						
+						<tr>
+						<td class="info">Name</td> <td class="active">{{paygsDt.name}}</td>
+						<td class="info">Payee Name</td> <td class="active">{{paygsDt.payeeName}}</td>
+						<td class="info">Payee ABN</td> <td class="active">{{paygsDt.payeeABN}}</td>
+						
+						</tr> 
+						<tr>
+						<td class="info">Date</td> <td class="active">{{paygsDt.PAYGDate}}</td>
+						<td class="info">Gross Payment</td> <td class="active">{{paygsDt.grossPayment | currency}}</td>
+						<td class="info">Reportable Fringe benefit</td> <td class="active">{{paygsDt.fringeBenefit | currency}}</td>
+						</tr>
+		
+						<tr>
+						<td class="info">Reportable employer Superanuation Contributions</td> <td class="active">{{paygsDt.employerSuper | currency }}</td>
+						<td class="info">Allowances</td> <td class="active">{{paygsDt.allowances | currency}}</td>
+						<td class="info">Deduction</td> <td class="active">{{paygsDt.deduction | currency }}</td>
+						
+						
+						</tr>		
+								
+						</table>
+								
+						</div>
+						<!-- Details of PAYG End -->
+						<!-- Details of CPM Income -->
+						<div class="table-responsive">
+						<table class="table table-bordered" ng-repeat ="(key,centraLinkDt) in financedata.sofp.centralLinkIncomes">
+						<tr><span class="boldHeader" >Central Link Income </span></tr>
+							<tr>
+			<td class="info">Name</td> <td class="active">{{centraLinkDt.name}}</td>
+			<td class="info">Date</td> <td class="active">{{centraLinkDt.CLIDate}}</td>
+			<td class="info">Date of Birth</td> <td class="active">{{centraLinkDt.dateOfBirth}}</td>
+		</tr> 
+		<tr>
+			<td class="info">Number of Childer assessed</td> <td class="active" >{{centraLinkDt.numberOfChildren}}</td>
+			<td class="info">Percentage of Care</td> <td class="active">{{centraLinkDt.percentageOfCare}}</td>
+			<td class="info">Future Date</td> <td class="active">{{centraLinkDt.futureDate}}</td>
+		
+		</tr>
+		<tr>
+		<td class="info">Family Tax benefit A</td> <td class="active">{{centraLinkDt.familyTaxBenefitA | currency}}</td>
+		<td class="info">Family Tax benefit B</td> <td class="active">{{centraLinkDt.familyTaxBenefitB | currency}}</td>
+		<td class="info">Frequency</td> <!-- <td class="active">{{centraLinkDt.frequency}}</td> -->
+				
+		
+		<td class="active" ng-repeat="paymentFrequencyID in staticData.paymentFrequency | filter:{paymentFrequencyID: centraLinkDt.frequency}:true"> {{paymentFrequencyID.paymentFrequency}} </td>
+		
+		
+		
+		</tr>
+		<tr>
+		<td class="info">Carer Payment</td> <td class="active">{{centraLinkDt.carerPayment | currency}}</td>
+		<td class="info">Disability Pension Payment</td> <td class="active">{{centraLinkDt.disabilityPensionPayment | currency}}</td>
+		<td class="info">Partnered parenting payment</td> <td class="active">{{centraLinkDt.partneredParentingPayment | currency}}</td>
+		</tr>
+		<tr>
+		<td class="info">Veterans Affairs pension</td> <td class="active">{{centraLinkDt.veteransAffairsPension | currency}}</td>
+		<td class="info">Aged pension</td> <td class="active">{{centraLinkDt.agedPension | currency}}</td>
+		<td class="info">Maintenance Income</td class="active"> <td>{{centraLinkDt.maintenanceIncome | currency}}</td>
+		
+		</tr>
+		<tr>
+		<td class="info">Foster Care</td> <td class="active">{{centraLinkDt.fosterCare | currency}}</td>
+		<td class="info">Work cover</td> <td class="active">{{centraLinkDt.workcover | currency}}</td>
+		<td class="info">Other Government Benefits</td> <td class="active">{{centraLinkDt.otherGovBenefits | currency}}</td>
+		
+		</tr>
+		<tr>
+		<td class="info">Ex Servicemen pension</td> <td class="active">{{centraLinkDt.exServicemenPension | currency}}</td>
+		<td class="info">Deduction</td> <td class="active">{{centraLinkDt.deduction | currency}}</td>
+		<td class="info">App 1 Income</td> <td class="active">{{centraLinkDt.app1Income | currency}}</td>
+		
+		</tr>
+		<tr>
+		<td class="info">App 2 Income</td> <td class="active">{{centraLinkDt.app2Income | currency}}</td>
+		<td class="info">Total Asset assessed</td> <td class="active">{{centraLinkDt.totalAssetAssessed | currency}}</td>
+		
+		</tr>
+						
+						</table>
+						
+						</div>
+						
+						<!-- Details of CPM INCOME END -->
+						<!-- Details of Rental Income -->
+						<div class="table-responsive">
+						<table class="table table-bordered" ng-repeat ="(key,rentalIncomeDt) in financedata.sofp.rentalIncomes">
+						<tr> <span class="boldHeader" >Rental Income </span> </tr>
+						<tr> 
+
+		<td class="info">Rental Income</td> <td class="active">{{rentalIncomeDt.rentalIncomeAmount | currency}} </td>
+		<td class="info">Land Lord Name </td> <td class="active"> {{rentalIncomeDt.landLordName}}</td>
+		<td class="info"> Frequency </td> <!-- <td class="active"> {{rentalIncomeDt.frequency}}</td>-->
+		<td class="active" ng-repeat="paymentFrequencyID in staticData.paymentFrequency | filter:{paymentFrequencyID: rentalIncomeDt.frequency}:true"> {{paymentFrequencyID.paymentFrequency}} </td>
+		
+		
+		<td class="info"> Signed </td> <td class="active">{{ returnRadioValue (rentalIncomeDt.isSigned)}} </td>
+		
+		</tr>
+		
+		<tr> 
+		
+		<td class="info">Date</td> <td class="active"> {{rentalIncomeDt.rentalIncomeDate}} </td>
+		<td class="info">Count in Duration</td> <td class="active"> {{rentalIncomeDt.countOfCredits}}</td>
+		<td class="info">Real Estate agent name </td> <td class="active"> {{rentalIncomeDt.realEstateAgentName}}</td>
+		</tr>
+						
+						</table>
+						</div>
+
+						<!-- Details of Rental Income End -->	
+						<!-- Details of OFI Details Start -->
+						<div class="table-responsive">
+						<table class="table table-bordered" ng-repeat ="(key,ofbStatment) in financedata.sofp.otherBankStatements">
+						<tr > <span class="boldHeader" >OFI Details </span></tr>
+						<tr>
+						<td class="info">Date From</td> <td class="active"> {{ofbStatment.statementFromDate}}</td>
+						<td class="info">Date To</td> <td class="active"> {{ofbStatment.statementToDate}}</td>
+						<td class="info">Bank Name</td> <td class="active"> {{ofbStatment.bankName}}</td>
+						
+						</tr>
+						<tr>
+						<td class="info">Bank BSB</td> <td class="active"> {{ofbStatment.bankBSB}}</td>
+						<td class="info">A/C Number</td> <td class="active"> {{ofbStatment.accountNumber}}</td>
+						
+						</tr>
+						
+						<tr  ng-repeat ="cardDt in cardDetails()" >
+						<td class="info">Card Number</td><td class="active"> {{cardDt.cardNumberString}}</td>
+						<td class="info">Card Limit</td> <td class="active"> {{cardDt.cardLimit | currency}}</td>
+						<td class="info">Dishonour</td> 
+						<td class="active">{{ returnRadioValue(cardDt.hasDishonouredEntries) }}</td>
+						
+						</tr>
+						
+						<tr>
+						<td class="info">Outstanding Amount</td> <td class="active"> {{ofbStatment.outstandingAmount | currency}}</td>
+						<td class="info">Statement from</td> <td class="active"> {{ofbStatment.statementFromDate}}</td>
+						<td class="info">Statement to</td> <td class="active"> {{ofbStatment.statementToDate}}</td>
+						
+						</tr>
+						<tr ng-repeat ="loanlibDt in loanDetails()">
+						
+						<td class="info">Progressive Payment</td> <td class="active"> {{ returnRadioValue(loanlibDt.isProgressivePayment) }}</td>
+						<td class="info">Redraw</td> <td class="active"> {{loanlibDt.redraw | currency}}</td>
+						<td class="info">Overdraft Limit</td ><td class="active">{{loanlibDt.overDraftLimit | currency}}</td>
+						</tr>
+						</table>
+						</div>
+						<!-- Details of OFI Details End -->	
+
+
+						<!-- Tax details Start -->	
+
+
+
+
+
+
+							
+					
+					
+					<!-- Tax Details End -->		
+							
+							
+							   <div class="table-responsive"  ng-repeat="taxdetails in taxDetailsData()" >
+                                	<span class="boldHeader"> Tax Details </span>			
+							<!-- Individual Tax Details -->
+		
+                                    <div class="table-responsive" > 
+                                    
+                                    
+                                    <table class="table table-bordered" >
+                                    <tr> <span class="boldHeader" >Indiviudal Tax Details </span> </tr>
+                                    <tr>
+                                        <td class="info">Year</td><td class="active" >{{taxdetails.taxReturnsYear}} </td>
+                                        <td class="info">Name</td> <td class="active" >{{taxdetails.nameOnTaxReturnDoc}} </td>
+                                        <td class="info">DOB</td> <td class="active">{{taxdetails.dob}} </td>
+                                    </tr>
+                                    <tr>
+                                    <td class="info">Postal Address</td><td class="active">{{taxdetails.postalAddress.streetName}} {{taxdetails.postalAddress.streetNumber}} {{taxdetails.postalAddress.suburbName}} </td>
+                                    <td class="info">Home Address</td><td class="active" >{{taxdetails.homeAddress.streetName}} {{taxdetails.homeAddress.streetNumber}} {{taxdetails.homeAddress.suburbName}}</td>
+                                    </tr> 
+                                            
+                                    <tr ng-repeat="taxattrVal in taxdetails.taxReturnAttributeValues">
+                                    
+                                        <td class="info" ng-repeat="taxReturnAttributeID in staticData.taxReturnAttribute | filter:{taxReturnAttributeID: taxattrVal.taxReturnAttributeID}:true"> {{taxReturnAttributeID.attributeName}} </td>
+                                        <td class="active" >{{taxattrVal.amount | currency}}</td>
+                                    </tr> 
+                                    
+                                    </table>
+                                    <!-- Tax Agent Name Begin -->
+                                    
+                                    <table class="table table-bordered"  >
+                                    <tr> 
+                                    
+                                    <td class="info">Tax Agent Reference Number</td> <td class="active">{{taxdetails.taxAgentName}} </td>
+                                    <td class="info">Tax agent name</td> <td class="active"> {{taxdetails.taxAgentReferenceNumber}}</td>
+                                    </tr>
+                                    </table>
+                                    
+                                    <!-- Tax Agent Name End -->
+                                    </div> 
+                              </div>
+
+							
+							
+							
+
+								
+								</div>
+                            <!-- Financial Container End -->
+							
+
+                        </div>
+                    </uib-accordion-group>
+                    <!-- Financial Details End -->
