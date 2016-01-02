@@ -898,10 +898,6 @@
 																						<xs:element name="sPOADetails" type="xs:string" minOccurs="0" />
 																						<xs:element name="pos" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="posType" type="xs:int" minOccurs="0" />
-																						<xs:element name="secUnregisteredPlan" type="xs:string" minOccurs="0" />
-																						<xs:element name="secBeingland" type="xs:string" minOccurs="0" />
-																						<xs:element name="secProposedplan" type="xs:string" minOccurs="0" />
-																						<xs:element name="secTitleSubdivision" type="xs:boolean" minOccurs="0" />
 																						<xs:element name="secSellerBuyerSignature" type="xs:boolean" minOccurs="0" />
 																					</xs:sequence>
 																				</xs:complexType>

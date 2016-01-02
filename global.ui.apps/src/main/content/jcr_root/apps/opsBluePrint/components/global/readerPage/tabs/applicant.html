@@ -1,11 +1,14 @@
- <uib-accordion-group heading="Customer Details" ng-show="Customer" >
+ <uib-accordion-group heading="Applicant Details" ng-show="Customer" >
 
                         <div class="row">
-                            <div class="container-fluid boldHeader"> Customer Details </div>
+                            <div class="container-fluid boldHeader"> Applicant Details </div>
                             <div class="col-md-12" ng-repeat="(key,participants) in data.application.applicationParticipants">
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
+										<tr>
+                                        	<td class="info container-fluid boldHeader" colspan="100%">Applicant Details for {{participants.participant.person.firstName}} {{participants.participant.person.middleName}} {{participants.participant.person.lastName}}</td>
+                                        </tr>
                                         <tr>
                                             <td class="info">MOS Sequence Number</td>
                                             <td class="active">{{participants.participant.person.mosRowNumber}}</td>
@@ -13,7 +16,7 @@
 											<td class="active">{{participants.participant.person.capROWNumber}}</td>
 											
 
-											
+
                                             <td class="info">Customer Type</td>
                                             <td class="active" ng-repeat="applicantType in staticData.applicantRole | filter:{applicantRoleID:participants.applicantRoleID}">{{applicantType.roleName}}</td>
                                             <td class="info">Customer</td>
@@ -126,40 +129,16 @@
                                         <!-- Dependant Details End -->
 
                                         <tr>
-                                            <table class="table table-bordered">
-                                                <tr >
-                                                    <td class="active" > Relationship Details</td>
-                                                </tr>
-                                                <tr>
-													<td class="info">Applicant</td>
-													<td class="info">Relationship To</td>
-                                                    <td class="info">Relationship Type</td>
-                                                </tr>
-                                                <tr  ng-repeat="relationType in participants.participant.participantRelationships">
-
-                                                    <td class="active" >{{participants.participant.person.firstName}} {{participants.participant.person.middleName}} {{participants.participant.person.lastName}}</td>
-
-                                                    <td class="active"  >
-                                                        <span ng-repeat="(key,testparticipants) in data.application.applicationParticipants">
-                                                        {{relationType.relatedParticipant==testparticipants.applicantSequenceNo? testparticipants.participant.person.firstName+' '+testparticipants.participant.person.lastName:''}}
-														</span>
-													</td>
-                                                    <td class="active" ng-repeat="partRelType in staticData.particpantRelationType | filter:{particpantRelationTypeID:relationType.particpantRelationTypeID}">{{partRelType.particpantRelationType}}</td>
-                                                </tr>
-                                           </table>
-                                        </tr>
-
-                                        <tr>
 
                                             <table class="table table-bordered" ng-repeat="(key,personAddress) in participants.participant.person.addresses">
                                                 <tr ng-if="personAddress.addresses.isMailingAddress ==true &&  personAddress.addresses.isCurrent ==true">
-                                                    <td class="active" > Current Address </td>
+                                                    <td class="info container-fluid boldHeader" colspan="100%"> Current Address </td>
                                                 </tr>
 												<tr ng-if="personAddress.addresses.isMailingAddress !=true &&  personAddress.addresses.isCurrent ==true">
-                                                    <td class="active" > Mailing Address  </td>
+                                                    <td class="info container-fluid boldHeader" colspan="100%"> Mailing Address  </td>
                                                 </tr>
 												<tr ng-if="personAddress.addresses.isCurrent !=true">
-                                                    <td class="active" > Previous Address  </td>
+                                                    <td class="info container-fluid boldHeader" colspan="100%"> Previous Address  </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="info">Is Overseas Address? </td>
@@ -196,8 +175,27 @@
 
                                             </table>
                                         </tr>
+                                    </table>
+									<table class="table table-bordered">
+                                                <tr >
+                                                    <td class="info container-fluid boldHeader" colspan="100%"> Relationship Details</td>
+                                                </tr>
+                                                <tr>
+													<td class="info">Applicant</td>
+													<td class="info">Relationship To</td>
+                                                    <td class="info">Relationship Type</td>
+                                                </tr>
+                                                <tr  ng-repeat="relationType in participants.participant.participantRelationships">
 
+                                                    <td class="active" >{{participants.participant.person.firstName}} {{participants.participant.person.middleName}} {{participants.participant.person.lastName}}</td>
 
+                                                    <td class="active"  >
+                                                        <span ng-repeat="(key,testparticipants) in data.application.applicationParticipants">
+                                                        {{relationType.relatedParticipant==testparticipants.applicantSequenceNo? testparticipants.participant.person.firstName+' '+testparticipants.participant.person.lastName:''}}
+														</span>
+													</td>
+                                                    <td class="active" ng-repeat="partRelType in staticData.particpantRelationType | filter:{particpantRelationTypeID:relationType.particpantRelationTypeID}">{{partRelType.particpantRelationType}}</td>
+                                                </tr>
                                     </table>
                                 </div>
                             </div>

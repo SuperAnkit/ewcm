@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.LoginException;
@@ -28,6 +29,7 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import ops.global.core.servlets.OPSConstants;
 
 @SlingServlet(paths = { "/bin/save" }, methods = { "POST" }, metatype = true)
@@ -80,21 +82,21 @@ public class OPSSaveServlet extends SlingAllMethodsServlet {
 							newSavedNode.setProperty(OPSConstants.USER_NAME, user_name);
 							newSavedNode.setProperty(OPSConstants.STATE, state);
 							newSavedNode.save();
-							InputStream content = newSavedNode.getProperty("jcr:data")
+							InputStream content = newSavedNode.getProperty(JcrConstants.JCR_DATA)
 									.getBinary().getStream();
 							String mimeType = "application/octet-stream";
 							ValueFactory valueFactory = resSession.getValueFactory();
 							Binary contentValue = valueFactory.createBinary(content);
 							
 							// create new node to store XML data
-							Node fileNode = newSavedNode.addNode(app_no + ".xml", "nt:file");
-							fileNode.addMixin("mix:referenceable");
-							Node resNode = fileNode.addNode("jcr:content", "nt:resource");
-							resNode.setProperty("jcr:mimeType", mimeType);
-							resNode.setProperty("jcr:data", contentValue);
+							Node fileNode = newSavedNode.addNode(app_no + ".xml", JcrConstants.NT_FILE);
+							fileNode.addMixin(JcrConstants.MIX_REFERENCEABLE);
+							Node resNode = fileNode.addNode(JcrConstants.JCR_CONTENT, JcrConstants.NT_RESOURCE);
+							resNode.setProperty(JcrConstants.JCR_MIMETYPE, mimeType);
+							resNode.setProperty(JcrConstants.JCR_DATA, contentValue);
 							Calendar lastModified = Calendar.getInstance();
 							lastModified.setTimeInMillis(lastModified.getTimeInMillis());
-							resNode.setProperty("jcr:lastModified", lastModified);
+							resNode.setProperty(JcrConstants.JCR_LASTMODIFIED, lastModified);
 							newSavedNode.save();
 							resNode.save();
 							resSession.save();

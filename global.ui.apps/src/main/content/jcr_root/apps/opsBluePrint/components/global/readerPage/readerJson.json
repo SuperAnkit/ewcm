@@ -3138,7 +3138,7 @@
       "propertyTenureID": 1,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyTenure": "C Cross Lease",
+      "propertyTenure": "Cross Lease",
       "propertyTenureDescription": "Cross Lease",
       "userCreated": null,
       "userUpdated": null
@@ -3147,7 +3147,7 @@
       "propertyTenureID": 2,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyTenure": "F Freehold Resident",
+      "propertyTenure": "Freehold Resident",
       "propertyTenureDescription": "Freehold Resident",
       "userCreated": null,
       "userUpdated": null
@@ -3156,7 +3156,7 @@
       "propertyTenureID": 3,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyTenure": "L Leasehold Resident",
+      "propertyTenure": "Leasehold Resident",
       "propertyTenureDescription": "Leasehold Resident",
       "userCreated": null,
       "userUpdated": null
@@ -3165,7 +3165,7 @@
       "propertyTenureID": 4,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyTenure": "O Other",
+      "propertyTenure": "Other",
       "propertyTenureDescription": "Other",
       "userCreated": null,
       "userUpdated": null
@@ -3174,7 +3174,7 @@
       "propertyTenureID": 5,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyTenure": "U Unit Title",
+      "propertyTenure": "Unit Title",
       "propertyTenureDescription": "Unit Title",
       "userCreated": null,
       "userUpdated": null
@@ -3315,7 +3315,7 @@
       "propertyZoningID": 1,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "C Commercial",
+      "propertyZoning": "Commercial",
       "propertyZoningDescription": "Commercial",
       "userCreated": null,
       "userUpdated": null
@@ -3324,7 +3324,7 @@
       "propertyZoningID": 2,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "F Rural",
+      "propertyZoning": "Rural",
       "propertyZoningDescription": "Rural",
       "userCreated": null,
       "userUpdated": null
@@ -3333,7 +3333,7 @@
       "propertyZoningID": 3,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "I Industrial",
+      "propertyZoning": "Industrial",
       "propertyZoningDescription": "Industrial",
       "userCreated": null,
       "userUpdated": null
@@ -3342,7 +3342,7 @@
       "propertyZoningID": 4,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "L Rural Life",
+      "propertyZoning": "Rural Life",
       "propertyZoningDescription": "Rural Life",
       "userCreated": null,
       "userUpdated": null
@@ -3351,7 +3351,7 @@
       "propertyZoningID": 5,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "O Other",
+      "propertyZoning": "Other",
       "propertyZoningDescription": "Other",
       "userCreated": null,
       "userUpdated": null
@@ -3360,7 +3360,7 @@
       "propertyZoningID": 6,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "R Residential",
+      "propertyZoning": "Residential",
       "propertyZoningDescription": "Residential",
       "userCreated": null,
       "userUpdated": null
@@ -3369,7 +3369,7 @@
       "propertyZoningID": 7,
       "dateCreated": null,
       "dateUpdated": null,
-      "propertyZoning": "X Rural Residential",
+      "propertyZoning": "Rural Residential",
       "propertyZoningDescription": "Rural Residential",
       "userCreated": null,
       "userUpdated": null
@@ -3638,7 +3638,7 @@
       "titleTypeID": 1,
       "dateCreated": null,
       "dateUpdated": null,
-      "titleType": "O Old Law",
+      "titleType": "Old Law",
       "titleTypeDescription": "Old Law",
       "userCreated": null,
       "userUpdated": null
@@ -3647,7 +3647,7 @@
       "titleTypeID": 2,
       "dateCreated": null,
       "dateUpdated": null,
-      "titleType": "T Torrens",
+      "titleType": "Torrens",
       "titleTypeDescription": "Torrens",
       "userCreated": null,
       "userUpdated": null
@@ -71662,22 +71662,22 @@
   "propertyStatus": [
     {
       "propertyStatusID": 1,
-      "propertyStatus": "B To Be Built",
+      "propertyStatus": "To Be Built",
       "propertyStatusDescription": "B To Be Built"
     },
     {
       "propertyStatusID": 2,
-      "propertyStatus": "E Established",
+      "propertyStatus": "Established",
       "propertyStatusDescription": "E Established"
     },
     {
       "propertyStatusID": 3,
-      "propertyStatus": "N New",
+      "propertyStatus": "New",
       "propertyStatusDescription": "N New"
     },
     {
       "propertyStatusID": 4,
-      "propertyStatus": "V Vacant Land",
+      "propertyStatus": "Vacant Land",
       "propertyStatusDescription": "V Vacant Land"
     }
   ],

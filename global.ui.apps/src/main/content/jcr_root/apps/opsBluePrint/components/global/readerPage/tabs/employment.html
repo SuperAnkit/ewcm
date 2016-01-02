@@ -5,6 +5,9 @@
                             <div class="{{data.application.applicationParticipants.length > 1 ? 'col-md-6':'col-md-12'}}" ng-repeat="(key,empDet) in data.application.applicationParticipants">
                                 <div class="table-responsive" ng-repeat="personEmpDt in empDet.participant.person.employments">
                                     <table class="table table-bordered">
+										<tr>
+                                        	<td class="info container-fluid boldHeader" colspan="100%">Employment Details for {{empDet.participant.person.firstName}} {{empDet.participant.person.middleName}} {{empDet.participant.person.lastName}}</td>
+                                        </tr>
                                         <tr>
                                         	<td class="info">Employee</td>
 											<td class="active" >

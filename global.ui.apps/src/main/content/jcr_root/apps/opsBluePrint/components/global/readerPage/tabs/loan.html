@@ -68,18 +68,20 @@
                                             <td class="active">{{ returnRadioValue(data.application.isRegulated )}}</td>
 
                                         </tr>
-
-
-
-
-                                    </table>
-                                </div>
-
-                                <div class="table-responsive" ng-repeat="(key,ilsData) in data.application.applicationPurposes">
-                                    <div ng-repeat="appPurposeData in ilsData.applicationPurposeProducts ">
-                                        <div ng-repeat="ilsDetails in appPurposeData.ilsProductDetails">
-
-                                            <table class="table table-bordered">
+										
+											<tr ng-repeat="ilsData1 in data.application.applicationPurposes">
+												<table ng-repeat="appPurposeData1 in ilsData1.applicationPurposeProducts">
+													<tr ng-repeat="ilsDetails1 in appPurposeData1.ilsProductDetails">
+														CUSTOm {{ilsDetails1.amountSought}} cutom
+													</tr>
+												</table>
+											</tr>
+											
+										
+										<tr ng-repeat="(key,ilsData) in data.application.applicationPurposes">
+											<table ng-repeat="appPurposeData in ilsData.applicationPurposeProducts">
+												<tr ng-repeat="ilsDetails in appPurposeData.ilsProductDetails">
+													<table class="table table-bordered">
                                                 <tr> <span class="boldHeader" > Product Code </span></tr>
 
                                                 <tr>
@@ -266,10 +268,17 @@
 
 
                                             </table>
-                                        </div>
-                                    </div>
+												</tr>
+											</table>
+										</tr>
+									
 
+
+
+                                    </table>
                                 </div>
+
+                                
 
 
                             </div>
